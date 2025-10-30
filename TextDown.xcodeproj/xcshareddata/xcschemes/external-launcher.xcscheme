@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83D9CF0F27A1334800E86BC9"
-               BuildableName = "libjpcre2"
-               BlueprintName = "libjpcre2"
-               ReferencedContainer = "container:QLMarkdown.xcodeproj">
+               BlueprintIdentifier = "83F1FE40259CEE7400257DAC"
+               BuildableName = "external-launcher.xpc"
+               BlueprintName = "external-launcher"
+               ReferencedContainer = "container:TextDown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "83D9CF0F27A1334800E86BC9"
-            BuildableName = "libjpcre2"
-            BlueprintName = "libjpcre2"
-            ReferencedContainer = "container:QLMarkdown.xcodeproj">
+            BlueprintIdentifier = "83F1FE40259CEE7400257DAC"
+            BuildableName = "external-launcher.xpc"
+            BlueprintName = "external-launcher"
+            ReferencedContainer = "container:TextDown.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

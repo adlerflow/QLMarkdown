@@ -1557,7 +1557,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83598E5C25818808004664D3 /* Build configuration list for PBXProject "QLMarkdown" */;
+			buildConfigurationList = 83598E5C25818808004664D3 /* Build configuration list for PBXProject "TextDown" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2994,7 +2994,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83598E5C25818808004664D3 /* Build configuration list for PBXProject "QLMarkdown" */ = {
+		83598E5C25818808004664D3 /* Build configuration list for PBXProject "TextDown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83598E6F2581880A004664D3 /* Debug */,

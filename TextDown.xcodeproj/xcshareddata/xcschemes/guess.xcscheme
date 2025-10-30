@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-               BuildableName = "textdown_cli"
-               BlueprintName = "textdown_cli"
-               ReferencedContainer = "container:QLMarkdown.xcodeproj">
+               BlueprintIdentifier = "833F2F6928019E0C00985C7D"
+               BuildableName = "guess"
+               BlueprintName = "guess"
+               ReferencedContainer = "container:TextDown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,26 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-            BuildableName = "textdown_cli"
-            BlueprintName = "textdown_cli"
-            ReferencedContainer = "container:QLMarkdown.xcodeproj">
+            BlueprintIdentifier = "833F2F6928019E0C00985C7D"
+            BuildableName = "guess"
+            BlueprintName = "guess"
+            ReferencedContainer = "container:TextDown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "/Users/sbaldiss/Develop/macos/QLMarkdown/README.md"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-o /Users/sbaldiss/Downloads/test.html"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--app &quot;/Users/sbaldiss/Library/Developer/Xcode/DerivedData/QLMarkdown-chrnkknslzsavkgnqhuomtzxdsea/Build/Products/Debug/QLMarkdown.app&quot;"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-            BuildableName = "textdown_cli"
-            BlueprintName = "textdown_cli"
-            ReferencedContainer = "container:QLMarkdown.xcodeproj">
+            BlueprintIdentifier = "833F2F6928019E0C00985C7D"
+            BuildableName = "guess"
+            BlueprintName = "guess"
+            ReferencedContainer = "container:TextDown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
