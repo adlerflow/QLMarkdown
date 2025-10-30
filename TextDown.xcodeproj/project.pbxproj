@@ -310,14 +310,14 @@
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = QLMarkdownXPCSettings;
+			remoteInfo = TextDownXPCHelper;
 		};
 		830B160B2D274F180042D876 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = QLMarkdownXPCSettings;
+			remoteInfo = TextDownXPCHelper;
 		};
 		830DF9ED27202265004429F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -457,7 +457,7 @@
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = QLMarkdownXPCSettings;
+			remoteInfo = TextDownXPCHelper;
 		};
 		83D9CF0B27A12FB000E86BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1476,7 +1476,7 @@
 				830B5B3B272D68E500378FFE /* SwiftSoup */,
 				831834E5277E10150044ECDA /* Sparkle */,
 			);
-			productName = QLMarkdown;
+			productName = TextDown;
 			productReference = 83598E6125818808004664D3 /* TextDown.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1498,7 +1498,7 @@
 			name = TextDownXPCHelper;
 			packageProductDependencies = (
 			);
-			productName = QLMarkdownXPCSettings;
+			productName = TextDownXPCHelper;
 			productReference = 83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
@@ -2184,7 +2184,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2231,7 +2231,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2289,7 +2289,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2346,7 +2346,7 @@
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2389,7 +2389,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2432,7 +2432,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2603,7 +2603,7 @@
 				AUTOMATION_APPLE_EVENTS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = QLMarkdown/QLMarkdown.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TextDown/TextDown.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2625,7 +2625,7 @@
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
 					"$(BUILT_PRODUCTS_DIR)/libjpcre2/include",
 				);
-				INFOPLIST_FILE = QLMarkdown/Info.plist;
+				INFOPLIST_FILE = TextDown/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@loader_path/../Frameworks",
@@ -2644,7 +2644,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2658,7 +2658,7 @@
 				AUTOMATION_APPLE_EVENTS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = QLMarkdown/QLMarkdown.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TextDown/TextDown.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2680,7 +2680,7 @@
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
 					"$(BUILT_PRODUCTS_DIR)/libjpcre2/include",
 				);
-				INFOPLIST_FILE = QLMarkdown/Info.plist;
+				INFOPLIST_FILE = TextDown/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@loader_path/../Frameworks",
@@ -2699,7 +2699,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2742,7 +2742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = QLMarkdownXPCHelper/QLMarkdownXPCHelper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TextDownXPCHelper/TextDownXPCHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2759,8 +2759,8 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 				);
-				INFOPLIST_FILE = QLMarkdownXPCHelper/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = QLMarkdownXPCHelper;
+				INFOPLIST_FILE = TextDownXPCHelper/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TextDownXPCHelper;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)_$(_BOOL_$(SKIP_INSTALL)))",
@@ -2780,7 +2780,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2790,7 +2790,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = QLMarkdownXPCHelper/QLMarkdownXPCHelper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TextDownXPCHelper/TextDownXPCHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2807,8 +2807,8 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 				);
-				INFOPLIST_FILE = QLMarkdownXPCHelper/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = QLMarkdownXPCHelper;
+				INFOPLIST_FILE = TextDownXPCHelper/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TextDownXPCHelper;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)_$(_BOOL_$(SKIP_INSTALL)))",
@@ -2827,7 +2827,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "QLMarkdown/QLMarkdown-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
