@@ -499,11 +499,21 @@ class ViewController: NSViewController {
         let isHidden = tabViewHeightConstraint.constant == 0
         let newHeight: CGFloat = isHidden ? 220 : 0
 
+        // Show TabView before expanding to allow animation
+        if isHidden {
+            tabView.isHidden = false
+        }
+
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.25
             context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
             tabViewHeightConstraint.animator().constant = newHeight
-        }, completionHandler: nil)
+        }, completionHandler: {
+            // Hide TabView after collapsing to prevent overflow rendering
+            if !isHidden {
+                self.tabView.isHidden = true
+            }
+        })
 
         sender.toolTip = isHidden ? "Hide settings panel" : "Show settings panel"
     }
