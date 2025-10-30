@@ -8,6 +8,7 @@
 import Cocoa
 @preconcurrency import WebKit
 import OSLog
+import UniformTypeIdentifiers
 
 class ViewController: NSViewController {
     @objc dynamic var elapsedTimeLabel: String = ""
@@ -456,7 +457,7 @@ class ViewController: NSViewController {
         didSet {
             if let file = markdown_file {
                 do {
-                    let s = try String(contentsOf: file)
+                    let s = try String(contentsOf: file, encoding: .utf8)
                     self.textView.string = s
                 } catch {
                     self.textView.string = "** Error loading file *\(file.path)*! **"
@@ -577,7 +578,7 @@ class ViewController: NSViewController {
         panel.canChooseDirectories = false
         panel.canCreateDirectories = false
         panel.allowsMultipleSelection = false
-        panel.allowedFileTypes = ["md"]
+        panel.allowedContentTypes = [UTType(filenameExtension: "md")!]
         panel.message = "Select a Markdown file to preview"
         
         let result = panel.runModal()
@@ -593,7 +594,7 @@ class ViewController: NSViewController {
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.showsTagField = false
-        savePanel.allowedFileTypes = ["md", "rmd", "qmd"]
+        savePanel.allowedContentTypes = [UTType(filenameExtension: "md")!, UTType(filenameExtension: "rmd")!, UTType(filenameExtension: "qmd")!]
         savePanel.isExtensionHidden = false
         savePanel.nameFieldStringValue = self.markdown_file?.lastPathComponent ?? "markdown.md"
         savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
@@ -678,7 +679,7 @@ class ViewController: NSViewController {
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.showsTagField = false
-        savePanel.allowedFileTypes = ["html"]
+        savePanel.allowedContentTypes = [.html]
         savePanel.isExtensionHidden = false
         savePanel.nameFieldStringValue = "markdown.html"
         savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
@@ -834,7 +835,7 @@ document.addEventListener('scroll', function(e) {
         panel.canChooseDirectories = false
         panel.canCreateDirectories = false
         panel.allowsMultipleSelection = false
-        panel.allowedFileTypes = ["css"]
+        panel.allowedContentTypes = [UTType(filenameExtension: "css")!]
         panel.message = "Select a custom CSS style"
         
         let result = panel.runModal()
@@ -897,7 +898,7 @@ document.addEventListener('scroll', function(e) {
                 let savePanel = NSSavePanel()
                 savePanel.canCreateDirectories = true
                 savePanel.showsTagField = false
-                savePanel.allowedFileTypes = ["css"]
+                savePanel.allowedContentTypes = [UTType(filenameExtension: "css")!]
                 savePanel.isExtensionHidden = false
                 savePanel.nameFieldStringValue = "default.css"
                 savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
