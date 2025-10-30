@@ -589,7 +589,7 @@
 		831A8C43258ABADA00E36182 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		831A8C46258ABADA00E36182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
 		831A8C48258ABADA00E36182 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		831A8C49258ABADA00E36182 /* QLExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QLExtension.entitlements; sourceTree = "<group>"; };
+		831A8C49258ABADA00E36182 /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
 		8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "TextDown Shortcut Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832D256125CC8894005F41AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83327D1D2593FB0700E76CF6 /* url.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = url.hpp; sourceTree = "<group>"; };
@@ -896,15 +896,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		831A8C42258ABADA00E36182 /* QLExtension */ = {
+		831A8C42258ABADA00E36182 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				831A8C48258ABADA00E36182 /* Info.plist */,
 				831A8C43258ABADA00E36182 /* PreviewViewController.swift */,
 				831A8C45258ABADA00E36182 /* PreviewViewController.xib */,
-				831A8C49258ABADA00E36182 /* QLExtension.entitlements */,
+				831A8C49258ABADA00E36182 /* Extension.entitlements */,
 			);
-			path = QLExtension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		83327D252594066300E76CF6 /* MIMEtype */ = {
@@ -1087,7 +1087,7 @@
 				83BD380429E7E7A2003F35CA /* cmark-extra */,
 				834A4DC329E8674200692964 /* cmark-gfm */,
 				83598E6325818808004664D3 /* TextDown */,
-				831A8C42258ABADA00E36182 /* QLExtension */,
+				831A8C42258ABADA00E36182 /* Extension */,
 				837F29172597A01F00A5F7DE /* Resources */,
 				83437972271D47DF00A5D6EA /* textdown_cli */,
 				83F1FE42259CEE7400257DAC /* external-launcher */,
@@ -2179,7 +2179,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.QLExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
@@ -2226,7 +2226,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.QLExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.Extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
