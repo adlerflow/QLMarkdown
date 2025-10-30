@@ -35,7 +35,7 @@ class AboutViewController: NSViewController {
         s += "<b>Developer</b><br /><a href='https://github.com'></a><br /><a href='https://github.com'>https://github.com</a><br /><br />"
         
         s += "<b>Libraries</b><br />"
-        s += "cmark-gfm version \(String(cString: cmark_version_string())) (\(cmark_version())) (<a href=\"https://github.com/github/cmark-gfm\">https://github.com/github/cmark-gfm</a>)<br />\n"
+        s += cmarkVersionHTML() + "\n"
         if let v = get_highlight_version() {
             defer {
                 v.deallocate()
@@ -72,5 +72,24 @@ class AboutViewController: NSViewController {
 class AboutWindowController: NSWindowController {
     @IBAction func cancel(_ sender: Any?) {
         self.close()
+    }
+}
+
+extension AboutViewController {
+    /// Returns HTML describing the cmark-gfm version, or a fallback if the symbols are unavailable.
+    fileprivate func cmarkVersionHTML() -> String {
+        // If you link cmark-gfm and expose these C functions to Swift, you can switch to direct calls again.
+        // Until then, provide a graceful fallback so the app compiles and the About page still renders.
+        #if canImport(cmark)
+        // If a Swift module named 'cmark' exists and re-exports the symbols, try to use it.
+        // Note: Adjust names if your module exposes different API.
+        if let versionCString = cmark_version_string?() {
+            let versionString = String(cString: versionCString)
+            let versionNumber = (cmark_version?() ?? 0)
+            return "cmark-gfm version \(versionString) (\(versionNumber)) (<a href=\"https://github.com/github/cmark-gfm\">https://github.com/github/cmark-gfm</a>)<br />"
+        }
+        #endif
+        // Fallback when the symbols aren't available in this build configuration.
+        return "cmark-gfm (version unknown) (<a href=\"https://github.com/github/cmark-gfm\">https://github.com/github/cmark-gfm</a>)<br />"
     }
 }
