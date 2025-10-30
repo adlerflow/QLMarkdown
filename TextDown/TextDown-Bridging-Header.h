@@ -2,7 +2,8 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import "config.h"
+// Note: config.h is not imported here directly, but is included by cmark headers
+// The build output directory ($(BUILT_PRODUCTS_DIR)/cmark) is in the header search paths
 #import "../cmark-gfm/src/cmark-gfm.h"
 #import "../cmark-gfm/extensions/cmark-gfm-core-extensions.h"
 
