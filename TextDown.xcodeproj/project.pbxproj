@@ -2623,6 +2623,7 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
+					"$(BUILT_PRODUCTS_DIR)/cmark",
 					"$(BUILT_PRODUCTS_DIR)/libjpcre2/include",
 				);
 				INFOPLIST_FILE = TextDown/Info.plist;
@@ -2678,6 +2679,7 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
+					"$(BUILT_PRODUCTS_DIR)/cmark",
 					"$(BUILT_PRODUCTS_DIR)/libjpcre2/include",
 				);
 				INFOPLIST_FILE = TextDown/Info.plist;
