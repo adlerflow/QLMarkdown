@@ -2,7 +2,7 @@
 //  extra-extensions.h
 //  QLMarkdown
 //
-//  Created by Sbarex on 14/04/23.
+//  Created by adlerflow on 14/04/23.
 //
 
 #ifndef extra_extensions_h

@@ -2,7 +2,7 @@
 //  highlight.c
 //  QLMarkdown
 //
-//  Created by Sbarex on 04/08/24.
+//  Created by adlerflow on 04/08/24.
 //
 
 #include "highlight.h"

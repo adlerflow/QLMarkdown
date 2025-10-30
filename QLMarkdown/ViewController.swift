@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  QLMarkdown
 //
-//  Created by sbarex on 09/12/20.
+//  Created by adlerflow on 09/12/20.
 //
 
 import Cocoa

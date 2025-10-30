@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 09/12/20.
+//  Created by adlerflow on 09/12/20.
 //
 
 import Cocoa
@@ -143,11 +143,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     
     @IBAction func onUpdateRate(_ sender: NSMenuItem) {
         updater?.updateCheckInterval = TimeInterval(sender.tag)
-    }
-    
-    @IBAction func buyMeACoffee(_ sender: Any?) {
-        let url = URL(string: "https://www.buymeacoffee.com/sbarex")!
-        NSWorkspace.shared.open(url)
     }
 }
 

@@ -2,7 +2,7 @@
 //  HighlightViewController.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 14/04/23.
+//  Created by adlerflow on 14/04/23.
 //
 
 import AppKit

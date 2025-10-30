@@ -2,7 +2,7 @@
 //  QLMarkdownXPCHelperProtocol.swift
 //  QLMarkdownXPCHelper
 //
-//  Created by Sbarex on 02/01/25.
+//  Created by adlerflow on 02/01/25.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ import Foundation
 /*
  To use the service from an application or other process, use NSXPCConnection to establish a connection to the service by doing something like this:
 
-     connectionToService = NSXPCConnection(serviceName: "org.sbarex.QLMarkdownXPCHelper")
+     connectionToService = NSXPCConnection(serviceName: "org.advison.QLMarkdownXPCHelper")
      connectionToService.remoteObjectInterface = NSXPCInterface(with: QLMarkdownXPCHelperProtocol.self)
      connectionToService.resume()
 

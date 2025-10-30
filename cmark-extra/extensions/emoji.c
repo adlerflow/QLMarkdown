@@ -2,7 +2,7 @@
 //  emoji.c
 //  QLMarkdown
 //
-//  Created by Sbarex on 12/12/20.
+//  Created by adlerflow on 12/12/20.
 //
 
 #include "emoji.h"

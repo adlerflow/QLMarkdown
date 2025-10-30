@@ -1,6 +1,6 @@
 ---
 Title: My Title
-Author: Sbarex
+Author: adlerflow
 Date: Sunday, May 30, 2021
 Abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 output:
@@ -47,7 +47,7 @@ Multibyte emoji are also supported, so `:it:` equivalent to the code `\u1f1ee\u1
 
 ## GitHub mentions extension
 
-With the `mentions` extension @sbarex is rendered as a link to the GitHub account.
+With the `mentions` extension @adlerflow is rendered as a link to the GitHub account.
 
 ## Heads extension
 

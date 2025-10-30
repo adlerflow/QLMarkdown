@@ -2,7 +2,7 @@
 //  Settings.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 13/12/20.
+//  Created by adlerflow on 13/12/20.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ enum Appearance: Int {
 }
 
 extension NSNotification.Name {
-    public static let QLMarkdownSettingsUpdated: NSNotification.Name = NSNotification.Name("org.sbarex.qlmarkdown-settings-changed")
+    public static let QLMarkdownSettingsUpdated: NSNotification.Name = NSNotification.Name("org.advison.qlmarkdown-settings-changed")
 }
 
 class Settings: Codable {
@@ -174,7 +174,7 @@ class Settings: Codable {
     @objc var about: Bool = true
     
     var app_version: String {
-        var title: String = "<a href='https://github.com/sbarex/QLMarkdown'>";
+        var title: String = "<a href='https://github.com/'>";
         if let info = Bundle.main.infoDictionary {
             title += (info["CFBundleExecutable"] as? String ?? "QLMarkdown") + "</a>"
             if let version = info["CFBundleShortVersionString"] as? String,
@@ -187,12 +187,11 @@ class Settings: Codable {
         } else {
             title += "QLMarkdown</a>"
         }
-        title += ".<br/>\nIf you like this app, <a href='https://www.buymeacoffee.com/sbarex'><strong>buy me a coffee</strong></a>!"
         return title
     }
     
     var app_version2: String {
-        var title: String = "<!--\n\nFile generated with QLMarkdown [https://github.com/sbarex/QLMarkdown] - ";
+        var title: String = "<!--\n\nFile generated with QLMarkdown - ";
         if let info = Bundle.main.infoDictionary {
             title += (info["CFBundleExecutable"] as? String ?? "QLMarkdown")
             if let version = info["CFBundleShortVersionString"] as? String,
@@ -616,7 +615,7 @@ class Settings: Codable {
 
             if let appBundle = Bundle(url: url) {
                 return appBundle
-            } else if let appBundle = Bundle(identifier: "org.sbarex.QLMarkdown") {
+            } else if let appBundle = Bundle(identifier: "org.advison.QLMarkdown") {
                 return appBundle
             }
             // To access the main bundle, the extension must not be sandboxed (or must have a security exception entitlement to access the entire disk).

@@ -2,7 +2,7 @@
 //  XPCSWrapper.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 02/01/25.
+//  Created by adlerflow on 02/01/25.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ class XPCWrapper {
     private static var serviceSync: QLMarkdownXPCHelperProtocol?
     
     static func createNewConnection() -> NSXPCConnection {
-        let connection = NSXPCConnection(serviceName: "org.sbarex.QLMarkdownXPCHelper")
+        let connection = NSXPCConnection(serviceName: "org.advison.QLMarkdownXPCHelper")
         connection.invalidationHandler = {
             guard !((connection.exportedObject as? QLMarkdownXPCHelperProtocol)?.isHalted ?? false) else {
                 return

@@ -2,7 +2,7 @@
 //  String+ext.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 15/12/20.
+//  Created by adlerflow on 15/12/20.
 //
 
 import Foundation

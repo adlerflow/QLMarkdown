@@ -2,7 +2,7 @@
 //  Settings+NoXPC.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 09/05/25.
+//  Created by adlerflow on 09/05/25.
 //
 
 import Foundation

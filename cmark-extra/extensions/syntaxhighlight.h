@@ -2,7 +2,7 @@
 //  syntaxhighlight.h
 //  QLMarkdown
 //
-//  Created by Sbarex on 09/12/20.
+//  Created by adlerflow on 09/12/20.
 //
 
 #ifndef syntaxhighlight_h

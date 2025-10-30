@@ -2,7 +2,7 @@
 //  Settings.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 25/12/20.
+//  Created by adlerflow on 25/12/20.
 //
 
 import Foundation

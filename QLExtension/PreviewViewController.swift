@@ -2,7 +2,7 @@
 //  PreviewViewController.swift
 //  QLExtension
 //
-//  Created by Sbarex on 16/12/20.
+//  Created by adlerflow on 16/12/20.
 //
 
 import Cocoa
@@ -61,7 +61,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         Settings.shared.startMonitorChange()
         
         if #available(macOS 11, *) {
-            let connection = NSXPCConnection(serviceName: "org.sbarex.qlmarkdown.external-launcher")
+            let connection = NSXPCConnection(serviceName: "org.advison.qlmarkdown.external-launcher")
             
             connection.remoteObjectInterface = NSXPCInterface(with: ExternalLauncherProtocol.self)
             connection.resume()

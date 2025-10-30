@@ -2,7 +2,7 @@
 //  AboutViewController.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 31/12/20.
+//  Created by adlerflow on 31/12/20.
 //
 
 import Cocoa
@@ -32,7 +32,7 @@ class AboutViewController: NSViewController {
         let bg_color = NSColor.textBackgroundColor.css() ?? "#ffffff"
         var s = "<div style='font-family: -apple-system; text-align: center; color: \(fg_color); background-color: \(bg_color)'>"
         
-        s += "<b>Developer</b><br /><a href='https://github.com/sbarex/'>sbarex</a><br /><a href='https://github.com/sbarex/QLMarkdown'>https://github.com/sbarex/QLMarkdown</a><br /><br />"
+        s += "<b>Developer</b><br /><a href='https://github.com'></a><br /><a href='https://github.com'>https://github.com</a><br /><br />"
         
         s += "<b>Libraries</b><br />"
         s += "cmark-gfm version \(String(cString: cmark_version_string())) (\(cmark_version())) (<a href=\"https://github.com/github/cmark-gfm\">https://github.com/github/cmark-gfm</a>)<br />\n"
@@ -61,8 +61,6 @@ class AboutViewController: NSViewController {
         s += "Yams (<a href=\"https://github.com/jpsim/Yams.git\">https://github.com/jpsim/Yams.git</a>)<br />\n"
         s += "SwiftSoup (<a href=\"https://github.com/scinfu/SwiftSoup\">https://github.com/scinfu/SwiftSoup</a>)<br />\n"
         s += "<br />\n———<br />\n<br />\n"
-        s += "Thanks to setanarut (<a href=\"https://github.com/setanarut\">https://github.com/setanarut</a>) for the app icon and CSS style.<br />\n"
-        
         s += "</div>"
        
         if let data = s.data(using: .utf8), let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil) {

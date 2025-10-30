@@ -2,7 +2,7 @@
 //  main.swift
 //  QLMarkdownXPCHelper
 //
-//  Created by Sbarex on 02/01/25.
+//  Created by adlerflow on 02/01/25.
 //
 
 import Foundation

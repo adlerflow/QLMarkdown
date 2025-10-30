@@ -2,7 +2,7 @@
 //  heads.c
 //  QLMarkdown
 //
-//  Created by Sbarex on 27/12/20.
+//  Created by adlerflow on 27/12/20.
 //
 
 #include "heads.h"

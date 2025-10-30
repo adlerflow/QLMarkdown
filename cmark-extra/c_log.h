@@ -2,7 +2,7 @@
 //  c_log.h
 //  QLMarkdown
 //
-//  Created by Sbarex on 21/03/22.
+//  Created by adlerflow on 21/03/22.
 //
 
 #ifndef c_log_h

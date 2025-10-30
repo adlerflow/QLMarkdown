@@ -1,7 +1,3 @@
-[![counter](https://img.shields.io/github/downloads/sbarex/qlmarkdown/latest/total)](https://github.com/sbarex/QLMarkdown/releases) [![counter](https://img.shields.io/github/downloads/sbarex/qlmarkdown/total)](https://github.com/sbarex/QLMarkdown/releases)
-
-[![buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy+me+a+coffee&emoji=&slug=sbarex&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff")](https://www.buymeacoffee.com/sbarex)
-
 <p align="center">
   <img src="assets/img/icon.png" width="150" alt="logo" />
 </p>
@@ -14,11 +10,8 @@ _This application is not intended to be used as a standalone markdown file edito
 
 > **Please note that this software is provided "as is", without any warranty of any kind.**
 
-If you like this application and find it useful, [__buy me a coffee__](https://www.buymeacoffee.com/sbarex)!
-
 The Quick Look extension can also preview rmarkdown files (`.rmd`, _without_ evaluating `r` code), MDX files (`.mdx`, _without_ JSX rendering), Cursor Rulers (`.mdc`), Quarto files (`.qmd`), Api Blueprint files (`.apib`) and textbundle packages.
 
-You can download the last compiled release (as universal binary) from [this link](https://github.com/sbarex/QLMarkdown/releases). 
 
   - [Screenshots](#screenshots)
     - [Quick Look Markdown preview](#quick-look-markdown-preview)
@@ -50,8 +43,6 @@ You can download the last compiled release (as universal binary) from [this link
 
 
 ## Installation
-
-You can download the last compiled release (as universal binary) from [this link](https://github.com/sbarex/QLMarkdown/releases) or you can install the Application with [Homebrew](https://brew.sh/):   
 
 ```shell
 brew install --cask qlmarkdown
@@ -368,8 +359,4 @@ On Big Sur there is a bug in the Quick Look engine and WebKit that cause the imm
 I am not primarily an application developer. There may be possible bugs in the code, be patient.
 Also, I am not a native English speaker :sweat_smile:. 
 
-Thanks to [setanarut](https://github.com/setanarut) for the app icon and the CSS style.
-
 **This application was developed for pleasure :heart:.**
-
-If you find this application useful, [__buy me a coffee!__](https://www.buymeacoffee.com/sbarex)

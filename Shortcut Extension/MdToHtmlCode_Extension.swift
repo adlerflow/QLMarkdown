@@ -2,7 +2,7 @@
 //  Shortcut_Extension.swift
 //  Shortcut Extension
 //
-//  Created by Sbarex on 25/12/24.
+//  Created by adlerflow on 25/12/24.
 //
 
 import AppIntents

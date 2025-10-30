@@ -2,7 +2,7 @@
 //  string_utils.cpp
 //  QLMarkdown
 //
-//  Created by Sbarex on 28/12/20.
+//  Created by adlerflow on 28/12/20.
 //
 
 #include "string_utils.hpp"

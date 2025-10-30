@@ -2,7 +2,7 @@
 //  Theme.swift
 //  QLMarkdown
 //
-//  Created by Sbarex on 14/12/20.
+//  Created by adlerflow on 14/12/20.
 //
 
 import Cocoa

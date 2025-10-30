@@ -2,7 +2,7 @@
 //  sub_ext.c
 //  QLMarkdown
 //
-//  Created by Sbarex on 04/08/24.
+//  Created by adlerflow on 04/08/24.
 //
 
 #include "sub_ext.h"

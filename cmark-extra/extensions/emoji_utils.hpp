@@ -2,7 +2,7 @@
 //  emoji_utils.hpp
 //  QLMarkdown
 //
-//  Created by Sbarex on 23/12/20.
+//  Created by adlerflow on 23/12/20.
 //
 
 #ifndef emoji_utils_hpp

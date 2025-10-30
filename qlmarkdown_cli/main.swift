@@ -2,7 +2,7 @@
 //  main.swift
 //  qlmarkdown_cli
 //
-//  Created by Sbarex on 18/10/21.
+//  Created by adlerflow on 18/10/21.
 //
 
 import Cocoa
@@ -72,8 +72,8 @@ var files: [URL] = []
 var dest: URL?
 var verbose = false
 
-let d = UserDefaults(suiteName: "org.sbarex.QLMarkdownXPCHelper");
-let settings = Settings(defaults: d?.dictionaryRepresentation() ?? [:]) 
+let d = UserDefaults(suiteName: "org.advison.QLMarkdownXPCHelper");
+let settings = Settings(defaults: d?.dictionaryRepresentation() ?? [:])
 var type = Settings.isLightAppearance ? "Light" : "Dark"
 
 func parseArgOnOff(index i: Int) -> Bool {
@@ -335,17 +335,7 @@ for url in files {
         let text = try settings.render(file: markdown_url, forAppearance: appearance, baseDir: markdown_url.deletingLastPathComponent().path)
         
         let html = settings.getCompleteHTML(title: url.lastPathComponent, body: text, basedir: markdown_url.deletingLastPathComponent(), forAppearance: appearance)
-        
-        settings.renderStats += 1
-        if settings.renderStats > 0 && settings.renderStats % 100 == 0 {
-            print("""
-*** *** *** *** *** ***
-Thanks to this application you have viewed over \(settings.renderStats) files.
-If you find it useful and you have the possibility, consider buying me a coffee! (https://buymeacoffee.com/sbarex)
-*** *** *** *** *** ***
-""")
-        }
-        
+
         var output: URL?
         if let dest = dest {
             var isDir: ObjCBool = false

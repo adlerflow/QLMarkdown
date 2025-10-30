@@ -2,7 +2,7 @@
 //  external_launcher.swift
 //  external-launcher
 //
-//  Created by Sbarex on 30/12/20.
+//  Created by adlerflow on 30/12/20.
 //
 
 import Cocoa
