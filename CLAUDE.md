@@ -1,19 +1,19 @@
-# QLMarkdown → Standalone Markdown Editor/Viewer
+# TextDown → Standalone Markdown Editor/Viewer
 
 ## Projektziel
 
-Transformation von QLMarkdown (QuickLook Extension) zu einem eigenständigen Markdown Editor/Viewer mit Split-View Architektur: Raw Markdown Editor (links) | Live Preview (rechts).
+Transformation von TextDown (QuickLook Extension) zu einem eigenständigen Markdown Editor/Viewer mit Split-View Architektur: Raw Markdown Editor (links) | Live Preview (rechts).
 
-**Repository**: `/Users/home/GitHub/QLMarkdown`  
-**Branch**: `main`  
+**Repository**: `/Users/home/GitHub/QLMarkdown`
+**Branch**: `main`
 **Migration-Branch**: `feature/standalone-editor`
 
 ---
 
 ## Aktuelle Projektstruktur (Pre-Migration)
 
-### QLMarkdown.app - Main Application
-**Bundle ID**: `org.sbarex.QLMarkdown`  
+### TextDown.app - Main Application
+**Bundle ID**: `org.advison.TextDown`
 **Primary Function**: Settings UI + Theme Editor (kein aktiver Editor!)
 
 **Kernklassen**:
@@ -71,9 +71,9 @@ customStyleCSS: String               // Custom CSS override
 - Standalone Binary in Contents/Resources/
 - Verwendet Settings aus Shared UserDefaults
 
-**QLMarkdownXPCHelper.xpc**:
+**TextDownXPCHelper.xpc**:
 - Settings Persistenz zwischen App/Extensions
-- `QLMarkdownXPCHelperProtocol` Functions:
+- `TextDownXPCHelperProtocol` Functions:
   - `getSettings()` / `setSettings()`
   - `getStylesFolder()` / `getAvailableStyles()`
   - `storeStyle()` / `getFileContents()`
@@ -265,7 +265,7 @@ ONLY_ACTIVE_ARCH = YES (Debug) / NO (Release)
 
 LD_RUNPATH_SEARCH_PATHS = @loader_path/../Frameworks
 
-SWIFT_OBJC_BRIDGING_HEADER = QLMarkdown/QLMarkdown-Bridging-Header.h
+SWIFT_OBJC_BRIDGING_HEADER = TextDown/TextDown-Bridging-Header.h
 ````
 
 ### Bridging Header Imports
@@ -282,7 +282,7 @@ SWIFT_OBJC_BRIDGING_HEADER = QLMarkdown/QLMarkdown-Bridging-Header.h
 
 ### Entitlements (Pre-Migration)
 
-**QLMarkdown.app**:
+**TextDown.app**:
 ````xml
 <key>com.apple.security.app-sandbox</key>
 <true/>
@@ -316,7 +316,7 @@ Editor braucht zusätzlich:
 - Repository: https://github.com/sparkle-project/Sparkle
 - Revision: `0ca3004e98712ea2b39dd881d28448630cce1c99`
 - Size: ~3 MB
-- Used By: QLMarkdown.app only (nicht Extensions)
+- Used By: TextDown.app only (nicht Extensions)
 
 **SwiftSoup** - HTML Parser
 - Version: 2.8.7
@@ -336,10 +336,10 @@ Editor braucht zusätzlich:
 
 ## Bundle Struktur (Pre-Migration)
 ````
-QLMarkdown.app/
+TextDown.app/
 ├── Contents/
 │   ├── MacOS/
-│   │   └── QLMarkdown                 # Main Binary
+│   │   └── TextDown                 # Main Binary
 │   ├── Frameworks/
 │   │   ├── Sparkle.framework          # Auto-Update
 │   │   └── libwrapper_highlight.dylib # Syntax Highlighting (36 MB)
@@ -347,7 +347,7 @@ QLMarkdown.app/
 │   │   ├── QLExtension.appex          # QuickLook (wird entfernt)
 │   │   └── Shortcut Extension.appex   # Shortcuts (wird entfernt)
 │   ├── XPCServices/
-│   │   └── QLMarkdownXPCHelper.xpc    # Settings (wird entfernt)
+│   │   └── TextDownXPCHelper.xpc    # Settings (wird entfernt)
 │   └── Resources/
 │       ├── highlight/
 │       │   ├── themes/*.lua           # 97 Themes
@@ -501,7 +501,7 @@ print("hi")
 - QuickLook Extension (QLExtension.appex)
 - Shortcuts Integration (Shortcut Extension.appex)
 - CLI Tool (qlmarkdown_cli)
-- XPC Services (QLMarkdownXPCHelper, external-launcher)
+- XPC Services (TextDownXPCHelper, external-launcher)
 - Unused Assets (examples/, assets/)
 
 ### Was bleibt erhalten
@@ -588,7 +588,7 @@ chore: Maintenance tasks
 
 **Bridging Header not found**
 - Location: Build Settings → Swift Compiler → Objective-C Bridging Header
-- Expected: `$(SRCROOT)/QLMarkdown/QLMarkdown-Bridging-Header.h`
+- Expected: `$(SRCROOT)/TextDown/TextDown-Bridging-Header.h`
 
 **Resources missing in Bundle**
 - Location: Build Phases → Copy Bundle Resources
@@ -608,7 +608,7 @@ chore: Maintenance tasks
 **Settings nicht persistent**
 - Check: Settings+NoXPC.swift active (nicht XPCWrapper)
 - Check: UserDefaults domain korrekt
-- Location: ~/Library/Preferences/org.sbarex.QLMarkdown.plist
+- Location: ~/Library/Preferences/org.advison.TextDown.plist
 
 **Syntax Highlighting fehlt**
 - Check: wrapper_highlight.dylib in Bundle/Frameworks
@@ -625,19 +625,19 @@ chore: Maintenance tasks
 ## Code-Hotspots (Wichtige Files)
 
 ### Rendering Pipeline
-- `QLMarkdown/Settings+render.swift` - Haupt-Rendering-Logic (400+ Zeilen)
-- `QLMarkdown/Settings.swift` - Settings-Management (~40 Properties)
-- `QLMarkdown/Settings+NoXPC.swift` - Standalone Settings ohne XPC
-- `QLMarkdown/QLMarkdown-Bridging-Header.h` - C/Swift Bridge (9 Imports)
+- `TextDown/Settings+render.swift` - Haupt-Rendering-Logic (400+ Zeilen)
+- `TextDown/Settings.swift` - Settings-Management (~40 Properties)
+- `TextDown/Settings+NoXPC.swift` - Standalone Settings ohne XPC
+- `TextDown/TextDown-Bridging-Header.h` - C/Swift Bridge (9 Imports)
 
 ### UI Layer
-- `QLMarkdown/ViewController.swift` - Existierende Settings UI (1200+ Zeilen)
-- `QLMarkdown/AppDelegate.swift` - App Lifecycle, Sparkle Integration
-- `QLMarkdown/Theme.swift` - Theme Datenstrukturen
-- `QLMarkdown/ThemePreview.swift` - Theme Preview UI
+- `TextDown/ViewController.swift` - Existierende Settings UI (1200+ Zeilen)
+- `TextDown/AppDelegate.swift` - App Lifecycle, Sparkle Integration
+- `TextDown/Theme.swift` - Theme Datenstrukturen
+- `TextDown/ThemePreview.swift` - Theme Preview UI
 
 ### Build System
-- `QLMarkdown.xcodeproj/project.pbxproj` - Xcode Projekt-Konfiguration
+- `TextDown.xcodeproj/project.pbxproj` - Xcode Projekt-Konfiguration
 - `highlight-wrapper/Makefile` - Multi-Stage C/C++/Go Build (383 Zeilen)
 - `cmark-extra/Makefile` - Custom Markdown Extensions Build
 
@@ -684,7 +684,7 @@ chore: Maintenance tasks
 - [ ] Delete Shortcuts Extension Target
 - [ ] Delete CLI Tool Target
 - [ ] Delete external-launcher XPC
-- [ ] Delete QLMarkdownXPCHelper XPC
+- [ ] Delete TextDownXPCHelper XPC
 - [ ] Update Settings.swift (Remove XPC, use NoXPC)
 - [ ] Update Info.plist (Remove Extension declarations)
 

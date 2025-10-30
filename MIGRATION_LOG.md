@@ -1,4 +1,4 @@
-# Migration Log: QLMarkdown → Standalone Editor
+# Migration Log: TextDown → Standalone Editor
 
 **Migration Start**: 2025-10-30
 **Branch**: `feature/standalone-editor`
@@ -13,11 +13,11 @@
 **Xcode Targets (10 Total)**:
 
 **Native Targets (6)**:
-1. QLMarkdown - Main Application (Bundle ID: org.sbarex.QLMarkdown)
+1. TextDown - Main Application (Bundle ID: org.advison.TextDown)
 2. Markdown QL Extension - QuickLook Extension (.appex)
-3. QLMarkdown Shortcut Extension - Shortcuts Integration (.appex)
+3. TextDown Shortcut Extension - Shortcuts Integration (.appex)
 4. qlmarkdown_cli - Command Line Interface Binary
-5. QLMarkdownXPCHelper - Settings Persistence XPC Service (.xpc)
+5. TextDownXPCHelper - Settings Persistence XPC Service (.xpc)
 6. external-launcher - URL Opening XPC Service (.xpc)
 
 **Legacy Build Targets (4)**:
@@ -38,12 +38,12 @@
 - **Yams**: 4.0.6 (YAML Parsing)
 
 ### Critical Files
-- `QLMarkdown/Settings.swift` - 40+ Properties
-- `QLMarkdown/Settings+render.swift` - Main Rendering Engine
-- `QLMarkdown/Settings+XPC.swift` - XPC Communication
-- `QLMarkdown/Settings+NoXPC.swift` - Direct UserDefaults Fallback
-- `QLMarkdown/ViewController.swift` - Settings UI (1200+ LOC)
-- `QLMarkdown/AppDelegate.swift` - Lifecycle + Sparkle
+- `TextDown/Settings.swift` - 40+ Properties
+- `TextDown/Settings+render.swift` - Main Rendering Engine
+- `TextDown/Settings+XPC.swift` - XPC Communication
+- `TextDown/Settings+NoXPC.swift` - Direct UserDefaults Fallback
+- `TextDown/ViewController.swift` - Settings UI (1200+ LOC)
+- `TextDown/AppDelegate.swift` - Lifecycle + Sparkle
 
 ### Build Status
 - **Clean Status**: ✅ SUCCEEDED
