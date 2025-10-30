@@ -1,6 +1,6 @@
 //
 //  heads.c
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 27/12/20.
 //

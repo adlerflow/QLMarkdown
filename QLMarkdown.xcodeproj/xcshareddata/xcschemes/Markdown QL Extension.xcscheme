@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "831A8C3E258ABADA00E36182"
-               BuildableName = "Markdown QL Extension.appex"
-               BlueprintName = "Markdown QL Extension"
+               BuildableName = "TextDown QL Extension.appex"
+               BlueprintName = "TextDown QL Extension"
                ReferencedContainer = "container:QLMarkdown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "83598E6025818808004664D3"
-               BuildableName = "QLMarkdown.app"
-               BlueprintName = "QLMarkdown"
+               BuildableName = "TextDown.app"
+               BlueprintName = "TextDown"
                ReferencedContainer = "container:QLMarkdown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83598E6025818808004664D3"
-            BuildableName = "QLMarkdown.app"
-            BlueprintName = "QLMarkdown"
+            BuildableName = "TextDown.app"
+            BlueprintName = "TextDown"
             ReferencedContainer = "container:QLMarkdown.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -92,8 +92,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83598E6025818808004664D3"
-            BuildableName = "QLMarkdown.app"
-            BlueprintName = "QLMarkdown"
+            BuildableName = "TextDown.app"
+            BlueprintName = "TextDown"
             ReferencedContainer = "container:QLMarkdown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

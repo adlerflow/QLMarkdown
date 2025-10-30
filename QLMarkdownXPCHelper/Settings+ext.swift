@@ -1,6 +1,6 @@
 //
 //  Settings+ext.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 09/05/25.
 //

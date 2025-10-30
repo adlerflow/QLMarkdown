@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  qlmarkdown_cli
+//  textdown_cli
 //
 //  Created by adlerflow on 18/10/21.
 //
@@ -27,7 +27,7 @@ func usage(exitCode: Int = -1) {
     print(" -h\tShow this help and exit.")
     print(" -o\t<file|dir> Destination output. If you pass a directory, a new file is created with the name of the processed source with html extension. \n   \tThe destination file is always overwritten. If this argument is not provided, the output will be printed to the stdout.")
     print(" -v\tVerbose mode. Valid only with the -o option.")
-    // print(" --app\t<path> Set the path of \"QLMarkdown.app\" otherwise assume that \(name) is called from the Contents/Resources of the app bundle.")
+    // print(" --app\t<path> Set the path of \"TextDown.app\" otherwise assume that \(name) is called from the Contents/Resources of the app bundle.")
     
     print("\nOptions:")
     print(" --footnotes on|off        Parse the footnotes.")
@@ -38,7 +38,7 @@ func usage(exitCode: Int = -1) {
     print(" --validate-utf8 on|off    Validate UTF-8 in the input before parsing.")
     print(" --code on|off             Show the plain text file (raw version) instead of the formatted output.")
     print(" --appearance light|dark   ")
-    print(" --about on|off            Show/Hide a footer with info about QLMarkdown.")
+    print(" --about on|off            Show/Hide a footer with info about TextDown.")
     print(" --debug on|off            Insert in the output some debug information.")
     
     print("\nExtensions:")
@@ -72,7 +72,7 @@ var files: [URL] = []
 var dest: URL?
 var verbose = false
 
-let d = UserDefaults(suiteName: "org.advison.QLMarkdownXPCHelper");
+let d = UserDefaults(suiteName: "org.advison.TextDownXPCHelper");
 let settings = Settings(defaults: d?.dictionaryRepresentation() ?? [:])
 var type = Settings.isLightAppearance ? "Light" : "Dark"
 

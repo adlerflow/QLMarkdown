@@ -1,6 +1,6 @@
 //
 //  NSColor+ext.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 12/12/20.
 //

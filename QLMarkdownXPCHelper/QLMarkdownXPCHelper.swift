@@ -1,6 +1,6 @@
 //
-//  QLMarkdownXPCHelper.swift
-//  QLMarkdownXPCHelper
+//  TextDownXPCHelper.swift
+//  TextDownXPCHelper
 //
 //  Created by adlerflow on 02/01/25.
 //
@@ -10,7 +10,7 @@ import Security
 import OSLog
 
 /// This object implements the protocol which we have defined. It provides the actual behavior for the service. It is 'exported' by the service to make it available to the process hosting the service over an NSXPCConnection.
-class QLMarkdownXPCHelper: NSObject, QLMarkdownXPCHelperProtocol {
+class TextDownXPCHelper: NSObject, TextDownXPCHelperProtocol {
     public fileprivate(set) var isHalted = false
     var styles: [String]? = nil
     
@@ -91,8 +91,8 @@ class QLMarkdownXPCHelper: NSObject, QLMarkdownXPCHelperProtocol {
             let s = try decoder.decode(Settings.self, from: data)
             if s.save(toUserDefaults: .standard) {
                 reply(true, nil)
-                DistributedNotificationCenter.default().postNotificationName(.QLMarkdownSettingsUpdated, object: nil, deliverImmediately: true)
-                // DistributedNotificationCenter.default().post(name: .QLMarkdownSettingsUpdated, object: nil)
+                DistributedNotificationCenter.default().postNotificationName(.TextDownSettingsUpdated, object: nil, deliverImmediately: true)
+                // DistributedNotificationCenter.default().post(name: .TextDownSettingsUpdated, object: nil)
             } else {
                 os_log(
                     "Fail to store data!",

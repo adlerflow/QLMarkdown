@@ -1,6 +1,6 @@
 //
 //  Log.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 21/03/22.
 //
@@ -9,7 +9,7 @@ import Foundation
 import OSLog
 
 extension OSLog {
-    private static let subsystem = "org.advison.QLMarkdown"
+    private static let subsystem = "org.advison.TextDown"
 
     static let quickLookExtension = OSLog(subsystem: subsystem, category: "Quick Look Extension")
     static let cli = OSLog(subsystem: subsystem, category: "Command Line Tool")

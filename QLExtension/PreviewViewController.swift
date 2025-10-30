@@ -61,7 +61,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         Settings.shared.startMonitorChange()
         
         if #available(macOS 11, *) {
-            let connection = NSXPCConnection(serviceName: "org.advison.qlmarkdown.external-launcher")
+            let connection = NSXPCConnection(serviceName: "org.advison.textdown.external-launcher")
             
             connection.remoteObjectInterface = NSXPCInterface(with: ExternalLauncherProtocol.self)
             connection.resume()
@@ -219,7 +219,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         let settings = Settings.shared
         settings.renderStats += 1
         
-        let no_nag = UserDefaults.standard.bool(forKey: "qlmarkdown-no-nag-screen")
+        let no_nag = UserDefaults.standard.bool(forKey: "textdown-no-nag-screen")
         if !no_nag && settings.renderStats > 0 && settings.renderStats % 100 == 0, let msg = self.getBundleContents(forResource: "stats", ofType: "html") {
             let icon: String
             if let url = Bundle.main.url(forResource: "icon", withExtension: "png"), let data = try? Data(contentsOf: url) {

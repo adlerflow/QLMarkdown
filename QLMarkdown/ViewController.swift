@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 09/12/20.
 //
@@ -1017,7 +1017,7 @@ document.addEventListener('scroll', function(e) {
         }
         firstView = true;
         
-        guard !UserDefaults.standard.bool(forKey: "qlmarkdown-suppress-editor-warning") else {
+        guard !UserDefaults.standard.bool(forKey: "textdown-suppress-editor-warning") else {
             return
         }
         
@@ -1025,7 +1025,7 @@ document.addEventListener('scroll', function(e) {
         
         alert.alertStyle = .warning
         alert.showsSuppressionButton = true
-        alert.messageText = "QLMarkdown Preferences"
+        alert.messageText = "TextDown Preferences"
         alert.informativeText = "This application is not intended to be a Markdown editor, but the interface for customising the Quick Look preview."
         alert.suppressionButton?.title = "Do not show this warning again"
         
@@ -1033,7 +1033,7 @@ document.addEventListener('scroll', function(e) {
         alert.runModal()
         
         if let suppressionButton = alert.suppressionButton, suppressionButton.state == .on {
-            UserDefaults.standard.set(true, forKey: "qlmarkdown-suppress-editor-warning")
+            UserDefaults.standard.set(true, forKey: "textdown-suppress-editor-warning")
         }
     }
     

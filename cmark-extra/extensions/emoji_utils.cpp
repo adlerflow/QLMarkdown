@@ -1,6 +1,6 @@
 //
 //  emoji_utils.cpp
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 23/12/20.
 //

@@ -18,7 +18,7 @@ using namespace std;
 
 #define IO_ERROR_REPORT_LENGTH 5
 
-static os_log_t sLog = os_log_create("org.advison.QLMarkdown", "C Wrapper");
+static os_log_t sLog = os_log_create("org.advison.TextDown", "C Wrapper");
 
 static DataDir dataDir;
 static highlight::CodeGenerator *generator = nullptr;

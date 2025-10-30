@@ -1,6 +1,6 @@
 //
 //  sub_ext.h
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 04/08/24.
 //

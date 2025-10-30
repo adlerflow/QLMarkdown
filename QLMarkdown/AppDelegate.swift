@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 09/12/20.
 //
@@ -89,10 +89,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     
     
     @IBAction func installCLITool(_ sender: Any) {
-        guard let srcApp = Bundle.main.url(forResource: "qlmarkdown_cli", withExtension: nil) else {
+        guard let srcApp = Bundle.main.url(forResource: "textdown_cli", withExtension: nil) else {
             return
         }
-        let dstApp = URL(fileURLWithPath: "/usr/local/bin/qlmarkdown_cli")
+        let dstApp = URL(fileURLWithPath: "/usr/local/bin/textdown_cli")
         
         let alert1 = NSAlert()
         alert1.messageText = "The tool will be installed in \(dstApp.path) \nDo you want to continue?"
@@ -128,7 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     }
     
     @IBAction func revealCLITool(_ sender: Any) {
-        let u = URL(fileURLWithPath: "/usr/local/bin/qlmarkdown_cli")
+        let u = URL(fileURLWithPath: "/usr/local/bin/textdown_cli")
         if FileManager.default.fileExists(atPath: u.path) {
             // Open the Finder to the settings file.
             NSWorkspace.shared.activateFileViewerSelecting([u])

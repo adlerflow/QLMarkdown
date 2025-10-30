@@ -1,6 +1,6 @@
 //
 //  inlineimage.h
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 17/12/20.
 //

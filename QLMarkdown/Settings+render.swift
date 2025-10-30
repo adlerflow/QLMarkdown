@@ -1,6 +1,6 @@
 //
 //  Settings+render.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 06/05/25.
 //

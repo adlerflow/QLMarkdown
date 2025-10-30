@@ -1,6 +1,6 @@
 //
 //  Settings+NoXPC.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 09/05/25.
 //
@@ -21,7 +21,7 @@ extension Settings {
         if Self.isSandboxed() {
             return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
         } else {
-            return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("QLMarkdown")
+            return FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("TextDown")
         }
     }
     

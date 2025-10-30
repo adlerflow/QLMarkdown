@@ -1,6 +1,6 @@
 //
 //  c_log.h
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 21/03/22.
 //

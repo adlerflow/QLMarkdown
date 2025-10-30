@@ -1,6 +1,6 @@
 //
 //  string_utils.cpp
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 28/12/20.
 //

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-               BuildableName = "qlmarkdown_cli"
-               BlueprintName = "qlmarkdown_cli"
+               BuildableName = "textdown_cli"
+               BlueprintName = "textdown_cli"
                ReferencedContainer = "container:QLMarkdown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-            BuildableName = "qlmarkdown_cli"
-            BlueprintName = "qlmarkdown_cli"
+            BuildableName = "textdown_cli"
+            BlueprintName = "textdown_cli"
             ReferencedContainer = "container:QLMarkdown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "83437970271D47DF00A5D6EA"
-            BuildableName = "qlmarkdown_cli"
-            BlueprintName = "qlmarkdown_cli"
+            BuildableName = "textdown_cli"
+            BlueprintName = "textdown_cli"
             ReferencedContainer = "container:QLMarkdown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

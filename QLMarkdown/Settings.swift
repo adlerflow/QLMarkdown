@@ -1,6 +1,6 @@
 //
 //  Settings.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 13/12/20.
 //
@@ -32,7 +32,7 @@ enum Appearance: Int {
 }
 
 extension NSNotification.Name {
-    public static let QLMarkdownSettingsUpdated: NSNotification.Name = NSNotification.Name("org.advison.qlmarkdown-settings-changed")
+    public static let TextDownSettingsUpdated: NSNotification.Name = NSNotification.Name("org.advison.textdown-settings-changed")
 }
 
 class Settings: Codable {
@@ -176,7 +176,7 @@ class Settings: Codable {
     var app_version: String {
         var title: String = "<a href='https://github.com/'>";
         if let info = Bundle.main.infoDictionary {
-            title += (info["CFBundleExecutable"] as? String ?? "QLMarkdown") + "</a>"
+            title += (info["CFBundleExecutable"] as? String ?? "TextDown") + "</a>"
             if let version = info["CFBundleShortVersionString"] as? String,
                 let build = info["CFBundleVersion"] as? String {
                 title += ", version \(version) (\(build))"
@@ -185,15 +185,15 @@ class Settings: Codable {
                 title += ".<br />\n\(copy.trimmingCharacters(in: CharacterSet(charactersIn: ". ")) + " with <span style='font-style: normal'>❤️</span>")"
             }
         } else {
-            title += "QLMarkdown</a>"
+            title += "TextDown</a>"
         }
         return title
     }
     
     var app_version2: String {
-        var title: String = "<!--\n\nFile generated with QLMarkdown - ";
+        var title: String = "<!--\n\nFile generated with TextDown - ";
         if let info = Bundle.main.infoDictionary {
-            title += (info["CFBundleExecutable"] as? String ?? "QLMarkdown")
+            title += (info["CFBundleExecutable"] as? String ?? "TextDown")
             if let version = info["CFBundleShortVersionString"] as? String,
                 let build = info["CFBundleVersion"] as? String {
                 title += ", version \(version) (\(build))"
@@ -335,7 +335,7 @@ class Settings: Codable {
             return
         }
         isMonitoring = true
-        DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.handleSettingsChanged(_:)), name: .QLMarkdownSettingsUpdated, object: nil)
+        DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.handleSettingsChanged(_:)), name: .TextDownSettingsUpdated, object: nil)
     }
     
     func stopMonitorChange() {
@@ -615,7 +615,7 @@ class Settings: Codable {
 
             if let appBundle = Bundle(url: url) {
                 return appBundle
-            } else if let appBundle = Bundle(identifier: "org.advison.QLMarkdown") {
+            } else if let appBundle = Bundle(identifier: "org.advison.TextDown") {
                 return appBundle
             }
             // To access the main bundle, the extension must not be sandboxed (or must have a security exception entitlement to access the entire disk).

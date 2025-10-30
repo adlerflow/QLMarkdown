@@ -1,6 +1,6 @@
 //
 //  XPCSWrapper.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 02/01/25.
 //
@@ -10,37 +10,37 @@ import OSLog
 
 class XPCWrapper {
     private static var connection: NSXPCConnection?
-    private static var serviceAsync: QLMarkdownXPCHelperProtocol?
-    private static var serviceSync: QLMarkdownXPCHelperProtocol?
+    private static var serviceAsync: TextDownXPCHelperProtocol?
+    private static var serviceSync: TextDownXPCHelperProtocol?
     
     static func createNewConnection() -> NSXPCConnection {
-        let connection = NSXPCConnection(serviceName: "org.advison.QLMarkdownXPCHelper")
+        let connection = NSXPCConnection(serviceName: "org.advison.TextDownXPCHelper")
         connection.invalidationHandler = {
-            guard !((connection.exportedObject as? QLMarkdownXPCHelperProtocol)?.isHalted ?? false) else {
+            guard !((connection.exportedObject as? TextDownXPCHelperProtocol)?.isHalted ?? false) else {
                 return
             }
             os_log(
-                "Unable to connect to QLMarkdownXPCHelper service!",
+                "Unable to connect to TextDownXPCHelper service!",
                 log: OSLog.quickLookExtension,
                 type: .error
             )
-            print("Unable to connect to QLMarkdownXPCHelper service!")
+            print("Unable to connect to TextDownXPCHelper service!")
         }
         
         connection.interruptionHandler = {
             os_log(
-                "QLMarkdownXPCHelper interrupted",
+                "TextDownXPCHelper interrupted",
                 log: OSLog.quickLookExtension,
                 type: .error
             )
             
-            print("QLMarkdownXPCHelper interrupted!")
+            print("TextDownXPCHelper interrupted!")
             connection.invalidate()
             if XPCWrapper.connection == connection {
                 XPCWrapper.connection = nil
             }
         }
-        connection.remoteObjectInterface = NSXPCInterface(with: QLMarkdownXPCHelperProtocol.self)
+        connection.remoteObjectInterface = NSXPCInterface(with: TextDownXPCHelperProtocol.self)
         connection.resume()
         return connection
     }
@@ -63,32 +63,32 @@ class XPCWrapper {
         connection = nil
     }
     
-    static func getAsynchronousService() -> QLMarkdownXPCHelperProtocol? {
+    static func getAsynchronousService() -> TextDownXPCHelperProtocol? {
         if serviceAsync == nil {
             serviceAsync = getSharedConnection().remoteObjectProxyWithErrorHandler { error in
                 print("Received error:", error)
                 os_log(
-                    "Async QLMarkdownXPCHelper received error: %{public}s",
+                    "Async TextDownXPCHelper received error: %{public}s",
                     log: OSLog.quickLookExtension,
                     type: .error,
                     error.localizedDescription
                 )
-            } as? QLMarkdownXPCHelperProtocol
+            } as? TextDownXPCHelperProtocol
         }
         return serviceAsync
     }
     
-    static func getSynchronousService() -> QLMarkdownXPCHelperProtocol? {
+    static func getSynchronousService() -> TextDownXPCHelperProtocol? {
         if serviceSync == nil {
             serviceSync = getSharedConnection().synchronousRemoteObjectProxyWithErrorHandler { error in
                 print("Received error:", error)
                 os_log(
-                    "Sync QLMarkdownXPCHelper received error: %{public}s",
+                    "Sync TextDownXPCHelper received error: %{public}s",
                     log: OSLog.quickLookExtension,
                     type: .error,
                     error.localizedDescription
                 )
-            } as? QLMarkdownXPCHelperProtocol
+            } as? TextDownXPCHelperProtocol
         }
         return serviceSync
     }

@@ -1,6 +1,6 @@
 //
 //  syntaxhighlight.c
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 09/12/20.
 //

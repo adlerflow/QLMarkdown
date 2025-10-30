@@ -1,6 +1,6 @@
 //
 //  AboutViewController.swift
-//  QLMarkdown
+//  TextDown
 //
 //  Created by adlerflow on 31/12/20.
 //
@@ -20,7 +20,7 @@ class AboutViewController: NSViewController {
             let version = info["CFBundleShortVersionString"] as? String ?? ""
             let build = info["CFBundleVersion"] as? String ?? ""
                 
-            titleField.stringValue = info["CFBundleExecutable"] as? String ?? "QLMarkdown"
+            titleField.stringValue = info["CFBundleExecutable"] as? String ?? "TextDown"
             versionField.stringValue = "Version \(version) (\(build))"
             copyrightField.stringValue = info["NSHumanReadableCopyright"] as? String ?? ""
         } else {

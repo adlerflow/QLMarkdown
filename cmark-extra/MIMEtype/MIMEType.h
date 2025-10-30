@@ -1,6 +1,6 @@
 //
 //  MIMEType.h
-//  QLMarkdown
+//  TextDown
 //
 
 #ifndef MIMEType_h

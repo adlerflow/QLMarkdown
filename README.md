@@ -2,9 +2,9 @@
   <img src="assets/img/icon.png" width="150" alt="logo" />
 </p>
 
-# QLMarkdown
+# TextDown
 
-QLMarkdown is a macOS Quick Look extension to preview Markdown files. 
+TextDown is a macOS Quick Look extension to preview Markdown files. 
 
 _This application is not intended to be used as a standalone markdown file editor or viewer._ 
 
@@ -45,7 +45,7 @@ The Quick Look extension can also preview rmarkdown files (`.rmd`, _without_ eva
 ## Installation
 
 ```shell
-brew install --cask qlmarkdown
+brew install --cask textdown
 ```
 
 The precompiled app is not notarized or signed, so the first time you run the app the system may show a warning about the impossibility to check for malicious software.
@@ -55,7 +55,7 @@ To fix, you can launch the app with right click (or ctrl click) on the app icon 
 You can also execute this command from the terminal:
 
 ```sh
-$ xattr -r -d com.apple.quarantine /Applications/QLMarkdown.app # Default path; change if necessary
+$ xattr -r -d com.apple.quarantine /Applications/TextDown.app # Default path; change if necessary
 ```
 
 Alternatively, after trying to launch the app for the first time, you can open the System Preferences > Security & Privacy > General (tab) and click the Open Anyway button.
@@ -66,14 +66,14 @@ To use the Quick Look preview you must launch the application at least once. In 
 After the first execution, the Quick Look extension will be available (and enabled) among those present in the System preferences/Extensions.
 
 If you have problems, try moving the application to the trash and then back in the Applications folder. 
-If the `QLMarkdown Preview Extension` is present (and checked) in the list of Quick Look Extensions in the System preferences but the `.md` files are not displayed it is probably due to other applications that have registered support for that type of file. You can change the order of priority of the Quick Look Extensions inside the System preferences.
+If the `TextDown Preview Extension` is present (and checked) in the list of Quick Look Extensions in the System preferences but the `.md` files are not displayed it is probably due to other applications that have registered support for that type of file. You can change the order of priority of the Quick Look Extensions inside the System preferences.
 
 Finally, the problems may depend on how the `.md` files were registered on the system by other applications.
 
 In the terminal try the following command:
 
 ```shell
-touch /tmp/qlmarkdown.md && mdls -name kMDItemContentType /tmp/qlmarkdown.md && rm /tmp/qlmarkdown.md
+touch /tmp/textdown.md && mdls -name kMDItemContentType /tmp/textdown.md && rm /tmp/textdown.md
 ```
 
 The output is the UTI associated with the `.md` file.
@@ -167,7 +167,7 @@ The theme popup menu has some extra commands available pressing the `alt` key.
 |No soft break|Render `softbreak` elements as spaces.|
 |Inline HTML (unsafe)|Render raw HTML and unsafe links (`javascript:`, `vbscript:`,  `file:` and `data:`, except for `image/png`, `image/gif`,  `image/jpeg`, or `image/webp` mime types) present in the Markdown file. By default, HTML tags are stripped and unsafe links are replaced by empty strings. _This option is required for preview SVG images_.|
 |Validate UTF|Validate UTF-8 in the input before parsing, replacing illegal sequences with the standard replacement character (U+FFFD &#xFFFD;).|
-|Show about info|Insert a footer with info about the QLMarkdown app.|
+|Show about info|Insert a footer with info about the TextDown app.|
 |Show debug info|Insert in the output some debug information.|
 |Render as source code|Show the plain text file (raw version) instead of the formatted output. Syntax highlighting remains.|
 
@@ -263,18 +263,18 @@ When the `table` extension is enabled, the header is rendered as a table, otherw
 
 ## Command line interface
 
-A `qlmarkdown_cli` command line interface (CLI) is available to perform batch conversion of markdown files.
+A `textdown_cli` command line interface (CLI) is available to perform batch conversion of markdown files.
 
-The tool is located inside the `QLMarkdown.app/Contents/Resources` folder (and should not be moved outside). 
+The tool is located inside the `TextDown.app/Contents/Resources` folder (and should not be moved outside). 
 
 You can create a symbolic link into your `$PATH` to use the tool from any folder. Open Terminal.app and type:
 
 ```sh
-ln -s /Applications/QLMarkdown.app/Contents/Resources/qlmarkdown_cli /usr/local/bin/qlmarkdown_cli
+ln -s /Applications/TextDown.app/Contents/Resources/textdown_cli /usr/local/bin/textdown_cli
 ```
 
 ```
-Usage: qlmarkdown_cli [-o <file|dir>] <file> [..]
+Usage: textdown_cli [-o <file|dir>] <file> [..]
 
 Arguments:
  -h    Show this help and exit.
