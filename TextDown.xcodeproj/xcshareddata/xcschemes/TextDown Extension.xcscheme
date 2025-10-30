@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "831A8C3E258ABADA00E36182"
-               BuildableName = "TextDown QL Extension.appex"
-               BlueprintName = "TextDown QL Extension"
+               BuildableName = "TextDown Extension.appex"
+               BlueprintName = "TextDown Extension"
                ReferencedContainer = "container:TextDown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

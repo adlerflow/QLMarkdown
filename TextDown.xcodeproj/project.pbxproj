@@ -19,7 +19,7 @@
 		831A8C41258ABADA00E36182 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831A8C40258ABADA00E36182 /* Quartz.framework */; };
 		831A8C44258ABADA00E36182 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A8C43258ABADA00E36182 /* PreviewViewController.swift */; };
 		831A8C47258ABADA00E36182 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831A8C45258ABADA00E36182 /* PreviewViewController.xib */; };
-		831A8C4D258ABADA00E36182 /* TextDown QL Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 831A8C3F258ABADA00E36182 /* TextDown QL Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		831A8C4D258ABADA00E36182 /* TextDown Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 831A8C3F258ABADA00E36182 /* TextDown Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		831A8C6B258ABD8900E36182 /* syntaxhighlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83598EF525818BCB004664D3 /* syntaxhighlight.c */; };
 		831A8C6E258ABD8D00E36182 /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = 83EF95222585476800B56FA3 /* emoji.c */; };
 		831A8C71258ABD9300E36182 /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
@@ -250,7 +250,7 @@
 		8376EAE327E8C67F00AB44B8 /* c_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 8376EAE127E8C67F00AB44B8 /* c_log.c */; };
 		8376EAE427E8C67F00AB44B8 /* c_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 8376EAE127E8C67F00AB44B8 /* c_log.c */; };
 		837D20D6258362A5008FC698 /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 837D20D5258362A5008FC698 /* example.jpg */; };
-		837F97D6271EA12A009F4605 /* qlmarkdown_cli in Resources */ = {isa = PBXBuildFile; fileRef = 837F97CE271EA098009F4605 /* qlmarkdown_cli */; };
+		837F97D6271EA12A009F4605 /* textdown_cli in Resources */ = {isa = PBXBuildFile; fileRef = 837F97CE271EA098009F4605 /* textdown_cli */; };
 		838109C3258403CA000AFE3C /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
 		838109C725840429000AFE3C /* checkbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C625840429000AFE3C /* checkbox.c */; };
 		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
@@ -338,7 +338,7 @@
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 831A8C3E258ABADA00E36182;
-			remoteInfo = QLExtension;
+			remoteInfo = Extension;
 		};
 		8320D5922D1C25B1005868BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -436,7 +436,7 @@
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 83437970271D47DF00A5D6EA;
-			remoteInfo = qlmarkdown_cli;
+			remoteInfo = textdown_cli;
 		};
 		83B8DF042DD5DD9D0054E345 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -510,7 +510,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				831A8C4D258ABADA00E36182 /* TextDown QL Extension.appex in Embed Foundation Extensions */,
+				831A8C4D258ABADA00E36182 /* TextDown Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,7 +584,7 @@
 
 /* Begin PBXFileReference section */
 		8310245029E9F8D5004651DC /* HighlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewController.swift; sourceTree = "<group>"; };
-		831A8C3F258ABADA00E36182 /* TextDown QL Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TextDown QL Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		831A8C3F258ABADA00E36182 /* TextDown Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TextDown Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		831A8C40258ABADA00E36182 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		831A8C43258ABADA00E36182 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		831A8C46258ABADA00E36182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
@@ -719,7 +719,7 @@
 		8376EAE127E8C67F00AB44B8 /* c_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_log.c; sourceTree = "<group>"; };
 		837D20D5258362A5008FC698 /* example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpg; sourceTree = "<group>"; };
 		837F291E2597AAC000A5F7DE /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		837F97CE271EA098009F4605 /* qlmarkdown_cli */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = qlmarkdown_cli; sourceTree = BUILT_PRODUCTS_DIR; };
+		837F97CE271EA098009F4605 /* textdown_cli */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = textdown_cli; sourceTree = BUILT_PRODUCTS_DIR; };
 		838109C1258403CA000AFE3C /* mention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mention.h; sourceTree = "<group>"; };
 		838109C2258403CA000AFE3C /* mention.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mention.c; sourceTree = "<group>"; };
 		838109C525840429000AFE3C /* checkbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = checkbox.h; sourceTree = "<group>"; };
@@ -805,7 +805,7 @@
 				TextDownXPCHelperProtocol.swift,
 				XPCWrapper.swift,
 			);
-			target = 831A8C3E258ABADA00E36182 /* TextDown QL Extension */;
+			target = 831A8C3E258ABADA00E36182 /* TextDown Extension */;
 		};
 		83C8C1A92D27472500FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -927,7 +927,7 @@
 		83437972271D47DF00A5D6EA /* textdown_cli */ = {
 			isa = PBXGroup;
 			children = (
-				837F97CE271EA098009F4605 /* qlmarkdown_cli */,
+				837F97CE271EA098009F4605 /* textdown_cli */,
 				834379B2271D4FB800A5D6EA /* textdown_cli.entitlements */,
 				83437973271D47DF00A5D6EA /* main.swift */,
 			);
@@ -1102,7 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				83598E6125818808004664D3 /* TextDown.app */,
-				831A8C3F258ABADA00E36182 /* TextDown QL Extension.appex */,
+				831A8C3F258ABADA00E36182 /* TextDown Extension.appex */,
 				83F1FE41259CEE7400257DAC /* external-launcher.xpc */,
 				83437971271D47DF00A5D6EA /* textdown_cli */,
 				8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */,
@@ -1310,7 +1310,7 @@
 			buildConfigurationList = 83B8DF012DD5DCA20054E345 /* Build configuration list for PBXLegacyTarget "magic.mgc" */;
 			buildPhases = (
 			);
-			buildToolPath = ./file;
+			buildToolPath = /usr/bin/file;
 			buildWorkingDirectory = $BUILT_PRODUCTS_DIR;
 			dependencies = (
 				830F3A822DDF332900A0773D /* PBXTargetDependency */,
@@ -1353,9 +1353,9 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		831A8C3E258ABADA00E36182 /* TextDown QL Extension */ = {
+		831A8C3E258ABADA00E36182 /* TextDown Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown QL Extension" */;
+			buildConfigurationList = 831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown Extension" */;
 			buildPhases = (
 				831A8C3B258ABADA00E36182 /* Sources */,
 				831A8C3C258ABADA00E36182 /* Frameworks */,
@@ -1376,13 +1376,13 @@
 				830B16092D274D480042D876 /* PBXTargetDependency */,
 				830B160C2D274F180042D876 /* PBXTargetDependency */,
 			);
-			name = "TextDown QL Extension";
+			name = "TextDown Extension";
 			packageProductDependencies = (
 				8382D05D2664052E00210A0A /* Yams */,
 				830B5B3D272D68F700378FFE /* SwiftSoup */,
 			);
-			productName = QLExtension;
-			productReference = 831A8C3F258ABADA00E36182 /* TextDown QL Extension.appex */;
+			productName = Extension;
+			productReference = 831A8C3F258ABADA00E36182 /* TextDown Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */ = {
@@ -1439,7 +1439,7 @@
 				83437979271D498800A5D6EA /* Yams */,
 				830B5B3F272D68FB00378FFE /* SwiftSoup */,
 			);
-			productName = qlmarkdown_cli;
+			productName = textdown_cli;
 			productReference = 83437971271D47DF00A5D6EA /* textdown_cli */;
 			productType = "com.apple.product-type.tool";
 		};
@@ -1583,7 +1583,7 @@
 			projectRoot = "";
 			targets = (
 				83598E6025818808004664D3 /* TextDown */,
-				831A8C3E258ABADA00E36182 /* TextDown QL Extension */,
+				831A8C3E258ABADA00E36182 /* TextDown Extension */,
 				8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */,
 				83437970271D47DF00A5D6EA /* textdown_cli */,
 				83C8C17F2D272CA200FBB33F /* TextDownXPCHelper */,
@@ -1631,7 +1631,7 @@
 				83E7FEF1258FBF37003ECF9B /* highlight in Resources */,
 				830277F52C60B3E20066EBCC /* default.css in Resources */,
 				836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */,
-				837F97D6271EA12A009F4605 /* qlmarkdown_cli in Resources */,
+				837F97D6271EA12A009F4605 /* textdown_cli in Resources */,
 				834A4F0229E8AD8C00692964 /* ext_scanners.re in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1994,7 +1994,7 @@
 		};
 		831A8C4B258ABADA00E36182 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 831A8C3E258ABADA00E36182 /* TextDown QL Extension */;
+			target = 831A8C3E258ABADA00E36182 /* TextDown Extension */;
 			targetProxy = 831A8C4A258ABADA00E36182 /* PBXContainerItemProxy */;
 		};
 		8320D5932D1C25B1005868BD /* PBXTargetDependency */ = {
@@ -2147,7 +2147,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = QLExtension/QLExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2164,7 +2164,7 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 				);
-				INFOPLIST_FILE = QLExtension/Info.plist;
+				INFOPLIST_FILE = Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@loader_path/../../../../Frameworks",
@@ -2194,7 +2194,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = QLExtension/QLExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2211,7 +2211,7 @@
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 				);
-				INFOPLIST_FILE = QLExtension/Info.plist;
+				INFOPLIST_FILE = Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@loader_path/../../../../Frameworks",
@@ -2355,7 +2355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = qlmarkdown_cli/qlmarkdown_cli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = textdown_cli/textdown_cli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2398,7 +2398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CODE_SIGN_ENTITLEMENTS = qlmarkdown_cli/qlmarkdown_cli.entitlements;
+				CODE_SIGN_ENTITLEMENTS = textdown_cli/textdown_cli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -2960,7 +2960,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown QL Extension" */ = {
+		831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				831A8C4E258ABADA00E36182 /* Debug */,
