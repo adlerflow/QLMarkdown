@@ -431,7 +431,9 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var tabViewLeftConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var tabViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var settingsToggleButton: NSButton!
+
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var textView: NSTextView!
     @IBOutlet weak var stylesPopup: NSPopUpButton!
@@ -492,7 +494,20 @@ class ViewController: NSViewController {
         sender.toolTip = dark ? "Switch to light appearance." :  "Switch to dark appearance."
         self.doRefresh(sender)
     }
-    
+
+    @IBAction func toggleSettings(_ sender: NSButton) {
+        let isHidden = tabViewHeightConstraint.constant == 0
+        let newHeight: CGFloat = isHidden ? 220 : 0
+
+        NSAnimationContext.runAnimationGroup({ context in
+            context.duration = 0.25
+            context.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            tabViewHeightConstraint.animator().constant = newHeight
+        }, completionHandler: nil)
+
+        sender.toolTip = isHidden ? "Hide settings panel" : "Show settings panel"
+    }
+
     @IBAction func doStyleOverrideChange(_ sender: NSPopUpButton) {
         self.customCSSOverride = sender.indexOfSelectedItem == 1
     }

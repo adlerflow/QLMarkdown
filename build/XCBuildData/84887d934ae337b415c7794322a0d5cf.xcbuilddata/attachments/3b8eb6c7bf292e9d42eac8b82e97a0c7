@@ -1,0 +1,119 @@
+{
+  "" : {
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper-primary.dia",
+    "emit-module-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper-primary-emit-module.dia",
+    "pch" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper-primary.swiftdeps"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/Log.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Log~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/NSColor+ext.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/NSColor+ext~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/Settings+NoXPC.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+NoXPC~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/Settings.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/String+ext.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/String+ext~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDown/Themes/Theme.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Theme~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDownXPCHelper/Settings+ext.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/Settings+ext~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDownXPCHelper/TextDownXPCHelper.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelper~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDownXPCHelper/TextDownXPCHelperProtocol.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/TextDownXPCHelperProtocol~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDownXPCHelper/XPCWrapper.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/XPCWrapper~partial.swiftmodule"
+  },
+  "/Users/home/GitHub/QLMarkdown/TextDownXPCHelper/main.swift" : {
+    "const-values" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.swiftconstvalues",
+    "dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.d",
+    "diagnostics" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.dia",
+    "index-unit-output-path" : "/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.o",
+    "llvm-bc" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.bc",
+    "object" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.o",
+    "swift-dependencies" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main.swiftdeps",
+    "swiftmodule" : "/Users/home/GitHub/QLMarkdown/build/TextDown.build/Debug/TextDownXPCHelper.build/Objects-normal/arm64/main~partial.swiftmodule"
+  }
+}

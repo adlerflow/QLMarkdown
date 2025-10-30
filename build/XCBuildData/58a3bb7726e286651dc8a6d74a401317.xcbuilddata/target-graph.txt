@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'magic.mgc' in project 'TextDown'
+➜ Explicit dependency on target 'highlight-wrapper' in project 'highlight-wrapper'
+Target 'highlight-wrapper' in project 'highlight-wrapper' (no dependencies)
