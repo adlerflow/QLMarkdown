@@ -3,170 +3,58 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		830277F42C60B3B40066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
 		830277F52C60B3E20066EBCC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
 		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
 		830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3B272D68E500378FFE /* SwiftSoup */; };
-		830B5B3E272D68F700378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3D272D68F700378FFE /* SwiftSoup */; };
 		8310245129E9F8D5004651DC /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8310245029E9F8D5004651DC /* HighlightViewController.swift */; };
 		831834E6277E10150044ECDA /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 831834E5277E10150044ECDA /* Sparkle */; };
-		831A8C41258ABADA00E36182 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831A8C40258ABADA00E36182 /* Quartz.framework */; };
-		831A8C44258ABADA00E36182 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A8C43258ABADA00E36182 /* PreviewViewController.swift */; };
-		831A8C47258ABADA00E36182 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831A8C45258ABADA00E36182 /* PreviewViewController.xib */; };
-		831A8C4D258ABADA00E36182 /* TextDown Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 831A8C3F258ABADA00E36182 /* TextDown Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		831A8C6B258ABD8900E36182 /* syntaxhighlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83598EF525818BCB004664D3 /* syntaxhighlight.c */; };
-		831A8C6E258ABD8D00E36182 /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = 83EF95222585476800B56FA3 /* emoji.c */; };
-		831A8C71258ABD9300E36182 /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
-		831A8C74258ABD9600E36182 /* checkbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C625840429000AFE3C /* checkbox.c */; };
-		831A8CC1258AC18300E36182 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4B99125868A7400FC58A7 /* Settings.swift */; };
-		8320D5942D1C25B1005868BD /* TextDown Shortcut Extension.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8320D59B2D1C260E005868BD /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8320D59A2D1C260E005868BD /* Yams */; };
-		8320D59D2D1C260E005868BD /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 8320D59C2D1C260E005868BD /* SwiftSoup */; };
-		8320D5A62D1C3446005868BD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4B99125868A7400FC58A7 /* Settings.swift */; };
-		8320D5A72D1C3452005868BD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376EADC27E8BD3D00AB44B8 /* Log.swift */; };
-		8320D5A82D1C3830005868BD /* arena.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED929E8AD8C00692964 /* arena.c */; };
-		8320D5A92D1C3830005868BD /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBF29E8AD8C00692964 /* blocks.c */; };
-		8320D5AA2D1C3830005868BD /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBE29E8AD8C00692964 /* buffer.c */; };
-		8320D5AB2D1C384C005868BD /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBD29E8AD8C00692964 /* man.c */; };
-		8320D5AC2D1C384C005868BD /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBA29E8AD8C00692964 /* xml.c */; };
-		8320D5AD2D1C384C005868BD /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDD29E8AD8C00692964 /* linked_list.c */; };
-		8320D5AE2D1C384C005868BD /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED629E8AD8C00692964 /* render.c */; };
-		8320D5AF2D1C384C005868BD /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC229E8AD8C00692964 /* inlines.c */; };
-		8320D5B02D1C384C005868BD /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED529E8AD8C00692964 /* references.c */; };
-		8320D5B12D1C384C005868BD /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE529E8AD8C00692964 /* scanners.c */; };
-		8320D5B22D1C384C005868BD /* plaintext.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED029E8AD8C00692964 /* plaintext.c */; };
-		8320D5B32D1C384C005868BD /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE129E8AD8C00692964 /* html.c */; };
-		8320D5B42D1C384C005868BD /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEA29E8AD8C00692964 /* houdini_html_u.c */; };
-		8320D5B52D1C384C005868BD /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDF29E8AD8C00692964 /* commonmark.c */; };
-		8320D5B62D1C384C005868BD /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC729E8AD8C00692964 /* houdini_href_e.c */; };
-		8320D5B72D1C384C005868BD /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBB29E8AD8C00692964 /* cmark.c */; };
-		8320D5B82D1C384C005868BD /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED729E8AD8C00692964 /* iterator.c */; };
-		8320D5B92D1C384C005868BD /* syntax_extension.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECA29E8AD8C00692964 /* syntax_extension.c */; };
-		8320D5BA2D1C384C005868BD /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECF29E8AD8C00692964 /* houdini_html_e.c */; };
-		8320D5BB2D1C384C005868BD /* plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE229E8AD8C00692964 /* plugin.c */; };
-		8320D5BC2D1C384C005868BD /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEB29E8AD8C00692964 /* registry.c */; };
-		8320D5BD2D1C384C005868BD /* footnotes.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE729E8AD8C00692964 /* footnotes.c */; };
-		8320D5BE2D1C384C005868BD /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EED29E8AD8C00692964 /* node.c */; };
-		8320D5BF2D1C384C005868BD /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED429E8AD8C00692964 /* utf8.c */; };
-		8320D5C02D1C384C005868BD /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE029E8AD8C00692964 /* map.c */; };
-		8320D5C12D1C384C005868BD /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC029E8AD8C00692964 /* cmark_ctype.c */; };
-		8320D5C22D1C384C005868BD /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC529E8AD8C00692964 /* latex.c */; };
-		8320D5C32D1C3858005868BD /* tagfilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB029E8AD8B00692964 /* tagfilter.c */; };
-		8320D5C42D1C3858005868BD /* core-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB829E8AD8B00692964 /* core-extensions.c */; };
-		8320D5C52D1C3858005868BD /* tasklist.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB429E8AD8B00692964 /* tasklist.c */; };
-		8320D5C62D1C3858005868BD /* strikethrough.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EA929E8AD8B00692964 /* strikethrough.c */; };
-		8320D5C72D1C3858005868BD /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAC29E8AD8B00692964 /* table.c */; };
-		8320D5C82D1C3858005868BD /* ext_scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAF29E8AD8B00692964 /* ext_scanners.c */; };
-		8320D5C92D1C3858005868BD /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAB29E8AD8B00692964 /* autolink.c */; };
-		8320D5CA2D1C3981005868BD /* libwrapper_highlight.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; };
-		8320D5D92D1C39BB005868BD /* libpcre2-32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D82A88277C45B500C9B99F /* libpcre2-32.a */; };
-		8320D5DA2D1C3A7F005868BD /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2125B8E93D00B49FEC /* encode.c */; };
-		8320D5DB2D1C3A7F005868BD /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2025B8E93D00B49FEC /* decode.c */; };
-		8320D5DC2D1C3A7F005868BD /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A1D25B8E93D00B49FEC /* buffer.c */; };
-		8320D5DD2D1C3A87005868BD /* MIMEtype.c in Sources */ = {isa = PBXBuildFile; fileRef = 83327D2E2594066300E76CF6 /* MIMEtype.c */; };
-		8320D5DE2D1C3AA7005868BD /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = 83EF95222585476800B56FA3 /* emoji.c */; };
-		8320D5DF2D1C3AA7005868BD /* heads.c in Sources */ = {isa = PBXBuildFile; fileRef = 83F88258259906C7008C5071 /* heads.c */; };
-		8320D5E02D1C3AA7005868BD /* inlineimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 83760300258C1813004799ED /* inlineimage.c */; };
-		8320D5E12D1C3AA7005868BD /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
-		8320D5E22D1C3AA7005868BD /* sub_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71D22C60053A0066A195 /* sub_ext.c */; };
-		8320D5E32D1C3AA7005868BD /* sup_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71CD2C60023E0066A195 /* sup_ext.c */; };
-		8320D5E42D1C3AA7005868BD /* syntaxhighlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83598EF525818BCB004664D3 /* syntaxhighlight.c */; };
-		8320D5E52D1C3AA7005868BD /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
-		8320D5E62D1C3AA7005868BD /* checkbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C625840429000AFE3C /* checkbox.c */; };
-		8320D5E72D1C3AA7005868BD /* math_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 835886B229E960050088DF7D /* math_ext.c */; };
-		8320D5E82D1C3AA7005868BD /* extra-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4F8129E92AE800692964 /* extra-extensions.c */; };
-		8320D5E92D1C3AD7005868BD /* emoji_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834CAB9A2593650800673002 /* emoji_utils.cpp */; };
-		8320D5EA2D1C3B0F005868BD /* heads_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83F8825C25991BFC008C5071 /* heads_utils.cpp */; };
-		8320D5EB2D1C3B29005868BD /* url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83327D1E2593FB0700E76CF6 /* url.cpp */; };
-		8320D5EC2D1C3B47005868BD /* c_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 8376EAE127E8C67F00AB44B8 /* c_log.c */; };
 		83327D202593FCEB00E76CF6 /* url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83327D1E2593FB0700E76CF6 /* url.cpp */; };
-		83327D222593FCEC00E76CF6 /* url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83327D1E2593FB0700E76CF6 /* url.cpp */; };
 		83327D312594087100E76CF6 /* MIMEtype.c in Sources */ = {isa = PBXBuildFile; fileRef = 83327D2E2594066300E76CF6 /* MIMEtype.c */; };
-		83327D332594087100E76CF6 /* MIMEtype.c in Sources */ = {isa = PBXBuildFile; fileRef = 83327D2E2594066300E76CF6 /* MIMEtype.c */; };
 		83327D462595E15700E76CF6 /* Settings+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83327D452595E15700E76CF6 /* Settings+ext.swift */; };
 		834A4EF129E8AD8C00692964 /* strikethrough.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EA929E8AD8B00692964 /* strikethrough.c */; };
-		834A4EF229E8AD8C00692964 /* strikethrough.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EA929E8AD8B00692964 /* strikethrough.c */; };
 		834A4EF429E8AD8C00692964 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAB29E8AD8B00692964 /* autolink.c */; };
-		834A4EF529E8AD8C00692964 /* autolink.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAB29E8AD8B00692964 /* autolink.c */; };
 		834A4EF729E8AD8C00692964 /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAC29E8AD8B00692964 /* table.c */; };
-		834A4EF829E8AD8C00692964 /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAC29E8AD8B00692964 /* table.c */; };
 		834A4EFC29E8AD8C00692964 /* ext_scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAF29E8AD8B00692964 /* ext_scanners.c */; };
-		834A4EFD29E8AD8C00692964 /* ext_scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EAF29E8AD8B00692964 /* ext_scanners.c */; };
 		834A4EFF29E8AD8C00692964 /* tagfilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB029E8AD8B00692964 /* tagfilter.c */; };
-		834A4F0029E8AD8C00692964 /* tagfilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB029E8AD8B00692964 /* tagfilter.c */; };
 		834A4F0229E8AD8C00692964 /* ext_scanners.re in Resources */ = {isa = PBXBuildFile; fileRef = 834A4EB329E8AD8B00692964 /* ext_scanners.re */; };
-		834A4F0329E8AD8C00692964 /* ext_scanners.re in Resources */ = {isa = PBXBuildFile; fileRef = 834A4EB329E8AD8B00692964 /* ext_scanners.re */; };
 		834A4F0429E8AD8C00692964 /* tasklist.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB429E8AD8B00692964 /* tasklist.c */; };
-		834A4F0529E8AD8C00692964 /* tasklist.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB429E8AD8B00692964 /* tasklist.c */; };
 		834A4F0729E8AD8C00692964 /* core-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB829E8AD8B00692964 /* core-extensions.c */; };
-		834A4F0829E8AD8C00692964 /* core-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EB829E8AD8B00692964 /* core-extensions.c */; };
 		834A4F0A29E8AD8C00692964 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBA29E8AD8C00692964 /* xml.c */; };
-		834A4F0B29E8AD8C00692964 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBA29E8AD8C00692964 /* xml.c */; };
 		834A4F0D29E8AD8C00692964 /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBB29E8AD8C00692964 /* cmark.c */; };
-		834A4F0E29E8AD8C00692964 /* cmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBB29E8AD8C00692964 /* cmark.c */; };
 		834A4F1229E8AD8C00692964 /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBD29E8AD8C00692964 /* man.c */; };
-		834A4F1329E8AD8C00692964 /* man.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBD29E8AD8C00692964 /* man.c */; };
 		834A4F1529E8AD8D00692964 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBE29E8AD8C00692964 /* buffer.c */; };
-		834A4F1629E8AD8D00692964 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBE29E8AD8C00692964 /* buffer.c */; };
 		834A4F1829E8AD8D00692964 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBF29E8AD8C00692964 /* blocks.c */; };
-		834A4F1929E8AD8D00692964 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EBF29E8AD8C00692964 /* blocks.c */; };
 		834A4F1B29E8AD8D00692964 /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC029E8AD8C00692964 /* cmark_ctype.c */; };
-		834A4F1C29E8AD8D00692964 /* cmark_ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC029E8AD8C00692964 /* cmark_ctype.c */; };
 		834A4F1E29E8AD8D00692964 /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC229E8AD8C00692964 /* inlines.c */; };
-		834A4F1F29E8AD8D00692964 /* inlines.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC229E8AD8C00692964 /* inlines.c */; };
 		834A4F2329E8AD8D00692964 /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC529E8AD8C00692964 /* latex.c */; };
-		834A4F2429E8AD8D00692964 /* latex.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC529E8AD8C00692964 /* latex.c */; };
 		834A4F2629E8AD8D00692964 /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC729E8AD8C00692964 /* houdini_href_e.c */; };
-		834A4F2729E8AD8D00692964 /* houdini_href_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EC729E8AD8C00692964 /* houdini_href_e.c */; };
 		834A4F2929E8AD8D00692964 /* syntax_extension.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECA29E8AD8C00692964 /* syntax_extension.c */; };
-		834A4F2A29E8AD8D00692964 /* syntax_extension.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECA29E8AD8C00692964 /* syntax_extension.c */; };
 		834A4F3229E8AD8D00692964 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECF29E8AD8C00692964 /* houdini_html_e.c */; };
-		834A4F3329E8AD8D00692964 /* houdini_html_e.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ECF29E8AD8C00692964 /* houdini_html_e.c */; };
 		834A4F3529E8AD8D00692964 /* plaintext.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED029E8AD8C00692964 /* plaintext.c */; };
-		834A4F3629E8AD8D00692964 /* plaintext.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED029E8AD8C00692964 /* plaintext.c */; };
 		834A4F3A29E8AD8D00692964 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED429E8AD8C00692964 /* utf8.c */; };
-		834A4F3B29E8AD8D00692964 /* utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED429E8AD8C00692964 /* utf8.c */; };
 		834A4F3D29E8AD8D00692964 /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED529E8AD8C00692964 /* references.c */; };
-		834A4F3E29E8AD8D00692964 /* references.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED529E8AD8C00692964 /* references.c */; };
 		834A4F4029E8AD8D00692964 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED629E8AD8C00692964 /* render.c */; };
-		834A4F4129E8AD8D00692964 /* render.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED629E8AD8C00692964 /* render.c */; };
 		834A4F4329E8AD8D00692964 /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED729E8AD8C00692964 /* iterator.c */; };
-		834A4F4429E8AD8D00692964 /* iterator.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED729E8AD8C00692964 /* iterator.c */; };
 		834A4F4629E8AD8E00692964 /* arena.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED929E8AD8C00692964 /* arena.c */; };
-		834A4F4729E8AD8E00692964 /* arena.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4ED929E8AD8C00692964 /* arena.c */; };
 		834A4F4C29E8AD8E00692964 /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDD29E8AD8C00692964 /* linked_list.c */; };
-		834A4F4D29E8AD8E00692964 /* linked_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDD29E8AD8C00692964 /* linked_list.c */; };
 		834A4F4F29E8AD8E00692964 /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDF29E8AD8C00692964 /* commonmark.c */; };
-		834A4F5029E8AD8E00692964 /* commonmark.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EDF29E8AD8C00692964 /* commonmark.c */; };
 		834A4F5229E8AD8E00692964 /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE029E8AD8C00692964 /* map.c */; };
-		834A4F5329E8AD8E00692964 /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE029E8AD8C00692964 /* map.c */; };
 		834A4F5529E8AD8E00692964 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE129E8AD8C00692964 /* html.c */; };
-		834A4F5629E8AD8E00692964 /* html.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE129E8AD8C00692964 /* html.c */; };
 		834A4F5829E8AD8E00692964 /* plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE229E8AD8C00692964 /* plugin.c */; };
-		834A4F5929E8AD8E00692964 /* plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE229E8AD8C00692964 /* plugin.c */; };
 		834A4F5D29E8AD8E00692964 /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE529E8AD8C00692964 /* scanners.c */; };
-		834A4F5E29E8AD8E00692964 /* scanners.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE529E8AD8C00692964 /* scanners.c */; };
 		834A4F6029E8AD8E00692964 /* footnotes.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE729E8AD8C00692964 /* footnotes.c */; };
-		834A4F6129E8AD8E00692964 /* footnotes.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EE729E8AD8C00692964 /* footnotes.c */; };
 		834A4F6329E8AD8E00692964 /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEA29E8AD8C00692964 /* houdini_html_u.c */; };
-		834A4F6429E8AD8E00692964 /* houdini_html_u.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEA29E8AD8C00692964 /* houdini_html_u.c */; };
 		834A4F6629E8AD8E00692964 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEB29E8AD8C00692964 /* registry.c */; };
-		834A4F6729E8AD8E00692964 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EEB29E8AD8C00692964 /* registry.c */; };
 		834A4F6929E8AD8E00692964 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EED29E8AD8C00692964 /* node.c */; };
-		834A4F6A29E8AD8E00692964 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EED29E8AD8C00692964 /* node.c */; };
 		834A4F8229E92AE800692964 /* extra-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4F8129E92AE800692964 /* extra-extensions.c */; };
-		834A4F8329E92AE800692964 /* extra-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4F8129E92AE800692964 /* extra-extensions.c */; };
 		834CAB9C2593650900673002 /* emoji_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834CAB9A2593650800673002 /* emoji_utils.cpp */; };
-		834CAB9D2593650900673002 /* emoji_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834CAB9A2593650800673002 /* emoji_utils.cpp */; };
-		834D64A9259E9DC400DCA121 /* NSColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF951C2585367500B56FA3 /* NSColor+ext.swift */; };
 		8357EB7C2587F8EB002C2C45 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8357EB7B2587F8EB002C2C45 /* Theme.swift */; };
 		8357EB7F2588262C002C2C45 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8357EB7E2588262C002C2C45 /* String+ext.swift */; };
 		835886B329E960050088DF7D /* math_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 835886B229E960050088DF7D /* math_ext.c */; };
-		835886B429E960050088DF7D /* math_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 835886B229E960050088DF7D /* math_ext.c */; };
 		83598E6525818808004664D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6425818808004664D3 /* AppDelegate.swift */; };
 		83598E6725818808004664D3 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6625818808004664D3 /* DocumentViewController.swift */; };
 		83598E692581880A004664D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83598E682581880A004664D3 /* Assets.xcassets */; };
@@ -175,61 +63,33 @@
 		83598EFC25820A72004664D3 /* test2.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EFA258209C7004664D3 /* test2.md */; };
 		83598EFD25820A72004664D3 /* test1.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EF92582098A004664D3 /* test1.md */; };
 		836B2FF5259DEE2F00A6A5F7 /* libwrapper_highlight.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; };
-		836B2FFD259DEEA700A6A5F7 /* libwrapper_highlight.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; };
 		836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */ = {isa = PBXBuildFile; fileRef = 836B7474259E2B4000A6A5F7 /* magic.mgc */; };
 		836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */; };
-		836B747E259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */; };
 		83720A2825B8E93D00B49FEC /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2025B8E93D00B49FEC /* decode.c */; };
 		83720A2925B8E93D00B49FEC /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2125B8E93D00B49FEC /* encode.c */; };
-		83720A3625B8EA6000B49FEC /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2125B8E93D00B49FEC /* encode.c */; };
-		83720A3925B8EA6600B49FEC /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2025B8E93D00B49FEC /* decode.c */; };
-		83720A4725B8EA9700B49FEC /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A1D25B8E93D00B49FEC /* buffer.c */; };
 		83720A4A25B8EA9700B49FEC /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A1D25B8E93D00B49FEC /* buffer.c */; };
 		83760301258C1813004799ED /* inlineimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 83760300258C1813004799ED /* inlineimage.c */; };
-		83760302258C1813004799ED /* inlineimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 83760300258C1813004799ED /* inlineimage.c */; };
 		8376EADD27E8BD3D00AB44B8 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376EADC27E8BD3D00AB44B8 /* Log.swift */; };
-		8376EADE27E8BD3D00AB44B8 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376EADC27E8BD3D00AB44B8 /* Log.swift */; };
 		8376EAE227E8C67F00AB44B8 /* c_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 8376EAE127E8C67F00AB44B8 /* c_log.c */; };
-		8376EAE327E8C67F00AB44B8 /* c_log.c in Sources */ = {isa = PBXBuildFile; fileRef = 8376EAE127E8C67F00AB44B8 /* c_log.c */; };
 		837D20D6258362A5008FC698 /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 837D20D5258362A5008FC698 /* example.jpg */; };
 		838109C3258403CA000AFE3C /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
 		838109C725840429000AFE3C /* checkbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C625840429000AFE3C /* checkbox.c */; };
 		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
-		8382D05E2664052E00210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05D2664052E00210A0A /* Yams */; };
 		838715FE2DE44661000DC216 /* libwrapper_highlight.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		838D197F2DCDD97E00963324 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
-		838D19802DCDD97F00963325 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
-		838D19812DCDD98000963326 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
-		839E5B342D1C9DA600AD63BD /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
-		839E5B352D1C9DA800AD63BD /* highlight in Resources */ = {isa = PBXBuildFile; fileRef = 83E7FEF0258FBF37003ECF9B /* highlight */; };
-		839E5B362D1C9DAC00AD63BD /* magic.mgc in Resources */ = {isa = PBXBuildFile; fileRef = 836B7474259E2B4000A6A5F7 /* magic.mgc */; };
 		83CF71C92C5FCD780066A195 /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
-		83CF71CA2C5FCD780066A195 /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
 		83CF71CE2C60023E0066A195 /* sup_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71CD2C60023E0066A195 /* sup_ext.c */; };
-		83CF71CF2C60023E0066A195 /* sup_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71CD2C60023E0066A195 /* sup_ext.c */; };
-		83CF71D32C60053A0066A195 /* sub_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71D22C60053A0066A195 /* sub_ext.c */; };
 		83CF71D52C60053A0066A195 /* sub_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71D22C60053A0066A195 /* sub_ext.c */; };
 		83D22E642DCA659C0013EB9D /* Settings+render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D22E632DCA65980013EB9D /* Settings+render.swift */; };
-		83D22E652DCA65C60013EB9D /* Settings+render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D22E632DCA65980013EB9D /* Settings+render.swift */; };
-		83D22E672DCA70050013EB9D /* Settings+render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D22E632DCA65980013EB9D /* Settings+render.swift */; };
 		83D82A89277C45B500C9B99F /* libpcre2-32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D82A88277C45B500C9B99F /* libpcre2-32.a */; };
-		83D82A8A277C45B500C9B99F /* libpcre2-32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D82A88277C45B500C9B99F /* libpcre2-32.a */; };
 		83E7FEF1258FBF37003ECF9B /* highlight in Resources */ = {isa = PBXBuildFile; fileRef = 83E7FEF0258FBF37003ECF9B /* highlight */; };
 		83EF951D2585367500B56FA3 /* NSColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF951C2585367500B56FA3 /* NSColor+ext.swift */; };
 		83EF95232585476800B56FA3 /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = 83EF95222585476800B56FA3 /* emoji.c */; };
-		83F1FE53259CEEC900257DAC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1FE52259CEEC900257DAC /* main.swift */; };
-		83F1FE57259CEF0100257DAC /* external_launcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1FE56259CEF0100257DAC /* external_launcherProtocol.swift */; };
-		83F1FE5B259CEF4300257DAC /* external_launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1FE5A259CEF4300257DAC /* external_launcher.swift */; };
-		83F1FE5F259CEF6C00257DAC /* external_launcher_delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1FE5E259CEF6C00257DAC /* external_launcher_delegate.swift */; };
-		83F1FE6F259CF03B00257DAC /* external-launcher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 83F1FE41259CEE7400257DAC /* external-launcher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		83F4B99225868A7400FC58A7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4B99125868A7400FC58A7 /* Settings.swift */; };
 		83F4B9962586AB9700FC58A7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83D4B1C3258675D0000745DB /* README.md */; };
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
-		83F8822E2598A5C6008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
 		83F88259259906C7008C5071 /* heads.c in Sources */ = {isa = PBXBuildFile; fileRef = 83F88258259906C7008C5071 /* heads.c */; };
-		83F8825A259906C7008C5071 /* heads.c in Sources */ = {isa = PBXBuildFile; fileRef = 83F88258259906C7008C5071 /* heads.c */; };
 		83F8825E25991BFC008C5071 /* heads_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83F8825C25991BFC008C5071 /* heads_utils.cpp */; };
-		83F8825F25991BFC008C5071 /* heads_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83F8825C25991BFC008C5071 /* heads_utils.cpp */; };
 		F40D9E7D2EB53A18001C10C6 /* TextDownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7C2EB53A18001C10C6 /* TextDownSettingsView.swift */; };
 		F40D9E7E2EB53A18001C10C6 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7B2EB53A18001C10C6 /* SyntaxSettingsView.swift */; };
 		F40D9E7F2EB53A18001C10C6 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7A2EB53A18001C10C6 /* GeneralSettingsView.swift */; };
@@ -241,63 +101,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		830B16082D274D480042D876 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = TextDownXPCHelper;
-		};
-		830B160B2D274F180042D876 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = TextDownXPCHelper;
-		};
 		830F3A812DDF332900A0773D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 836B3007259E222600A6A5F7;
-			remoteInfo = "highlight-wrapper";
-		};
-		831A8C4A258ABADA00E36182 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 831A8C3E258ABADA00E36182;
-			remoteInfo = Extension;
-		};
-		8320D5922D1C25B1005868BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8320D5892D1C25B1005868BD;
-			remoteInfo = "Shortcut Extension";
-		};
-		8320D5CD2D1C399B005868BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 834A4F7429E9250800692964;
-			remoteInfo = "cmark-headers";
-		};
-		8320D5CF2D1C39A1005868BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D9CF0F27A1334800E86BC9;
-			remoteInfo = libjpcre2;
-		};
-		8320D5D12D1C39A1005868BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D9CCA027A12F3100E86BC9;
-			remoteInfo = libpcre2;
-		};
-		8320D5D32D1C39AE005868BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
 			proxyType = 1;
@@ -318,21 +122,7 @@
 			remoteGlobalIDString = 834A4F7429E9250800692964;
 			remoteInfo = "cmark-headers";
 		};
-		834A4F7C29E9293C00692964 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 834A4F7429E9250800692964;
-			remoteInfo = "cmark-headers";
-		};
 		836B7471259E23DB00A6A5F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 836B3007259E222600A6A5F7;
-			remoteInfo = "highlight-wrapper";
-		};
-		836B7478259E2BA400A6A5F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
 			proxyType = 1;
@@ -346,21 +136,7 @@
 			remoteGlobalIDString = 83B8DF002DD5DCA20054E345;
 			remoteInfo = magic.mgc;
 		};
-		83B8DF062DD5DDA30054E345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83B8DF002DD5DCA20054E345;
-			remoteInfo = magic.mgc;
-		};
 		83D9CF0B27A12FB000E86BC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D9CCA027A12F3100E86BC9;
-			remoteInfo = libpcre2;
-		};
-		83D9CF0D27A1331400E86BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
 			proxyType = 1;
@@ -374,13 +150,6 @@
 			remoteGlobalIDString = 83D9CF0F27A1334800E86BC9;
 			remoteInfo = libjpcre2;
 		};
-		83D9CF1527A1336A00E86BC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D9CF0F27A1334800E86BC9;
-			remoteInfo = libjpcre2;
-		};
 		83D9CF1727A1336E00E86BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
@@ -388,38 +157,9 @@
 			remoteGlobalIDString = 83D9CCA027A12F3100E86BC9;
 			remoteInfo = libpcre2;
 		};
-		83F1FE6C259CF02900257DAC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83F1FE40259CEE7400257DAC;
-			remoteInfo = "external-launcher";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		831A8C4C258ABADA00E36182 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				831A8C4D258ABADA00E36182 /* TextDown Extension.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8320D5952D1C25B1005868BD /* Embed ExtensionKit Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
-			dstSubfolderSpec = 16;
-			files = (
-				8320D5942D1C25B1005868BD /* TextDown Shortcut Extension.appex in Embed ExtensionKit Extensions */,
-			);
-			name = "Embed ExtensionKit Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		838715FF2DE44661000DC216 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -431,28 +171,11 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F1FE6E259CF03000257DAC /* Embed XPC Services */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
-			files = (
-				83F1FE6F259CF03B00257DAC /* external-launcher.xpc in Embed XPC Services */,
-			);
-			name = "Embed XPC Services";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8310245029E9F8D5004651DC /* HighlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewController.swift; sourceTree = "<group>"; };
-		831A8C3F258ABADA00E36182 /* TextDown Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TextDown Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		831A8C40258ABADA00E36182 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		831A8C43258ABADA00E36182 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		831A8C46258ABADA00E36182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreviewViewController.xib; sourceTree = "<group>"; };
-		831A8C48258ABADA00E36182 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		831A8C49258ABADA00E36182 /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
-		8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "TextDown Shortcut Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832D256125CC8894005F41AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83327D1D2593FB0700E76CF6 /* url.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = url.hpp; sourceTree = "<group>"; };
 		83327D1E2593FB0700E76CF6 /* url.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = url.cpp; sourceTree = "<group>"; };
@@ -618,12 +341,6 @@
 		83EF951C2585367500B56FA3 /* NSColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+ext.swift"; sourceTree = "<group>"; };
 		83EF95212585476800B56FA3 /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		83EF95222585476800B56FA3 /* emoji.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = emoji.c; sourceTree = "<group>"; };
-		83F1FE41259CEE7400257DAC /* external-launcher.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = "external-launcher.xpc"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83F1FE49259CEE7400257DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83F1FE52259CEEC900257DAC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		83F1FE56259CEF0100257DAC /* external_launcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = external_launcherProtocol.swift; sourceTree = "<group>"; };
-		83F1FE5A259CEF4300257DAC /* external_launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = external_launcher.swift; sourceTree = "<group>"; };
-		83F1FE5E259CEF6C00257DAC /* external_launcher_delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = external_launcher_delegate.swift; sourceTree = "<group>"; };
 		83F4B99125868A7400FC58A7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		83F8822C2598A5C0008C5071 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		83F88257259906C7008C5071 /* heads.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = heads.h; sourceTree = "<group>"; };
@@ -640,45 +357,7 @@
 		F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8320D5982D1C25B1005868BD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8320D58B2D1C25B1005868BD /* Shortcut Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8320D5982D1C25B1005868BD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Shortcut Extension"; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		831A8C3C258ABADA00E36182 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				831A8C41258ABADA00E36182 /* Quartz.framework in Frameworks */,
-				83D82A8A277C45B500C9B99F /* libpcre2-32.a in Frameworks */,
-				8382D05E2664052E00210A0A /* Yams in Frameworks */,
-				83F8822E2598A5C6008C5071 /* WebKit.framework in Frameworks */,
-				836B2FFD259DEEA700A6A5F7 /* libwrapper_highlight.dylib in Frameworks */,
-				830B5B3E272D68F700378FFE /* SwiftSoup in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8320D5872D1C25B1005868BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8320D59B2D1C260E005868BD /* Yams in Frameworks */,
-				8320D5CA2D1C3981005868BD /* libwrapper_highlight.dylib in Frameworks */,
-				8320D59D2D1C260E005868BD /* SwiftSoup in Frameworks */,
-				8320D5D92D1C39BB005868BD /* libpcre2-32.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83598E5E25818808004664D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,27 +371,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F1FE3E259CEE7400257DAC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		831A8C42258ABADA00E36182 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				831A8C48258ABADA00E36182 /* Info.plist */,
-				831A8C43258ABADA00E36182 /* PreviewViewController.swift */,
-				831A8C45258ABADA00E36182 /* PreviewViewController.xib */,
-				831A8C49258ABADA00E36182 /* Extension.entitlements */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		83327D252594066300E76CF6 /* MIMEtype */ = {
 			isa = PBXGroup;
 			children = (
@@ -882,10 +543,7 @@
 				83BD380429E7E7A2003F35CA /* cmark-extra */,
 				834A4DC329E8674200692964 /* cmark-gfm */,
 				83598E6325818808004664D3 /* TextDown */,
-				831A8C42258ABADA00E36182 /* Extension */,
 				837F29172597A01F00A5F7DE /* Resources */,
-				83F1FE42259CEE7400257DAC /* external-launcher */,
-				8320D58B2D1C25B1005868BD /* Shortcut Extension */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
 			);
@@ -895,9 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				83598E6125818808004664D3 /* TextDown.app */,
-				831A8C3F258ABADA00E36182 /* TextDown Extension.appex */,
-				83F1FE41259CEE7400257DAC /* external-launcher.xpc */,
-				8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */,
 				83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */,
 			);
 			name = Products;
@@ -1073,18 +728,6 @@
 			path = dependencies;
 			sourceTree = "<group>";
 		};
-		83F1FE42259CEE7400257DAC /* external-launcher */ = {
-			isa = PBXGroup;
-			children = (
-				83F1FE56259CEF0100257DAC /* external_launcherProtocol.swift */,
-				83F1FE5A259CEF4300257DAC /* external_launcher.swift */,
-				83F1FE5E259CEF6C00257DAC /* external_launcher_delegate.swift */,
-				83F1FE49259CEE7400257DAC /* Info.plist */,
-				83F1FE52259CEEC900257DAC /* main.swift */,
-			);
-			path = "external-launcher";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
@@ -1152,68 +795,6 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		831A8C3E258ABADA00E36182 /* TextDown Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown Extension" */;
-			buildPhases = (
-				831A8C3B258ABADA00E36182 /* Sources */,
-				831A8C3C258ABADA00E36182 /* Frameworks */,
-				831A8C3D258ABADA00E36182 /* Resources */,
-				83F1FE6E259CF03000257DAC /* Embed XPC Services */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				834A4F7D29E9293C00692964 /* PBXTargetDependency */,
-				83D9CF0E27A1331400E86BC9 /* PBXTargetDependency */,
-				83D9CF1627A1336A00E86BC9 /* PBXTargetDependency */,
-				830B5B44272D6D9200378FFE /* PBXTargetDependency */,
-				830B5B2F272D5B8C00378FFE /* PBXTargetDependency */,
-				836B7479259E2BA400A6A5F7 /* PBXTargetDependency */,
-				83B8DF072DD5DDA30054E345 /* PBXTargetDependency */,
-				83F1FE6D259CF02900257DAC /* PBXTargetDependency */,
-				830B16092D274D480042D876 /* PBXTargetDependency */,
-				830B160C2D274F180042D876 /* PBXTargetDependency */,
-			);
-			name = "TextDown Extension";
-			packageProductDependencies = (
-				8382D05D2664052E00210A0A /* Yams */,
-				830B5B3D272D68F700378FFE /* SwiftSoup */,
-			);
-			productName = Extension;
-			productReference = 831A8C3F258ABADA00E36182 /* TextDown Extension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8320D5992D1C25B1005868BD /* Build configuration list for PBXNativeTarget "TextDown Shortcut Extension" */;
-			buildPhases = (
-				8320D5862D1C25B1005868BD /* Sources */,
-				8320D5872D1C25B1005868BD /* Frameworks */,
-				8320D5882D1C25B1005868BD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8320D5D42D1C39AE005868BD /* PBXTargetDependency */,
-				8320D5D62D1C39AE005868BD /* PBXTargetDependency */,
-				8320D5D82D1C39AE005868BD /* PBXTargetDependency */,
-				8320D5D02D1C39A1005868BD /* PBXTargetDependency */,
-				8320D5D22D1C39A1005868BD /* PBXTargetDependency */,
-				8320D5CE2D1C399B005868BD /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				8320D58B2D1C25B1005868BD /* Shortcut Extension */,
-			);
-			name = "TextDown Shortcut Extension";
-			packageProductDependencies = (
-				8320D59A2D1C260E005868BD /* Yams */,
-				8320D59C2D1C260E005868BD /* SwiftSoup */,
-			);
-			productName = "Shortcut Extension";
-			productReference = 8320D58A2D1C25B1005868BD /* TextDown Shortcut Extension.appex */;
-			productType = "com.apple.product-type.extensionkit-extension";
-		};
 		83598E6025818808004664D3 /* TextDown */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83598E712581880A004664D3 /* Build configuration list for PBXNativeTarget "TextDown" */;
@@ -1221,8 +802,6 @@
 				83598E5D25818808004664D3 /* Sources */,
 				83598E5E25818808004664D3 /* Frameworks */,
 				83598E5F25818808004664D3 /* Resources */,
-				831A8C4C258ABADA00E36182 /* Embed Foundation Extensions */,
-				8320D5952D1C25B1005868BD /* Embed ExtensionKit Extensions */,
 				838715FF2DE44661000DC216 /* Embed Libraries */,
 			);
 			buildRules = (
@@ -1235,8 +814,6 @@
 				830B5B37272D613A00378FFE /* PBXTargetDependency */,
 				836B7472259E23DB00A6A5F7 /* PBXTargetDependency */,
 				83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */,
-				831A8C4B258ABADA00E36182 /* PBXTargetDependency */,
-				8320D5932D1C25B1005868BD /* PBXTargetDependency */,
 			);
 			name = TextDown;
 			packageProductDependencies = (
@@ -1248,23 +825,6 @@
 			productReference = 83598E6125818808004664D3 /* TextDown.app */;
 			productType = "com.apple.product-type.application";
 		};
-		83F1FE40259CEE7400257DAC /* external-launcher */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83F1FE4F259CEE7400257DAC /* Build configuration list for PBXNativeTarget "external-launcher" */;
-			buildPhases = (
-				83F1FE3D259CEE7400257DAC /* Sources */,
-				83F1FE3E259CEE7400257DAC /* Frameworks */,
-				83F1FE3F259CEE7400257DAC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "external-launcher";
-			productName = "external-launcher";
-			productReference = 83F1FE41259CEE7400257DAC /* external-launcher.xpc */;
-			productType = "com.apple.product-type.xpc-service";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1275,12 +835,6 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					831A8C3E258ABADA00E36182 = {
-						CreatedOnToolsVersion = 12.3;
-					};
-					8320D5892D1C25B1005868BD = {
-						CreatedOnToolsVersion = 16.2;
-					};
 					83598E6025818808004664D3 = {
 						CreatedOnToolsVersion = 12.2;
 						LastSwiftMigration = 1220;
@@ -1290,10 +844,6 @@
 					};
 					83D9CCA027A12F3100E86BC9 = {
 						CreatedOnToolsVersion = 13.2;
-					};
-					83F1FE40259CEE7400257DAC = {
-						CreatedOnToolsVersion = 12.3;
-						LastSwiftMigration = 1230;
 					};
 				};
 			};
@@ -1323,9 +873,6 @@
 			projectRoot = "";
 			targets = (
 				83598E6025818808004664D3 /* TextDown */,
-				831A8C3E258ABADA00E36182 /* TextDown Extension */,
-				8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */,
-				83F1FE40259CEE7400257DAC /* external-launcher */,
 				83D9CCA027A12F3100E86BC9 /* libpcre2 */,
 				83D9CF0F27A1334800E86BC9 /* libjpcre2 */,
 				834A4F7429E9250800692964 /* cmark-headers */,
@@ -1335,26 +882,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		831A8C3D258ABADA00E36182 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				830277F42C60B3B40066EBCC /* icon.png in Resources */,
-				831A8C47258ABADA00E36182 /* PreviewViewController.xib in Resources */,
-				834A4F0329E8AD8C00692964 /* ext_scanners.re in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8320D5882D1C25B1005868BD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				839E5B342D1C9DA600AD63BD /* default.css in Resources */,
-				839E5B352D1C9DA800AD63BD /* highlight in Resources */,
-				839E5B362D1C9DAC00AD63BD /* magic.mgc in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83598E5F25818808004664D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1373,147 +900,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F1FE3F259CEE7400257DAC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		831A8C3B258ABADA00E36182 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				834A4F4D29E8AD8E00692964 /* linked_list.c in Sources */,
-				834A4F0529E8AD8C00692964 /* tasklist.c in Sources */,
-				834A4F3329E8AD8D00692964 /* houdini_html_e.c in Sources */,
-				83327D222593FCEC00E76CF6 /* url.cpp in Sources */,
-				834A4F4729E8AD8E00692964 /* arena.c in Sources */,
-				83720A3625B8EA6000B49FEC /* encode.c in Sources */,
-				834A4F0B29E8AD8C00692964 /* xml.c in Sources */,
-				83760302258C1813004799ED /* inlineimage.c in Sources */,
-				834A4F5029E8AD8E00692964 /* commonmark.c in Sources */,
-				834A4F2729E8AD8D00692964 /* houdini_href_e.c in Sources */,
-				834A4F5329E8AD8E00692964 /* map.c in Sources */,
-				83F8825F25991BFC008C5071 /* heads_utils.cpp in Sources */,
-				834A4F5629E8AD8E00692964 /* html.c in Sources */,
-				83F8825A259906C7008C5071 /* heads.c in Sources */,
-				834A4F5929E8AD8E00692964 /* plugin.c in Sources */,
-				834A4F3E29E8AD8D00692964 /* references.c in Sources */,
-				83720A3925B8EA6600B49FEC /* decode.c in Sources */,
-				834A4F3B29E8AD8D00692964 /* utf8.c in Sources */,
-				834D64A9259E9DC400DCA121 /* NSColor+ext.swift in Sources */,
-				834A4F6129E8AD8E00692964 /* footnotes.c in Sources */,
-				834A4EF529E8AD8C00692964 /* autolink.c in Sources */,
-				834A4F1629E8AD8D00692964 /* buffer.c in Sources */,
-				8376EAE327E8C67F00AB44B8 /* c_log.c in Sources */,
-				83720A4725B8EA9700B49FEC /* buffer.c in Sources */,
-				831A8C74258ABD9600E36182 /* checkbox.c in Sources */,
-				83CF71CF2C60023E0066A195 /* sup_ext.c in Sources */,
-				834A4F2A29E8AD8D00692964 /* syntax_extension.c in Sources */,
-				834A4F4429E8AD8D00692964 /* iterator.c in Sources */,
-				834A4EFD29E8AD8C00692964 /* ext_scanners.c in Sources */,
-				83CF71CA2C5FCD780066A195 /* highlight.c in Sources */,
-				83CF71D32C60053A0066A195 /* sub_ext.c in Sources */,
-				831A8CC1258AC18300E36182 /* Settings.swift in Sources */,
-				838D19802DCDD97F00963325 /* Settings+NoXPC.swift in Sources */,
-				831A8C6B258ABD8900E36182 /* syntaxhighlight.c in Sources */,
-				834A4F0E29E8AD8C00692964 /* cmark.c in Sources */,
-				834A4F8329E92AE800692964 /* extra-extensions.c in Sources */,
-				834A4F1329E8AD8C00692964 /* man.c in Sources */,
-				834A4EF229E8AD8C00692964 /* strikethrough.c in Sources */,
-				834A4F0829E8AD8C00692964 /* core-extensions.c in Sources */,
-				834A4F4129E8AD8D00692964 /* render.c in Sources */,
-				834A4EF829E8AD8C00692964 /* table.c in Sources */,
-				834A4F1929E8AD8D00692964 /* blocks.c in Sources */,
-				831A8C71258ABD9300E36182 /* mention.c in Sources */,
-				836B747E259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */,
-				835886B429E960050088DF7D /* math_ext.c in Sources */,
-				834CAB9D2593650900673002 /* emoji_utils.cpp in Sources */,
-				834A4F1C29E8AD8D00692964 /* cmark_ctype.c in Sources */,
-				834A4F1F29E8AD8D00692964 /* inlines.c in Sources */,
-				831A8C44258ABADA00E36182 /* PreviewViewController.swift in Sources */,
-				8376EADE27E8BD3D00AB44B8 /* Log.swift in Sources */,
-				834A4F3629E8AD8D00692964 /* plaintext.c in Sources */,
-				83327D332594087100E76CF6 /* MIMEtype.c in Sources */,
-				834A4F6A29E8AD8E00692964 /* node.c in Sources */,
-				834A4F0029E8AD8C00692964 /* tagfilter.c in Sources */,
-				834A4F5E29E8AD8E00692964 /* scanners.c in Sources */,
-				83D22E652DCA65C60013EB9D /* Settings+render.swift in Sources */,
-				834A4F6729E8AD8E00692964 /* registry.c in Sources */,
-				831A8C6E258ABD8D00E36182 /* emoji.c in Sources */,
-				834A4F2429E8AD8D00692964 /* latex.c in Sources */,
-				834A4F6429E8AD8E00692964 /* houdini_html_u.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8320D5862D1C25B1005868BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8320D5A62D1C3446005868BD /* Settings.swift in Sources */,
-				838D19812DCDD98000963326 /* Settings+NoXPC.swift in Sources */,
-				8320D5AB2D1C384C005868BD /* man.c in Sources */,
-				8320D5AC2D1C384C005868BD /* xml.c in Sources */,
-				8320D5AD2D1C384C005868BD /* linked_list.c in Sources */,
-				8320D5AE2D1C384C005868BD /* render.c in Sources */,
-				8320D5AF2D1C384C005868BD /* inlines.c in Sources */,
-				8320D5B02D1C384C005868BD /* references.c in Sources */,
-				8320D5B12D1C384C005868BD /* scanners.c in Sources */,
-				8320D5B22D1C384C005868BD /* plaintext.c in Sources */,
-				8320D5B32D1C384C005868BD /* html.c in Sources */,
-				8320D5B42D1C384C005868BD /* houdini_html_u.c in Sources */,
-				8320D5B52D1C384C005868BD /* commonmark.c in Sources */,
-				8320D5B62D1C384C005868BD /* houdini_href_e.c in Sources */,
-				8320D5B72D1C384C005868BD /* cmark.c in Sources */,
-				8320D5B82D1C384C005868BD /* iterator.c in Sources */,
-				8320D5EC2D1C3B47005868BD /* c_log.c in Sources */,
-				8320D5B92D1C384C005868BD /* syntax_extension.c in Sources */,
-				8320D5BA2D1C384C005868BD /* houdini_html_e.c in Sources */,
-				8320D5C32D1C3858005868BD /* tagfilter.c in Sources */,
-				8320D5DA2D1C3A7F005868BD /* encode.c in Sources */,
-				8320D5DB2D1C3A7F005868BD /* decode.c in Sources */,
-				8320D5E92D1C3AD7005868BD /* emoji_utils.cpp in Sources */,
-				8320D5DC2D1C3A7F005868BD /* buffer.c in Sources */,
-				8320D5C42D1C3858005868BD /* core-extensions.c in Sources */,
-				8320D5C52D1C3858005868BD /* tasklist.c in Sources */,
-				8320D5DE2D1C3AA7005868BD /* emoji.c in Sources */,
-				8320D5DF2D1C3AA7005868BD /* heads.c in Sources */,
-				8320D5E02D1C3AA7005868BD /* inlineimage.c in Sources */,
-				8320D5E12D1C3AA7005868BD /* highlight.c in Sources */,
-				8320D5E22D1C3AA7005868BD /* sub_ext.c in Sources */,
-				8320D5E32D1C3AA7005868BD /* sup_ext.c in Sources */,
-				8320D5E42D1C3AA7005868BD /* syntaxhighlight.c in Sources */,
-				8320D5E52D1C3AA7005868BD /* mention.c in Sources */,
-				8320D5E62D1C3AA7005868BD /* checkbox.c in Sources */,
-				8320D5E72D1C3AA7005868BD /* math_ext.c in Sources */,
-				8320D5E82D1C3AA7005868BD /* extra-extensions.c in Sources */,
-				8320D5C62D1C3858005868BD /* strikethrough.c in Sources */,
-				8320D5C72D1C3858005868BD /* table.c in Sources */,
-				8320D5C82D1C3858005868BD /* ext_scanners.c in Sources */,
-				8320D5C92D1C3858005868BD /* autolink.c in Sources */,
-				8320D5BB2D1C384C005868BD /* plugin.c in Sources */,
-				8320D5BC2D1C384C005868BD /* registry.c in Sources */,
-				8320D5EA2D1C3B0F005868BD /* heads_utils.cpp in Sources */,
-				8320D5BD2D1C384C005868BD /* footnotes.c in Sources */,
-				8320D5BE2D1C384C005868BD /* node.c in Sources */,
-				8320D5BF2D1C384C005868BD /* utf8.c in Sources */,
-				8320D5C02D1C384C005868BD /* map.c in Sources */,
-				8320D5C12D1C384C005868BD /* cmark_ctype.c in Sources */,
-				8320D5C22D1C384C005868BD /* latex.c in Sources */,
-				8320D5DD2D1C3A87005868BD /* MIMEtype.c in Sources */,
-				8320D5A72D1C3452005868BD /* Log.swift in Sources */,
-				83D22E672DCA70050013EB9D /* Settings+render.swift in Sources */,
-				8320D5EB2D1C3B29005868BD /* url.cpp in Sources */,
-				8320D5A82D1C3830005868BD /* arena.c in Sources */,
-				8320D5A92D1C3830005868BD /* blocks.c in Sources */,
-				8320D5AA2D1C3830005868BD /* buffer.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83598E5D25818808004664D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1594,32 +983,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83F1FE3D259CEE7400257DAC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83F1FE5F259CEF6C00257DAC /* external_launcher_delegate.swift in Sources */,
-				83F1FE5B259CEF4300257DAC /* external_launcher.swift in Sources */,
-				83F1FE57259CEF0100257DAC /* external_launcherProtocol.swift in Sources */,
-				83F1FE53259CEEC900257DAC /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		830B16092D274D480042D876 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			targetProxy = 830B16082D274D480042D876 /* PBXContainerItemProxy */;
-		};
-		830B160C2D274F180042D876 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			targetProxy = 830B160B2D274F180042D876 /* PBXContainerItemProxy */;
-		};
-		830B5B2F272D5B8C00378FFE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 830B5B2E272D5B8C00378FFE /* Yams */;
-		};
 		830B5B37272D613A00378FFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 830B5B36272D613A00378FFE /* Yams */;
@@ -1628,52 +994,10 @@
 			isa = PBXTargetDependency;
 			productRef = 830B5B41272D6D8A00378FFE /* SwiftSoup */;
 		};
-		830B5B44272D6D9200378FFE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 830B5B43272D6D9200378FFE /* SwiftSoup */;
-		};
 		830F3A822DDF332900A0773D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "highlight-wrapper";
 			targetProxy = 830F3A812DDF332900A0773D /* PBXContainerItemProxy */;
-		};
-		831A8C4B258ABADA00E36182 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 831A8C3E258ABADA00E36182 /* TextDown Extension */;
-			targetProxy = 831A8C4A258ABADA00E36182 /* PBXContainerItemProxy */;
-		};
-		8320D5932D1C25B1005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */;
-			targetProxy = 8320D5922D1C25B1005868BD /* PBXContainerItemProxy */;
-		};
-		8320D5CE2D1C399B005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 834A4F7429E9250800692964 /* cmark-headers */;
-			targetProxy = 8320D5CD2D1C399B005868BD /* PBXContainerItemProxy */;
-		};
-		8320D5D02D1C39A1005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83D9CF0F27A1334800E86BC9 /* libjpcre2 */;
-			targetProxy = 8320D5CF2D1C39A1005868BD /* PBXContainerItemProxy */;
-		};
-		8320D5D22D1C39A1005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83D9CCA027A12F3100E86BC9 /* libpcre2 */;
-			targetProxy = 8320D5D12D1C39A1005868BD /* PBXContainerItemProxy */;
-		};
-		8320D5D42D1C39AE005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "highlight-wrapper";
-			targetProxy = 8320D5D32D1C39AE005868BD /* PBXContainerItemProxy */;
-		};
-		8320D5D62D1C39AE005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 8320D5D52D1C39AE005868BD /* Yams */;
-		};
-		8320D5D82D1C39AE005868BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 8320D5D72D1C39AE005868BD /* SwiftSoup */;
 		};
 		834A4F7529E9250800692964 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1685,72 +1009,34 @@
 			target = 834A4F7429E9250800692964 /* cmark-headers */;
 			targetProxy = 834A4F7A29E9293600692964 /* PBXContainerItemProxy */;
 		};
-		834A4F7D29E9293C00692964 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 834A4F7429E9250800692964 /* cmark-headers */;
-			targetProxy = 834A4F7C29E9293C00692964 /* PBXContainerItemProxy */;
-		};
 		836B7472259E23DB00A6A5F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "highlight-wrapper";
 			targetProxy = 836B7471259E23DB00A6A5F7 /* PBXContainerItemProxy */;
-		};
-		836B7479259E2BA400A6A5F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "highlight-wrapper";
-			targetProxy = 836B7478259E2BA400A6A5F7 /* PBXContainerItemProxy */;
 		};
 		83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83B8DF002DD5DCA20054E345 /* magic.mgc */;
 			targetProxy = 83B8DF042DD5DD9D0054E345 /* PBXContainerItemProxy */;
 		};
-		83B8DF072DD5DDA30054E345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83B8DF002DD5DCA20054E345 /* magic.mgc */;
-			targetProxy = 83B8DF062DD5DDA30054E345 /* PBXContainerItemProxy */;
-		};
 		83D9CF0C27A12FB000E86BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83D9CCA027A12F3100E86BC9 /* libpcre2 */;
 			targetProxy = 83D9CF0B27A12FB000E86BC9 /* PBXContainerItemProxy */;
-		};
-		83D9CF0E27A1331400E86BC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83D9CCA027A12F3100E86BC9 /* libpcre2 */;
-			targetProxy = 83D9CF0D27A1331400E86BC9 /* PBXContainerItemProxy */;
 		};
 		83D9CF1427A1336400E86BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83D9CF0F27A1334800E86BC9 /* libjpcre2 */;
 			targetProxy = 83D9CF1327A1336400E86BC9 /* PBXContainerItemProxy */;
 		};
-		83D9CF1627A1336A00E86BC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83D9CF0F27A1334800E86BC9 /* libjpcre2 */;
-			targetProxy = 83D9CF1527A1336A00E86BC9 /* PBXContainerItemProxy */;
-		};
 		83D9CF1827A1336E00E86BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83D9CCA027A12F3100E86BC9 /* libpcre2 */;
 			targetProxy = 83D9CF1727A1336E00E86BC9 /* PBXContainerItemProxy */;
 		};
-		83F1FE6D259CF02900257DAC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83F1FE40259CEE7400257DAC /* external-launcher */;
-			targetProxy = 83F1FE6C259CF02900257DAC /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		831A8C45258ABADA00E36182 /* PreviewViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				831A8C46258ABADA00E36182 /* Base */,
-			);
-			name = PreviewViewController.xib;
-			sourceTree = "<group>";
-		};
 		83598E6A2581880A004664D3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1762,215 +1048,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		831A8C4E258ABADA00E36182 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/cmark-extra\"",
-					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/cmark-gfm/src\"",
-					"\"$(SRCROOT)/cmark-gfm/extensions\"",
-				);
-				INFOPLIST_FILE = Extension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../../../../Frameworks",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/highlight-wrapper",
-					"$(PROJECT_DIR)",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.Extension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		831A8C4F258ABADA00E36182 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = Extension/Extension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/cmark-extra\"",
-					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/cmark-gfm/src\"",
-					"\"$(SRCROOT)/cmark-gfm/extensions\"",
-				);
-				INFOPLIST_FILE = Extension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../../../../Frameworks",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/highlight-wrapper",
-					"$(PROJECT_DIR)",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDown.Extension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		8320D5962D1C25B1005868BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "Shortcut Extension/Shortcut_Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_MOVIES_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_MUSIC_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readonly;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/cmark-extra\"",
-					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/cmark-gfm/src\"",
-					"\"$(SRCROOT)/cmark-gfm/extensions\"",
-				);
-				INFOPLIST_FILE = "Shortcut Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Shortcut Extension";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Developed by SBAREX 2020 - 2025.";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"@loader_path/../Frameworks",
-					"@loader_path/../../../../Frameworks",
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-					"$(BUILT_PRODUCTS_DIR)",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.advison.TextDown.Shortcut-Extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		8320D5972D1C25B1005868BD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "Shortcut Extension/Shortcut_Extension.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_APP_SANDBOX = YES;
-				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_MOVIES_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_MUSIC_FOLDER = readonly;
-				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readonly;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/cmark-extra\"",
-					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/cmark-gfm/src\"",
-					"\"$(SRCROOT)/cmark-gfm/extensions\"",
-				);
-				INFOPLIST_FILE = "Shortcut Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Shortcut Extension";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Developed by SBAREX 2020 - 2025.";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"@loader_path/../Frameworks",
-					"@loader_path/../../../../Frameworks",
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
-					"$(BUILT_PRODUCTS_DIR)",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.advison.TextDown.Shortcut-Extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		834A4F7829E9250800692964 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2335,88 +1412,9 @@
 			};
 			name = Release;
 		};
-		83F1FE4D259CEE7400257DAC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "external-launcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-					"@loader_path/../../../../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.advison.TextDown.external-launcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		83F1FE4E259CEE7400257DAC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = ZF3N876CR4;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "external-launcher/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-					"@loader_path/../../../../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.advison.TextDown.external-launcher";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		831A8C50258ABADA00E36182 /* Build configuration list for PBXNativeTarget "TextDown Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				831A8C4E258ABADA00E36182 /* Debug */,
-				831A8C4F258ABADA00E36182 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8320D5992D1C25B1005868BD /* Build configuration list for PBXNativeTarget "TextDown Shortcut Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8320D5962D1C25B1005868BD /* Debug */,
-				8320D5972D1C25B1005868BD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		834A4F7729E9250800692964 /* Build configuration list for PBXLegacyTarget "cmark-headers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2471,15 +1469,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83F1FE4F259CEE7400257DAC /* Build configuration list for PBXNativeTarget "external-launcher" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83F1FE4D259CEE7400257DAC /* Debug */,
-				83F1FE4E259CEE7400257DAC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -2510,11 +1499,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		830B5B2E272D5B8C00378FFE /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
 		830B5B36272D613A00378FFE /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
@@ -2525,17 +1509,7 @@
 			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
 		};
-		830B5B3D272D68F700378FFE /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
 		830B5B41272D6D8A00378FFE /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-		830B5B43272D6D9200378FFE /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
@@ -2545,32 +1519,7 @@
 			package = 831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
 		};
-		8320D59A2D1C260E005868BD /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
-		8320D59C2D1C260E005868BD /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-		8320D5D52D1C39AE005868BD /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
-		8320D5D72D1C39AE005868BD /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
 		8382D05B2664051400210A0A /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
-		8382D05D2664052E00210A0A /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;
