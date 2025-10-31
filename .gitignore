@@ -29,6 +29,10 @@ DerivedData/
 ## CMark Build Artifacts
 cmark-gfm/cmark-arm64/
 cmark-gfm/cmark-x86_64/
+cmark-arm64/
+cmark-x86_64/
+src/cmark-gfm_export.h
+src/cmark-gfm_version.h
 
 ## Highlight Wrapper
 highlight-wrapper/GoUtils/.idea/
