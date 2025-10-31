@@ -171,7 +171,7 @@ class Settings: Codable {
     }
     
     @objc var debug: Bool = false
-    @objc var about: Bool = true
+    @objc var about: Bool = false
     
     var app_version: String {
         var title: String = "<a href='https://github.com/'>";
@@ -571,35 +571,74 @@ class Settings: Codable {
     }
     
     static func settingsFromSharedFile() -> Settings? {
-        // XPC removed - use UserDefaults directly
-        // var settings: Settings? = nil
-        //
-        // XPCWrapper.getSynchronousService()?.getSettings() { data in
-        //     guard let data = data, let _settings = try? JSONDecoder().decode(Settings.self, from: data) else {
-        //         return
-        //     }
-        //     settings = _settings
-        // }
-        //
-        // return settings
-        return nil
+        guard let settingsURL = Self.settingsFileURL else {
+            os_log(.error, log: .settings, "Unable to locate settings file URL")
+            return nil
+        }
+
+        // Create directory if doesn't exist
+        if let directory = Self.applicationSupportUrl {
+            try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        }
+
+        // Check if file exists
+        guard FileManager.default.fileExists(atPath: settingsURL.path) else {
+            os_log(.info, log: .settings, "Settings file does not exist, using defaults")
+            return nil
+        }
+
+        do {
+            let data = try Data(contentsOf: settingsURL)
+            let settings = try JSONDecoder().decode(Settings.self, from: data)
+            os_log(.info, log: .settings, "Settings loaded from %{public}@", settingsURL.path)
+            return settings
+        } catch {
+            os_log(.error, log: .settings, "Failed to load settings: %{public}@", error.localizedDescription)
+            return nil
+        }
     }
-    
+
     @discardableResult
     func saveToSharedFile() -> (Bool, String?) {
-        // XPC removed - use UserDefaults directly
-        // guard let data = try? JSONEncoder().encode(self) else {
-        //     return (false, "Could not encode settings")
-        // }
-        //
-        // var r = false
-        // var msg: String? = nil
-        // XPCWrapper.getSynchronousService()?.setSettings(data: data) { (success, _msg) in
-        //     r = success
-        //     msg = _msg
-        // }
-        // return (r, msg)
-        return (false, "XPC removed")
+        guard let settingsURL = Self.settingsFileURL else {
+            let msg = "Unable to locate settings folder"
+            os_log(.error, log: .settings, "%{public}@", msg)
+            return (false, msg)
+        }
+
+        // Create directory if doesn't exist
+        if let directory = Self.applicationSupportUrl {
+            do {
+                try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+            } catch {
+                let msg = "Failed to create settings directory: \(error.localizedDescription)"
+                os_log(.error, log: .settings, "%{public}@", msg)
+                return (false, msg)
+            }
+        }
+
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+            let data = try encoder.encode(self)
+            try data.write(to: settingsURL, options: .atomic)
+
+            os_log(.info, log: .settings, "Settings saved to %{public}@", settingsURL.path)
+
+            // Notify other app instances (multi-window sync)
+            DistributedNotificationCenter.default().postNotificationName(
+                .TextDownSettingsUpdated,
+                object: nil,
+                userInfo: nil,
+                deliverImmediately: true
+            )
+
+            return (true, nil)
+        } catch {
+            let msg = "Failed to save settings: \(error.localizedDescription)"
+            os_log(.error, log: .settings, "%{public}@", msg)
+            return (false, msg)
+        }
     }
     
     private func sanitizeEmojiOption() {

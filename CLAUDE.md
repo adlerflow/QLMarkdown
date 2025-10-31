@@ -512,9 +512,168 @@ print("hi")
 - **SPM Dependencies**: Sparkle (Auto-Update), SwiftSoup, Yams
 
 ### Neue Komponenten
-- **EditorViewController**: Split-View mit NSTextView + WKWebView
-- **NSDocument Architecture**: File Open/Save/Auto-Save Support
+- **DocumentViewController**: Split-View mit NSTextView + WKWebView (umbenannt von ViewController)
+- **MarkdownDocument**: NSDocument subclass für File Open/Save/Auto-Save Support
+- **MarkdownWindowController**: NSWindowController für Multi-Window Management
+- **SwiftUI Preferences Window**: Modern Settings UI (ersetzt eingebettete TabView)
 - **Live Rendering**: Debounced text change detection → automatic preview update
+
+---
+
+## SwiftUI Preferences Window (Phase 4)
+
+### Architektur
+
+**Implementierte SwiftUI Settings Scene** (macOS 13+):
+- **Pattern**: Apply/Cancel Button (kein auto-save)
+- **Keyboard Shortcut**: Cmd+, (standard Preferences shortcut)
+- **Window Management**: NSHostingController Bridge zu AppKit
+- **State Management**: Combine @Published properties mit change tracking
+
+### Komponenten
+
+**SettingsViewModel.swift** (327 LOC):
+```swift
+@MainActor
+class SettingsViewModel: ObservableObject {
+    // 40 @Published properties für reactive state
+    @Published var tableExtension: Bool
+    @Published var emojiExtension: Bool
+    // ... 38 weitere properties
+
+    @Published var hasUnsavedChanges = false
+
+    private var cancellables = Set<AnyCancellable>()
+    private var originalSettings: Settings
+
+    init(from settings: Settings)
+    func apply()                // Speichert zu Settings.shared + JSON file
+    func cancel()               // Restore von originalSettings
+    func resetToDefaults()      // Factory defaults
+}
+```
+
+**SwiftUI View Hierarchy**:
+```
+TextDownSettingsView (Main Window)
+├─ TabView (4 Tabs)
+│  ├─ GeneralSettingsView (8 properties)
+│  │  └─ CSS, Appearance, Links, QL Window Size
+│  ├─ ExtensionsSettingsView (17 properties)
+│  │  └─ GFM Extensions + Custom Extensions
+│  ├─ SyntaxSettingsView (7 properties)
+│  │  └─ Highlighting, Line Numbers, Language Detection
+│  └─ AdvancedSettingsView (8 properties)
+│     └─ Parser Options, Reset to Defaults
+└─ Toolbar (Apply/Cancel Buttons)
+```
+
+**Integration mit AppKit**:
+```swift
+// AppDelegate.swift
+@IBAction func showPreferences(_ sender: Any) {
+    let settingsView = TextDownSettingsView()
+    let hostingController = NSHostingController(rootView: settingsView)
+    let window = NSWindow(contentViewController: hostingController)
+    window.title = "TextDown Preferences"
+    window.styleMask = [.titled, .closable, .resizable]
+    window.makeKeyAndOrderFront(nil)
+}
+```
+
+### Settings Persistence
+
+**JSON File Storage** (Settings+NoXPC.swift):
+- **Location**: `~/Library/Containers/org.advison.TextDown/Data/Library/Application Support/settings.json`
+- **Format**: Pretty-printed, sorted keys
+- **Encoding**: JSONEncoder mit `.atomic` write
+- **Sync**: DistributedNotificationCenter für multi-window updates
+
+**Change Tracking**:
+```swift
+// Combine sink() pattern für alle 40 properties
+$tableExtension.sink { [weak self] _ in
+    self?.hasUnsavedChanges = true
+}.store(in: &cancellables)
+```
+
+### Settings Properties (40 Total)
+
+**GitHub Flavored Markdown** (6):
+- tableExtension, autoLinkExtension, tagFilterExtension
+- taskListExtension, yamlExtension, yamlExtensionAll
+
+**Custom Extensions** (11):
+- emojiExtension (mit emojiImageOption)
+- headsExtension, highlightExtension, inlineImageExtension
+- mathExtension, mentionExtension, subExtension, supExtension
+- strikethroughExtension (mit strikethroughDoubleTildeOption)
+- checkboxExtension
+
+**Syntax Highlighting** (7):
+- syntaxHighlightExtension, syntaxLineNumbersOption
+- syntaxTabsOption, syntaxWordWrapOption
+- guessEngine (.none, .simple, .accurate)
+
+**Parser Options** (6):
+- footnotesOption, hardBreakOption, noSoftBreakOption
+- unsafeHTMLOption, smartQuotesOption, validateUTFOption
+
+**Appearance** (8):
+- about, debug, renderAsCode, openInlineLink
+- customCSSOverride, customCSS (URL?)
+- qlWindowWidth, qlWindowHeight (optional Int)
+
+**CSS Theme Management**:
+```swift
+// Settings+ext.swift
+func getAvailableStyles(resetCache: Bool) -> [URL] {
+    // Scans ~/Library/Application Support/TextDown/themes/
+    // Returns sorted array of .css files
+}
+```
+
+### UI Features
+
+**Conditional Rendering**:
+```swift
+VStack(alignment: .leading, spacing: 4) {
+    Toggle("Emoji", isOn: $viewModel.emojiExtension)
+    if viewModel.emojiExtension {
+        Toggle("Render as images", isOn: $viewModel.emojiImageOption)
+            .padding(.leading, 20)
+    }
+}
+```
+
+**Apply Button State**:
+```swift
+Button("Apply") {
+    viewModel.apply()
+    dismiss()
+}
+.disabled(!viewModel.hasUnsavedChanges)
+```
+
+**Reset to Defaults**:
+```swift
+Button("Reset All Settings to Factory Defaults") {
+    viewModel.resetToDefaults()
+}
+// Sets hasUnsavedChanges = true, requires Apply to persist
+```
+
+### Integration mit DocumentViewController
+
+**Settings Synchronization**:
+- DocumentViewController behält @objc dynamic properties für Bindings
+- updateSettings() method kopiert zu Settings.shared
+- saveAction() triggert JSON persist via Settings.saveToSharedFile()
+
+**Code Cleanup** (Phase 4):
+- Removed 448 lines of commented-out Settings UI code
+- Removed alle TODO comments related to deleted outlets
+- DocumentViewController: 1420 → 972 lines
 
 ---
 
@@ -607,8 +766,9 @@ chore: Maintenance tasks
 
 **Settings nicht persistent**
 - Check: Settings+NoXPC.swift active (nicht XPCWrapper)
-- Check: UserDefaults domain korrekt
-- Location: ~/Library/Preferences/org.advison.TextDown.plist
+- Check: JSON file exists in Application Support
+- Location (Sandboxed): ~/Library/Containers/org.advison.TextDown/Data/Library/Application Support/settings.json
+- Debug: os_log(.settings) outputs in Console.app
 
 **Syntax Highlighting fehlt**
 - Check: wrapper_highlight.dylib in Bundle/Frameworks
@@ -631,8 +791,12 @@ chore: Maintenance tasks
 - `TextDown/TextDown-Bridging-Header.h` - C/Swift Bridge (9 Imports)
 
 ### UI Layer
-- `TextDown/ViewController.swift` - Existierende Settings UI (1200+ Zeilen)
-- `TextDown/AppDelegate.swift` - App Lifecycle, Sparkle Integration
+- `TextDown/DocumentViewController.swift` - Editor View Controller (972 Zeilen, cleaned up)
+- `TextDown/MarkdownDocument.swift` - NSDocument Implementation (180 Zeilen)
+- `TextDown/MarkdownWindowController.swift` - Window Controller (82 Zeilen)
+- `TextDown/SettingsViewModel.swift` - SwiftUI State Management (327 Zeilen)
+- `TextDown/Preferences/*.swift` - 4 SwiftUI Settings Views
+- `TextDown/AppDelegate.swift` - App Lifecycle, Sparkle Integration, Preferences Window
 - `TextDown/Theme.swift` - Theme Datenstrukturen
 - `TextDown/ThemePreview.swift` - Theme Preview UI
 
@@ -679,29 +843,54 @@ chore: Maintenance tasks
 
 ## Migration Status
 
-**Phase 1: Cleanup** (Estimated: 6h)
+**Phase 0**: Rebranding to TextDown ✅ COMPLETED
+- [x] Rename all files, bundle IDs, documentation
+
+**Phase 0.5**: Code Modernization ✅ COMPLETED
+- [x] Fix bridging header and build paths
+- [x] Modernize APIs (UniformTypeIdentifiers)
+- [x] Remove deprecation warnings
+
+**Phase 0.75**: UI Cleanup ✅ COMPLETED
+- [x] Remove footer bar from Main.storyboard
+- [x] Comment out Settings TabView (875 lines)
+- [x] Implement auto-refresh and auto-save
+
+**Phase 1**: XPC Elimination ✅ COMPLETED
+- [x] Remove TextDownXPCHelper target
+- [x] Switch to Settings+NoXPC exclusively
+- [x] Test Settings persistence (JSON file)
+- [x] Git commit: 5f7cb01
+
+**Phase 3**: NSDocument Architecture ✅ COMPLETED
+- [x] Create MarkdownDocument.swift (NSDocument subclass)
+- [x] Create MarkdownWindowController.swift
+- [x] Rename ViewController → DocumentViewController
+- [x] Implement split-view layout (NSTextView + WKWebView)
+- [x] Add live preview with debounced rendering
+- [x] Multi-window and tabs support
+- [x] Fix AboutViewController crash
+- [x] Git commits: f6831b6, ebedeaf
+
+**Phase 4**: SwiftUI Preferences Window ✅ COMPLETED
+- [x] Fix Settings JSON persistence (Settings+NoXPC.swift)
+- [x] Implement CSS theme scanning (Settings+ext.swift)
+- [x] Create SettingsViewModel.swift (327 LOC)
+- [x] Create 4 SwiftUI Settings views
+- [x] Update AppDelegate with showPreferences()
+- [x] Wire up Preferences menu (Cmd+,)
+- [x] Test Apply/Cancel functionality
+- [x] Test persistence across app restarts
+- [x] Clean up DocumentViewController (removed 448 lines)
+- [x] Git commit: [pending]
+
+**Phase 2**: Extension Elimination ⏳ FUTURE
 - [ ] Delete QL Extension Target
 - [ ] Delete Shortcuts Extension Target
 - [ ] Delete CLI Tool Target
-- [ ] Delete external-launcher XPC
-- [ ] Delete TextDownXPCHelper XPC
-- [ ] Update Settings.swift (Remove XPC, use NoXPC)
-- [ ] Update Info.plist (Remove Extension declarations)
+- [ ] Remove external-launcher XPC
 
-**Phase 2: Editor Implementation** (Estimated: 10h)
-- [ ] Create EditorViewController with Split-View
-- [ ] Implement NSDocument Architecture
-- [ ] Add Live Preview (debounced rendering)
-- [ ] Integrate File Menu (Open/Save/Export)
-- [ ] Polish UI (Toolbar, Status Bar)
-
-**Phase 3: Testing & Documentation** (Estimated: 4h)
-- [ ] Comprehensive Testing (all extensions)
-- [ ] Bug Fixes
-- [ ] Update README.md
-- [ ] Update CHANGELOG.md
-
-**Current Status**: Not started  
-**Last Updated**: 2025-10-30
+**Current Status**: Phase 4 completed, Phase 2 deferred
+**Last Updated**: 2025-10-31
 
 ---

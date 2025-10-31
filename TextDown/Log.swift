@@ -16,4 +16,5 @@ extension OSLog {
     static let shortcutExtension = OSLog(subsystem: subsystem, category: "Shotcut Extension")
     static let highlightWrapperExtension = OSLog(subsystem: subsystem, category: "Highlight Wrapper")
     static let rendering = OSLog(subsystem: subsystem, category: "Rendering")
+    static let settings = OSLog(subsystem: subsystem, category: "Settings")
 }

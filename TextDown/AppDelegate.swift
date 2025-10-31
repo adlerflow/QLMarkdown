@@ -7,12 +7,14 @@
 
 import Cocoa
 import Sparkle
+import SwiftUI
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     var userDriver: SPUStandardUserDriver?
     var updater: SPUUpdater?
-    
+    private var preferencesWindow: NSWindow?
+
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
@@ -89,8 +91,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        // XPC removed
-        // XPCWrapper.invalidateSharedConnection()
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -117,5 +117,44 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
     @IBAction func onUpdateRate(_ sender: NSMenuItem) {
         updater?.updateCheckInterval = TimeInterval(sender.tag)
+    }
+
+    // MARK: - Preferences Window
+
+    @IBAction func showPreferences(_ sender: Any) {
+        // If window already exists, just bring it to front
+        if let window = preferencesWindow {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+
+        // Create SwiftUI view
+        let settingsView = TextDownSettingsView()
+        let hostingController = NSHostingController(rootView: settingsView)
+
+        // Create window
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "TextDown Preferences"
+        window.styleMask = [.titled, .closable, .resizable]
+        window.level = .floating
+        window.center()
+
+        // Handle window close to release reference
+        window.delegate = self
+
+        preferencesWindow = window
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+}
+
+// MARK: - NSWindowDelegate
+
+extension AppDelegate: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        if let window = notification.object as? NSWindow, window == preferencesWindow {
+            preferencesWindow = nil
+        }
     }
 }

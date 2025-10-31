@@ -28,11 +28,15 @@ extension Settings {
     class func getStylesFolder() -> URL? {
         return Settings.applicationSupportUrl?.appendingPathComponent("themes")
     }
-    
+
+    class var settingsFileURL: URL? {
+        return Settings.applicationSupportUrl?.appendingPathComponent("settings.json")
+    }
+
     func getCustomCSSCode() -> String? {
         guard let url = self.customCSS, url.lastPathComponent != "-" else {
             return nil
         }
-        return try? String(contentsOf: url)
+        return try? String(contentsOf: url, encoding: .utf8)
     }
 }
