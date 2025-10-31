@@ -4,18 +4,25 @@
 
 # TextDown
 
-TextDown is a macOS Quick Look extension to preview Markdown files. 
+TextDown is a standalone Markdown editor and viewer for macOS with live preview.
 
-_This application is not intended to be used as a standalone markdown file editor or viewer._ 
+**Features**:
+- **Split-view editing**: Raw Markdown (left) | Live Preview (right)
+- **Multi-window support**: Open multiple documents simultaneously
+- **Auto-save**: Documents save automatically after changes
+- **Live preview**: Rendered preview updates as you type (debounced)
+- **Rich Markdown support**: GitHub Flavored Markdown + custom extensions
+- **Syntax highlighting**: 261 languages, 97 themes
+- **SwiftUI Preferences**: Modern settings UI with Apply/Cancel pattern
 
 > **Please note that this software is provided "as is", without any warranty of any kind.**
 
-The Quick Look extension can also preview rmarkdown files (`.rmd`, _without_ evaluating `r` code), MDX files (`.mdx`, _without_ JSX rendering), Cursor Rulers (`.mdc`), Quarto files (`.qmd`), Api Blueprint files (`.apib`) and textbundle packages.
+Supported file types: Markdown (`.md`), R Markdown (`.rmd`), Quarto (`.qmd`), MDX (`.mdx`), Cursor Rulers (`.mdc`), Api Blueprint (`.apib`).
 
 
   - [Screenshots](#screenshots)
-    - [Quick Look Markdown preview](#quick-look-markdown-preview)
   - [Installation](#installation)
+  - [Usage](#usage)
   - [Markdown processing](#markdown-processing)
   - [Difference with the GitHub Markdown engine](#difference-with-the-github-markdown-engine)
   - [Settings](#settings)
@@ -27,17 +34,12 @@ The Quick Look extension can also preview rmarkdown files (`.rmd`, _without_ eva
       - [Mathematical expressions](#mathematical-expressions)
       - [Syntax Highlighting](#syntax-highlighting)
       - [YAML header](#yaml-header)
-  - [Command line interface](#command-line-interface)
   - [Build from source](#build-from-source)
     - [Dependency](#dependency)
-  - [Note about security](#note-about-security)
   - [Note about the developer](#note-about-the-developer)
 
 
 ## Screenshots
-
-
-### Quick Look Markdown preview
 
 ![main interface](./assets/img/preview-screenshot.png)
 
@@ -62,39 +64,27 @@ Alternatively, after trying to launch the app for the first time, you can open t
 
 This will resolve the error of an unsigned application when launching the app.
 
-To use the Quick Look preview you must launch the application at least once. In this way the Quick Look extension will be discovered by the system. 
-After the first execution, the Quick Look extension will be available (and enabled) among those present in the System preferences/Extensions.
 
-If you have problems, try moving the application to the trash and then back in the Applications folder. 
-If the `TextDown Preview Extension` is present (and checked) in the list of Quick Look Extensions in the System preferences but the `.md` files are not displayed it is probably due to other applications that have registered support for that type of file. You can change the order of priority of the Quick Look Extensions inside the System preferences.
+## Usage
 
-Finally, the problems may depend on how the `.md` files were registered on the system by other applications.
+**Opening Files**:
+- File → Open (⌘O) to open existing Markdown files
+- File → New (⌘N) to create a new document in a new window
+- Drag & drop `.md` files onto the app icon
 
-In the terminal try the following command:
+**Editing**:
+- Left pane: Raw Markdown text editor
+- Right pane: Live preview (auto-updates as you type)
+- Changes are saved automatically after 5 seconds of inactivity
 
-```shell
-touch /tmp/textdown.md && mdls -name kMDItemContentType /tmp/textdown.md && rm /tmp/textdown.md
-```
+**Multi-Window**:
+- Each document opens in its own window
+- Window → Merge All Windows to use native tabs
 
-The output is the UTI associated with the `.md` file.
-
-This application handle these UTIs:
-- `public.markdown`
-- `com.rstudio.rmarkdown`
-- `com.unknown.md`
-- `io.typora.markdown`
-- `net.daringfireball.markdown`
-- `net.ia.markdown`
-- `org.apiblueprint.file`
-- `org.quarto.qmarkdown`
-- `org.textbundle.package`
-- `com.nutstore.down`
-- `dyn.ah62d4rv4ge8043a` (dynamic UTI for unassociated .md files)
-- `dyn.ah62d4rv4ge81e5pe` (dynamic UTI for unassociated .rmd files)
-- `dyn.ah62d4rv4ge81c5pe` (dynamic UTI for unassociated .qmd files)
-- `dyn.ah62d4rv4ge80c6dmqk` (dynamic UTI for unassociated .apib files)
-
-Please inform me of any other UTI associated to `.md` files.
+**Settings**:
+- TextDown → Preferences (⌘,) to open settings window
+- Configure themes, extensions, syntax highlighting
+- Click Apply to save changes
 
 
 ## Markdown processing
@@ -126,15 +116,15 @@ This application, when set to use the accurate engine for the language detection
 
 ## Settings
 
-Launching the application, you can configure the options, enable the desired extensions and set the theme for formatting the Quick Look preview of Markdown files.
+Open Preferences (⌘,) to configure rendering options, enable extensions, and customize the appearance of your Markdown documents.
 
-__To make the settings effective you need to save them (`cmd-s` or menu `File` > `Save settings`) or enable the autosave option.__
+The settings window uses a modern SwiftUI interface with four tabs:
+- **General**: CSS themes, appearance, link behavior
+- **Extensions**: Enable/disable Markdown extensions (emoji, math, tables, etc.)
+- **Syntax**: Syntax highlighting configuration and themes
+- **Advanced**: Parser options and reset to defaults
 
-![main interface](./assets/img/main_interface.png)
-
-The window interface has an inline editor to test the settings with a markdown file. You can open a custom markdown file and export the edited source code.
-
-> Please note that this application is not intended to be used as a standalone markdown file editor or viewer but only to set Quick Look preview formatting preferences. No warning about unsaved markdown code is displayed when closing the application. 
+Changes take effect immediately in the preview pane. Click **Apply** to save settings permanently. 
 
 
 ### Themes
@@ -191,9 +181,7 @@ The theme popup menu has some extra commands available pressing the `alt` key.
 |Task list|Parse task list as defined by the GitHub extension to the standard Markdown language.|
 |YAML header|Enable the [YAML header extension](#YAML-header).|
 
-Tou can also choose if open external link inside the Quick Look preview window or in the default browser.
-
-The `Quick Look window` option allow you to force a custom size for the content area of the Quick Look window. _Use with caution on macOS before version 12 Monterey_.
+You can also choose whether to open external links in the preview pane or in the default browser.
 
 
 #### Emoji
@@ -207,14 +195,17 @@ Some emoji do not have an equivalent glyph on the standard font and will be repl
 A list of GitHub emoji shortcodes is available [here](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#people--body).
 
  
-### Inline local images 
+#### Inline local images
 
-You can enable the Inline image extension required to preview images within the Quick Look window by injecting the images into the HTML code. The Quick Look extension, for security limitations, cannot access to the local images defined inside the Markdown code, so embedding the data it's a way around the limitation. 
+You can enable the Inline image extension to embed local images directly into the rendered HTML by converting them to Base64 data URLs.
 
-For security reasons are handled only URLs without schema (e.g., `./image.jpg`, `image.jpg` or `assets/image.jpg`), or with the `file` schema (e.g.,  `file:///Users/username/Documents/image.jpg`) referring to existing files with an image mime type. 
-With the `file://` schema you *must always set the full path*. For images inside the same folder of the Markdown file do not use the  `file://` schema and also the path `./` is optional.
+Supported image references:
+- Relative paths: `./image.jpg`, `image.jpg`, `assets/image.jpg`
+- Absolute paths with `file://` schema: `file:///Users/username/Documents/image.jpg`
 
-The extension process both images defined in the Markdown syntax and also with HTML `<img>` tag if the raw HTML code option is enabled.
+For `file://` URLs, you must provide the full absolute path. For images in the same folder as the Markdown file, use relative paths (the `./` prefix is optional).
+
+The extension processes both Markdown image syntax (`![alt](path)`) and HTML `<img>` tags (when raw HTML is enabled).
 
 
 #### Mathematical expressions
@@ -258,66 +249,7 @@ You can enable the extension to handle a `yaml` header at the beginning of a fil
 
 The header is recognized only if the file start with `---`. The yaml block must be closed with `---` or with `...`.
 
-When the `table` extension is enabled, the header is rendered as a table, otherwise as a block of code. Nested tables are supported.
-
-
-## Command line interface
-
-A `textdown_cli` command line interface (CLI) is available to perform batch conversion of markdown files.
-
-The tool is located inside the `TextDown.app/Contents/Resources` folder (and should not be moved outside). 
-
-You can create a symbolic link into your `$PATH` to use the tool from any folder. Open Terminal.app and type:
-
-```sh
-ln -s /Applications/TextDown.app/Contents/Resources/textdown_cli /usr/local/bin/textdown_cli
-```
-
-```
-Usage: textdown_cli [-o <file|dir>] <file> [..]
-
-Arguments:
- -h    Show this help and exit.
- -o    <file|dir> Destination output. If you pass a directory, a new file is 
-       created with the name of the processed source with html extension. 
-       The destination file is always overwritten. 
-       If this argument is not provided, the output will be printed to the 
-       stdout.
- -v    Verbose mode. Valid only with the -o option.
-
-Options:
- --footnotes on|off
- --hard-break on|off
- --no-soft-break on|off
- --raw-html on|off
- --smart-quotes on|off
- --validate-utf8 on|off
- --code on|off
- --debug on|off
-
-Extensions:
- --autolink on|off
- --emoji image|font|off
- --github-mentions on|off
- --heads-anchor on|off
- --highlight on|off
- --inline-images on|off
- --math on|off
- --table on|off
- --tag-filter on|off
- --tasklist on|off
- --strikethrough single|double|off
- --syntax-highlight on|off
- --yaml rmd|qmd|all|off
-
-Unspecified rendering options will use the settings defined in the main application.
-
-To handle multiple files at time you need to pass the -o arguments with a destination folder.
-```
-
-The CLI interface uses the same settings as the Quick Look extension, but you can override it if you wish. 
-
-Any relative paths inside raw HTML fragments are not updated according to the destination folder. 
+When the `table` extension is enabled, the header is rendered as a table, otherwise as a block of code. Nested tables are supported. 
 
 
 ## Build from source
@@ -344,14 +276,7 @@ brew install autoconf
 
 Because `Enry` is developed in `go`, to build the wrapper library you must have the `go` compiler installed (you can use `brew install go`). 
 
-The compilation of `cmark-gfm` require `cmake` (`brew install cmake`). 
-
-
-## Note about security
-
-To allow the Quick Look view of local images the application and the extension has an entitlement exception to allow *only read access* to the entire system. 
-
-On Big Sur there is a bug in the Quick Look engine and WebKit that cause the immediate crash of any WebView inside a Quick Look preview. To temporary fix this problem this Quick Look extension uses a `com.apple.security.temporary-exception.mach-lookup.global-name` entitlement. 
+The compilation of `cmark-gfm` require `cmake` (`brew install cmake`).
 
 
 ## Note about the developer

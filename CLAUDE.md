@@ -10,23 +10,24 @@ Transformation von TextDown (QuickLook Extension) zu einem eigenständigen Markd
 
 ---
 
-## Aktuelle Projektstruktur (Pre-Migration)
+## Aktuelle Projektstruktur (Post-Migration)
 
-### TextDown.app - Main Application
+### TextDown.app - Standalone Editor
 **Bundle ID**: `org.advison.TextDown`
-**Primary Function**: Settings UI + Theme Editor (kein aktiver Editor!)
+**Primary Function**: Markdown Editor with Live Preview
 
 **Kernklassen**:
-- `ViewController.swift` (1200+ Zeilen) - Settings UI mit Live-Preview
-  - Markdown Input: NSTextView (für Beispiel-Text)
-  - Preview: WKWebView (zeigt gerendertes HTML)
-  - Theme Selector + CSS Editor
-  - Export HTML Funktionalität
-- `AppDelegate.swift` - App Lifecycle, Sparkle Updates, CLI Installation
+- `DocumentViewController.swift` (~600 LOC) - Split-View Editor
+  - Markdown Input: NSTextView (linke Seite)
+  - Preview: WKWebView (rechte Seite, Live-Update)
+  - Debounced Rendering (0.5s delay)
+- `MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
+- `MarkdownWindowController.swift` (82 LOC) - Window Management
+- `AppDelegate.swift` - App Lifecycle, Sparkle Updates
 - `Settings.swift` (~40 Properties) - Rendering-Konfiguration
 - `Settings+render.swift` - Haupt-Rendering-Engine
-- `Settings+XPC.swift` - XPC Communication (wird entfernt)
-- `Settings+NoXPC.swift` - Direkte UserDefaults Persistenz (wird verwendet)
+- `Settings+NoXPC.swift` - Standalone Persistenz (JSON in Application Support)
+- `SettingsViewModel.swift` (327 LOC) - SwiftUI Preferences State Management
 
 **Wichtige Properties in Settings.swift**:
 ````
@@ -55,28 +56,27 @@ appearance: Appearance               // .light, .dark, .auto
 customStyleCSS: String               // Custom CSS override
 ````
 
-### Extensions & XPC Services (werden entfernt)
+### Entfernte Komponenten (Phase 1 + 2)
 
-**QLExtension.appex** (QuickLook):
-- `PreviewViewController.swift` (~500 Zeilen)
-- Implementiert `QLPreviewingController` Protocol
-- Nutzt **dieselbe** Rendering-Pipeline wie Main App
-- Dependency: external-launcher.xpc für URL-Opening
+**TextDownXPCHelper.xpc** (Phase 1 - ✅ Entfernt):
+- XPC Service für Settings Persistenz
+- 8 Dateien gelöscht
 
-**Shortcut Extension.appex**:
-- `MdToHtml_Extension.swift` - App Intent für macOS 15.2+
-- Exponiert alle 40+ Settings als Parameters
+**TextDown Extension.appex** (Phase 2 - ✅ Entfernt):
+- QuickLook Extension
+- PreviewViewController.swift (~500 LOC)
+- 5 Dateien gelöscht, 8.8M Bundle-Größe
 
-**qlmarkdown_cli**:
-- Standalone Binary in Contents/Resources/
-- Verwendet Settings aus Shared UserDefaults
+**TextDown Shortcut Extension.appex** (Phase 2 - ✅ Entfernt):
+- Shortcuts Integration (macOS 15.2+)
+- MdToHtml_Extension.swift
+- 5 Dateien gelöscht, 19M Bundle-Größe
 
-**TextDownXPCHelper.xpc**:
-- Settings Persistenz zwischen App/Extensions
-- `TextDownXPCHelperProtocol` Functions:
-  - `getSettings()` / `setSettings()`
-  - `getStylesFolder()` / `getAvailableStyles()`
-  - `storeStyle()` / `getFileContents()`
+**external-launcher.xpc** (Phase 2 - ✅ Entfernt):
+- XPC Service für URL-Opening
+- 5 Dateien gelöscht
+
+**Gesamt-Reduktion**: 27M Bundle-Größe (35%), 6 Targets → 1 Target
 
 ---
 
@@ -294,17 +294,17 @@ SWIFT_OBJC_BRIDGING_HEADER = TextDown/TextDown-Bridging-Header.h
 <true/>
 ````
 
-**QLExtension.appex** (wird entfernt):
+### Entitlements (aktuell - alle Extensions entfernt)
+Standalone Editor benötigt:
 ````xml
-<key>com.apple.security.files.all.read-only</key>
-<true/>  <!-- Für lokale Bilder -->
-````
-
-### Entitlements (Post-Migration)
-Editor braucht zusätzlich:
-````xml
+<key>com.apple.security.app-sandbox</key>
+<true/>
 <key>com.apple.security.files.user-selected.read-write</key>
 <true/>  <!-- File Open/Save Dialogs -->
+<key>com.apple.security.network.client</key>
+<true/>  <!-- Für MathJax CDN, Emoji GitHub API -->
+<key>com.apple.security.cs.allow-jit</key>
+<true/>  <!-- Für JavaScript in WKWebView -->
 ````
 
 ---
@@ -334,20 +334,15 @@ Editor braucht zusätzlich:
 
 ---
 
-## Bundle Struktur (Pre-Migration)
+## Bundle Struktur (Post-Migration - Stand Phase 2)
 ````
 TextDown.app/
 ├── Contents/
 │   ├── MacOS/
-│   │   └── TextDown                 # Main Binary
+│   │   └── TextDown                 # Main Binary (~10M)
 │   ├── Frameworks/
-│   │   ├── Sparkle.framework          # Auto-Update
-│   │   └── libwrapper_highlight.dylib # Syntax Highlighting (36 MB)
-│   ├── PlugIns/
-│   │   ├── QLExtension.appex          # QuickLook (wird entfernt)
-│   │   └── Shortcut Extension.appex   # Shortcuts (wird entfernt)
-│   ├── XPCServices/
-│   │   └── TextDownXPCHelper.xpc    # Settings (wird entfernt)
+│   │   ├── Sparkle.framework          # Auto-Update (~3M)
+│   │   └── libwrapper_highlight.dylib # Syntax Highlighting (26M)
 │   └── Resources/
 │       ├── highlight/
 │       │   ├── themes/*.lua           # 97 Themes
@@ -355,17 +350,21 @@ TextDown.app/
 │       │   ├── plugins/*.lua          # 45 Lua Plugins
 │       │   └── filetypes.conf         # Extension Mapping
 │       ├── default.css                # Base CSS (14 KB)
-│       ├── magic.mgc                  # libmagic Database (800 KB)
-│       └── qlmarkdown_cli             # CLI Binary (wird entfernt)
+│       └── magic.mgc                  # libmagic Database (800 KB)
 ````
 
-**Size Breakdown**:
-- libwrapper_highlight.dylib: 36 MB (50% des Bundles!)
-- QLExtension.appex: ~8 MB
-- Shortcut Extension.appex: ~8 MB
-- Sparkle.framework: ~3 MB
-- Resources: ~3 MB (themes + magic.mgc)
-- Main Binary + Swift Code: ~2 MB
+**Size Breakdown (Phase 2 - Post-Removal)**:
+- **Total Bundle**: 50M (war 77M, Reduktion: 27M / 35%)
+- libwrapper_highlight.dylib: 26M (größter Anteil)
+- Resources: 10M (themes, langDefs, CSS, magic.mgc)
+- MacOS Binary: 10M
+- Sparkle.framework: 3M
+
+**Entfernt**:
+- PlugIns/ (QLExtension.appex 8.8M)
+- Extensions/ (Shortcut Extension.appex 19M)
+- XPCServices/ (TextDownXPCHelper.xpc)
+- Resources/qlmarkdown_cli
 
 ---
 
@@ -497,26 +496,27 @@ print("hi")
 
 ## Architektur-Entscheidungen
 
-### Was wird entfernt
-- QuickLook Extension (QLExtension.appex)
-- Shortcuts Integration (Shortcut Extension.appex)
-- CLI Tool (qlmarkdown_cli)
-- XPC Services (TextDownXPCHelper, external-launcher)
-- Unused Assets (examples/, assets/)
+### Was wurde entfernt (✅ COMPLETED)
+- ✅ QuickLook Extension (QLExtension.appex) - Phase 2
+- ✅ Shortcuts Integration (Shortcut Extension.appex) - Phase 2
+- ✅ external-launcher (XPC Service) - Phase 2
+- ✅ TextDownXPCHelper (XPC Service) - Phase 1
+- ✅ CLI Tool (qlmarkdown_cli) - noch nicht gebaut, Target entfernt
 
 ### Was bleibt erhalten
 - **Rendering-Engine**: cmark-gfm + cmark-extra mit allen Extensions
 - **Syntax Highlighting**: highlight-wrapper komplett (inkl. Enry/libmagic Detection)
 - **Theme System**: 97 Lua-basierte Themes
-- **Settings-Logik**: Settings.swift mit Settings+NoXPC.swift Fallback
+- **Settings-Logik**: Settings.swift mit Settings+NoXPC.swift (JSON Persistenz)
 - **SPM Dependencies**: Sparkle (Auto-Update), SwiftSoup, Yams
 
-### Neue Komponenten
-- **DocumentViewController**: Split-View mit NSTextView + WKWebView (umbenannt von ViewController)
-- **MarkdownDocument**: NSDocument subclass für File Open/Save/Auto-Save Support
-- **MarkdownWindowController**: NSWindowController für Multi-Window Management
-- **SwiftUI Preferences Window**: Modern Settings UI (ersetzt eingebettete TabView)
-- **Live Rendering**: Debounced text change detection → automatic preview update
+### Neue Komponenten (✅ IMPLEMENTED)
+- ✅ **DocumentViewController**: Split-View mit NSTextView + WKWebView (Phase 3)
+- ✅ **MarkdownDocument**: NSDocument subclass für File Open/Save/Auto-Save (Phase 3)
+- ✅ **MarkdownWindowController**: NSWindowController für Multi-Window Management (Phase 3)
+- ✅ **SwiftUI Preferences Window**: 4-Tab Settings UI mit Apply/Cancel Pattern (Phase 4)
+- ✅ **SettingsViewModel**: Combine-based State Management für 40 Properties (Phase 4)
+- ✅ **Live Rendering**: Debounced text change detection (0.5s) (Phase 3)
 
 ---
 
@@ -816,28 +816,37 @@ chore: Maintenance tasks
 
 ---
 
-## Success Metrics
+## Success Metrics (✅ ACHIEVED - Phase 2 Complete)
 
 ### Targets
 - **Before**: 10 Targets (6 Native + 4 Legacy)
-- **After**: 4 Targets (1 Native + 3 Legacy)
+- **After**: 5 Targets (1 Native + 4 Legacy) ✅
+- **Reduction**: 50% (5 Targets entfernt)
 
 ### Bundle Size
-- **Before**: ~50 MB (mit allen Extensions)
-- **After**: ~34 MB (nur Editor)
+- **Before**: 77M (mit allen Extensions)
+- **After**: 50M (nur Editor) ✅
+- **Reduction**: 27M (35%)
 - **Breakdown After**:
-  - libwrapper_highlight.dylib: 36 MB
-  - Sparkle.framework: 3 MB
-  - Resources: 2 MB
-  - Swift Code: 1 MB
+  - libwrapper_highlight.dylib: 26M
+  - Resources: 10M (themes, langDefs, CSS)
+  - MacOS Binary: 10M
+  - Sparkle.framework: 3M
 
 ### Code Complexity
 - **Before**: ~8,000 LOC Swift
-- **After**: ~5,000 LOC Swift
+- **After**: ~5,500 LOC Swift (900 LOC added, 448 LOC removed)
+- **Added**: MarkdownDocument, MarkdownWindowController, SettingsViewModel, 4 SwiftUI Views
+- **Removed**: XPCHelper, 3 Extensions, CLI
 
 ### Build Time
 - **Clean Build**: ~15 min (unchanged - C/C++ Dependencies bleiben)
 - **Incremental Build**: ~30s
+
+### project.pbxproj
+- **Before**: 2,581 lines
+- **After**: 1,577 lines ✅
+- **Reduction**: 1,004 lines (39%)
 
 ---
 
@@ -862,6 +871,20 @@ chore: Maintenance tasks
 - [x] Test Settings persistence (JSON file)
 - [x] Git commit: 5f7cb01
 
+**Phase 2**: Extension Elimination ✅ COMPLETED
+- [x] Delete TextDown Extension target (QuickLook)
+- [x] Delete TextDown Shortcut Extension target (Shortcuts)
+- [x] Delete external-launcher target (XPC service)
+- [x] Remove 2 embed build phases
+- [x] Delete Extension/ folder (5 files)
+- [x] Delete Shortcut Extension/ folder (5 files)
+- [x] Delete external-launcher/ folder (5 files)
+- [x] UUID cleanup validation
+- [x] Clean build verification
+- [x] Bundle size reduction: 77M → 50M (27M / 35%)
+- [x] Git commit: 69394e7
+- [x] Git tags: phase2-pre-removal, phase2-complete
+
 **Phase 3**: NSDocument Architecture ✅ COMPLETED
 - [x] Create MarkdownDocument.swift (NSDocument subclass)
 - [x] Create MarkdownWindowController.swift
@@ -882,15 +905,11 @@ chore: Maintenance tasks
 - [x] Test Apply/Cancel functionality
 - [x] Test persistence across app restarts
 - [x] Clean up DocumentViewController (removed 448 lines)
-- [x] Git commit: [pending]
+- [x] Git commit: 0ec1bd0
 
-**Phase 2**: Extension Elimination ⏳ FUTURE
-- [ ] Delete QL Extension Target
-- [ ] Delete Shortcuts Extension Target
-- [ ] Delete CLI Tool Target
-- [ ] Remove external-launcher XPC
-
-**Current Status**: Phase 4 completed, Phase 2 deferred
+**Current Status**: All phases completed (0, 0.5, 0.75, 1, 2, 3, 4) ✅
 **Last Updated**: 2025-10-31
+**Branch**: feature/standalone-editor
+**Latest Commit**: 69394e7
 
 ---

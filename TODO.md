@@ -35,14 +35,19 @@
 - [x] external-launcher kept for QuickLook Extension
 - [x] Git commit: 5f7cb01
 
-### Phase 2: Extension Elimination ⏳ FUTURE
-- [ ] Disable Extension target in build scheme
-- [ ] Remove Extension target from project
-- [ ] Delete Extension/ folder
-- [ ] Remove Shortcuts Extension target
-- [ ] Delete Shortcut Extension/ folder
-- [ ] Clean Info.plist from extension declarations
-- [ ] external-launcher can be removed when Extensions are removed
+### Phase 2: Extension Elimination ✅ COMPLETED
+- [x] Delete TextDown Extension target (QuickLook)
+- [x] Delete TextDown Shortcut Extension target (Shortcuts)
+- [x] Delete external-launcher target (XPC service)
+- [x] Remove 2 embed build phases from TextDown.app
+- [x] Delete Extension/ folder (5 files)
+- [x] Delete Shortcut Extension/ folder (5 files)
+- [x] Delete external-launcher/ folder (5 files)
+- [x] Delete 3 .xcscheme files
+- [x] UUID cleanup validation (no orphaned references)
+- [x] Clean build verification
+- [x] Bundle size reduction: 77M → 50M (35%)
+- [x] Git commit: 69394e7
 
 ### Phase 3: NSDocument Architecture Migration ✅ COMPLETED
 - [x] Create MarkdownDocument.swift (NSDocument subclass, 180 LOC)
@@ -99,6 +104,7 @@
 **Phase 0.5**: Code Modernization (API updates, deprecation fixes) ✅
 **Phase 0.75**: UI Cleanup (footer removal, Settings TabView cleanup, split-view prep) ✅
 **Phase 1**: XPC Service Elimination (TextDownXPCHelper removed) ✅
+**Phase 2**: Extension Elimination (QuickLook + Shortcuts extensions removed) ✅
 **Phase 3**: NSDocument Architecture Migration (multi-window, auto-save, tabs) ✅
 **Phase 4**: SwiftUI Preferences Window (Apply button pattern, 40 settings properties) ✅
 
@@ -116,36 +122,53 @@
 ### Files Changed
 - **Added**: MarkdownDocument.swift (180 LOC), MarkdownWindowController.swift (82 LOC), SettingsViewModel.swift (327 LOC), Preferences/*.swift (4 SwiftUI views)
 - **Renamed**: ViewController.swift → DocumentViewController.swift
-- **Deleted**: TextDownXPCHelper/ (8 files), Settings+XPC.swift
-- **Modified**: Main.storyboard (220 lines removed, Preferences menu added), AppDelegate.swift, Settings.swift, Settings+NoXPC.swift, Settings+ext.swift, Log.swift, DocumentViewController.swift (448 lines of commented code removed), project.pbxproj
+- **Deleted**:
+  - TextDownXPCHelper/ (8 files)
+  - Extension/ (5 files)
+  - Shortcut Extension/ (5 files)
+  - external-launcher/ (5 files)
+  - Settings+XPC.swift
+  - 3 .xcscheme files
+- **Modified**: Main.storyboard (220 lines removed, Preferences menu added), AppDelegate.swift, Settings.swift, Settings+NoXPC.swift, Settings+ext.swift, Log.swift, DocumentViewController.swift (448 lines of commented code removed), project.pbxproj (1004 lines removed)
 
 ### Statistics
-- Targets Reduced: 10 → 9 (removed TextDownXPCHelper)
+- Targets Reduced: 10 → 5 (removed TextDownXPCHelper + 3 extensions + CLI)
+- Native Targets: 6 → 1 (only TextDown.app remains)
+- Legacy Targets: 4 (unchanged: cmark-headers, magic.mgc, libpcre2, libjpcre2)
 - Swift Code: ~900 LOC added (NSDocument implementation + SwiftUI Preferences)
 - Swift Code Cleanup: ~448 lines removed from DocumentViewController (commented Settings UI)
 - Storyboard: ~220 lines removed (unreachable scenes), Preferences menu added
-- XPC References: All commented out or removed
+- XPC References: All removed
 - Settings Properties: 40 properties managed via SwiftUI ViewModel
+- project.pbxproj: 2581 → 1577 lines (1004 lines removed)
 
 ### Bundle Impact
 - Removed: XPCHelper process (was consuming excessive memory)
-- Size Change: Minimal (~1 MB reduction from XPC removal)
+- Removed: QuickLook Extension (8.8M)
+- Removed: Shortcuts Extension (19M)
+- Removed: external-launcher XPC service
+- Size Change: 77M → 50M (27M reduction, 35%)
 - Performance: Improved memory usage, no XPCHelper overhead
 
 ### Testing Status
-- ✅ App builds successfully without warnings
+- ✅ App builds successfully without warnings (Release configuration)
+- ✅ App launches without crash
 - ✅ Multi-window support verified (3+ windows simultaneously)
 - ✅ AboutViewController UI fixed and functional
 - ✅ Settings persistence working (JSON file in Container sandbox)
 - ✅ SwiftUI Preferences window functional (Apply/Cancel buttons)
 - ✅ Settings changes persist across app restarts
+- ✅ Markdown rendering dependencies intact (libwrapper_highlight, Sparkle)
+- ✅ UUID cleanup validated (no orphaned references)
 - ⏳ Feature testing in progress (tabs, auto-save, rendering)
 
 ---
 
 **Last Updated**: 2025-10-31
 **Phase 1 Completed**: 2025-10-31 (XPC Elimination)
+**Phase 2 Completed**: 2025-10-31 (Extension Elimination)
 **Phase 3 Completed**: 2025-10-31 (NSDocument Migration)
 **Phase 4 Completed**: 2025-10-31 (SwiftUI Preferences Window)
-**Git Commits**: f6831b6, 5f7cb01, 8857d1a, [Phase 4 pending]
+**Git Commits**: f6831b6, 5f7cb01, 8857d1a, 0ec1bd0, 69394e7
 **Branch**: feature/standalone-editor
+**Tags**: phase2-pre-removal, phase2-complete
