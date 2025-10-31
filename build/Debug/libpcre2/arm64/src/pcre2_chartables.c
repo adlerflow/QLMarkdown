@@ -1,1 +1,0 @@
-/Users/home/GitHub/QLMarkdown/dependencies/pcre2/src/pcre2_chartables.c.dist

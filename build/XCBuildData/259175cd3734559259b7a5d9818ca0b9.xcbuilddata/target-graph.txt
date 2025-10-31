@@ -1,6 +1,0 @@
-Target dependency graph (3 targets)
-Target 'libjpcre2' in project 'TextDown'
-➜ Explicit dependency on target 'libpcre2' in project 'TextDown'
-Target 'cmark-headers' in project 'TextDown'
-➜ Explicit dependency on target 'libpcre2' in project 'TextDown'
-Target 'libpcre2' in project 'TextDown' (no dependencies)

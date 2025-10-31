@@ -1,3 +1,0 @@
-Target dependency graph (2 targets)
-Target 'TextDownXPCHelper' in project 'TextDown' (no dependencies)
-Target 'external-launcher' in project 'TextDown' (no dependencies)
