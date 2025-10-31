@@ -5,9 +5,32 @@ xcuserdata/
 jpcre2.xcodeproj/xcuserdata/
 pcre2.xcodeproj/xcuserdata/*
 
+## Xcode Build Artifacts
+build/
+DerivedData/
+*.build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+## Swift Modules
+*.swiftmodule
+*.swiftdoc
+*.swiftsourceinfo
+
+## XCBuild Cache
+*.xcbuilddata/
+
+## CMark Build Artifacts
 cmark-gfm/cmark-arm64/
 cmark-gfm/cmark-x86_64/
 
+## Highlight Wrapper
 highlight-wrapper/GoUtils/.idea/
 highlight-wrapper/lua-5.4.7/src/luac
 highlight-wrapper/lua-5.4.7/src/lua
