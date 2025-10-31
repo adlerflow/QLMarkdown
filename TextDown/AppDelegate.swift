@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
     
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         for window in sender.windows {
-            if let wc = window.windowController as? PreferencesWindowController, !wc.windowShouldClose(window) {
+            if let wc = window.windowController as? MainWindowController, !wc.windowShouldClose(window) {
                 return .terminateCancel
             } 
         }

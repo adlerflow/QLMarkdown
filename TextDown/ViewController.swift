@@ -46,14 +46,16 @@ class ViewController: NSViewController {
     @objc dynamic var yamlExtension: Bool = Settings.factorySettings.yamlExtension {
         didSet {
             guard oldValue != yamlExtension else { return }
-            updateYamlPopup()
+            // TODO: Settings UI removed - yamlPopupButton deleted
+            // updateYamlPopup()
             isDirty = true
         }
     }
     @objc dynamic var yamlExtensionAll: Bool = Settings.factorySettings.yamlExtensionAll {
         didSet {
             guard oldValue != yamlExtensionAll else { return }
-            updateYamlPopup()
+            // TODO: Settings UI removed - yamlPopupButton deleted
+            // updateYamlPopup()
             isDirty = true
         }
     }
@@ -62,14 +64,16 @@ class ViewController: NSViewController {
         didSet {
             guard oldValue != strikethroughExtension else { return }
             isDirty = true
-            updateStrikethroughPopup()
+            // TODO: Settings UI removed - strikethroughPopupButton deleted
+            // updateStrikethroughPopup()
         }
     }
     dynamic var strikethroughDoubleTildeOption: Bool = Settings.factorySettings.strikethroughDoubleTildeOption {
         didSet {
             guard oldValue != strikethroughDoubleTildeOption else { return }
             isDirty = true
-            updateStrikethroughPopup()
+            // TODO: Settings UI removed - strikethroughPopupButton deleted
+            // updateStrikethroughPopup()
         }
     }
     
@@ -146,14 +150,16 @@ class ViewController: NSViewController {
     @objc dynamic var emojiExtension: Bool = Settings.factorySettings.emojiExtension {
         didSet {
             guard oldValue != emojiExtension else { return }
-            updateEmojiPopup()
+            // TODO: Settings UI removed - emojiPopupButton deleted
+            // updateEmojiPopup()
             isDirty = true
         }
     }
     @objc dynamic var emojiImageOption: Bool = Settings.factorySettings.emojiImageOption {
         didSet {
             guard oldValue != emojiImageOption else { return }
-            updateEmojiPopup()
+            // TODO: Settings UI removed - emojiPopupButton deleted
+            // updateEmojiPopup()
             isDirty = true
         }
     }
@@ -220,7 +226,8 @@ class ViewController: NSViewController {
         didSet {
             guard oldValue != qlWindowSizeCustomized else { return }
             isDirty = true
-            qlWindowSizePopupButton.selectItem(at: qlWindowSizeCustomized ? 1 : 0)
+            // TODO: Settings UI removed - qlWindowSizePopupButton deleted
+            // qlWindowSizePopupButton.selectItem(at: qlWindowSizeCustomized ? 1 : 0)
         }
     }
     @objc dynamic var qlWindowWidth: Int = Settings.factorySettings.qlWindowWidth ?? 1000 {
@@ -240,14 +247,16 @@ class ViewController: NSViewController {
         didSet {
             guard oldValue != customCSSOverride else { return }
             isDirty = true
-            styleExtendPopup.selectItem(at: customCSSOverride ? 1 : 0)
+            // TODO: Settings UI removed - styleExtendPopup deleted
+            // styleExtendPopup.selectItem(at: customCSSOverride ? 1 : 0)
         }
     }
     @objc dynamic var customCSSFile: URL? = Settings.factorySettings.customCSS {
         didSet {
             guard oldValue != customCSSFile else { return }
             isDirty = true
-            updateCustomCSSPopup()
+            // TODO: Settings UI removed - stylesPopup deleted
+            // updateCustomCSSPopup()
         }
     }
     
@@ -283,36 +292,38 @@ class ViewController: NSViewController {
     }
     
     var firstView = true
-    
+
+    // TODO: Settings UI removed - stylesPopup deleted, move to PreferencesViewController
+    /*
     func initStylesPopup(resetStyles: Bool = false) {
         stylesPopup.removeAllItems()
         // Standard CSS
         stylesPopup.addItem(withTitle: "GitHub ( Default )")
         stylesPopup.lastItem?.tag = -100
-        
+
         // stylesPopup.addItem(withTitle: "None")
         // stylesPopup.lastItem?.tag = -101
-        
+
         stylesPopup.menu?.addItem(NSMenuItem.separator())
-        
+
         // Actions
         stylesPopup.addItem(withTitle: "Open Application support themes folder")
         stylesPopup.lastItem?.tag = -4
-        
+
         stylesPopup.addItem(withTitle: "Reveal CSS in Finder")
         stylesPopup.lastItem?.tag = -6
         stylesPopup.lastItem?.isAlternate = true
         stylesPopup.lastItem?.keyEquivalentModifierMask = [.option]
-        
+
         stylesPopup.addItem(withTitle: "Refresh")
         stylesPopup.lastItem?.tag = -5
-        
+
         stylesPopup.menu?.addItem(NSMenuItem.separator())
-        
+
         stylesPopup.addItem(withTitle: "Import…")
         stylesPopup.lastItem?.tag = -2
         stylesPopup.lastItem?.toolTip = "Import a CSS file into the standard themes folder."
-        
+
         stylesPopup.addItem(withTitle: "Browse…")
         stylesPopup.lastItem?.tag = -1
         stylesPopup.lastItem?.isAlternate = true
@@ -324,11 +335,11 @@ class ViewController: NSViewController {
         for url in custom_styles {
             addStyleSheet(url)
         }
-        
+
         // stylesPopup.menu?.insertItem(NSMenuItem.separator(), at: stylesPopup.numberOfItems-6)
     }
-    
-    
+
+
     @discardableResult
     internal func addStyleSheet(_ file: URL) -> Int {
         let name: String
@@ -340,7 +351,7 @@ class ViewController: NSViewController {
             name = file.path
             standalone = false
         }
-        
+
         var index = 1
         while stylesPopup.item(at: index)?.tag ?? -1 >= 0 {
             index += 1
@@ -350,7 +361,7 @@ class ViewController: NSViewController {
         if standalone {
             stylesPopup.menu?.item(at: index)?.tag = 1
         }
-        
+
         if index > 0 && !(stylesPopup.item(at: 1)?.isSeparatorItem ?? true) {
             stylesPopup.menu?.insertItem(NSMenuItem.separator(), at: 1)
             index += 1
@@ -360,7 +371,7 @@ class ViewController: NSViewController {
         }
         return index
     }
-    
+
     func updateCustomCSSPopup() {
         if let style = customCSSFile {
             guard style.lastPathComponent != "-" else {
@@ -388,6 +399,7 @@ class ViewController: NSViewController {
             self.stylesPopup.selectItem(at: 0)
         }
     }
+    */
     
     var autoRefresh: Bool {
         get {
@@ -428,29 +440,28 @@ class ViewController: NSViewController {
         }
     }
     internal var isLoaded = false
-    
+
+    // MARK: - IBOutlets (Settings UI removed - TODO: Move to PreferencesViewController)
+    /*
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var tabViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var tabViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var settingsToggleButton: NSButton!
-
-    @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var textView: NSTextView!
     @IBOutlet weak var stylesPopup: NSPopUpButton!
-    
     @IBOutlet weak var styleExtendPopup: NSPopUpButton!
-    
     @IBOutlet weak var strikethroughPopupButton: NSPopUpButton!
     @IBOutlet weak var emojiPopupButton: NSPopUpButton!
     @IBOutlet weak var yamlPopupButton: NSPopUpButton!
     @IBOutlet weak var unsafeButton: NSButton!
-    
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var inlineLinkPopup: NSPopUpButton!
-    
     @IBOutlet weak var appearanceButton: NSButton!
-    
     @IBOutlet weak var qlWindowSizePopupButton: NSPopUpButton!
+    */
+
+    // MARK: - Editor Core Outlets (Kept)
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var textView: NSTextView!
     
     var edited: Bool = false
     var allow_reload: Bool = true
@@ -488,13 +499,18 @@ class ViewController: NSViewController {
         isDirty = true
     }
     
+    // TODO: Settings UI removed - appearanceButton deleted
+    /*
     @IBAction func handleAppearanceChange(_ sender: NSButton) {
         let dark = sender.state == .on
         self.view.window?.appearance = NSAppearance(named: dark ? NSAppearance.Name.darkAqua : NSAppearance.Name.aqua)
         sender.toolTip = dark ? "Switch to light appearance." :  "Switch to dark appearance."
         self.doRefresh(sender)
     }
+    */
 
+    // TODO: Settings UI removed - tabView deleted, move to PreferencesViewController
+    /*
     @IBAction func toggleSettings(_ sender: NSButton) {
         let isHidden = tabViewHeightConstraint.constant == 0
         let newHeight: CGFloat = isHidden ? 220 : 0
@@ -517,11 +533,17 @@ class ViewController: NSViewController {
 
         sender.toolTip = isHidden ? "Hide settings panel" : "Show settings panel"
     }
+    */
 
+    // TODO: Settings UI removed - styleExtendPopup deleted
+    /*
     @IBAction func doStyleOverrideChange(_ sender: NSPopUpButton) {
         self.customCSSOverride = sender.indexOfSelectedItem == 1
     }
+    */
     
+    // TODO: Settings UI removed - strikethroughPopupButton deleted
+    /*
     @IBAction func handleStrikethroughPopup(_ sender: NSPopUpButton) {
         if sender.indexOfSelectedItem == 3 {
             self.strikethroughExtension = false
@@ -530,7 +552,7 @@ class ViewController: NSViewController {
             self.strikethroughDoubleTildeOption = sender.indexOfSelectedItem == 2
         }
     }
-    
+
     func updateStrikethroughPopup() {
         if !strikethroughExtension {
             strikethroughPopupButton.title = "Strikethrough"
@@ -538,7 +560,10 @@ class ViewController: NSViewController {
             strikethroughPopupButton.title = "Strikethrough (\(self.strikethroughDoubleTildeOption ? "~~" : "~"))"
         }
     }
-    
+    */
+
+    // TODO: Settings UI removed - emojiPopupButton deleted
+    /*
     @IBAction func handleEmojiPopup(_ sender: NSPopUpButton) {
         if sender.indexOfSelectedItem == 3 {
             self.emojiExtension = false
@@ -549,7 +574,7 @@ class ViewController: NSViewController {
             pauseAutoRefresh -= 1
         }
     }
-    
+
     func updateEmojiPopup() {
         if !emojiExtension {
             emojiPopupButton.title = "Emoji"
@@ -557,7 +582,10 @@ class ViewController: NSViewController {
             emojiPopupButton.title = "Emoji as \(self.emojiImageOption ? "images" : "font")"
         }
     }
-    
+    */
+
+    // TODO: Settings UI removed - yamlPopupButton deleted
+    /*
     @IBAction func handleYamlPopup(_ sender: NSPopUpButton) {
         if sender.indexOfSelectedItem == 3 {
             self.yamlExtension = false
@@ -566,7 +594,7 @@ class ViewController: NSViewController {
             self.yamlExtensionAll = sender.indexOfSelectedItem == 2
         }
     }
-    
+
     func updateYamlPopup() {
         if !yamlExtension {
             yamlPopupButton.title = "YAML header"
@@ -574,6 +602,7 @@ class ViewController: NSViewController {
             yamlPopupButton.title = "YAML header (\(self.yamlExtensionAll ? "all files" : ".rmd, .qmd files"))"
         }
     }
+    */
     
     @discardableResult
     func openMarkdown(file: URL) -> Bool {
@@ -708,22 +737,24 @@ class ViewController: NSViewController {
         savePanel.isExtensionHidden = false
         savePanel.nameFieldStringValue = "markdown.html"
         savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
-        
+
         let result = savePanel.runModal()
-        
+
         guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let dst = savePanel.url else {
             return
         }
-        
+
         let body: String
         let settings = self.updateSettings()
-        let appearance: Appearance = self.appearanceButton.state == .off ? .light : .dark
+        // TODO: Settings UI removed - appearanceButton deleted, use system appearance
+        // let appearance: Appearance = self.appearanceButton.state == .off ? .light : .dark
+        let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
         do {
             body = try settings.render(text: self.textView.string, filename: markdown_file?.lastPathComponent ?? "", forAppearance: appearance, baseDir: markdown_file?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
-        
+
         let html = settings.getCompleteHTML(title: markdown_file?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         do {
             try html.write(to: dst, atomically: true, encoding: .utf8)
@@ -763,10 +794,13 @@ class ViewController: NSViewController {
     @IBAction func checkForUpdates(_ sender: Any) {
         (NSApplication.shared.delegate as? AppDelegate)?.checkForUpdates(sender)
     }
-    
+
+    // TODO: Settings UI removed - qlWindowSizePopupButton deleted
+    /*
     @IBAction func handleQLSizeChanged(_ sender: NSPopUpButton) {
         self.qlWindowSizeCustomized = sender.indexOfSelectedItem == 1
     }
+    */
     
     @IBAction func saveAction(_ sender: Any) {
         let settings = self.updateSettings()
@@ -797,17 +831,20 @@ class ViewController: NSViewController {
     }
 
     @IBAction func doRefresh(_ sender: Any)  {
-        progressIndicator.startAnimation(self)
-        
+        // TODO: Settings UI removed - progressIndicator deleted
+        // progressIndicator.startAnimation(self)
+
         // self.webView.loadHTMLString("", baseURL: nil)
         // self.webView.isHidden = true
-        
+
         let body: String
         let settings = self.updateSettings()
-        let appearance: Appearance = self.appearanceButton.state == .off ? .light : .dark
-        
+        // TODO: Settings UI removed - appearanceButton deleted, use system appearance
+        // let appearance: Appearance = self.appearanceButton.state == .off ? .light : .dark
+        let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
+
         let startTime = CFAbsoluteTimeGetCurrent()
-        
+
         do {
             body = try settings.render(text: self.textView.string, filename: self.markdown_file?.lastPathComponent ?? "", forAppearance: appearance, baseDir: markdown_file?.deletingLastPathComponent().path ?? "")
         } catch {
@@ -855,6 +892,8 @@ document.addEventListener('scroll', function(e) {
         elapsedTimeLabel = String(format: "Rendered in %.3f seconds", timeElapsed)
     }
     
+    // TODO: Settings UI removed - stylesPopup deleted, move to PreferencesViewController
+    /*
     func importStyle(copyOnSharedFolder: Bool) -> URL? {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = false
@@ -862,13 +901,13 @@ document.addEventListener('scroll', function(e) {
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [UTType(filenameExtension: "css")!]
         panel.message = "Select a custom CSS style"
-        
+
         let result = panel.runModal()
-        
+
         guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let src = panel.url else {
             return nil
         }
-            
+
         if copyOnSharedFolder {
             var url: URL? = nil
             XPCWrapper.getSynchronousService()?.storeStyle(name: src.lastPathComponent, data: try? Data(contentsOf: src)) { u, success in
@@ -879,14 +918,14 @@ document.addEventListener('scroll', function(e) {
             return src
         }
     }
-    
+
     @IBAction func handleImportStyle(_ sender: NSPopUpButton) {
         if let url = importStyle(copyOnSharedFolder: true) {
             self.initStylesPopup(resetStyles: true)
             customCSSFile = url
         }
     }
-    
+
     @IBAction func handleStypesPopup(_ sender: NSPopUpButton) {
         let tag = sender.selectedTag()
         switch tag {
@@ -897,12 +936,12 @@ document.addEventListener('scroll', function(e) {
             } else {
                 updateCustomCSSPopup()
             }
-            
+
         case -4: // Open application support folder
             updateCustomCSSPopup()
-            
+
             self.revealApplicationSupportInFinder(self)
-        
+
         case -5: // Refresh list
             let css = self.customCSSFile
             self.pauseAutoRefresh += 1
@@ -910,14 +949,14 @@ document.addEventListener('scroll', function(e) {
             self.initStylesPopup(resetStyles: true)
             self.customCSSFile = css
             self.pauseAutoRefresh -= 1
-            
+
         case -6: // Reveal
             updateCustomCSSPopup()
-            
+
             guard customCSSFile == nil || customCSSFile!.lastPathComponent != "-" else {
                 return
             }
-            
+
             if customCSSFile == nil {
                 // Download default theme.
                 let savePanel = NSSavePanel()
@@ -927,9 +966,9 @@ document.addEventListener('scroll', function(e) {
                 savePanel.isExtensionHidden = false
                 savePanel.nameFieldStringValue = "default.css"
                 savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
-                
+
                 let result = savePanel.runModal()
-                
+
                 guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let dst = savePanel.url, let src = Bundle.main.url(forResource: "default", withExtension: "css") else {
                     return
                 }
@@ -953,7 +992,7 @@ document.addEventListener('scroll', function(e) {
         case -101:
             // None
             customCSSFile = URL(fileURLWithPath: "-")
-            
+
         default:
             if let item = sender.selectedItem, item.tag >= 0 {
                 let url: URL
@@ -967,14 +1006,14 @@ document.addEventListener('scroll', function(e) {
             updateCustomCSSPopup()
         }
     }
-    
+
     @IBAction func revealCSSInFinder(_ sender: Any) {
         guard let url = self.customCSSFile else {
             return
         }
         NSWorkspace.shared.selectFile(url.path, inFileViewerRootedAtPath: "")
     }
-    
+
     @IBAction func revealApplicationSupportInFinder(_ sender: Any) {
         XPCWrapper.getSynchronousService()?.getStylesFolder() { url in
             if let url = url {
@@ -982,6 +1021,7 @@ document.addEventListener('scroll', function(e) {
             }
         }
     }
+    */
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "HighlightSegue" {
@@ -993,45 +1033,47 @@ document.addEventListener('scroll', function(e) {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let path = Bundle.main.resourceURL?.appendingPathComponent("highlight").path {
             cmark_syntax_highlight_init("\(path)/".cString(using: .utf8))
         }
-        
+
         self.textView.isAutomaticQuoteSubstitutionEnabled = false // Settings this option on interfacebuilder is ignored.
         self.textView.isAutomaticTextReplacementEnabled = false
         self.textView.isAutomaticDashSubstitutionEnabled = false
-        textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
-        
-        let type = Settings.isLightAppearance ? "Light" : "Dark"
-        
-        self.appearanceButton.state = type != "Light" ? .on : .off
-        self.appearanceButton.toolTip = self.appearanceButton.state == .on ? "Switch to light appearance." : "Switch to dark appearance."
+        self.textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+        self.textView.delegate = self // Enable auto-refresh on text change
+
+        // TODO: Settings UI removed - appearance now from menubar
+        // let type = Settings.isLightAppearance ? "Light" : "Dark"
+        // self.appearanceButton.state = type != "Light" ? .on : .off
+        // self.appearanceButton.toolTip = self.appearanceButton.state == .on ? "Switch to light appearance." : "Switch to dark appearance."
+
         self.webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
         let contentController = self.webView.configuration.userContentController
         contentController.add(self, name: "scrollHandler")
-        
+
         let settings = Settings.shared
-        
-        // let settings = Settings.shared
-        
+
         self.initFromSettings(settings)
-        
-        self.updateCustomCSSPopup()
-        self.updateEmojiPopup()
-        self.updateStrikethroughPopup()
-        self.updateYamlPopup()
-        
+
+        // TODO: Settings UI removed - these methods access deleted outlets
+        // self.updateCustomCSSPopup()
+        // self.updateEmojiPopup()
+        // self.updateStrikethroughPopup()
+        // self.updateYamlPopup()
+
         markdown_file = Bundle.main.url(forResource: "test1", withExtension: "md")
-        
-        tabView.selectTabViewItem(at: 0)
-        
+
+        // TODO: Settings UI removed - tabView deleted
+        // tabView.selectTabViewItem(at: 0)
+
         DispatchQueue.main.async {
             self.textView.setSelectedRange(NSRange(location: 0, length: 0))
         }
-        
+
         isLoaded = true
-        
+
         doRefresh(self)
     }
     
@@ -1087,65 +1129,67 @@ document.addEventListener('scroll', function(e) {
     internal func initFromSettings(_ settings: Settings) {
         pauseAutoRefresh += 1
         pauseAutoSave += 1
-        
-        initStylesPopup()
-        
+
+        // TODO: Settings UI removed - stylesPopup deleted
+        // initStylesPopup()
+
         self.debugMode = settings.debug
         self.isAboutVisible = settings.about
         self.renderAsCode = settings.renderAsCode
-        
+
         self.qlWindowSizeCustomized = settings.qlWindowWidth ?? 0 > 0 && settings.qlWindowHeight ?? 0 > 0
         self.qlWindowWidth = settings.qlWindowWidth ?? 1000
         self.qlWindowHeight = settings.qlWindowHeight ?? 800
-        
+
         self.tableExtension = settings.tableExtension
         self.autoLinkExtension = settings.autoLinkExtension
         self.tagFilterExtension = settings.tagFilterExtension
         self.taskListExtension = settings.taskListExtension
-        
+
         self.yamlExtension = settings.yamlExtension
         self.yamlExtensionAll = settings.yamlExtensionAll
-        
+
         self.strikethroughExtension = settings.strikethroughExtension
         self.strikethroughDoubleTildeOption = settings.strikethroughDoubleTildeOption
-        
+
         self.mathExtension = settings.mathExtension
         self.mentionExtension = settings.mentionExtension
         self.syntaxHighlightExtension = settings.syntaxHighlightExtension
-        
+
         self.emojiExtension = settings.emojiExtension
         self.emojiImageOption = settings.emojiImageOption
-        
+
         self.headsExtension = settings.headsExtension
         self.highlightExtension = settings.highlightExtension
         self.inlineImageExtension = settings.inlineImageExtension
         self.subSuperScriptExtension = settings.supExtension
-        
+
         self.hardBreakOption = settings.hardBreakOption
         self.noSoftBreakOption = settings.noSoftBreakOption
         self.unsafeHTMLOption = settings.unsafeHTMLOption
         self.validateUTFOption = settings.validateUTFOption
         self.smartQuotesOption = settings.smartQuotesOption
         self.footnotesOption = settings.footnotesOption
-        
+
         self.customCSSFile = settings.customCSS
         self.customCSSOverride = settings.customCSSOverride
-                
+
         self.syntaxLineNumbers = settings.syntaxLineNumbersOption
         self.syntaxWrapEnabled = settings.syntaxWordWrapOption > 0
         self.syntaxWrapCharacters = settings.syntaxWordWrapOption > 0 ? settings.syntaxWordWrapOption : 80
         self.syntaxTabsOption = settings.syntaxTabsOption
-        
+
         self.guessEngine = settings.guessEngine.rawValue
-        
+
         self.isAboutVisible = settings.about
-        
-        inlineLinkPopup.selectItem(at: settings.openInlineLink ? 0 : 1)
-        
+
+        // TODO: Settings UI removed - inlineLinkPopup deleted
+        // inlineLinkPopup.selectItem(at: settings.openInlineLink ? 0 : 1)
+
         isDirty = false
         pauseAutoRefresh -= 1
         pauseAutoSave -= 1
-        
+
         doRefresh(self)
     }
     
@@ -1209,9 +1253,11 @@ document.addEventListener('scroll', function(e) {
         
         settings.customCSSOverride = self.customCSSOverride
         settings.customCSS = self.customCSSFile
-        
-        settings.openInlineLink = inlineLinkPopup.indexOfSelectedItem == 0
-        
+
+        // TODO: Settings UI removed - inlineLinkPopup deleted, use settings value directly
+        // settings.openInlineLink = inlineLinkPopup.indexOfSelectedItem == 0
+        settings.openInlineLink = Settings.shared.openInlineLink // Keep existing value
+
         settings.about = self.isAboutVisible
         return settings
     }
@@ -1238,18 +1284,21 @@ extension ViewController: WKNavigationDelegate {
         if prev_scroll > 0 {
             webView.evaluateJavaScript("document.documentElement.scrollTop = \(prev_scroll);", completionHandler: {_,_ in
                 // self.webView.isHidden = false
-                self.progressIndicator.stopAnimation(self)
+                // TODO: Settings UI removed - progressIndicator deleted
+                // self.progressIndicator.stopAnimation(self)
             })
         } else {
             // self.webView.isHidden = false
-            progressIndicator.stopAnimation(self)
+            // TODO: Settings UI removed - progressIndicator deleted
+            // progressIndicator.stopAnimation(self)
         }
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         print(error)
         // self.webView.isHidden = false
-        progressIndicator.stopAnimation(self)
+        // TODO: Settings UI removed - progressIndicator deleted
+        // progressIndicator.stopAnimation(self)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -1274,8 +1323,8 @@ extension ViewController: WKScriptMessageHandler {
     }
 }
 
-// MARK: - PreferencesWindowController
-class PreferencesWindowController: NSWindowController, NSWindowDelegate {
+// MARK: - MainWindowController
+class MainWindowController: NSWindowController, NSWindowDelegate {
     var askToSave = true
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         guard let contentViewController = self.contentViewController as? ViewController else {
@@ -1411,12 +1460,13 @@ class DropableTextView: NSTextView {
     }
 }
 
-// MARK: - NSTextDelegate
-extension ViewController: NSTextDelegate {
+// MARK: - NSTextViewDelegate
+extension ViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         guard let sender = notification.object as? NSTextView, sender == textView else {
             return
         }
         edited = true
+        isDirty = true // Trigger auto-refresh if enabled
     }
 }
