@@ -10,7 +10,6 @@
 		830277F42C60B3B40066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
 		830277F52C60B3E20066EBCC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
 		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
-		830B160A2D274F180042D876 /* TextDownXPCHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3B272D68E500378FFE /* SwiftSoup */; };
 		830B5B3E272D68F700378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3D272D68F700378FFE /* SwiftSoup */; };
 		8310245129E9F8D5004651DC /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8310245029E9F8D5004651DC /* HighlightViewController.swift */; };
@@ -198,14 +197,13 @@
 		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
 		8382D05E2664052E00210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05D2664052E00210A0A /* Yams */; };
 		838715FE2DE44661000DC216 /* libwrapper_highlight.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		838D19782DCDD93C00963323 /* Settings+XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D19772DCDD93400963323 /* Settings+XPC.swift */; };
-		838D19792DCDD95000963323 /* Settings+XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D19772DCDD93400963323 /* Settings+XPC.swift */; };
-		838D197A2DCDD95000963323 /* Settings+XPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D19772DCDD93400963323 /* Settings+XPC.swift */; };
 		838D197E2DCDD97D00963323 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
+		838D197F2DCDD97E00963324 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
+		838D19802DCDD97F00963325 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
+		838D19812DCDD98000963326 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
 		839E5B342D1C9DA600AD63BD /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
 		839E5B352D1C9DA800AD63BD /* highlight in Resources */ = {isa = PBXBuildFile; fileRef = 83E7FEF0258FBF37003ECF9B /* highlight */; };
 		839E5B362D1C9DAC00AD63BD /* magic.mgc in Resources */ = {isa = PBXBuildFile; fileRef = 836B7474259E2B4000A6A5F7 /* magic.mgc */; };
-		83C8C18C2D272CA200FBB33F /* TextDownXPCHelper.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		83C8C1972D2733CA00FBB33F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376EADC27E8BD3D00AB44B8 /* Log.swift */; };
 		83CF71C92C5FCD780066A195 /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
 		83CF71CA2C5FCD780066A195 /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
@@ -355,13 +353,6 @@
 			remoteGlobalIDString = 83B8DF002DD5DCA20054E345;
 			remoteInfo = magic.mgc;
 		};
-		83C8C18A2D272CA200FBB33F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C8C17F2D272CA200FBB33F;
-			remoteInfo = TextDownXPCHelper;
-		};
 		83D9CF0B27A12FB000E86BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
@@ -446,19 +437,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
-				830B160A2D274F180042D876 /* TextDownXPCHelper.xpc in Embed XPC Services */,
 				83F1FE6F259CF03B00257DAC /* external-launcher.xpc in Embed XPC Services */,
-			);
-			name = "Embed XPC Services";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83F8816F2597EE45008C5071 /* Embed XPC Services */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
-			files = (
-				83C8C18C2D272CA200FBB33F /* TextDownXPCHelper.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +583,6 @@
 		838109C625840429000AFE3C /* checkbox.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = checkbox.c; sourceTree = "<group>"; };
 		838A5D5C29F1139200D704AB /* makefile2.makefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile2.makefile; sourceTree = "<group>"; };
 		838A5D5E29F1139200D704AB /* makefile2.makefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile2.makefile; sourceTree = "<group>"; };
-		838D19772DCDD93400963323 /* Settings+XPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+XPC.swift"; sourceTree = "<group>"; };
 		838D197B2DCDD96100963323 /* Settings+NoXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+NoXPC.swift"; sourceTree = "<group>"; };
 		83B8DF082DD5EBE60054E345 /* checked.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = checked.h; sourceTree = "<group>"; };
 		83B8DF092DD5EBE60054E345 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
@@ -664,42 +642,10 @@
 			);
 			target = 8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */;
 		};
-		83C8C18F2D272CA200FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 83C8C17F2D272CA200FBB33F /* TextDownXPCHelper */;
-		};
-		83C8C19F2D2740F200FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TextDownXPCHelperProtocol.swift,
-				XPCWrapper.swift,
-			);
-			target = 83598E6025818808004664D3 /* TextDown */;
-		};
-		83C8C1A82D27472500FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TextDownXPCHelperProtocol.swift,
-				XPCWrapper.swift,
-			);
-			target = 831A8C3E258ABADA00E36182 /* TextDown Extension */;
-		};
-		83C8C1A92D27472500FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TextDownXPCHelperProtocol.swift,
-				XPCWrapper.swift,
-			);
-			target = 8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8320D58B2D1C25B1005868BD /* Shortcut Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8320D5982D1C25B1005868BD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Shortcut Extension"; sourceTree = "<group>"; };
-		83C8C1812D272CA200FBB33F /* TextDownXPCHelper */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (83C8C19F2D2740F200FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 83C8C1A82D27472500FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 83C8C1A92D27472500FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 83C8C18F2D272CA200FBB33F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TextDownXPCHelper; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -941,7 +887,6 @@
 				837F29172597A01F00A5F7DE /* Resources */,
 				83F1FE42259CEE7400257DAC /* external-launcher */,
 				8320D58B2D1C25B1005868BD /* Shortcut Extension */,
-				83C8C1812D272CA200FBB33F /* TextDownXPCHelper */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
 			);
@@ -978,7 +923,6 @@
 				83598EFA258209C7004664D3 /* test2.md */,
 				837D20D5258362A5008FC698 /* example.jpg */,
 				83F4B99125868A7400FC58A7 /* Settings.swift */,
-				838D19772DCDD93400963323 /* Settings+XPC.swift */,
 				838D197B2DCDD96100963323 /* Settings+NoXPC.swift */,
 				83D22E632DCA65980013EB9D /* Settings+render.swift */,
 				83327D452595E15700E76CF6 /* Settings+ext.swift */,
@@ -1273,7 +1217,6 @@
 				83598E5E25818808004664D3 /* Frameworks */,
 				83598E5F25818808004664D3 /* Resources */,
 				831A8C4C258ABADA00E36182 /* Embed Foundation Extensions */,
-				83F8816F2597EE45008C5071 /* Embed XPC Services */,
 				8320D5952D1C25B1005868BD /* Embed ExtensionKit Extensions */,
 				838715FF2DE44661000DC216 /* Embed Libraries */,
 			);
@@ -1289,7 +1232,6 @@
 				83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */,
 				831A8C4B258ABADA00E36182 /* PBXTargetDependency */,
 				8320D5932D1C25B1005868BD /* PBXTargetDependency */,
-				83C8C18B2D272CA200FBB33F /* PBXTargetDependency */,
 			);
 			name = TextDown;
 			packageProductDependencies = (
@@ -1300,28 +1242,6 @@
 			productName = TextDown;
 			productReference = 83598E6125818808004664D3 /* TextDown.app */;
 			productType = "com.apple.product-type.application";
-		};
-		83C8C17F2D272CA200FBB33F /* TextDownXPCHelper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83C8C1902D272CA200FBB33F /* Build configuration list for PBXNativeTarget "TextDownXPCHelper" */;
-			buildPhases = (
-				83C8C17C2D272CA200FBB33F /* Sources */,
-				83C8C17D2D272CA200FBB33F /* Frameworks */,
-				83C8C17E2D272CA200FBB33F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				83C8C1812D272CA200FBB33F /* TextDownXPCHelper */,
-			);
-			name = TextDownXPCHelper;
-			packageProductDependencies = (
-			);
-			productName = TextDownXPCHelper;
-			productReference = 83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */;
-			productType = "com.apple.product-type.xpc-service";
 		};
 		83F1FE40259CEE7400257DAC /* external-launcher */ = {
 			isa = PBXNativeTarget;
@@ -1403,7 +1323,6 @@
 				83598E6025818808004664D3 /* TextDown */,
 				831A8C3E258ABADA00E36182 /* TextDown Extension */,
 				8320D5892D1C25B1005868BD /* TextDown Shortcut Extension */,
-				83C8C17F2D272CA200FBB33F /* TextDownXPCHelper */,
 				83F1FE40259CEE7400257DAC /* external-launcher */,
 				83D9CCA027A12F3100E86BC9 /* libpcre2 */,
 				83D9CF0F27A1334800E86BC9 /* libjpcre2 */,
@@ -1505,6 +1424,7 @@
 				83CF71CA2C5FCD780066A195 /* highlight.c in Sources */,
 				83CF71D32C60053A0066A195 /* sub_ext.c in Sources */,
 				831A8CC1258AC18300E36182 /* Settings.swift in Sources */,
+				838D19802DCDD97F00963325 /* Settings+NoXPC.swift in Sources */,
 				831A8C6B258ABD8900E36182 /* syntaxhighlight.c in Sources */,
 				834A4F0E29E8AD8C00692964 /* cmark.c in Sources */,
 				834A4F8329E92AE800692964 /* extra-extensions.c in Sources */,
@@ -1517,7 +1437,6 @@
 				831A8C71258ABD9300E36182 /* mention.c in Sources */,
 				836B747E259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */,
 				835886B429E960050088DF7D /* math_ext.c in Sources */,
-				838D19792DCDD95000963323 /* Settings+XPC.swift in Sources */,
 				834CAB9D2593650900673002 /* emoji_utils.cpp in Sources */,
 				834A4F1C29E8AD8D00692964 /* cmark_ctype.c in Sources */,
 				834A4F1F29E8AD8D00692964 /* inlines.c in Sources */,
@@ -1541,6 +1460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8320D5A62D1C3446005868BD /* Settings.swift in Sources */,
+				838D19812DCDD98000963326 /* Settings+NoXPC.swift in Sources */,
 				8320D5AB2D1C384C005868BD /* man.c in Sources */,
 				8320D5AC2D1C384C005868BD /* xml.c in Sources */,
 				8320D5AD2D1C384C005868BD /* linked_list.c in Sources */,
@@ -1581,7 +1501,6 @@
 				8320D5C82D1C3858005868BD /* ext_scanners.c in Sources */,
 				8320D5C92D1C3858005868BD /* autolink.c in Sources */,
 				8320D5BB2D1C384C005868BD /* plugin.c in Sources */,
-				838D197A2DCDD95000963323 /* Settings+XPC.swift in Sources */,
 				8320D5BC2D1C384C005868BD /* registry.c in Sources */,
 				8320D5EA2D1C3B0F005868BD /* heads_utils.cpp in Sources */,
 				8320D5BD2D1C384C005868BD /* footnotes.c in Sources */,
@@ -1627,6 +1546,7 @@
 				834A4F3A29E8AD8D00692964 /* utf8.c in Sources */,
 				834A4EF129E8AD8C00692964 /* strikethrough.c in Sources */,
 				83327D462595E15700E76CF6 /* Settings+ext.swift in Sources */,
+				838D197F2DCDD97E00963324 /* Settings+NoXPC.swift in Sources */,
 				F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */,
 				F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */,
 				834A4EFF29E8AD8C00692964 /* tagfilter.c in Sources */,
@@ -1643,7 +1563,6 @@
 				83760301258C1813004799ED /* inlineimage.c in Sources */,
 				834A4F0729E8AD8C00692964 /* core-extensions.c in Sources */,
 				834A4F1B29E8AD8D00692964 /* cmark_ctype.c in Sources */,
-				838D19782DCDD93C00963323 /* Settings+XPC.swift in Sources */,
 				834A4F4F29E8AD8E00692964 /* commonmark.c in Sources */,
 				834A4F1829E8AD8D00692964 /* blocks.c in Sources */,
 				83598E6525818808004664D3 /* AppDelegate.swift in Sources */,
@@ -1804,11 +1723,6 @@
 			isa = PBXTargetDependency;
 			target = 83B8DF002DD5DCA20054E345 /* magic.mgc */;
 			targetProxy = 83B8DF062DD5DDA30054E345 /* PBXContainerItemProxy */;
-		};
-		83C8C18B2D272CA200FBB33F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83C8C17F2D272CA200FBB33F /* TextDownXPCHelper */;
-			targetProxy = 83C8C18A2D272CA200FBB33F /* PBXContainerItemProxy */;
 		};
 		83D9CF0C27A12FB000E86BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

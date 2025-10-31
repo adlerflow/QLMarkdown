@@ -111,8 +111,9 @@ class PreviewViewController: NSViewController, QLPreviewingController {
             
             return html.data(using: .utf8)!
         }
-        
-        XPCWrapper.invalidateSharedConnection()
+
+        // XPC removed
+        // XPCWrapper.invalidateSharedConnection()
         return reply
     }
     

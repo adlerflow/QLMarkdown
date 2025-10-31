@@ -571,31 +571,35 @@ class Settings: Codable {
     }
     
     static func settingsFromSharedFile() -> Settings? {
-        var settings: Settings? = nil
-        
-        XPCWrapper.getSynchronousService()?.getSettings() { data in
-            guard let data = data, let _settings = try? JSONDecoder().decode(Settings.self, from: data) else {
-                return
-            }
-            settings = _settings
-        }
-        
-        return settings
+        // XPC removed - use UserDefaults directly
+        // var settings: Settings? = nil
+        //
+        // XPCWrapper.getSynchronousService()?.getSettings() { data in
+        //     guard let data = data, let _settings = try? JSONDecoder().decode(Settings.self, from: data) else {
+        //         return
+        //     }
+        //     settings = _settings
+        // }
+        //
+        // return settings
+        return nil
     }
     
     @discardableResult
     func saveToSharedFile() -> (Bool, String?) {
-        guard let data = try? JSONEncoder().encode(self) else {
-            return (false, "Could not encode settings")
-        }
-        
-        var r = false
-        var msg: String? = nil
-        XPCWrapper.getSynchronousService()?.setSettings(data: data) { (success, _msg) in
-            r = success
-            msg = _msg
-        }
-        return (r, msg)
+        // XPC removed - use UserDefaults directly
+        // guard let data = try? JSONEncoder().encode(self) else {
+        //     return (false, "Could not encode settings")
+        // }
+        //
+        // var r = false
+        // var msg: String? = nil
+        // XPCWrapper.getSynchronousService()?.setSettings(data: data) { (success, _msg) in
+        //     r = success
+        //     msg = _msg
+        // }
+        // return (r, msg)
+        return (false, "XPC removed")
     }
     
     private func sanitizeEmojiOption() {

@@ -23,7 +23,11 @@ class MarkdownWindowController: NSWindowController, NSWindowDelegate {
 
         setupWindow()
         setupTabSupport()
-        notifyViewControllerOfDocument()
+
+        // NOTE: Document loading happens in MarkdownDocument.makeWindowControllers()
+        // after addWindowController() is called. We cannot load the document here because
+        // windowDidLoad() is called DURING storyboard.instantiateController(), which happens
+        // BEFORE addWindowController() sets self.document (so self.document is nil here)
     }
 
     // MARK: - Window Setup
@@ -51,14 +55,17 @@ class MarkdownWindowController: NSWindowController, NSWindowDelegate {
         os_log(.debug, log: log, "Tab support enabled")
     }
 
-    private func notifyViewControllerOfDocument() {
-        guard let viewController = contentViewController as? DocumentViewController,
+    /// Update window to reflect document state (called after document is loaded)
+    func updateDocumentDisplay() {
+        guard let window = window,
               let document = self.document as? MarkdownDocument else {
             return
         }
 
-        viewController.representedObject = document
-        viewController.loadDocument(document)
+        // Set represented URL to enable document proxy features (version browser, move, rename, etc.)
+        window.representedURL = document.fileURL
+
+        Swift.print("MarkdownWindowController: Updated document display with URL: \(document.fileURL?.path ?? "nil")")
     }
 
     // MARK: - NSWindowDelegate

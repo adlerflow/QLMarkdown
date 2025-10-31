@@ -10,10 +10,12 @@ import AppKit
 
 extension Settings {
     func getAvailableStyles(resetCache reset: Bool = false) -> [URL] {
-        var styles: [URL] = []
-        XPCWrapper.getSynchronousService()?.getAvailableStyles(resetCache: reset) { urls in
-            styles = urls.map({URL(fileURLWithPath: $0)})
-        }
-        return styles
+        // XPC removed - return empty array for now
+        // var styles: [URL] = []
+        // XPCWrapper.getSynchronousService()?.getAvailableStyles(resetCache: reset) { urls in
+        //     styles = urls.map({URL(fileURLWithPath: $0)})
+        // }
+        // return styles
+        return []
     }
 }

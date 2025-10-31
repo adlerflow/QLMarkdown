@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DocumentViewController.swift
 //  TextDown
 //
 //  Created by adlerflow on 09/12/20.
@@ -10,7 +10,24 @@ import Cocoa
 import OSLog
 import UniformTypeIdentifiers
 
-class ViewController: NSViewController {
+class DocumentViewController: NSViewController {
+
+    // MARK: - Document
+
+    /// The markdown document being edited
+    var document: MarkdownDocument? {
+        return representedObject as? MarkdownDocument
+    }
+
+    /// Load content from a markdown document
+    /// - Parameter document: The document to load
+    func loadDocument(_ document: MarkdownDocument) {
+        textView.string = document.markdownContent
+        updatePreview()
+    }
+
+    // MARK: - Properties
+
     @objc dynamic var elapsedTimeLabel: String = ""
     
     @objc dynamic var headsExtension: Bool = Settings.factorySettings.headsExtension {
@@ -462,33 +479,9 @@ class ViewController: NSViewController {
     // MARK: - Editor Core Outlets (Kept)
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var textView: NSTextView!
-    
-    var edited: Bool = false
+
     var allow_reload: Bool = true
     fileprivate var markdown_source: DispatchSourceFileSystemObject?
-    var markdown_file: URL? {
-        didSet {
-            if let file = markdown_file {
-                do {
-                    let s = try String(contentsOf: file, encoding: .utf8)
-                    self.textView.string = s
-                } catch {
-                    self.textView.string = "** Error loading file *\(file.path)*! **"
-                }
-                
-                self.startMonitorFile()
-            } else {
-                self.textView.string = ""
-            }
-            self.textView.setSelectedRange(NSRange(location: 0, length: 0))
-            prev_scroll = -1
-            
-            if isLoaded {
-                doRefresh(self)
-            }
-            edited = false
-        }
-    }
     internal var prev_scroll: Int = -1
     
     deinit {
@@ -604,26 +597,16 @@ class ViewController: NSViewController {
     }
     */
     
-    @discardableResult
-    func openMarkdown(file: URL) -> Bool {
-        if edited {
-            let alert = NSAlert()
-            alert.messageText = "The current markdown file has been modified.\nAre you sure to replace it?"
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "OK").keyEquivalent = "\r"
-            alert.addButton(withTitle: "Cancel").keyEquivalent = "\u{1b}"
-            let r = alert.runModal()
-            guard r == .alertFirstButtonReturn else {
-                return false
-            }
-        }
-        self.markdown_file = file
-        return true
-    }
-    
     @IBAction func openReadme(_ sender: Any) {
         if let file = Bundle.main.url(forResource: "README", withExtension: "md") {
-            self.openMarkdown(file: file)
+            NSDocumentController.shared.openDocument(
+                withContentsOf: file,
+                display: true
+            ) { _, _, error in
+                if let error = error {
+                    NSAlert(error: error).runModal()
+                }
+            }
         }
     }
     
@@ -633,15 +616,22 @@ class ViewController: NSViewController {
         panel.canCreateDirectories = false
         panel.allowsMultipleSelection = false
         panel.allowedContentTypes = [UTType(filenameExtension: "md")!]
-        panel.message = "Select a Markdown file to preview"
-        
+        panel.message = "Select a Markdown file to open"
+
         let result = panel.runModal()
-        
+
         guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let src = panel.url else {
             return
         }
-        
-        self.openMarkdown(file: src)
+
+        NSDocumentController.shared.openDocument(
+            withContentsOf: src,
+            display: true
+        ) { _, _, error in
+            if let error = error {
+                NSAlert(error: error).runModal()
+            }
+        }
     }
     
     @IBAction func exportMarkdown(_ sender: Any) {
@@ -650,7 +640,7 @@ class ViewController: NSViewController {
         savePanel.showsTagField = false
         savePanel.allowedContentTypes = [UTType(filenameExtension: "md")!, UTType(filenameExtension: "rmd")!, UTType(filenameExtension: "qmd")!]
         savePanel.isExtensionHidden = false
-        savePanel.nameFieldStringValue = self.markdown_file?.lastPathComponent ?? "markdown.md"
+        savePanel.nameFieldStringValue = self.document?.fileURL?.lastPathComponent ?? "markdown.md"
         savePanel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.modalPanelWindow)))
         
         let result = savePanel.runModal()
@@ -662,28 +652,41 @@ class ViewController: NSViewController {
     }
     
     func exportCurrentMarkdown(to dst: URL) -> Bool {
+        guard let content = document?.markdownContent else {
+            return false
+        }
+
         do {
-            try self.textView.string.write(to: dst, atomically: true, encoding: .utf8)
+            try content.write(to: dst, atomically: true, encoding: .utf8)
+            return true
         } catch {
-            let alert = NSAlert()
-            alert.alertStyle = .critical
+            let alert = NSAlert(error: error)
             alert.messageText = "Unable to export the Markdown source!"
-            alert.addButton(withTitle: "Close").keyEquivalent = "\u{1b}"
             alert.runModal()
             return false
         }
-        return true
     }
     
     @IBAction func reloadMarkdown(_ sender: Any) {
-        guard let file = self.markdown_file else {
+        guard let file = self.document?.fileURL else {
             return
         }
         let prev_scroll = self.prev_scroll
-        self.openMarkdown(file: file)
-        self.prev_scroll = prev_scroll
-        if prev_scroll > 0 {
-            webView.evaluateJavaScript("document.documentElement.scrollTop = \(prev_scroll);")
+
+        // Revert document to saved version
+        do {
+            try document?.revert(toContentsOf: file, ofType: "public.markdown")
+            // Reload content into text view
+            textView.string = document?.markdownContent ?? ""
+            self.prev_scroll = prev_scroll
+            updatePreview()
+            if prev_scroll > 0 {
+                self.webView.evaluateJavaScript("document.documentElement.scrollTop = \(prev_scroll);")
+            }
+        } catch {
+            let alert = NSAlert(error: error)
+            alert.messageText = "Unable to reload the file"
+            alert.runModal()
         }
     }
     
@@ -692,7 +695,7 @@ class ViewController: NSViewController {
         self.markdown_source = nil
         self.allow_reload = true
         
-        guard let file = markdown_file else {
+        guard let file = document?.fileURL else {
             return
         }
         
@@ -706,7 +709,7 @@ class ViewController: NSViewController {
             guard let me = self else {
                 return
             }
-            if me.edited {
+            if me.document?.isDocumentEdited == true {
                 let alert = NSAlert()
                 alert.alertStyle = .warning
                 alert.messageText = "The source markdown has been changed outside the app, do you want to reload it?"
@@ -750,12 +753,12 @@ class ViewController: NSViewController {
         // let appearance: Appearance = self.appearanceButton.state == .off ? .light : .dark
         let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
         do {
-            body = try settings.render(text: self.textView.string, filename: markdown_file?.lastPathComponent ?? "", forAppearance: appearance, baseDir: markdown_file?.deletingLastPathComponent().path ?? "")
+            body = try settings.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
 
-        let html = settings.getCompleteHTML(title: markdown_file?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+        let html = settings.getCompleteHTML(title: document?.fileURL?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         do {
             try html.write(to: dst, atomically: true, encoding: .utf8)
         } catch {
@@ -830,6 +833,11 @@ class ViewController: NSViewController {
         self.doRefresh(sender)
     }
 
+    /// Update the preview without a sender (for programmatic calls)
+    @objc func updatePreview() {
+        self.doRefresh(self)
+    }
+
     @IBAction func doRefresh(_ sender: Any)  {
         // TODO: Settings UI removed - progressIndicator deleted
         // progressIndicator.startAnimation(self)
@@ -846,7 +854,7 @@ class ViewController: NSViewController {
         let startTime = CFAbsoluteTimeGetCurrent()
 
         do {
-            body = try settings.render(text: self.textView.string, filename: self.markdown_file?.lastPathComponent ?? "", forAppearance: appearance, baseDir: markdown_file?.deletingLastPathComponent().path ?? "")
+            body = try settings.render(text: self.textView.string, filename: self.document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
@@ -885,9 +893,9 @@ document.addEventListener('scroll', function(e) {
 </script>
 """
         
-        let html = settings.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.markdown_file?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+        let html = settings.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-        webView.loadHTMLString(html, baseURL: markdown_file?.deletingLastPathComponent())
+        webView.loadHTMLString(html, baseURL: document?.fileURL?.deletingLastPathComponent())
         
         elapsedTimeLabel = String(format: "Rendered in %.3f seconds", timeElapsed)
     }
@@ -1063,7 +1071,8 @@ document.addEventListener('scroll', function(e) {
         // self.updateStrikethroughPopup()
         // self.updateYamlPopup()
 
-        markdown_file = Bundle.main.url(forResource: "test1", withExtension: "md")
+        // TEST CODE REMOVED: was forcing all documents to load test1.md
+        // document?.fileURL = Bundle.main.url(forResource: "test1", withExtension: "md")
 
         // TODO: Settings UI removed - tabView deleted
         // tabView.selectTabViewItem(at: 0)
@@ -1264,7 +1273,7 @@ document.addEventListener('scroll', function(e) {
 }
 
 // MARK: - NSMenuItemValidation
-extension ViewController: NSMenuItemValidation {
+extension DocumentViewController: NSMenuItemValidation {
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
     {
         if menuItem.identifier?.rawValue == "auto refresh" {
@@ -1279,7 +1288,7 @@ extension ViewController: NSMenuItemValidation {
 }
 
 // MARK: - WKNavigationDelegate
-extension ViewController: WKNavigationDelegate {
+extension DocumentViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if prev_scroll > 0 {
             webView.evaluateJavaScript("document.documentElement.scrollTop = \(prev_scroll);", completionHandler: {_,_ in
@@ -1315,7 +1324,7 @@ extension ViewController: WKNavigationDelegate {
 }
 
 // MARK: - WKScriptMessageHandler
-extension ViewController: WKScriptMessageHandler {
+extension DocumentViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "scrollHandler", let dict = message.body as? [String : AnyObject], let p = dict["scroll"] as? Int {
             self.prev_scroll = p
@@ -1323,68 +1332,7 @@ extension ViewController: WKScriptMessageHandler {
     }
 }
 
-// MARK: - MainWindowController
-class MainWindowController: NSWindowController, NSWindowDelegate {
-    var askToSave = true
-    func windowShouldClose(_ sender: NSWindow) -> Bool {
-        guard let contentViewController = self.contentViewController as? ViewController else {
-            return true
-        }
-        if self.askToSave && contentViewController.isDirty {
-            let alert = NSAlert()
-            alert.alertStyle = .warning
-            alert.messageText = "There are some modified settings"
-            alert.informativeText = "Do you want to save them before closing?"
-            alert.addButton(withTitle: "Save").keyEquivalent = "\r"
-            alert.addButton(withTitle: "Don't Save").keyEquivalent = "d"
-            alert.addButton(withTitle: "Cancel").keyEquivalent = "\u{1b}"
-            
-            let r = alert.runModal()
-            switch r {
-            case .OK, .alertFirstButtonReturn:
-                // Save the settings
-                contentViewController.saveAction(contentViewController);
-            case .cancel, .alertThirdButtonReturn: // Cancel
-                // Do not close the window
-                return false
-            default:
-                return true
-            }
-        }
-        
-        if contentViewController.edited, let file = contentViewController.markdown_file, !file.relativePath.contains(Bundle.main.bundleURL.relativePath) {
-            let alert = NSAlert()
-            alert.alertStyle = .warning
-            alert.messageText = "The markdown file is changed!"
-            alert.informativeText = "Do you want to save them before closing?"
-            alert.addButton(withTitle: "Save").keyEquivalent = "\r"
-            alert.addButton(withTitle: "Do not Save").keyEquivalent = "d"
-            alert.addButton(withTitle: "Cancel").keyEquivalent = "\u{1b}"
-            
-            let r = alert.runModal()
-            switch r {
-            case .OK, .alertFirstButtonReturn:
-                // Save the markdown file
-                if contentViewController.exportCurrentMarkdown(to: file) {
-                    contentViewController.edited = false
-                    return true
-                } else {
-                    return false
-                }
-            case .cancel, .alertThirdButtonReturn: // Cancel
-                // Do not close the window
-                return false
-            default:
-                contentViewController.edited = false
-                return true
-            }
-        }
-        return true
-    }
-}
-
-
-extension ViewController: NSMenuDelegate {
+extension DocumentViewController: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         if let item = menu.item(withTag: -6) {
             item.title = self.customCSSFile == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
@@ -1396,7 +1344,7 @@ extension ViewController: NSMenuDelegate {
 
 // MARK: - DropableTextView
 class DropableTextView: NSTextView {
-    @IBOutlet weak var container: ViewController?
+    @IBOutlet weak var container: DocumentViewController?
     
     func endDrag(_ sender: NSDraggingInfo) {
         /*
@@ -1444,9 +1392,12 @@ class DropableTextView: NSTextView {
               let path = board[0] as? String else {
             return false
         }
-        
+
         let url = URL(fileURLWithPath: path)
-        container?.openMarkdown(file: url)
+        NSDocumentController.shared.openDocument(
+            withContentsOf: url,
+            display: true
+        ) { _, _, _ in }
         return true
         /*
         do {
@@ -1461,12 +1412,23 @@ class DropableTextView: NSTextView {
 }
 
 // MARK: - NSTextViewDelegate
-extension ViewController: NSTextViewDelegate {
+extension DocumentViewController: NSTextViewDelegate {
     func textDidChange(_ notification: Notification) {
         guard let sender = notification.object as? NSTextView, sender == textView else {
             return
         }
-        edited = true
-        isDirty = true // Trigger auto-refresh if enabled
+
+        // Update document content and mark as modified
+        document?.updateContent(textView.string)
+
+        // Update preview if auto-refresh enabled
+        if UserDefaults.standard.bool(forKey: "auto-refresh") {
+            NSObject.cancelPreviousPerformRequests(
+                withTarget: self,
+                selector: #selector(updatePreview),
+                object: nil
+            )
+            perform(#selector(updatePreview), with: nil, afterDelay: 0.5)
+        }
     }
 }

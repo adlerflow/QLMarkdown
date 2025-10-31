@@ -69,25 +69,39 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         return true
     }
 
-    func application(_ sender: NSApplication, printFiles filenames: [String]) {
-        // Handle print requests
+    func application(_ sender: NSApplication, printFile filename: String) -> Bool {
+        // Handle print request for single file
+        let fileURL = URL(fileURLWithPath: filename)
+        
+        NSDocumentController.shared.openDocument(
+            withContentsOf: fileURL,
+            display: false
+        ) { document, _, error in
+            if let error = error {
+                print("Failed to open document for printing: \(error.localizedDescription)")
+                return
+            }
+            
+            document?.printDocument(nil)
+        }
+        
+        return true
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        XPCWrapper.invalidateSharedConnection()
+        // XPC removed
+        // XPCWrapper.invalidateSharedConnection()
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
 
-    @IBAction func checkForUpdates(_ sender: Any)
-    {
+    @IBAction func checkForUpdates(_ sender: Any) {
         self.updater?.checkForUpdates()
     }
     
-    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
-    {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         if menuItem.action == #selector(self.checkForUpdates(_:)) {
             return self.updater?.canCheckForUpdates ?? false
         }
@@ -105,4 +119,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         updater?.updateCheckInterval = TimeInterval(sender.tag)
     }
 }
-
