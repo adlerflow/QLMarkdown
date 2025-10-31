@@ -15,6 +15,16 @@
 - [x] Fix TabView overflow rendering
 - [x] Resolve all deprecation warnings
 
+### Phase 0.75: UI Cleanup and Split-View Preparation ✅ COMPLETED
+- [x] Remove footer bar from Main.storyboard (separator, buttons, labels)
+- [x] Remove Settings TabView from ViewController (875 lines commented out)
+- [x] Implement auto-refresh mechanism (debounced text change detection)
+- [x] Implement auto-save functionality (NSDocument-style)
+- [x] Clean split-view layout (Raw Markdown | Rendered Preview)
+- [x] Update .gitignore with comprehensive Xcode build patterns
+- [x] Remove tracked build artifacts from repository (1,190 files)
+- [x] Git commits: 0b0daee, e197268, 1dcf912, 5009714
+
 ### Phase 1: XPC Service Elimination ⏳ NEXT
 - [ ] Switch Settings.swift to use Settings+NoXPC exclusively
 - [ ] Remove TextDownXPCHelper target from build
@@ -71,3 +81,5 @@
 ---
 
 **Last Updated**: 2025-10-31
+**Phase 0.75 Completed**: 2025-10-31
+**Git Commits**: 0b0daee, e197268, 1dcf912, 5009714
