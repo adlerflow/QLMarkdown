@@ -8,7 +8,7 @@
 import AppKit
 
 class HighlightViewController: NSViewController {
-    weak var settingsViewController: ViewController? = nil
+    weak var settingsViewController: DocumentViewController? = nil
     
     @IBOutlet weak var sourceWrapField: NSTextField!
     @IBOutlet weak var sourceWrapStepper: NSStepper!

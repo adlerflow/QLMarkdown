@@ -12,37 +12,43 @@
 			<key>CFBundleTypeName</key>
 			<string>Markdown Document</string>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>None</string>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.markdown</string>
 			</array>
+			<key>NSDocumentClass</key>
+			<string>TextDown.MarkdownDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Markdown Document</string>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>None</string>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>net.daringfireball.markdown</string>
 			</array>
+			<key>NSDocumentClass</key>
+			<string>TextDown.MarkdownDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Markdown Document</string>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>None</string>
+			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.unknown.md</string>
 			</array>
+			<key>NSDocumentClass</key>
+			<string>TextDown.MarkdownDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

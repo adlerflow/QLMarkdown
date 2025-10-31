@@ -12,8 +12,6 @@
 	</array>
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
 	<array>
-		<string>/usr/local/bin</string>
-		<string>/usr/local/bin/textdown_cli</string>
 	</array>
 	<key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
 	<array>

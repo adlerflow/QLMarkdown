@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="24412"/>
@@ -61,26 +61,6 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Install the command line tool…" id="eLR-wj-sll">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="installCLITool:" target="Voe-Tx-rLC" id="BHr-CG-89n"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Reveal the command line tool…" alternate="YES" id="R79-ew-3D9">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
-                                            <connections>
-                                                <action selector="revealCLITool:" target="Voe-Tx-rLC" id="a9e-gM-h4J"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Buy me a coffee…" id="cHz-XF-UAt">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="buyMeACoffee:" target="Ady-hI-5gd" id="SB1-Ng-Bb0"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -117,61 +97,75 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open Markdown…" keyEquivalent="o" id="V5k-Dq-0be">
+                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                                            <connections>
+                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open…" keyEquivalent="o" id="V5k-Dq-0be">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bsq-g5-4nm"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open the README.md" alternate="YES" id="wwr-7a-2m9">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                        <menuItem title="Open Recent" id="tXI-mr-wws">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
+                                                <items>
+                                                    <menuItem title="Clear Menu" id="vNY-rz-j42">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="clearRecentDocuments:" target="Ady-hI-5gd" id="Daa-9d-B3U"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                                        <menuItem title="Close" keyEquivalent="w" id="2wd-Ew-wQh">
                                             <connections>
-                                                <action selector="openReadme:" target="Ady-hI-5gd" id="JGe-k9-9TU"/>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="7R7-tx-3cM"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Export Markdown source…" keyEquivalent="E" id="i3f-1W-uJd">
-                                            <connections>
-                                                <action selector="exportMarkdown:" target="Ady-hI-5gd" id="L1m-RT-Tdp"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Export preview as HTML…" keyEquivalent="e" id="ZqH-Pa-y1s">
-                                            <connections>
-                                                <action selector="exportPreview:" target="Ady-hI-5gd" id="ThC-Ot-hlN"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Reload Markdown source" keyEquivalent="R" id="oCc-uW-APD">
-                                            <connections>
-                                                <action selector="reloadMarkdown:" target="Ady-hI-5gd" id="iOr-Z4-dVU"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="U4l-0Q-Iha"/>
-                                        <menuItem title="Save settings" keyEquivalent="s" id="pxx-59-PXV">
+                                        <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
+                                        <menuItem title="Save" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
                                                 <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert to Saved settings" keyEquivalent="r" id="KaW-ft-85H">
+                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
+                                            <connections>
+                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0i"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="KaW-ft-85H">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="3g1-QD-W2N"/>
-                                        <menuItem title="Reset settings to factory default…" id="eQD-GE-vOS">
+                                        <menuItem isSeparatorItem="YES" id="Bge-IQ-P2S"/>
+                                        <menuItem title="Duplicate" keyEquivalent="S" id="Jnz-DC-MRF">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="duplicateDocument:" target="Ady-hI-5gd" id="unC-6A-gkY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Rename…" id="uuM-SM-h1D">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="resetToFactory:" target="Ady-hI-5gd" id="eoh-QO-t56"/>
+                                                <action selector="renameDocument:" target="Ady-hI-5gd" id="eop-GM-xRP"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="dwc-VS-zDP"/>
-                                        <menuItem title="Import custom theme…" keyEquivalent="i" id="s7l-RU-who">
+                                        <menuItem title="Move To…" id="1lO-Jt-CqP">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="handleImportStyle:" target="Ady-hI-5gd" id="fmS-p5-G0n"/>
+                                                <action selector="moveDocument:" target="Ady-hI-5gd" id="vYs-yt-S0d"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="hEs-Pe-tDS"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="2wd-Ew-wQh">
+                                        <menuItem isSeparatorItem="YES" id="YzL-Xe-9Pm"/>
+                                        <menuItem title="Export as HTML…" keyEquivalent="e" id="ZqH-Pa-y1s">
                                             <connections>
-                                                <action selector="performClose:" target="Ady-hI-5gd" id="7R7-tx-3cM"/>
+                                                <action selector="exportPreview:" target="Ady-hI-5gd" id="ThC-Ot-hlN"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -757,7 +751,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" customModule="TextDown" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MarkdownWindowController" customModule="TextDown" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="TextDown" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="unified" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="150" width="1065" height="650"/>
@@ -1006,7 +1000,7 @@ DQ
         <!--Main Window View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="Main" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="ViewController" customModule="TextDown" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Main" showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="DocumentViewController" customModule="TextDown" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1065" height="650"/>
                         <autoresizingMask key="autoresizingMask"/>
