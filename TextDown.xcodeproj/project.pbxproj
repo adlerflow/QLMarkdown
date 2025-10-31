@@ -683,7 +683,6 @@
 		834CAB89259167B800673002 /* examples */ = {isa = PBXFileReference; lastKnownFileType = text; path = examples; sourceTree = SOURCE_ROOT; };
 		834CAB9A2593650800673002 /* emoji_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = emoji_utils.cpp; sourceTree = "<group>"; };
 		834CAB9B2593650800673002 /* emoji_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = emoji_utils.hpp; sourceTree = "<group>"; };
-		834CABA02593C57B00673002 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 		834D676827EDF554006BECBE /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		8357EB7B2587F8EB002C2C45 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8357EB7E2588262C002C2C45 /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
@@ -1077,7 +1076,6 @@
 			isa = PBXGroup;
 			children = (
 				83D4B1C3258675D0000745DB /* README.md */,
-				834CABA02593C57B00673002 /* CHANGELOG.md */,
 				83E7FEED258FBE54003ECF9B /* TODO.md */,
 				837F291E2597AAC000A5F7DE /* LICENSE.txt */,
 				832D256125CC8894005F41AC /* .gitignore */,
