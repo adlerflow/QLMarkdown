@@ -64,32 +64,16 @@ class HighlightViewController: NSViewController {
     }
 
     // guessEngine property and onGuessChange action removed - was for server-side language detection
+    // searchTheme function removed - was for Lua theme selection (Theme.swift deleted)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let settings = self.settingsViewController?.updateSettings() {
             self.initFromSettings(settings)
         }
     }
-    
-    class func searchTheme(_ name: String, in themes: [ThemePreview], appearance: Theme.ThemeAppearance) -> ThemePreview? {
-        let base16 = name.hasPrefix("base16/")
-        let t_name = base16 ? String(name.dropLast("base16/".count)) : name
-        let fullpath = t_name.contains("/")
-        if let t = themes.first(where: {
-                if fullpath {
-                    return $0.path == t_name
-                } else {
-                    return $0.name == t_name && $0.isBase16 == base16
-                }
-            }) {
-            return t;
-        } else {
-            return nil
-        }
-    }
-    
+
     internal func initFromSettings(_ settings: Settings) {
         self.settingsViewController?.pauseAutoRefresh += 1
         self.settingsViewController?.pauseAutoSave += 1

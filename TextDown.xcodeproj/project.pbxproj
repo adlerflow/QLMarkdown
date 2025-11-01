@@ -99,13 +99,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		830F3A812DDF332900A0773D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 836B3007259E222600A6A5F7;
-			remoteInfo = "highlight-wrapper";
-		};
 		834A4F7629E9250800692964 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
@@ -271,8 +264,6 @@
 		83598EF92582098A004664D3 /* test1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test1.md; sourceTree = "<group>"; };
 		83598EFA258209C7004664D3 /* test2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test2.md; sourceTree = "<group>"; };
 		83598F22258263C0004664D3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
-		836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "highlight-wrapper.xcodeproj"; sourceTree = "<group>"; };
-		836B720A259E226F00A6A5F7 /* wrapper_highlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wrapper_highlight.h; sourceTree = "<group>"; };
 		836B7474259E2B4000A6A5F7 /* magic.mgc */ = {isa = PBXFileReference; lastKnownFileType = file; path = magic.mgc; sourceTree = BUILT_PRODUCTS_DIR; };
 		836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		83720A1D25B8E93D00B49FEC /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
@@ -292,8 +283,6 @@
 		838109C2258403CA000AFE3C /* mention.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mention.c; sourceTree = "<group>"; };
 		838109C525840429000AFE3C /* checkbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = checkbox.h; sourceTree = "<group>"; };
 		838109C625840429000AFE3C /* checkbox.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = checkbox.c; sourceTree = "<group>"; };
-		838A5D5C29F1139200D704AB /* makefile2.makefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile2.makefile; sourceTree = "<group>"; };
-		838A5D5E29F1139200D704AB /* makefile2.makefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile2.makefile; sourceTree = "<group>"; };
 		838D197B2DCDD96100963323 /* Settings+NoXPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+NoXPC.swift"; sourceTree = "<group>"; };
 		83B8DF082DD5EBE60054E345 /* checked.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = checked.h; sourceTree = "<group>"; };
 		83B8DF092DD5EBE60054E345 /* core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
@@ -526,7 +515,6 @@
 				832D256125CC8894005F41AC /* .gitignore */,
 				83CF71E12C60ADA60066A195 /* assets */,
 				83D9CCA427A12F8F00E86BC9 /* dependencies */,
-				836B3019259E222700A6A5F7 /* highlight-wrapper */,
 				83BD380429E7E7A2003F35CA /* cmark-extra */,
 				834A4DC329E8674200692964 /* cmark-gfm */,
 				83598E6325818808004664D3 /* TextDown */,
@@ -598,23 +586,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		836B3019259E222700A6A5F7 /* highlight-wrapper */ = {
-			isa = PBXGroup;
-			children = (
-				838A5D5B29F1139200D704AB /* highlight_custom */,
-				836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */,
-				836B720A259E226F00A6A5F7 /* wrapper_highlight.h */,
-			);
-			path = "highlight-wrapper";
-			sourceTree = "<group>";
-		};
-		836B7195259E226E00A6A5F7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		83720A1C25B8E93D00B49FEC /* b64.c */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,23 +606,6 @@
 				83E7FEF0258FBF37003ECF9B /* highlight */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		838A5D5B29F1139200D704AB /* highlight_custom */ = {
-			isa = PBXGroup;
-			children = (
-				838A5D5C29F1139200D704AB /* makefile2.makefile */,
-				838A5D5D29F1139200D704AB /* src */,
-			);
-			path = highlight_custom;
-			sourceTree = "<group>";
-		};
-		838A5D5D29F1139200D704AB /* src */ = {
-			isa = PBXGroup;
-			children = (
-				838A5D5E29F1139200D704AB /* makefile2.makefile */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		83B8DF0E2DD5EBE60054E345 /* utf8 */ = {
@@ -742,7 +696,6 @@
 			buildToolPath = /usr/bin/file;
 			buildWorkingDirectory = $BUILT_PRODUCTS_DIR;
 			dependencies = (
-				830F3A822DDF332900A0773D /* PBXTargetDependency */,
 			);
 			name = magic.mgc;
 			packageProductDependencies = (
@@ -850,12 +803,6 @@
 			);
 			productRefGroup = 83598E6225818808004664D3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 836B7195259E226E00A6A5F7 /* Products */;
-					ProjectRef = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				83598E6025818808004664D3 /* TextDown */,
@@ -979,11 +926,6 @@
 		830B5B42272D6D8A00378FFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 830B5B41272D6D8A00378FFE /* SwiftSoup */;
-		};
-		830F3A822DDF332900A0773D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "highlight-wrapper";
-			targetProxy = 830F3A812DDF332900A0773D /* PBXContainerItemProxy */;
 		};
 		834A4F7529E9250800692964 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

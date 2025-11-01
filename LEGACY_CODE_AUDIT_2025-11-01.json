@@ -1,0 +1,167 @@
+{
+  "executive_summary": {
+    "top_findings": [
+      "127KB inline JavaScript bloat (highlight.js) - should use CDN or lazy loading",
+      "Massive Settings boilerplate: 680 lines Settings.swift + 1,538 total with extensions, heavy Codable duplication",
+      "Dual state management architecture: 39 @Published properties in SettingsViewModel + 40+ @objc properties in DocumentViewController with 43 didSet blocks",
+      "Dead features still present: renderAsCode (deprecated), useLegacyPreview (unused), guessEngine (removed)",
+      "330MB highlight-wrapper C++ dependency with 44 unused Lua themes (server-side highlighting removed)",
+      "82 @objc declarations suggest incomplete SwiftUI migration - legacy KVO/AppKit bindings still active"
+    ],
+    "total_issues": 47,
+    "estimated_cleanup_effort_hours": 54.5
+  },
+  "metrics": {
+    "total_lines_of_code": 10440,
+    "swift_files": 25,
+    "storyboard_files": 1,
+    "swiftui_view_files": 5,
+    "total_todos": 3,
+    "total_fixmes": 0,
+    "total_notes": 2,
+    "objc_declarations": 82,
+    "large_files_over_500_lines": 4,
+    "didSet_blocks": 43,
+    "published_properties": 39,
+    "codable_boilerplate_lines": 150,
+    "block_comment_lines": 145,
+    "c_cpp_files": 412,
+    "git_tracked_files": 6355
+  },
+  "cleanup_plan": {
+    "critical": [
+      {
+        "issue": "Remove 330MB highlight-wrapper dependency",
+        "location": "highlight-wrapper/",
+        "impact": "97% reduction in C++ code, eliminates 44 unused Lua themes",
+        "solution": "Delete directory, remove from Xcode build phases, update bridging header",
+        "effort_hours": 6,
+        "dependencies": ["Remove Theme.swift", "Remove renderAsCode feature"]
+      },
+      {
+        "issue": "Delete Theme.swift (810 lines of dead code)",
+        "location": "TextDown/Themes/Theme.swift",
+        "impact": "Removes Lua theme parsing logic (replaced by highlight.js CSS)",
+        "solution": "Delete file, remove from Xcode project",
+        "effort_hours": 0.5,
+        "dependencies": []
+      },
+      {
+        "issue": "Replace inline 127KB JavaScript with CDN",
+        "location": "Settings+render.swift:603-651",
+        "impact": "127KB saved per render, better caching",
+        "solution": "Use <script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js'>",
+        "effort_hours": 1,
+        "dependencies": []
+      },
+      {
+        "issue": "Remove renderAsCode dead feature",
+        "location": "Settings.swift, DocumentViewController.swift, SettingsViewModel.swift, AdvancedSettingsView.swift",
+        "impact": "Remove 25 lines across 4 files, eliminate confusion",
+        "solution": "Delete property, CodingKey, UI toggle, all references",
+        "effort_hours": 2,
+        "dependencies": []
+      }
+    ],
+    "medium": [
+      {
+        "issue": "Eliminate Settings Codable boilerplate",
+        "location": "Settings.swift:216-328",
+        "impact": "Remove 150 lines of manual Codable implementation",
+        "solution": "Use Swift 5.9 @Codable macro or PropertyListEncoder",
+        "effort_hours": 2,
+        "dependencies": []
+      },
+      {
+        "issue": "Remove useLegacyPreview dead property",
+        "location": "Settings.swift (6 locations)",
+        "impact": "Remove 10 lines of unused code",
+        "solution": "Delete property, CodingKey, all references",
+        "effort_hours": 0.5,
+        "dependencies": []
+      },
+      {
+        "issue": "Consolidate triple state management",
+        "location": "Settings.swift, DocumentViewController.swift, SettingsViewModel.swift",
+        "impact": "Reduce complexity, eliminate sync bugs",
+        "solution": "Single source of truth: Settings.shared, use @Published wrapper",
+        "effort_hours": 4,
+        "dependencies": ["Complete SwiftUI migration"]
+      },
+      {
+        "issue": "Refactor Settings+render.swift",
+        "location": "Settings+render.swift:14-651",
+        "impact": "Split 770-line file into logical components",
+        "solution": "Extract HTMLBuilder, ScriptInjector, MarkdownRenderer classes",
+        "effort_hours": 8,
+        "dependencies": []
+      },
+      {
+        "issue": "Remove unnecessary @objc declarations",
+        "location": "Settings.swift (40), Theme.swift (4)",
+        "impact": "Cleaner Swift-only code, no Obj-C baggage",
+        "solution": "Remove @objc from 44 properties (keep DocumentViewController for Storyboard)",
+        "effort_hours": 3,
+        "dependencies": ["Delete Theme.swift first"]
+      }
+    ],
+    "low": [
+      {
+        "issue": "Remove commented code blocks",
+        "location": "All Swift files",
+        "impact": "Cleaner codebase, remove 145 lines of block comments",
+        "solution": "Delete or document commented sections",
+        "effort_hours": 2,
+        "dependencies": []
+      },
+      {
+        "issue": "Complete TODO items",
+        "location": "GeneralSettingsView.swift:21, SyntaxSettingsView.swift:63, MarkdownDocument.swift:190",
+        "impact": "Implement missing UI features (CSS picker, theme selector, printing)",
+        "solution": "Implement or delete TODOs",
+        "effort_hours": 6,
+        "dependencies": []
+      },
+      {
+        "issue": "Make file operations async",
+        "location": "Settings.swift:584",
+        "impact": "Non-blocking UI during settings load",
+        "solution": "Use async/await with Task",
+        "effort_hours": 0.5,
+        "dependencies": []
+      }
+    ]
+  },
+  "effort_estimates": {
+    "lines_can_be_deleted": 1153,
+    "files_can_be_removed": 2,
+    "total_refactoring_hours": 54.5,
+    "breakdown_hours": {
+      "critical_issues": 9.5,
+      "medium_priority": 17.5,
+      "low_priority": 8.5,
+      "large_file_refactoring": 18,
+      "swiftui_migration_completion": 16
+    }
+  },
+  "recommendations": {
+    "immediate_actions": [
+      "Delete Theme.swift (810 lines) - completely unused after highlight.js migration",
+      "Replace inline JavaScript with CDN (saves 127KB per render)",
+      "Remove renderAsCode feature entirely (25 lines across 4 files)",
+      "Delete useLegacyPreview property (10 lines)"
+    ],
+    "short_term": [
+      "Remove highlight-wrapper/ directory (330MB, 6 hours effort)",
+      "Eliminate Settings Codable boilerplate with @Codable macro (150 lines, 2 hours)",
+      "Remove unnecessary @objc declarations in Settings.swift (40 properties, 3 hours)",
+      "Make settings file loading async (0.5 hours)"
+    ],
+    "long_term": [
+      "Complete SwiftUI migration for main editor (eliminate Storyboard, 16 hours)",
+      "Refactor Settings+render.swift into smaller classes (8 hours)",
+      "Consolidate triple state management into single source of truth (4 hours)",
+      "Refactor DocumentViewController (split into 3 controllers, 6 hours)"
+    ]
+  }
+}
