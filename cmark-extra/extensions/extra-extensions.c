@@ -13,7 +13,6 @@
 
 #include "mention.h"
 // #include "checkbox.h"
-#include "syntaxhighlight.h"
 #include "inlineimage.h"
 #include "emoji.h"
 #include "heads.h"
@@ -26,8 +25,6 @@ static int extra_extensions_registration(cmark_plugin *plugin) {
     cmark_plugin_register_syntax_extension(plugin, create_mention_extension());
     //cmark_plugin_register_syntax_extension(plugin, create_checkbox_extension());
     cmark_plugin_register_syntax_extension(plugin, create_inlineimage_extension());
-
-    cmark_plugin_register_syntax_extension(plugin, create_syntaxhighlight_extension());
 
     cmark_plugin_register_syntax_extension(plugin, create_emoji_extension());
     cmark_plugin_register_syntax_extension(plugin, create_heads_extension());
