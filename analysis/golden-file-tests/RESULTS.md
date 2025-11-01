@@ -1,6 +1,6 @@
 # Golden File Test Results
 
-**Last Updated**: Not yet run
+**Last Updated**: 2025-11-01 02:37
 
 ---
 
@@ -8,14 +8,28 @@
 
 ### Baseline Generation: cmark-gfm
 
-**Date**: _Not yet run_
-**Status**: Pending
+**Date**: 2025-11-01 02:37
+**Status**: ✅ **SUCCESS**
 **Command**: `./scripts/generate-baseline.sh cmark-gfm`
+**Implementation**: cmark-gfm + cmark-extra (pre-migration)
+**CLI**: `/Users/home/.local/bin/qlmarkdown_cli` (5.8M, from main branch)
 
 Results:
-- Processed: 0 / 13
+- Processed: **13 / 13** ✅
 - Failed: 0
 - Output: `expected/cmark-gfm/`
+- Total Lines: 942 LOC
+- File Sizes: 1.7KB - 6.5KB per file
+
+**Test Coverage Verified**:
+- ✅ GFM core features (tables, task lists, autolinks, strikethrough)
+- ✅ Emoji rendering (`:wave:` → 👋, `:heart:` → ❤️)
+- ✅ Math support (MathJax integration)
+- ✅ Heading anchors (auto-generated IDs)
+- ✅ Highlights, subscript, superscript
+- ✅ Mentions (`@username`)
+- ⚠️ Footnotes (not currently supported - will be implemented in Plan 2)
+- ✅ Syntax highlighting (11 languages)
 
 ---
 
