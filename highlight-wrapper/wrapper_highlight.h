@@ -277,6 +277,25 @@ EXPORT char *enry_guess_language(const char *buffer);
  */
 EXPORT char *magic_get_mime_by_file(const char *filename, const char *magic_database);
 
+/*!
+ * Initialize the highlight context for syntax highlighting extension.
+ * Alias for highlight_init() for backward compatibility.
+ * @param search_dir Path of folder containing highlight resources.
+ */
+EXPORT void cmark_syntax_highlight_init(const char *search_dir);
+
+/*!
+ * Colorize source code with syntax highlighting.
+ * @param code Source code to highlight.
+ * @param lexer Language identifier (e.g., "python", "javascript").
+ * @param theme Theme name or path.
+ * @param export_fragment If true, export HTML fragment; otherwise full document.
+ * @param print_line_numbers If true, include line numbers.
+ * @return Highlighted HTML string. **You must free the result.**
+ */
+EXPORT char *colorizeCode(const char *code, const char *lexer, const char *theme,
+                          bool export_fragment, bool print_line_numbers);
+
 #ifdef __cplusplus
 }
 #endif
