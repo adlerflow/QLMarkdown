@@ -1106,3 +1106,20 @@ char *magic_get_mime_by_file(const char *filename, const char *magic_database) {
 
     return mime != "" ? strdup(mime.c_str()) : nullptr;
 }
+
+void cmark_syntax_highlight_init(const char *search_dir) {
+    highlight_init(search_dir);
+}
+
+char *colorizeCode(const char *code, const char *lexer, const char *theme, bool export_fragment, bool print_line_numbers) {
+    int exit_code = 0;
+
+    if (highlight_set_current_theme(theme) == EXIT_FAILURE) {
+        // Missing theme.
+        highlight_set_current_theme("acid");
+    }
+
+    highlight_set_current_theme(theme);
+    highlight_set_print_line_numbers(print_line_numbers ? 1 : 0);
+    return highlight_format_string2(code, lexer, &exit_code, export_fragment);
+}
