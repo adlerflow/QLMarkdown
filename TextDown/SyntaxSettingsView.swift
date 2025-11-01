@@ -45,20 +45,7 @@ struct SyntaxSettingsView: View {
                 }
             }
 
-            Section("Language Detection") {
-                Picker("Detect language for unmarked code blocks:", selection: $viewModel.guessEngine) {
-                    Text("Disabled").tag(GuessEngine.none)
-                    Text("Simple (libmagic MIME)").tag(GuessEngine.simple)
-                    Text("Accurate (GitHub Linguist)").tag(GuessEngine.accurate)
-                }
-                .pickerStyle(.radioGroup)
-                .help("Automatically detect programming language when code fence has no language tag")
-
-                Text("Note: Language detection only applies to code blocks without explicit language tags (e.g., ``` without specifying ```python).")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 4)
-            }
+            // Language Detection section removed - was for server-side syntax highlighting
 
             Section("Theme") {
                 // TODO: Implement theme selector with 97 themes

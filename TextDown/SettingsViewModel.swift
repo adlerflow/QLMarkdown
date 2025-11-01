@@ -39,7 +39,6 @@ class SettingsViewModel: ObservableObject {
     @Published var syntaxWordWrapOption: Int
     @Published var syntaxLineNumbersOption: Bool
     @Published var syntaxTabsOption: Int
-    @Published var guessEngine: GuessEngine
 
     // cmark Parser Options (6 properties)
     @Published var footnotesOption: Bool
@@ -98,7 +97,6 @@ class SettingsViewModel: ObservableObject {
         self.syntaxWordWrapOption = settings.syntaxWordWrapOption
         self.syntaxLineNumbersOption = settings.syntaxLineNumbersOption
         self.syntaxTabsOption = settings.syntaxTabsOption
-        self.guessEngine = settings.guessEngine
 
         self.footnotesOption = settings.footnotesOption
         self.hardBreakOption = settings.hardBreakOption
@@ -149,7 +147,6 @@ class SettingsViewModel: ObservableObject {
         $syntaxWordWrapOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $syntaxLineNumbersOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $syntaxTabsOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
-        $guessEngine.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
 
         $footnotesOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $hardBreakOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
@@ -199,7 +196,6 @@ class SettingsViewModel: ObservableObject {
         settings.syntaxWordWrapOption = syntaxWordWrapOption
         settings.syntaxLineNumbersOption = syntaxLineNumbersOption
         settings.syntaxTabsOption = syntaxTabsOption
-        settings.guessEngine = guessEngine
 
         settings.footnotesOption = footnotesOption
         settings.hardBreakOption = hardBreakOption
@@ -255,7 +251,6 @@ class SettingsViewModel: ObservableObject {
         syntaxWordWrapOption = originalSettings.syntaxWordWrapOption
         syntaxLineNumbersOption = originalSettings.syntaxLineNumbersOption
         syntaxTabsOption = originalSettings.syntaxTabsOption
-        guessEngine = originalSettings.guessEngine
 
         footnotesOption = originalSettings.footnotesOption
         hardBreakOption = originalSettings.hardBreakOption
@@ -305,7 +300,6 @@ class SettingsViewModel: ObservableObject {
         syntaxWordWrapOption = defaults.syntaxWordWrapOption
         syntaxLineNumbersOption = defaults.syntaxLineNumbersOption
         syntaxTabsOption = defaults.syntaxTabsOption
-        guessEngine = defaults.guessEngine
 
         footnotesOption = defaults.footnotesOption
         hardBreakOption = defaults.hardBreakOption

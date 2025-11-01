@@ -127,14 +127,7 @@ class DocumentViewController: NSViewController {
             isDirty = true
         }
     }
-    
-    @objc dynamic var guessEngine: Int = Settings.factorySettings.guessEngine.rawValue {
-        didSet {
-            guard oldValue != guessEngine else { return }
-            isDirty = true
-        }
-    }
-    
+
     @objc dynamic var mathExtension: Bool = Settings.factorySettings.mathExtension {
         didSet {
             guard oldValue != mathExtension else { return }
@@ -769,7 +762,6 @@ document.addEventListener('scroll', function(e) {
         self.syntaxWrapCharacters = settings.syntaxWordWrapOption > 0 ? settings.syntaxWordWrapOption : 80
         self.syntaxTabsOption = settings.syntaxTabsOption
 
-        self.guessEngine = settings.guessEngine.rawValue
 
         self.isAboutVisible = settings.about
 
@@ -816,7 +808,6 @@ document.addEventListener('scroll', function(e) {
         
         settings.syntaxTabsOption = self.syntaxTabsOption
 
-        settings.guessEngine = GuessEngine(rawValue: self.guessEngine) ?? .none
         
         settings.hardBreakOption = self.hardBreakOption
         settings.noSoftBreakOption = self.noSoftBreakOption

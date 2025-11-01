@@ -193,11 +193,7 @@ extension Settings {
             if let ext = cmark_find_syntax_extension("inlineimage") {
                 cmark_parser_attach_syntax_extension(parser, ext)
                 cmark_syntax_extension_inlineimage_set_wd(ext, baseDir.cString(using: .utf8))
-                cmark_syntax_extension_inlineimage_set_mime_callback(ext, { (path, context) in
-                    let magic_file = Settings.getResourceBundle().path(forResource: "magic", ofType: "mgc")?.cString(using: .utf8)
-                    let r = magic_get_mime_by_file(path, magic_file)
-                    return r
-                }, nil)
+                // MIME callback removed - inlineimage extension uses libmagic internally
                 /*
                 cmark_syntax_extension_inlineimage_set_remote_data_callback(ext, { (url, context) -> UnsafeMutablePointer<Int8>? in
                     guard let uu = url, let u = URL(string: String(cString: uu)) else {
@@ -214,7 +210,9 @@ extension Settings {
                 */
                 
                 os_log("Enabled markdown `local inline image` extension with working path set to `%{public}s`.", log: OSLog.rendering, type: .debug, baseDir)
-                
+
+                /*
+                // unsafe HTML processor callback disabled - requires wrapper_highlight magic functions
                 if self.unsafeHTMLOption {
                     cmark_syntax_extension_inlineimage_set_unsafe_html_processor_callback(ext, { (ext, fragment, workingDir, context, code) in
                         guard let fragment = fragment else {
@@ -289,6 +287,7 @@ extension Settings {
                         }
                     }, nil)
                 }
+                */
             } else {
                 os_log("Could not enable markdown `local inline image` extension!", log: OSLog.rendering, type: .error)
             }

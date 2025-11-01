@@ -137,17 +137,20 @@ import Cocoa
             self.bold = bold
             self.underline = underline
         }
-        
+
+        /*
+        // HThemeProperty initializer removed - was for libhighlight Lua themes
         convenience init(property: HThemeProperty) {
             let color = property.color != nil ? String(cString: property.color) : nil
-            
+
             let bold: Bool? = property.bold < 0 ? nil : property.bold > 0
             let italic: Bool? = property.italic < 0 ? nil : property.italic > 0
             let underline: Bool? = property.underline < 0 ? nil : property.underline > 0
-            
+
             self.init(color: color, italic: italic, bold: bold, underline: underline)
         }
-        
+        */
+
         convenience init(dictionary dict: [String: Any?])
         {
             let color = dict["color"] as? String
@@ -329,7 +332,10 @@ import Cocoa
     var isBase16: Bool = false
     var isStandalone: Bool = false
     @objc dynamic var isDirty: Bool = false
-    
+
+    /*
+    // HTheme initializer removed - was for loading libhighlight Lua themes
+    // Now using highlight.js CSS themes instead
     convenience init (theme: HTheme) {
         let import_prop = { ( p: inout PropertyStyle, property: HThemeProperty) in
             p.color = property.color != nil ? String(cString: property.color) : nil
@@ -378,7 +384,8 @@ import Cocoa
         }
         self.isDirty = false
     }
-    
+    */
+
     init(name: String) {
         self.name = name
         self.desc = ""

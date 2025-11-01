@@ -46,7 +46,6 @@ struct SyntaxSettingsView: View {
             }
 
             Section("Language Detection") {
-                Picker("Detect language for unmarked code blocks:", selection: $viewModel.guessEngine) {
                     Text("Disabled").tag(GuessEngine.none)
                     Text("Simple (libmagic MIME)").tag(GuessEngine.simple)
                     Text("Accurate (GitHub Linguist)").tag(GuessEngine.accurate)

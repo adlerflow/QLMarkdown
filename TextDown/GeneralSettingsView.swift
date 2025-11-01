@@ -26,7 +26,7 @@ struct GeneralSettingsView: View {
 
             Section("Behavior") {
                 Toggle("Open inline links in preview", isOn: $viewModel.openInlineLink)
-                    .help("Open markdown links within WKWebView instead of external browser")
+                    .help("Open markdown links within GuessEngineView instead of external browser")
 
                 Toggle("Debug mode", isOn: $viewModel.debug)
                     .help("Enable debug logging in Console.app")

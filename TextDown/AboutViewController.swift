@@ -36,26 +36,8 @@ class AboutViewController: NSViewController {
         
         s += "<b>Libraries</b><br />"
         s += cmarkVersionHTML() + "\n"
-        if let v = get_highlight_version() {
-            defer {
-                v.deallocate()
-            }
-            let web = get_highlight_website()
-            defer {
-                web?.deallocate()
-            }
-            
-            var url = web != nil ? String(cString: web!) : ""
-            if !url.isEmpty {
-                url = "(<a href=\"\(url)\")>\(url)</a>)"
-            }
-            
-            s += "highlight \(String(cString: v)) \(url)<br />\n"
-        }
-        
-        s += "\(String(cString: get_lua_info()))<br />\n"
-        s += "Enry (<a href=\"https://www.github.com/go-enry/go-enry/\">https://www.github.com/go-enry/go-enry</a>)<br />\n"
-        
+        // highlight.js (client-side, loaded via CDN - version shown in browser console)<br />
+
         s += "PCRE2 (<a href=\"https://github.com/PhilipHazel/pcre2\">https://github.com/PhilipHazel/pcre2</a>)<br />\n"
         s += "JPCRE2 (<a href=\"https://github.com/jpcre2/jpcre2\">https://github.com/jpcre2/jpcre2</a>)<br />\n"
         s += "Yams (<a href=\"https://github.com/jpsim/Yams.git\">https://github.com/jpsim/Yams.git</a>)<br />\n"

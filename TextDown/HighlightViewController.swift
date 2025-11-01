@@ -13,7 +13,6 @@ class HighlightViewController: NSViewController {
     @IBOutlet weak var sourceWrapField: NSTextField!
     @IBOutlet weak var sourceWrapStepper: NSStepper!
     @IBOutlet weak var sourceTabsPopup: NSPopUpButton!
-    @IBOutlet weak var guessEnginePopup: NSPopUpButton!
     
     
     @objc dynamic var syntaxLineNumbers: Bool {
@@ -63,24 +62,9 @@ class HighlightViewController: NSViewController {
             self.didChangeValue(forKey: "syntaxTabsOption")
         }
     }
-    
-    @objc dynamic var guessEngine: Int {
-        get {
-            return self.settingsViewController?.guessEngine ?? 0
-        }
-        set {
-            guard newValue != self.settingsViewController?.guessEngine else { return }
-            self.willChangeValue(forKey: "guessEngine")
-            self.settingsViewController?.guessEngine = newValue
-            self.didChangeValue(forKey: "guessEngine")
-        }
-    }
-    
-    @IBAction func onGuessChange(_ sender: NSPopUpButton)
-    {
-        self.guessEngine = sender.selectedTag()
-    }
-    
+
+    // guessEngine property and onGuessChange action removed - was for server-side language detection
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,7 +102,6 @@ class HighlightViewController: NSViewController {
             self.sourceTabsPopup.selectItem(at: i)
         }
         
-        self.guessEngine = settings.guessEngine.rawValue
                 
         self.settingsViewController?.pauseAutoRefresh -= 1
         self.settingsViewController?.pauseAutoSave -= 1
