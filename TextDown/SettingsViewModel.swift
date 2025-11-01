@@ -34,11 +34,13 @@ class SettingsViewModel: ObservableObject {
     @Published var strikethroughDoubleTildeOption: Bool
     @Published var checkboxExtension: Bool
 
-    // Syntax Highlighting (6 properties)
+    // Syntax Highlighting (8 properties)
     @Published var syntaxHighlightExtension: Bool
     @Published var syntaxWordWrapOption: Int
     @Published var syntaxLineNumbersOption: Bool
     @Published var syntaxTabsOption: Int
+    @Published var syntaxThemeLightOption: String
+    @Published var syntaxThemeDarkOption: String
 
     // cmark Parser Options (6 properties)
     @Published var footnotesOption: Bool
@@ -97,6 +99,8 @@ class SettingsViewModel: ObservableObject {
         self.syntaxWordWrapOption = settings.syntaxWordWrapOption
         self.syntaxLineNumbersOption = settings.syntaxLineNumbersOption
         self.syntaxTabsOption = settings.syntaxTabsOption
+        self.syntaxThemeLightOption = settings.syntaxThemeLightOption
+        self.syntaxThemeDarkOption = settings.syntaxThemeDarkOption
 
         self.footnotesOption = settings.footnotesOption
         self.hardBreakOption = settings.hardBreakOption
@@ -147,6 +151,8 @@ class SettingsViewModel: ObservableObject {
         $syntaxWordWrapOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $syntaxLineNumbersOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $syntaxTabsOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
+        $syntaxThemeLightOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
+        $syntaxThemeDarkOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
 
         $footnotesOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
         $hardBreakOption.sink { [weak self] _ in self?.hasUnsavedChanges = true }.store(in: &cancellables)
@@ -196,6 +202,8 @@ class SettingsViewModel: ObservableObject {
         settings.syntaxWordWrapOption = syntaxWordWrapOption
         settings.syntaxLineNumbersOption = syntaxLineNumbersOption
         settings.syntaxTabsOption = syntaxTabsOption
+        settings.syntaxThemeLightOption = syntaxThemeLightOption
+        settings.syntaxThemeDarkOption = syntaxThemeDarkOption
 
         settings.footnotesOption = footnotesOption
         settings.hardBreakOption = hardBreakOption
@@ -251,6 +259,8 @@ class SettingsViewModel: ObservableObject {
         syntaxWordWrapOption = originalSettings.syntaxWordWrapOption
         syntaxLineNumbersOption = originalSettings.syntaxLineNumbersOption
         syntaxTabsOption = originalSettings.syntaxTabsOption
+        syntaxThemeLightOption = originalSettings.syntaxThemeLightOption
+        syntaxThemeDarkOption = originalSettings.syntaxThemeDarkOption
 
         footnotesOption = originalSettings.footnotesOption
         hardBreakOption = originalSettings.hardBreakOption
@@ -300,6 +310,8 @@ class SettingsViewModel: ObservableObject {
         syntaxWordWrapOption = defaults.syntaxWordWrapOption
         syntaxLineNumbersOption = defaults.syntaxLineNumbersOption
         syntaxTabsOption = defaults.syntaxTabsOption
+        syntaxThemeLightOption = defaults.syntaxThemeLightOption
+        syntaxThemeDarkOption = defaults.syntaxThemeDarkOption
 
         footnotesOption = defaults.footnotesOption
         hardBreakOption = defaults.hardBreakOption

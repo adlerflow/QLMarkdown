@@ -65,10 +65,10 @@ struct ExtensionsSettingsView: View {
                     .help("Convert @username to GitHub profile links")
 
                 Toggle("Subscript", isOn: $viewModel.subExtension)
-                    .help("Enable subscript syntax: ~text~")
+                    .help("Enable subscript syntax with tilde: H2O")
 
                 Toggle("Superscript", isOn: $viewModel.supExtension)
-                    .help("Enable superscript syntax: ^text^")
+                    .help("Enable superscript syntax with caret: x squared")
 
                 VStack(alignment: .leading, spacing: 4) {
                     Toggle("Strikethrough", isOn: $viewModel.strikethroughExtension)
@@ -76,7 +76,7 @@ struct ExtensionsSettingsView: View {
 
                     if viewModel.strikethroughExtension {
                         Toggle("Use double-tilde (~~text~~) instead of single (~text~)", isOn: $viewModel.strikethroughDoubleTildeOption)
-                            .help("Require ~~double~~ instead of ~single~ tilde syntax")
+                            .help("Require double tilde instead of single tilde syntax")
                             .padding(.leading, 20)
                     }
                 }

@@ -95,6 +95,7 @@
 		F40D9E832EB53A37001C10C6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */; };
 		F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */; };
 		F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */; };
+		F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = F4A0C5CA2EB5B02800BC1997 /* highlight.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +343,7 @@
 		F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownWindowController.swift; sourceTree = "<group>"; };
+		F4A0C5CA2EB5B02800BC1997 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = highlight.js; path = Resources/highlight.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +519,7 @@
 		83598E5825818808004664D3 = {
 			isa = PBXGroup;
 			children = (
+				F4A0C5CA2EB5B02800BC1997 /* highlight.js */,
 				83D4B1C3258675D0000745DB /* README.md */,
 				83E7FEED258FBE54003ECF9B /* TODO.md */,
 				837F291E2597AAC000A5F7DE /* LICENSE.txt */,
@@ -869,6 +872,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */,
 				83598EFC25820A72004664D3 /* test2.md in Resources */,
 				83F4B9962586AB9700FC58A7 /* README.md in Resources */,
 				83598EFD25820A72004664D3 /* test1.md in Resources */,

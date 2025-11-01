@@ -47,11 +47,30 @@ struct SyntaxSettingsView: View {
 
             // Language Detection section removed - was for server-side syntax highlighting
 
-            Section("Theme") {
-                // TODO: Implement theme selector with 97 themes
-                Text("Theme selector coming soon")
-                    .foregroundStyle(.secondary)
-                Text("Themes: solarized-dark, github, zenburn, and 94 more available in highlight/themes/")
+            Section("Themes") {
+                Picker("Light theme:", selection: $viewModel.syntaxThemeLightOption) {
+                    Text("GitHub").tag("github")
+                    Text("Base16 GitHub").tag("base16-github")
+                    Text("Atom One Light").tag("atom-one-light")
+                    Text("Stack Overflow Light").tag("stackoverflow-light")
+                    Text("Xcode").tag("xcode")
+                    Text("Visual Studio").tag("vs")
+                }
+                .pickerStyle(.menu)
+                .help("Theme used in light mode")
+
+                Picker("Dark theme:", selection: $viewModel.syntaxThemeDarkOption) {
+                    Text("GitHub Dark").tag("github-dark")
+                    Text("Atom One Dark").tag("atom-one-dark")
+                    Text("Monokai").tag("monokai")
+                    Text("Monokai Sublime").tag("monokai-sublime")
+                    Text("Nord").tag("nord")
+                    Text("Visual Studio 2015").tag("vs2015")
+                }
+                .pickerStyle(.menu)
+                .help("Theme used in dark mode")
+
+                Text("Themes automatically switch based on macOS appearance")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

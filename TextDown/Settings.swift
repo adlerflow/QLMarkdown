@@ -50,6 +50,8 @@ class Settings: Codable {
         case syntaxWordWrapOption
         case syntaxLineNumbersOption
         case syntaxTabsOption
+        case syntaxThemeLightOption
+        case syntaxThemeDarkOption
 
         case tableExtension
         case tagFilterExtension
@@ -113,6 +115,8 @@ class Settings: Codable {
     @objc var syntaxWordWrapOption: Int = 0
     @objc var syntaxLineNumbersOption: Bool = false
     @objc var syntaxTabsOption: Int = 4
+    @objc var syntaxThemeLightOption: String = "github"
+    @objc var syntaxThemeDarkOption: String = "github-dark"
     // syntaxFontFamily, syntaxFontSize, guessEngine removed - were for server-side highlighting
 
     @objc var tableExtension: Bool = true
@@ -229,6 +233,8 @@ class Settings: Codable {
         self.syntaxWordWrapOption = try container.decode(Int.self, forKey: .syntaxWordWrapOption)
         self.syntaxLineNumbersOption = try container.decode(Bool.self, forKey: .syntaxLineNumbersOption)
         self.syntaxTabsOption = try container.decode(Int.self, forKey: .syntaxTabsOption)
+        self.syntaxThemeLightOption = try container.decode(String.self, forKey: .syntaxThemeLightOption)
+        self.syntaxThemeDarkOption = try container.decode(String.self, forKey: .syntaxThemeDarkOption)
 
         self.tableExtension = try container.decode(Bool.self, forKey: .tableExtension)
         self.tagFilterExtension = try container.decode(Bool.self, forKey: .tagFilterExtension)
@@ -289,6 +295,8 @@ class Settings: Codable {
         try container.encode(self.syntaxWordWrapOption, forKey: .syntaxWordWrapOption)
         try container.encode(self.syntaxLineNumbersOption, forKey: .syntaxLineNumbersOption)
         try container.encode(self.syntaxTabsOption, forKey: .syntaxTabsOption)
+        try container.encode(self.syntaxThemeLightOption, forKey: .syntaxThemeLightOption)
+        try container.encode(self.syntaxThemeDarkOption, forKey: .syntaxThemeDarkOption)
         try container.encode(self.subExtension, forKey: .subExtension)
         try container.encode(self.supExtension, forKey: .supExtension)
 
@@ -365,6 +373,8 @@ class Settings: Codable {
         self.syntaxWordWrapOption = s.syntaxWordWrapOption
         self.syntaxLineNumbersOption = s.syntaxLineNumbersOption
         self.syntaxTabsOption = s.syntaxTabsOption
+        self.syntaxThemeLightOption = s.syntaxThemeLightOption
+        self.syntaxThemeDarkOption = s.syntaxThemeDarkOption
         self.subExtension = s.subExtension
         self.supExtension = s.supExtension
 
@@ -459,6 +469,12 @@ class Settings: Codable {
         }
         if let n = defaultsDomain["syntax_tabs"] as? Int {
             syntaxTabsOption = n
+        }
+        if let theme = defaultsDomain["syntax_theme_light"] as? String {
+            syntaxThemeLightOption = theme
+        }
+        if let theme = defaultsDomain["syntax_theme_dark"] as? String {
+            syntaxThemeDarkOption = theme
         }
 
         if let ext = defaultsDomain["sub"] as? Bool {

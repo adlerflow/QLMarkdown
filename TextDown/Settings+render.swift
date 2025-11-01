@@ -597,7 +597,7 @@ MathJax = {
         // Integrate highlight.js for client-side syntax highlighting
         if self.syntaxHighlightExtension {
             // Choose theme based on appearance
-            let hlTheme = Self.isLightAppearance ? "github" : "github-dark"
+            let hlTheme = Self.isLightAppearance ? self.syntaxThemeLightOption : self.syntaxThemeDarkOption
 
             // Get bundle paths for highlight.js resources
             if let jsPath = self.resourceBundle.path(forResource: "highlight.min", ofType: "js", inDirectory: "highlight.js/lib"),
