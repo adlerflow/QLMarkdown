@@ -622,8 +622,11 @@ document.addEventListener('scroll', function(e) {
         
         let html = settings.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+
+        // Use loadHTMLString with document directory as baseURL
+        // This allows inline images from the document directory to load
         webView.loadHTMLString(html, baseURL: document?.fileURL?.deletingLastPathComponent())
-        
+
         elapsedTimeLabel = String(format: "Rendered in %.3f seconds", timeElapsed)
     }
 

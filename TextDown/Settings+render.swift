@@ -596,25 +596,33 @@ MathJax = {
 
         // Integrate highlight.js for client-side syntax highlighting
         if self.syntaxHighlightExtension {
-            // Choose theme based on appearance
-            let hlTheme = Self.isLightAppearance ? self.syntaxThemeLightOption : self.syntaxThemeDarkOption
+            // Choose theme based on appearance parameter (not static property)
+            let hlTheme = appearance == .light ? self.syntaxThemeLightOption : self.syntaxThemeDarkOption
 
             // Get bundle paths for highlight.js resources
             if let jsPath = self.resourceBundle.path(forResource: "highlight.min", ofType: "js", inDirectory: "highlight.js/lib"),
                let cssPath = self.resourceBundle.path(forResource: hlTheme + ".min", ofType: "css", inDirectory: "highlight.js/styles") {
 
-                let jsURL = URL(fileURLWithPath: jsPath)
-                let cssURL = URL(fileURLWithPath: cssPath)
+                // Read file contents to inline them (WKWebView cross-origin security requires this)
+                do {
+                    let jsContent = try String(contentsOfFile: jsPath, encoding: .utf8)
+                    let cssContent = try String(contentsOfFile: cssPath, encoding: .utf8)
 
-                // Add CSS to header
-                s_header += """
-<link rel="stylesheet" href="\(cssURL.absoluteString)">
+                    // Inline CSS in header
+                    s_header += """
+<style type="text/css">
+/* highlight.js theme: \(hlTheme) */
+\(cssContent)
+</style>
 """
 
-                // Add JS and initialization to footer
-                s_footer += """
-<script src="\(jsURL.absoluteString)"></script>
-<script>
+                    // Inline JS and initialization in footer
+                    s_footer += """
+<script type="text/javascript">
+/* highlight.js v11.11.1 */
+\(jsContent)
+</script>
+<script type="text/javascript">
 // Configure highlight.js
 hljs.configure({
     ignoreUnescapedHTML: true,
@@ -635,7 +643,10 @@ if (document.readyState === 'loading') {
 }
 </script>
 """
-                os_log("Enabled client-side syntax highlighting with theme: %{public}s", log: OSLog.rendering, type: .debug, hlTheme)
+                    os_log("Enabled client-side syntax highlighting with theme: %{public}s (inlined ~155KB)", log: OSLog.rendering, type: .debug, hlTheme)
+                } catch {
+                    os_log("Failed to read highlight.js files: %{public}@", log: OSLog.rendering, type: .error, error.localizedDescription)
+                }
             } else {
                 os_log("highlight.js resources not found in bundle", log: OSLog.rendering, type: .error)
             }
