@@ -593,7 +593,54 @@ MathJax = {
 </script>
 """
         }
-        
+
+        // Integrate highlight.js for client-side syntax highlighting
+        if self.syntaxHighlightExtension {
+            // Choose theme based on appearance
+            let hlTheme = Self.isLightAppearance ? "github" : "github-dark"
+
+            // Get bundle paths for highlight.js resources
+            if let jsPath = self.resourceBundle.path(forResource: "highlight.min", ofType: "js", inDirectory: "highlight.js/lib"),
+               let cssPath = self.resourceBundle.path(forResource: hlTheme + ".min", ofType: "css", inDirectory: "highlight.js/styles") {
+
+                let jsURL = URL(fileURLWithPath: jsPath)
+                let cssURL = URL(fileURLWithPath: cssPath)
+
+                // Add CSS to header
+                s_header += """
+<link rel="stylesheet" href="\(cssURL.absoluteString)">
+"""
+
+                // Add JS and initialization to footer
+                s_footer += """
+<script src="\(jsURL.absoluteString)"></script>
+<script>
+// Configure highlight.js
+hljs.configure({
+    ignoreUnescapedHTML: true,
+    languages: [] // Auto-detect all languages
+});
+
+// Highlight all code blocks when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('pre code').forEach(function(block) {
+            hljs.highlightElement(block);
+        });
+    });
+} else {
+    document.querySelectorAll('pre code').forEach(function(block) {
+        hljs.highlightElement(block);
+    });
+}
+</script>
+"""
+                os_log("Enabled client-side syntax highlighting with theme: %{public}s", log: OSLog.rendering, type: .debug, hlTheme)
+            } else {
+                os_log("highlight.js resources not found in bundle", log: OSLog.rendering, type: .error)
+            }
+        }
+
         let style = css_doc + css_highlight + css_doc_extended
         let wrapper_open = "<article class='markdown-body'>"
         let wrapper_close = "</article>"

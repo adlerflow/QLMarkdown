@@ -61,7 +61,6 @@
 		83598E6C2581880A004664D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6A2581880A004664D3 /* Main.storyboard */; };
 		83598EFC25820A72004664D3 /* test2.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EFA258209C7004664D3 /* test2.md */; };
 		83598EFD25820A72004664D3 /* test1.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EF92582098A004664D3 /* test1.md */; };
-		836B2FF5259DEE2F00A6A5F7 /* libwrapper_highlight.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; };
 		836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */ = {isa = PBXBuildFile; fileRef = 836B7474259E2B4000A6A5F7 /* magic.mgc */; };
 		836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */; };
 		83720A2825B8E93D00B49FEC /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2025B8E93D00B49FEC /* decode.c */; };
@@ -74,7 +73,6 @@
 		838109C3258403CA000AFE3C /* mention.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C2258403CA000AFE3C /* mention.c */; };
 		838109C725840429000AFE3C /* checkbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 838109C625840429000AFE3C /* checkbox.c */; };
 		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
-		838715FE2DE44661000DC216 /* libwrapper_highlight.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		838D197F2DCDD97E00963324 /* Settings+NoXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D197B2DCDD96100963323 /* Settings+NoXPC.swift */; };
 		83CF71C92C5FCD780066A195 /* highlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71C82C5FCD780066A195 /* highlight.c */; };
 		83CF71CE2C60023E0066A195 /* sup_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71CD2C60023E0066A195 /* sup_ext.c */; };
@@ -121,13 +119,6 @@
 			remoteGlobalIDString = 834A4F7429E9250800692964;
 			remoteInfo = "cmark-headers";
 		};
-		836B7471259E23DB00A6A5F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 836B7194259E226E00A6A5F7 /* highlight-wrapper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 836B3007259E222600A6A5F7;
-			remoteInfo = "highlight-wrapper";
-		};
 		83B8DF042DD5DD9D0054E345 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83598E5925818808004664D3 /* Project object */;
@@ -165,7 +156,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				838715FE2DE44661000DC216 /* libwrapper_highlight.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,7 +353,6 @@
 				83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */,
 				83D82A89277C45B500C9B99F /* libpcre2-32.a in Frameworks */,
 				8382D05C2664051400210A0A /* Yams in Frameworks */,
-				836B2FF5259DEE2F00A6A5F7 /* libwrapper_highlight.dylib in Frameworks */,
 				830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,7 +796,6 @@
 				83D9CF1427A1336400E86BC9 /* PBXTargetDependency */,
 				830B5B42272D6D8A00378FFE /* PBXTargetDependency */,
 				830B5B37272D613A00378FFE /* PBXTargetDependency */,
-				836B7472259E23DB00A6A5F7 /* PBXTargetDependency */,
 				83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */,
 			);
 			name = TextDown;
@@ -1002,11 +990,6 @@
 			isa = PBXTargetDependency;
 			target = 834A4F7429E9250800692964 /* cmark-headers */;
 			targetProxy = 834A4F7A29E9293600692964 /* PBXContainerItemProxy */;
-		};
-		836B7472259E23DB00A6A5F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "highlight-wrapper";
-			targetProxy = 836B7471259E23DB00A6A5F7 /* PBXContainerItemProxy */;
 		};
 		83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
