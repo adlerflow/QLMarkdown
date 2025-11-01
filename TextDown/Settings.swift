@@ -38,7 +38,7 @@ class Settings: Codable {
         case emojiExtension
         case emojiImageOption
         case headsExtension
-        case hightlightExtension
+        case highlightExtension
         case inlineImageExtension
         case mathExtension
         case mentionExtension
@@ -220,7 +220,7 @@ class Settings: Codable {
         self.emojiExtension = try container.decode(Bool.self, forKey:.emojiExtension)
         self.emojiImageOption = try container.decode(Bool.self, forKey:.emojiImageOption)
         self.headsExtension = try container.decode(Bool.self, forKey:.headsExtension)
-        self.highlightExtension = try container.decode(Bool.self, forKey: .hightlightExtension)
+        self.highlightExtension = try container.decode(Bool.self, forKey: .highlightExtension)
         self.inlineImageExtension = try container.decode(Bool.self, forKey:.inlineImageExtension)
         
         self.mathExtension = try container.decode(Bool.self, forKey: .mathExtension)
@@ -285,7 +285,7 @@ class Settings: Codable {
         try container.encode(self.emojiExtension, forKey: .emojiExtension)
         try container.encode(self.emojiImageOption, forKey: .emojiImageOption)
         try container.encode(self.headsExtension, forKey: .headsExtension)
-        try container.encode(self.highlightExtension, forKey: .hightlightExtension)
+        try container.encode(self.highlightExtension, forKey: .highlightExtension)
         try container.encode(self.inlineImageExtension, forKey: .inlineImageExtension)
         try container.encode(self.mathExtension, forKey: .mathExtension)
         try container.encode(self.mentionExtension, forKey: .mentionExtension)
