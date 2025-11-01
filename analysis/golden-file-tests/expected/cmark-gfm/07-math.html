@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+<title>07-math.md</title>
+
+<script type="text/javascript">
+MathJax = {
+  options: {
+    enableMenu: false,
+  },
+  tex: {
+    // packages: ['base'],        // extensions to use
+    inlineMath: [              // start/end delimiter pairs for in-line math
+      ['$', '$']
+      // , ['\(', '\)']
+    ],
+    displayMath: [             // start/end delimiter pairs for display math
+      ['$$', '$$']
+      //, ['\[', '\]']
+    ],
+    processEscapes: true,       // use \$ to produce a literal dollar sign
+    processEnvironments: false
+  }
+};
+</script>
+</head>
+<body>
+<article class='markdown-body'>
+<h1 id="math-extension-test">Math Extension Test</h1>
+<h2 id="inline-math">Inline Math</h2>
+<p>The equation 
+<span class='hl math'>$E = mc^2$</span>
+ is famous.</p>
+<p>Pythagorean theorem: 
+<span class='hl math'>$a^2 + b^2 = c^2$</span>
+</p>
+<p>Simple fraction: 
+<span class='hl math'>$\frac{1}{2}$</span>
+</p>
+<h2 id="display-math-block">Display Math (Block)</h2>
+<p>
+<div class='hl math'>$$
+E = mc^2
+$$</div>
+</p>
+<p>
+<div class='hl math'>$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$</div>
+</p>
+<p>
+<div class='hl math'>$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$</div>
+</p>
+<h2 id="multiple-inline-math">Multiple Inline Math</h2>
+<p>The equations 
+<span class='hl math'>$x = 5$</span>
+ and 
+<span class='hl math'>$y = 10$</span>
+ mean that 
+<span class='hl math'>$x + y = 15$</span>
+.</p>
+<h2 id="math-in-context">Math in Context</h2>
+<p><strong>Bold text with 
+<span class='hl math'>$x^2$</span>
+ math</strong></p>
+<p><em>Italic text with 
+<span class='hl math'>$\alpha$</span>
+ math</em></p>
+<blockquote>
+<p>Blockquote with 
+<span class='hl math'>$\beta$</span>
+ math</p>
+</blockquote>
+<h2 id="complex-math-examples">Complex Math Examples</h2>
+<p>Quadratic formula:
+
+<div class='hl math'>$$
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$</div>
+</p>
+<p>Matrix:
+
+<div class='hl math'>$$
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+$$</div>
+</p>
+<p>Summation:
+
+<div class='hl math'>$$
+\sum_{i=0}^{n} x_i = x_0 + x_1 + \cdots + x_n
+$$</div>
+</p>
+<h2 id="edge-cases">Edge Cases</h2>
+<p>Single dollar sign: $ (not math)</p>
+<p>Double dollar signs on separate lines:
+
+<div class='hl math'>$$
+$$</div>
+</p>
+<p>Empty inline math: $$</p>
+<p>Text with 
+<span class='hl math'>$nested \text{text inside} math$</span>
+</p>
+<p>Escaped dollar: $not math$</p>
+<div style='font-size: 72%; margin-top: 1.5em; padding-top: .5em; -webkit-user-select: none;'><hr style='height: 0; border: none; border-top: 1px solid rgba(0,0,0,.5); box-shadow: 0 1px 1px rgba(255, 255, 255, .5)'/><a href='https://github.com/sbarex/QLMarkdown'>QLMarkdown</a>.<br/>
+If you like this app, <a href='https://www.buymeacoffee.com/sbarex'><strong>buy me a coffee</strong></a>!</div>
+<!--
+
+File generated with QLMarkdown [https://github.com/sbarex/QLMarkdown] - QLMarkdown
+
+-->
+
+</article>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</body>
+</html>ERROR FOR theme themes/acid.theme

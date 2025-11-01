@@ -26,26 +26,33 @@ echo
 # Create expected directory
 mkdir -p "$EXPECTED_DIR"
 
-# Check if TextDown app exists
-APP_PATH="$PROJECT_ROOT/build/Debug/TextDown.app"
-if [ ! -d "$APP_PATH" ]; then
-    echo "❌ ERROR: TextDown.app not found at $APP_PATH"
-    echo "Please build the project first:"
+# Find the CLI tool (check multiple locations)
+CLI_PATH=""
+if [ -f "/Users/home/.local/bin/qlmarkdown_cli" ]; then
+    CLI_PATH="/Users/home/.local/bin/qlmarkdown_cli"
+elif [ -f "$PROJECT_ROOT/build/Debug/TextDown.app/Contents/Resources/qlmarkdown_cli" ]; then
+    CLI_PATH="$PROJECT_ROOT/build/Debug/TextDown.app/Contents/Resources/qlmarkdown_cli"
+fi
+
+if [ -z "$CLI_PATH" ]; then
+    echo "❌ ERROR: qlmarkdown_cli not found"
+    echo "Checked locations:"
+    echo "  - /Users/home/.local/bin/qlmarkdown_cli"
+    echo "  - $PROJECT_ROOT/build/Debug/TextDown.app/Contents/Resources/qlmarkdown_cli"
+    echo
+    echo "Please build qlmarkdown_cli first (from main branch):"
     echo "  cd $PROJECT_ROOT"
-    echo "  xcodebuild -scheme TextDown -configuration Debug"
+    echo "  git checkout main"
+    echo "  xcodebuild -project QLMarkdown.xcodeproj -scheme qlmarkdown_cli -configuration Debug build"
+    echo "  cp ~/Library/Developer/Xcode/DerivedData/QLMarkdown-*/Build/Products/Debug/qlmarkdown_cli /Users/home/.local/bin/"
     exit 1
 fi
 
-# Find the CLI tool
-CLI_PATH="$APP_PATH/Contents/Resources/qlmarkdown_cli"
-if [ ! -f "$CLI_PATH" ]; then
-    echo "⚠️  WARNING: qlmarkdown_cli not found (expected for post-Phase 2)"
-    echo "Using Swift rendering fallback..."
-    USE_CLI=false
-else
-    echo "✓ Using qlmarkdown_cli: $CLI_PATH"
-    USE_CLI=true
-fi
+echo "✓ Using qlmarkdown_cli: $CLI_PATH"
+USE_CLI=true
+
+# Set up library path for dylibs
+export DYLD_LIBRARY_PATH="/Users/home/Library/Developer/Xcode/DerivedData/QLMarkdown-fzqhfbvtlsuqjtbbjcsqkiefvoqg/Build/Products/Debug:$PROJECT_ROOT/highlight-wrapper/build/Debug:$DYLD_LIBRARY_PATH"
 
 # Count test files
 TEST_COUNT=$(find "$TESTCASES_DIR" -name "*.md" | wc -l | tr -d ' ')

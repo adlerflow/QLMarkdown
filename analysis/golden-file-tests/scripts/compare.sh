@@ -31,18 +31,17 @@ if [ ! -d "$EXPECTED_DIR" ]; then
     exit 1
 fi
 
-# Check if TextDown app exists
-APP_PATH="$PROJECT_ROOT/build/Debug/TextDown.app"
-if [ ! -d "$APP_PATH" ]; then
-    echo "❌ ERROR: TextDown.app not found at $APP_PATH"
-    echo "Please build the project first."
-    exit 1
+# Find the CLI tool (check multiple locations)
+CLI_PATH=""
+if [ -f "/Users/home/.local/bin/qlmarkdown_cli" ]; then
+    CLI_PATH="/Users/home/.local/bin/qlmarkdown_cli"
+elif [ -f "$PROJECT_ROOT/build/Debug/TextDown.app/Contents/Resources/qlmarkdown_cli" ]; then
+    CLI_PATH="$PROJECT_ROOT/build/Debug/TextDown.app/Contents/Resources/qlmarkdown_cli"
 fi
 
-# Find the CLI tool
-CLI_PATH="$APP_PATH/Contents/Resources/qlmarkdown_cli"
-if [ ! -f "$CLI_PATH" ]; then
+if [ -z "$CLI_PATH" ]; then
     echo "❌ ERROR: qlmarkdown_cli not found"
+    echo "Run from main branch: xcodebuild -project QLMarkdown.xcodeproj -scheme qlmarkdown_cli build"
     exit 1
 fi
 

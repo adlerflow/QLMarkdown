@@ -76,18 +76,28 @@ class TestRunner {
             exit(1)
         }
 
-        // Find CLI tool
-        let cliPath = projectRoot
+        // Find CLI tool (check multiple locations)
+        var cliPath: URL?
+
+        let localBinPath = URL(fileURLWithPath: "/Users/home/.local/bin/qlmarkdown_cli")
+        let bundlePath = projectRoot
             .appendingPathComponent("build/Debug/TextDown.app")
             .appendingPathComponent("Contents/Resources/qlmarkdown_cli")
 
-        guard FileManager.default.fileExists(atPath: cliPath.path) else {
-            print("❌ ERROR: qlmarkdown_cli not found at:")
-            print("   \(cliPath.path)")
+        if FileManager.default.fileExists(atPath: localBinPath.path) {
+            cliPath = localBinPath
+        } else if FileManager.default.fileExists(atPath: bundlePath.path) {
+            cliPath = bundlePath
+        }
+
+        guard let validCliPath = cliPath else {
+            print("❌ ERROR: qlmarkdown_cli not found")
+            print("Checked locations:")
+            print("   - /Users/home/.local/bin/qlmarkdown_cli")
+            print("   - \(bundlePath.path)")
             print()
-            print("Build the project first:")
-            print("   cd \(projectRoot.path)")
-            print("   xcodebuild -scheme TextDown -configuration Debug")
+            print("Build from main branch:")
+            print("   xcodebuild -project QLMarkdown.xcodeproj -scheme qlmarkdown_cli build")
             exit(1)
         }
 
@@ -98,7 +108,7 @@ class TestRunner {
 
         // Run each test
         for testFile in testFiles {
-            runTest(testFile, cliPath: cliPath.path)
+            runTest(testFile, cliPath: validCliPath.path)
         }
 
         // Print summary
