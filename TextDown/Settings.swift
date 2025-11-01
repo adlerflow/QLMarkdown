@@ -675,12 +675,8 @@ class Settings: Codable {
         return Bundle.main
     }
     
-    /// Get the path of folder with `highlight` support files.
-    func getHighlightSupportPath() -> String? {
-        let path = self.resourceBundle.url(forResource: "highlight", withExtension: "")?.path
-        return path
-    }
-    
+    // getHighlightSupportPath() removed - highlight resources no longer used
+
     func getBundleContents(forResource: String, ofType: String) -> String? {
         if let p = self.resourceBundle.path(forResource: forResource, ofType: ofType), let data = FileManager.default.contents(atPath: p), let s = String(data: data, encoding: .utf8) {
             return s

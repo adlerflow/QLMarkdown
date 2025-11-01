@@ -645,9 +645,7 @@ document.addEventListener('scroll', function(e) {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let path = Bundle.main.resourceURL?.appendingPathComponent("highlight").path {
-            cmark_syntax_highlight_init("\(path)/".cString(using: .utf8))
-        }
+        // highlight initialization removed - using client-side highlight.js instead
 
         self.textView.isAutomaticQuoteSubstitutionEnabled = false // Settings this option on interfacebuilder is ignored.
         self.textView.isAutomaticTextReplacementEnabled = false

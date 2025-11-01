@@ -12,10 +12,9 @@ import Yams
 
 extension Settings {
     func render(text: String, filename: String, forAppearance appearance: Appearance, baseDir: String) throws -> String {
-        if self.renderAsCode, let code = self.renderCode(text: text, forAppearance: appearance, baseDir: baseDir) {
-            return code
-        }
-        
+        // renderAsCode feature removed - was server-side syntax highlighting via libhighlight
+        // Code blocks now use client-side highlight.js
+
         cmark_gfm_core_extensions_ensure_registered()
         cmark_gfm_extra_extensions_ensure_registered()
         
@@ -503,42 +502,14 @@ table.debug td {
         html_debug += "<tr><td>link</td><td>" + (self.openInlineLink ? "open inline" : "open in standard browser") + "</td></tr>\n"
         
         html_debug += "</table>\n"
-        
+
         return html_debug
     }
-    
-    func renderCode(text: String, forAppearance appearance: Appearance, baseDir: String) -> String? {
-        if let path = getHighlightSupportPath() {
-            cmark_syntax_highlight_init("\(path)/".cString(using: .utf8))
-        } else {
-            os_log("Unable to found the `highlight` support dir!", log: OSLog.rendering, type: .error)
-        }
-        
-        let theme = Self.isLightAppearance ? "acid" : "zenburn"
-        
-        // Initialize a new generator and clear previous settings.
-        highlight_init_generator()
-        
-        highlight_set_print_line_numbers(self.syntaxLineNumbersOption ? 1 : 0)
-        highlight_set_formatting_mode(Int32(self.syntaxWordWrapOption), Int32(self.syntaxTabsOption))
-        
-        if !self.syntaxFontFamily.isEmpty {
-            highlight_set_current_font(self.syntaxFontFamily, self.syntaxFontSize > 0 ? String(format: "%.02f", self.syntaxFontSize) : "1rem") // 1rem is rendered as 1rempt, so it is ignored.
-        } else {
-            highlight_set_current_font("ui-monospace, -apple-system, BlinkMacSystemFont, sans-serif", "10");
-        }
-        
-        if let s = colorizeCode(text, "md", theme, true, self.syntaxLineNumbersOption) {
-            defer {
-                s.deallocate()
-            }
-            let code = String(cString: s)
-            return code
-        } else {
-            return nil
-        }
-    }
-    
+
+    // renderCode() function removed - was server-side syntax highlighting via libhighlight
+    // Feature: "Render as Code" (render entire markdown file as syntax-highlighted code)
+    // Replaced by: Client-side highlight.js for code blocks within markdown
+
     func render(file url: URL, forAppearance appearance: Appearance, baseDir: String?) throws -> String {
         guard let data = FileManager.default.contents(atPath: url.path) else {
             os_log("Unable to read the file %{private}@", log: OSLog.rendering, type: .error, url.path)
@@ -591,24 +562,10 @@ table.debug td {
             css_doc = ""
         }
             
-        var css_highlight: String = ""
-        if self.renderAsCode {
-            var exit_code: Int32 = 0
-            
-            exit_code = 0
-            let p = highlight_format_style2(&exit_code, nil)
-            defer {
-                p?.deallocate()
-            }
-            css_highlight += "pre.hl { white-space: pre; }\n"
-            if exit_code == EXIT_SUCCESS, let p = p {
-                css_highlight = String(cString: p) + "\n"
-            }
-        }
-        // CSS extraction for syntaxhighlight extension removed - will use highlight.js themes
-        css_highlight = formatCSS(css_highlight)
-        
-        if !self.renderAsCode, self.mathExtension, let ext = cmark_find_syntax_extension("math"), cmark_syntax_extension_math_get_rendered_count(ext) > 0 || body.contains("$") {
+        // CSS extraction for renderAsCode removed - was server-side syntax highlighting
+        let css_highlight = ""
+
+        if self.mathExtension, let ext = cmark_find_syntax_extension("math"), cmark_syntax_extension_math_get_rendered_count(ext) > 0 || body.contains("$") {
             s_header += """
 <script type="text/javascript">
 MathJax = {
@@ -639,9 +596,9 @@ MathJax = {
         }
         
         let style = css_doc + css_highlight + css_doc_extended
-        let wrapper_open = self.renderAsCode ? "<pre class='hl'>" : "<article class='markdown-body'>"
-        let wrapper_close = self.renderAsCode ? "</pre>" : "</article>"
-        let body_style = self.renderAsCode ? " class='hl'" : ""
+        let wrapper_open = "<article class='markdown-body'>"
+        let wrapper_close = "</article>"
+        let body_style = ""
         let html =
 """
 <!doctype html>
