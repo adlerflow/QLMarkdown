@@ -39,6 +39,11 @@ class MarkdownDocument: NSDocument {
         return false  // Set to true later for iCloud support
     }
 
+    /// Override to ensure autosaved documents use correct UTI for state restoration
+    override var autosavingFileType: String? {
+        return "public.markdown"
+    }
+
     // MARK: - Window Management
 
     override func makeWindowControllers() {

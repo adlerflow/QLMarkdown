@@ -19,7 +19,6 @@
                                         <menuItem title="About TextDown" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                                 <segue destination="VZF-nt-1dI" kind="show" id="YtI-lA-Vf2"/>
                                             </connections>
                                         </menuItem>
