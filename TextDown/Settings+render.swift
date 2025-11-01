@@ -317,44 +317,9 @@ extension Settings {
                 os_log("Could not enable markdown `math` extension!", log: OSLog.rendering, type: .error)
             }
         }
-        
-        if self.syntaxHighlightExtension {
-            if let ext = cmark_find_syntax_extension("syntaxhighlight") {
-                if let path = getHighlightSupportPath() {
-                    cmark_syntax_highlight_init("\(path)/".cString(using: .utf8))
-                } else {
-                    os_log("Unable to found the `highlight` support dir!", log: OSLog.rendering, type: .error)
-                }
-                
-                cmark_syntax_extension_highlight_set_theme_name(ext, "")
-                cmark_syntax_extension_highlight_set_background_color(ext, nil /* "var(--hl_Background)" */)
-                cmark_syntax_extension_highlight_set_line_number(ext, self.syntaxLineNumbersOption ? 1 : 0)
-                cmark_syntax_extension_highlight_set_tab_spaces(ext, Int32(self.syntaxTabsOption))
-                cmark_syntax_extension_highlight_set_wrap_limit(ext, Int32(self.syntaxWordWrapOption))
-                cmark_syntax_extension_highlight_set_guess_language(ext, guess_type(UInt32(self.guessEngine.rawValue)))
-                if self.guessEngine == .simple, let f = self.resourceBundle.path(forResource: "magic", ofType: "mgc") {
-                    cmark_syntax_extension_highlight_set_magic_file(ext, f)
-                }
-                
-                if !self.syntaxFontFamily.isEmpty {
-                    cmark_syntax_extension_highlight_set_font_family(ext, self.syntaxFontFamily, Float(self.syntaxFontSize))
-                } else {
-                    // cmark_syntax_extension_highlight_set_font_family(ext, "-apple-system, BlinkMacSystemFont, sans-serif", 0.0)
-                    // Pass a fake value, so will be used the font defined inside the main css file.
-                    cmark_syntax_extension_highlight_set_font_family(ext, "-", 0.0)
-                }
-                
-                cmark_parser_attach_syntax_extension(parser, ext)
-                
-                os_log(
-                    "Enabled markdown `syntax highlight` extension.",
-                    log: OSLog.rendering,
-                    type: .debug)
-            } else {
-                os_log("Could not enable markdown `syntax highlight` extension!", log: OSLog.rendering, type: .error)
-            }
-        }
-        
+
+        // syntaxhighlight extension removed - will use highlight.js (client-side)
+
         cmark_parser_feed(parser, md_text, strlen(md_text))
         guard let doc = cmark_parser_finish(parser) else {
             throw CMARK_Error.parser_parse
@@ -482,28 +447,7 @@ table.debug td {
         
         html_debug += "<tr><td>syntax highlighting extension</td><td>"
         if self.syntaxHighlightExtension {
-            html_debug += "on " + (cmark_find_syntax_extension("syntaxhighlight") == nil ? " (NOT AVAILABLE" : "")
-            
-            html_debug += "<table>\n"
-            html_debug += "<tr><td>datadir</td><td>\(getHighlightSupportPath() ?? "missing")</td></tr>\n"
-            html_debug += "<tr><td>line numbers</td><td>\(self.syntaxLineNumbersOption ? "on" : "off")</td></tr>\n"
-            html_debug += "<tr><td>spaces for a tab</td><td>\(self.syntaxTabsOption)</td></tr>\n"
-            html_debug += "<tr><td>wrap</td><td> \(self.syntaxWordWrapOption > 0 ? "after \(self.syntaxWordWrapOption) characters" : "disabled")</td></tr>\n"
-            html_debug += "<tr><td>spaces for a tab</td><td>\(self.syntaxTabsOption)</td></tr>\n"
-            html_debug += "<tr><td>guess language</td><td>"
-            switch self.guessEngine {
-            case .none:
-                html_debug += "off"
-            case .simple:
-                html_debug += "simple<br />"
-                html_debug += "magic db: \(self.resourceBundle.path(forResource: "magic", ofType: "mgc") ?? "missing")"
-            case .accurate:
-                html_debug += "accurate"
-            }
-            html_debug += "</td></tr>\n"
-            html_debug += "<tr><td>font family</td><td>\(self.syntaxFontFamily.isEmpty ? "not set" : self.syntaxFontFamily)</td></tr>\n"
-            html_debug += "<tr><td>font size</td><td>\(self.syntaxFontSize > 0 ? "\(self.syntaxFontSize)" : "not set")</td></tr>\n"
-            html_debug += "</table>\n"
+            html_debug += "on (highlight.js - client-side)"
         } else {
             html_debug += "off"
         }
@@ -660,32 +604,8 @@ table.debug td {
             if exit_code == EXIT_SUCCESS, let p = p {
                 css_highlight = String(cString: p) + "\n"
             }
-        } else if self.syntaxHighlightExtension, let ext = cmark_find_syntax_extension("syntaxhighlight"), cmark_syntax_extension_highlight_get_rendered_count(ext) > 0 {
-            let theme = ""
-            if !theme.isEmpty, let p = cmark_syntax_extension_get_style(ext) {
-                // Embed the theme style.
-                css_highlight = String(cString: p)
-                p.deallocate()
-            } else {
-                if let s = cmark_syntax_extension_highlight_get_background_color(ext) {
-                    let background_color = String(cString: s)
-                    if background_color != "ignore" && !background_color.isEmpty {
-                        css_highlight += "body.hl, pre.hl { background-color: \(background_color); }\n"
-                    }
-                }
-            }
-            if let s = cmark_syntax_extension_highlight_get_font_family(ext) {
-                let font_name = String(cString: s)
-                if !font_name.isEmpty && font_name != "-" {
-                    let font = "\"\(font_name)\", ui-monospace, -apple-system, Menlo, monospace"
-                    css_highlight += "body.hl, pre.hl, pre.hl code { font-family: \(font); }\n"
-                }
-            }
-            let size = cmark_syntax_extension_highlight_get_font_size(ext)
-            if size > 0 {
-                css_highlight += "body.hl, pre.hl, pre.hl code { font-size: \(size)pt; }\n"
-            }
         }
+        // CSS extraction for syntaxhighlight extension removed - will use highlight.js themes
         css_highlight = formatCSS(css_highlight)
         
         if !self.renderAsCode, self.mathExtension, let ext = cmark_find_syntax_extension("math"), cmark_syntax_extension_math_get_rendered_count(ext) > 0 || body.contains("$") {
