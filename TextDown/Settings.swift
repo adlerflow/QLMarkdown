@@ -19,11 +19,7 @@ enum Appearance: Int {
     case dark
 }
 
-@objc enum GuessEngine: Int {
-    case none = 0
-    case simple
-    case accurate
-}
+// GuessEngine enum removed - was for server-side language detection (libhighlight)
 
 @objc enum BackgroundColor: Int {
     case fromMarkdown = 0
@@ -54,8 +50,7 @@ class Settings: Codable {
         case syntaxWordWrapOption
         case syntaxLineNumbersOption
         case syntaxTabsOption
-        case guessEngine
-        
+
         case tableExtension
         case tagFilterExtension
         case taskListExtension
@@ -118,10 +113,8 @@ class Settings: Codable {
     @objc var syntaxWordWrapOption: Int = 0
     @objc var syntaxLineNumbersOption: Bool = false
     @objc var syntaxTabsOption: Int = 4
-    @objc var syntaxFontFamily: String = ""
-    @objc var syntaxFontSize: CGFloat = 10
-    @objc var guessEngine: GuessEngine = .none
-    
+    // syntaxFontFamily, syntaxFontSize, guessEngine removed - were for server-side highlighting
+
     @objc var tableExtension: Bool = true
     @objc var tagFilterExtension: Bool = true
     @objc var taskListExtension: Bool = true
@@ -236,8 +229,7 @@ class Settings: Codable {
         self.syntaxWordWrapOption = try container.decode(Int.self, forKey: .syntaxWordWrapOption)
         self.syntaxLineNumbersOption = try container.decode(Bool.self, forKey: .syntaxLineNumbersOption)
         self.syntaxTabsOption = try container.decode(Int.self, forKey: .syntaxTabsOption)
-        self.guessEngine = GuessEngine(rawValue: try container.decode(Int.self, forKey: .guessEngine)) ?? .none
-    
+
         self.tableExtension = try container.decode(Bool.self, forKey: .tableExtension)
         self.tagFilterExtension = try container.decode(Bool.self, forKey: .tagFilterExtension)
         self.taskListExtension = try container.decode(Bool.self, forKey: .taskListExtension)
@@ -299,9 +291,7 @@ class Settings: Codable {
         try container.encode(self.syntaxTabsOption, forKey: .syntaxTabsOption)
         try container.encode(self.subExtension, forKey: .subExtension)
         try container.encode(self.supExtension, forKey: .supExtension)
-        
-        try container.encode(self.guessEngine.rawValue, forKey: .guessEngine)
-    
+
         try container.encode(self.tableExtension, forKey: .tableExtension)
         try container.encode(self.tagFilterExtension, forKey: .tagFilterExtension)
         try container.encode(self.taskListExtension, forKey: .taskListExtension)
@@ -375,12 +365,9 @@ class Settings: Codable {
         self.syntaxWordWrapOption = s.syntaxWordWrapOption
         self.syntaxLineNumbersOption = s.syntaxLineNumbersOption
         self.syntaxTabsOption = s.syntaxTabsOption
-        self.syntaxFontFamily = s.syntaxFontFamily
-        self.syntaxFontSize = s.syntaxFontSize
         self.subExtension = s.subExtension
         self.supExtension = s.supExtension
-        self.guessEngine = s.guessEngine
-        
+
         self.tableExtension = s.tableExtension
         self.tagFilterExtension = s.tagFilterExtension
         self.taskListExtension = s.taskListExtension
@@ -473,13 +460,7 @@ class Settings: Codable {
         if let n = defaultsDomain["syntax_tabs"] as? Int {
             syntaxTabsOption = n
         }
-        if let font = defaultsDomain["syntax_font_name"] as? String {
-            syntaxFontFamily = font
-        }
-        if let size = defaultsDomain["syntax_font_size"] as? CGFloat {
-            syntaxFontSize = size
-        }
-        
+
         if let ext = defaultsDomain["sub"] as? Bool {
             subExtension = ext
         }
@@ -528,11 +509,7 @@ class Settings: Codable {
         if let opt = defaultsDomain["customCSS-override"] as? Bool {
             customCSSOverride = opt
         }
-        
-        if let opt = defaultsDomain["guess-engine"] as? Int, let guess = GuessEngine(rawValue: opt) {
-            guessEngine = guess
-        }
-        
+
         if let opt = defaultsDomain["about"] as? Bool {
             about = opt
         }
