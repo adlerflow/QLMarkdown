@@ -59,7 +59,6 @@
 		83598E6725818808004664D3 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6625818808004664D3 /* DocumentViewController.swift */; };
 		83598E692581880A004664D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83598E682581880A004664D3 /* Assets.xcassets */; };
 		83598E6C2581880A004664D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6A2581880A004664D3 /* Main.storyboard */; };
-		83598EF625818BCB004664D3 /* syntaxhighlight.c in Sources */ = {isa = PBXBuildFile; fileRef = 83598EF525818BCB004664D3 /* syntaxhighlight.c */; };
 		83598EFC25820A72004664D3 /* test2.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EFA258209C7004664D3 /* test2.md */; };
 		83598EFD25820A72004664D3 /* test1.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EF92582098A004664D3 /* test1.md */; };
 		836B2FF5259DEE2F00A6A5F7 /* libwrapper_highlight.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */; };
@@ -278,8 +277,6 @@
 		83598E6D2581880A004664D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83598E6E2581880A004664D3 /* TextDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextDown.entitlements; sourceTree = "<group>"; };
 		83598E7925818839004664D3 /* TextDown-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextDown-Bridging-Header.h"; sourceTree = "<group>"; };
-		83598EF425818B8B004664D3 /* syntaxhighlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = syntaxhighlight.h; sourceTree = "<group>"; };
-		83598EF525818BCB004664D3 /* syntaxhighlight.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = syntaxhighlight.c; sourceTree = "<group>"; };
 		83598EF92582098A004664D3 /* test1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test1.md; sourceTree = "<group>"; };
 		83598EFA258209C7004664D3 /* test2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test2.md; sourceTree = "<group>"; };
 		83598F22258263C0004664D3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
@@ -408,8 +405,6 @@
 				83F8825D25991BFC008C5071 /* heads_utils.hpp */,
 				83CF71C72C5FCD780066A195 /* highlight.h */,
 				83CF71C82C5FCD780066A195 /* highlight.c */,
-				83598EF425818B8B004664D3 /* syntaxhighlight.h */,
-				83598EF525818BCB004664D3 /* syntaxhighlight.c */,
 				835886B129E960050088DF7D /* math_ext.h */,
 				835886B229E960050088DF7D /* math_ext.c */,
 				838109C1258403CA000AFE3C /* mention.h */,
@@ -943,7 +938,6 @@
 				834A4F4029E8AD8D00692964 /* render.c in Sources */,
 				834A4F3529E8AD8D00692964 /* plaintext.c in Sources */,
 				83720A2925B8E93D00B49FEC /* encode.c in Sources */,
-				83598EF625818BCB004664D3 /* syntaxhighlight.c in Sources */,
 				834A4F0A29E8AD8C00692964 /* xml.c in Sources */,
 				834A4F4C29E8AD8E00692964 /* linked_list.c in Sources */,
 				834A4F2629E8AD8D00692964 /* houdini_href_e.c in Sources */,
