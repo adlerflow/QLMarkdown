@@ -52,7 +52,6 @@
 		834A4F6929E8AD8E00692964 /* node.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4EED29E8AD8C00692964 /* node.c */; };
 		834A4F8229E92AE800692964 /* extra-extensions.c in Sources */ = {isa = PBXBuildFile; fileRef = 834A4F8129E92AE800692964 /* extra-extensions.c */; };
 		834CAB9C2593650900673002 /* emoji_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834CAB9A2593650800673002 /* emoji_utils.cpp */; };
-		8357EB7C2587F8EB002C2C45 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8357EB7B2587F8EB002C2C45 /* Theme.swift */; };
 		8357EB7F2588262C002C2C45 /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8357EB7E2588262C002C2C45 /* String+ext.swift */; };
 		835886B329E960050088DF7D /* math_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 835886B229E960050088DF7D /* math_ext.c */; };
 		83598E6525818808004664D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6425818808004664D3 /* AppDelegate.swift */; };
@@ -249,7 +248,6 @@
 		834CAB9A2593650800673002 /* emoji_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = emoji_utils.cpp; sourceTree = "<group>"; };
 		834CAB9B2593650800673002 /* emoji_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = emoji_utils.hpp; sourceTree = "<group>"; };
 		834D676827EDF554006BECBE /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
-		8357EB7B2587F8EB002C2C45 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8357EB7E2588262C002C2C45 /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		835886B129E960050088DF7D /* math_ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = math_ext.h; sourceTree = "<group>"; };
 		835886B229E960050088DF7D /* math_ext.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = math_ext.c; sourceTree = "<group>"; };
@@ -497,14 +495,6 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		8357EB762587DBDE002C2C45 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				8357EB7B2587F8EB002C2C45 /* Theme.swift */,
-			);
-			path = Themes;
-			sourceTree = "<group>";
-		};
 		83598E5825818808004664D3 = {
 			isa = PBXGroup;
 			children = (
@@ -552,7 +542,6 @@
 				83598E6625818808004664D3 /* DocumentViewController.swift */,
 				8310245029E9F8D5004651DC /* HighlightViewController.swift */,
 				83598E6A2581880A004664D3 /* Main.storyboard */,
-				8357EB762587DBDE002C2C45 /* Themes */,
 				836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */,
 				83598EF92582098A004664D3 /* test1.md */,
 				83598EFA258209C7004664D3 /* test2.md */,
@@ -905,7 +894,6 @@
 				834A4F4629E8AD8E00692964 /* arena.c in Sources */,
 				834A4F6029E8AD8E00692964 /* footnotes.c in Sources */,
 				834A4F1229E8AD8C00692964 /* man.c in Sources */,
-				8357EB7C2587F8EB002C2C45 /* Theme.swift in Sources */,
 				83EF951D2585367500B56FA3 /* NSColor+ext.swift in Sources */,
 				83CF71D52C60053A0066A195 /* sub_ext.c in Sources */,
 				83720A2825B8E93D00B49FEC /* decode.c in Sources */,

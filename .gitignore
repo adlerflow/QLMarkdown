@@ -34,21 +34,6 @@ cmark-x86_64/
 src/cmark-gfm_export.h
 src/cmark-gfm_version.h
 
-## Highlight Wrapper
-highlight-wrapper/GoUtils/.idea/
-highlight-wrapper/lua-5.4.7/src/luac
-highlight-wrapper/lua-5.4.7/src/lua
-
-highlight-wrapper/file-5.46/Makefile
-highlight-wrapper/file-5.46/config.log
-highlight-wrapper/file-5.46/config.status
-highlight-wrapper/file-5.46/doc/Makefile
-highlight-wrapper/file-5.46/libtool
-highlight-wrapper/file-5.46/magic/Makefile
-highlight-wrapper/file-5.46/python/Makefile
-highlight-wrapper/file-5.46/src/Makefile
-highlight-wrapper/file-5.46/tests/Makefile
-
 /*/.idea/
 
 *.dSYM
