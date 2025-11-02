@@ -69,12 +69,7 @@
 		831A8C40258ABADA00E36182 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		832D256125CC8894005F41AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		83327D452595E15700E76CF6 /* Settings+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+ext.swift"; sourceTree = "<group>"; };
-		834A4E8E29E89F8800692964 /* cmark-gfm-extension_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "cmark-gfm-extension_api.h"; path = "cmark-gfm/src/cmark-gfm-extension_api.h"; sourceTree = "<group>"; };
-		834A4E9329E8A4BC00692964 /* cmark-gfm_export.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "cmark-gfm_export.h"; path = "cmark/cmark-gfm_export.h"; sourceTree = BUILT_PRODUCTS_DIR; };
-		834A4E9429E8A4BC00692964 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = config.h; path = cmark/config.h; sourceTree = BUILT_PRODUCTS_DIR; };
-		834A4E9529E8A4BC00692964 /* cmark-gfm_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "cmark-gfm_version.h"; path = "cmark/cmark-gfm_version.h"; sourceTree = BUILT_PRODUCTS_DIR; };
 		834CAB89259167B800673002 /* examples */ = {isa = PBXFileReference; lastKnownFileType = text; path = examples; sourceTree = SOURCE_ROOT; };
-		834D676827EDF554006BECBE /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		8357EB7E2588262C002C2C45 /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		83598E6125818808004664D3 /* TextDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83598E6425818808004664D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +94,6 @@
 		83CF71E02C60ADA60066A195 /* icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.afdesign; sourceTree = "<group>"; };
 		83D22E632DCA65980013EB9D /* Settings+render.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+render.swift"; sourceTree = "<group>"; };
 		83D4B1C3258675D0000745DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		83D82A88277C45B500C9B99F /* libpcre2-32.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpcre2-32.a"; path = "libpcre2/lib/libpcre2-32.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		83EF951C2585367500B56FA3 /* NSColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+ext.swift"; sourceTree = "<group>"; };
 		83F4B99125868A7400FC58A7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -142,16 +136,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		834A4E9229E8A4AE00692964 /* cmark */ = {
-			isa = PBXGroup;
-			children = (
-				834A4E9329E8A4BC00692964 /* cmark-gfm_export.h */,
-				834A4E9529E8A4BC00692964 /* cmark-gfm_version.h */,
-				834A4E9429E8A4BC00692964 /* config.h */,
-			);
-			name = cmark;
-			sourceTree = "<group>";
-		};
 		83598E5825818808004664D3 = {
 			isa = PBXGroup;
 			children = (
@@ -211,10 +195,6 @@
 		83598F0525825B8D004664D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				834A4E8E29E89F8800692964 /* cmark-gfm-extension_api.h */,
-				834A4E9229E8A4AE00692964 /* cmark */,
-				834D676827EDF554006BECBE /* libcurl.tbd */,
-				83D82A88277C45B500C9B99F /* libpcre2-32.a */,
 				83F8822C2598A5C0008C5071 /* WebKit.framework */,
 				831A8C40258ABADA00E36182 /* Quartz.framework */,
 			);
