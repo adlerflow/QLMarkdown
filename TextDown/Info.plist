@@ -13,54 +13,42 @@
 			<string>Markdown Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>md</string>
-				<string>markdown</string>
-			</array>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
+				<string>public.plain-text</string>
 				<string>public.markdown</string>
-			</array>
-			<key>NSDocumentClass</key>
-			<string>TextDown.MarkdownDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>Markdown Document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>md</string>
-				<string>markdown</string>
-			</array>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
-			<key>LSItemContentTypes</key>
-			<array>
 				<string>net.daringfireball.markdown</string>
+				<string>com.unknown.md</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>TextDown.MarkdownDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Markdown Document</string>
+			<string>R Markdown Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>md</string>
-				<string>markdown</string>
-			</array>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.unknown.md</string>
+				<string>com.rstudio.rmarkdown</string>
+			</array>
+			<key>NSDocumentClass</key>
+			<string>TextDown.MarkdownDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Quarto Markdown Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.quarto.qmarkdown</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>TextDown.MarkdownDocument</string>
