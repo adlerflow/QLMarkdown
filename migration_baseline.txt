@@ -1,0 +1,8 @@
+=== Baseline LOC ===
+     680 TextDown/Settings.swift
+     964 TextDown/DocumentViewController.swift
+     335 TextDown/SettingsViewModel.swift
+
+=== Property Counts ===
+40
+Date: Sun Nov  2 01:23:46 CET 2025
