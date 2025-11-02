@@ -10,7 +10,7 @@ import XCTest
 @testable import TextDown
 
 final class SettingsTests: XCTestCase {
-    var settings: Settings!
+    var settings: AppConfiguration!
     var tempDirectory: URL!
 
     override func setUp() {
@@ -18,8 +18,8 @@ final class SettingsTests: XCTestCase {
         // Create a fresh settings instance by decoding factory settings
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
-        let data = try! encoder.encode(Settings.factorySettings)
-        settings = try! decoder.decode(Settings.self, from: data)
+        let data = try! encoder.encode(AppConfiguration.factorySettings)
+        settings = try! decoder.decode(AppConfiguration.self, from: data)
 
         tempDirectory = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
@@ -98,7 +98,7 @@ final class SettingsTests: XCTestCase {
 
         // Decode from JSON
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(Settings.self, from: data)
+        let decoded = try decoder.decode(AppConfiguration.self, from: data)
 
         // Verify all 40 properties match
 
@@ -235,7 +235,7 @@ final class SettingsTests: XCTestCase {
         // Read settings from file
         let readData = try Data(contentsOf: fileURL)
         let decoder = JSONDecoder()
-        let loaded = try decoder.decode(Settings.self, from: readData)
+        let loaded = try decoder.decode(AppConfiguration.self, from: readData)
 
         // Verify properties match
         XCTAssertEqual(loaded.tableExtension, settings.tableExtension)

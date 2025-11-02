@@ -54,7 +54,7 @@ struct AdvancedSettingsView: View {
     }
 
     private func resetToDefaults() {
-        let defaults = Settings()
+        let defaults = AppConfiguration()
 
         // GitHub Flavored Markdown
         settings.tableExtension = defaults.tableExtension
@@ -112,8 +112,8 @@ struct AdvancedSettingsView: View {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     let data = try! encoder.encode(AppConfiguration.shared)
-    let previewSettings = try! decoder.decode(Settings.self, from: data)
+    let previewSettings = try! decoder.decode(AppConfiguration.self, from: data)
 
-    return AdvancedSettingsView(settings: previewSettings)
+    AdvancedSettingsView(settings: previewSettings)
         .frame(width: 600, height: 500)
 }

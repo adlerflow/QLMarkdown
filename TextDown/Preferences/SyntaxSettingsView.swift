@@ -72,8 +72,8 @@ struct SyntaxSettingsView: View {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     let data = try! encoder.encode(AppConfiguration.shared)
-    let previewSettings = try! decoder.decode(Settings.self, from: data)
+    let previewSettings = try! decoder.decode(AppConfiguration.self, from: data)
 
-    return SyntaxSettingsView(settings: previewSettings)
+    SyntaxSettingsView(settings: previewSettings)
         .frame(width: 600, height: 500)
 }

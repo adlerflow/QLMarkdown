@@ -511,7 +511,7 @@ class AppConfiguration: Codable {
         }
         
         if let opt = defaultsDomain["customCSS"] as? String, !opt.isEmpty {
-            if !opt.hasPrefix("/"), let path = Settings.getStylesFolder() {
+            if !opt.hasPrefix("/"), let path = AppConfiguration.getStylesFolder() {
                 customCSS = path.appendingPathComponent(opt)
             } else {
                 customCSS = URL(fileURLWithPath: opt)
@@ -577,7 +577,7 @@ class AppConfiguration: Codable {
 
         do {
             let data = try Data(contentsOf: settingsURL)
-            let settings = try JSONDecoder().decode(Settings.self, from: data)
+            let settings = try JSONDecoder().decode(AppConfiguration.self, from: data)
             os_log(.info, log: .settings, "Settings loaded from %{public}@", settingsURL.path)
             return settings
         } catch {
@@ -638,7 +638,7 @@ class AppConfiguration: Codable {
     /// Get the Bundle with the resources.
     /// For the host app return the main Bundle. For the appex return the bundle of the hosting app.
     static func getResourceBundle() -> Bundle {
-        if let url = Settings.appBundleUrl, let appBundle = Bundle(url: url) {
+        if let url = AppConfiguration.appBundleUrl, let appBundle = Bundle(url: url) {
             return appBundle
         } else if Bundle.main.bundlePath.hasSuffix(".appex") {
             // this is an app extension
@@ -647,16 +647,6 @@ class AppConfiguration: Codable {
             if let appBundle = Bundle(url: url) {
                 return appBundle
             } else if let appBundle = Bundle(identifier: "org.advison.TextDown") {
-                return appBundle
-            }
-            // To access the main bundle, the extension must not be sandboxed (or must have a security exception entitlement to access the entire disk).
-            os_log(
-                "Unable to open the main application bundle from %{public}@",
-                log: OSLog.quickLookExtension,
-                type: .error,
-                url.path
-            )
-            if let appBundle = Bundle(url: Bundle.main.bundleURL.appendingPathComponent("Contents/Resources")) {
                 return appBundle
             }
         }

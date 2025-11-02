@@ -9,8 +9,8 @@ import SwiftUI
 import OSLog
 
 struct TextDownSettingsView: View {
-    @State private var draftSettings: Settings
-    @State private var originalSettings: Settings
+    @State private var draftSettings: AppConfiguration
+    @State private var originalSettings: AppConfiguration
     @Environment(\.dismiss) var dismiss
 
     init() {
@@ -19,8 +19,8 @@ struct TextDownSettingsView: View {
         let decoder = JSONDecoder()
 
         if let data = try? encoder.encode(AppConfiguration.shared),
-           let copy1 = try? decoder.decode(Settings.self, from: data),
-           let copy2 = try? decoder.decode(Settings.self, from: data) {
+           let copy1 = try? decoder.decode(AppConfiguration.self, from: data),
+           let copy2 = try? decoder.decode(AppConfiguration.self, from: data) {
             _draftSettings = State(initialValue: copy1)
             _originalSettings = State(initialValue: copy2)
         } else {

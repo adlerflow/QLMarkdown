@@ -263,7 +263,7 @@ class DocumentViewController: NSViewController {
         }
 
         let body: String
-        let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
+        let appearance: Appearance = AppConfiguration.isLightAppearance ? .light : .dark
         do {
             body = try AppConfiguration.shared.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
@@ -317,7 +317,7 @@ class DocumentViewController: NSViewController {
         } else {
             os_log(
                 "Error saving settings: %{public}@",
-                log: OSLog.quickLookExtension,
+                log: OSLog.settings,
                 type: .error,
                 r.1 ?? ""
             )
@@ -330,7 +330,7 @@ class DocumentViewController: NSViewController {
             panel.runModal()
         }
     }
-    
+
     @IBAction func refresh(_ sender: Any) {
         self.doRefresh(sender)
     }
@@ -342,7 +342,7 @@ class DocumentViewController: NSViewController {
 
     @IBAction func doRefresh(_ sender: Any)  {
         let body: String
-        let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
+        let appearance: Appearance = AppConfiguration.isLightAppearance ? .light : .dark
 
         let startTime = CFAbsoluteTimeGetCurrent()
 
@@ -406,8 +406,6 @@ document.addEventListener('scroll', function(e) {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // highlight initialization removed - using client-side highlight.js instead
 
         self.textView.isAutomaticQuoteSubstitutionEnabled = false // Settings this option on interfacebuilder is ignored.
         self.textView.isAutomaticTextReplacementEnabled = false
