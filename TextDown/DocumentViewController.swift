@@ -29,229 +29,7 @@ class DocumentViewController: NSViewController {
     // MARK: - Properties
 
     @objc dynamic var elapsedTimeLabel: String = ""
-    
-    @objc dynamic var headsExtension: Bool = Settings.factorySettings.headsExtension {
-        didSet {
-            guard oldValue != headsExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var tableExtension: Bool = Settings.factorySettings.tableExtension {
-        didSet {
-            guard oldValue != tableExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var autoLinkExtension: Bool = Settings.factorySettings.autoLinkExtension {
-        didSet {
-            guard oldValue != autoLinkExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var tagFilterExtension: Bool = Settings.factorySettings.tagFilterExtension {
-        didSet {
-            guard oldValue != tagFilterExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var taskListExtension: Bool = Settings.factorySettings.taskListExtension {
-        didSet {
-            guard oldValue != taskListExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var yamlExtension: Bool = Settings.factorySettings.yamlExtension {
-        didSet {
-            guard oldValue != yamlExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var yamlExtensionAll: Bool = Settings.factorySettings.yamlExtensionAll {
-        didSet {
-            guard oldValue != yamlExtensionAll else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var strikethroughExtension: Bool = Settings.factorySettings.strikethroughExtension {
-        didSet {
-            guard oldValue != strikethroughExtension else { return }
-            isDirty = true
-        }
-    }
-    dynamic var strikethroughDoubleTildeOption: Bool = Settings.factorySettings.strikethroughDoubleTildeOption {
-        didSet {
-            guard oldValue != strikethroughDoubleTildeOption else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var mentionExtension: Bool = Settings.factorySettings.mentionExtension {
-        didSet {
-            guard oldValue != mentionExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var syntaxHighlightExtension: Bool = Settings.factorySettings.syntaxHighlightExtension {
-        didSet {
-            guard oldValue != syntaxHighlightExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var syntaxLineNumbers: Bool = Settings.factorySettings.syntaxLineNumbersOption {
-        didSet {
-            guard oldValue != syntaxLineNumbers else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var syntaxWrapEnabled: Bool = Settings.factorySettings.syntaxWordWrapOption > 0 {
-        didSet {
-            guard oldValue != syntaxWrapEnabled else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var syntaxWrapCharacters: Int = Settings.factorySettings.syntaxWordWrapOption > 0 ? Settings.factorySettings.syntaxWordWrapOption : 80 {
-        didSet {
-            guard oldValue != syntaxWrapCharacters else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var syntaxTabsOption: Int = Settings.factorySettings.syntaxTabsOption {
-        didSet {
-            guard oldValue != syntaxTabsOption else { return }
-            isDirty = true
-        }
-    }
 
-    @objc dynamic var mathExtension: Bool = Settings.factorySettings.mathExtension {
-        didSet {
-            guard oldValue != mathExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var highlightExtension: Bool = Settings.factorySettings.highlightExtension {
-        didSet {
-            guard oldValue != highlightExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var subSuperScriptExtension: Bool = Settings.factorySettings.subExtension {
-        didSet {
-            guard oldValue != subSuperScriptExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var emojiExtension: Bool = Settings.factorySettings.emojiExtension {
-        didSet {
-            guard oldValue != emojiExtension else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var emojiImageOption: Bool = Settings.factorySettings.emojiImageOption {
-        didSet {
-            guard oldValue != emojiImageOption else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var inlineImageExtension: Bool = Settings.factorySettings.inlineImageExtension {
-        didSet {
-            guard oldValue != inlineImageExtension else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var hardBreakOption: Bool = Settings.factorySettings.hardBreakOption {
-        didSet {
-            guard oldValue != hardBreakOption else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var noSoftBreakOption: Bool = Settings.factorySettings.noSoftBreakOption {
-        didSet {
-            guard oldValue != noSoftBreakOption else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var unsafeHTMLOption: Bool = Settings.factorySettings.unsafeHTMLOption {
-        didSet {
-            guard oldValue != unsafeHTMLOption else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var validateUTFOption: Bool = Settings.factorySettings.validateUTFOption {
-        didSet {
-            guard oldValue != validateUTFOption else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var smartQuotesOption: Bool = Settings.factorySettings.smartQuotesOption {
-        didSet {
-            guard oldValue != smartQuotesOption else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var footnotesOption: Bool = Settings.factorySettings.footnotesOption {
-        didSet {
-            guard oldValue != footnotesOption else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var debugMode: Bool = Settings.factorySettings.debug {
-        didSet {
-            guard oldValue != debugMode else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var renderAsCode: Bool = Settings.factorySettings.renderAsCode {
-        didSet {
-            guard oldValue != renderAsCode else { return }
-            isDirty = true
-        }
-    }
-    
-    @objc dynamic var qlWindowSizeCustomized: Bool = false {
-        didSet {
-            guard oldValue != qlWindowSizeCustomized else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var qlWindowWidth: Int = Settings.factorySettings.qlWindowWidth ?? 1000 {
-        didSet {
-            guard oldValue != qlWindowWidth else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var qlWindowHeight: Int = Settings.factorySettings.qlWindowHeight ?? 800 {
-        didSet {
-            guard oldValue != qlWindowHeight else { return }
-            isDirty = true
-        }
-    }
-
-    @objc dynamic var customCSSOverride: Bool = Settings.factorySettings.customCSSOverride {
-        didSet {
-            guard oldValue != customCSSOverride else { return }
-            isDirty = true
-        }
-    }
-    @objc dynamic var customCSSFile: URL? = Settings.factorySettings.customCSS {
-        didSet {
-            guard oldValue != customCSSFile else { return }
-            isDirty = true
-        }
-    }
-    
     internal var pauseAutoSave = 0 {
         didSet {
             if pauseAutoSave == 0 && isDirty && isLoaded && isAutoSaving {
@@ -265,24 +43,17 @@ class DocumentViewController: NSViewController {
         }
         set {
             guard newValue != isAutoSaving else { return }
-            
+
             self.willChangeValue(forKey: "isAutoSaving")
             UserDefaults.standard.setValue(newValue, forKey: "auto-save")
             self.didChangeValue(forKey: "isAutoSaving")
-            
+
             if newValue && isDirty && pauseAutoSave == 0 {
                 saveAction(self)
             }
         }
     }
-    
-    @objc dynamic var isAboutVisible: Bool = Settings.factorySettings.about {
-        didSet {
-            guard oldValue != isAboutVisible else { return }
-            isDirty = true
-        }
-    }
-    
+
     var firstView = true
 
     var autoRefresh: Bool {
@@ -492,15 +263,14 @@ class DocumentViewController: NSViewController {
         }
 
         let body: String
-        let settings = self.updateSettings()
         let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
         do {
-            body = try settings.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
+            body = try Settings.shared.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
 
-        let html = settings.getCompleteHTML(title: document?.fileURL?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+        let html = Settings.shared.getCompleteHTML(title: document?.fileURL?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         do {
             try html.write(to: dst, atomically: true, encoding: .utf8)
         } catch {
@@ -517,9 +287,9 @@ class DocumentViewController: NSViewController {
     }
     
     @IBAction func revertDocumentToSaved(_ sender: Any) {
-        let settings = Settings.shared
-        settings.initFromDefaults()
-        self.initFromSettings(settings)
+        Settings.shared.initFromDefaults()
+        isDirty = false
+        doRefresh(self)
     }
     
     @IBAction func resetToFactory(_ sender: Any) {
@@ -529,10 +299,10 @@ class DocumentViewController: NSViewController {
         alert.addButton(withTitle: "No").keyEquivalent = "\u{1b}"
         let r = alert.runModal()
         if r == .alertFirstButtonReturn {
-            let settings = Settings.shared
-            settings.resetToFactory()
-            settings.saveToSharedFile()
-            self.initFromSettings(settings)
+            Settings.shared.resetToFactory()
+            Settings.shared.saveToSharedFile()
+            isDirty = false
+            doRefresh(self)
         }
     }
     
@@ -541,9 +311,7 @@ class DocumentViewController: NSViewController {
     }
 
     @IBAction func saveAction(_ sender: Any) {
-        let settings = self.updateSettings()
-        
-        let r = settings.saveToSharedFile()
+        let r = Settings.shared.saveToSharedFile()
         if r.0 {
             isDirty = false
         } else {
@@ -554,7 +322,7 @@ class DocumentViewController: NSViewController {
                 type: .error,
                 r.1 ?? ""
             )
-            
+
             let panel = NSAlert()
             panel.messageText = "Error saving the settings!"
             panel.informativeText = r.1 ?? ""
@@ -575,13 +343,12 @@ class DocumentViewController: NSViewController {
 
     @IBAction func doRefresh(_ sender: Any)  {
         let body: String
-        let settings = self.updateSettings()
         let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
 
         let startTime = CFAbsoluteTimeGetCurrent()
 
         do {
-            body = try settings.render(text: self.textView.string, filename: self.document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
+            body = try Settings.shared.render(text: self.textView.string, filename: self.document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
@@ -619,8 +386,8 @@ document.addEventListener('scroll', function(e) {
 });
 </script>
 """
-        
-        let html = settings.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+
+        let html = Settings.shared.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
 
         // Use loadHTMLString with document directory as baseURL
@@ -652,10 +419,6 @@ document.addEventListener('scroll', function(e) {
         self.webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
         let contentController = self.webView.configuration.userContentController
         contentController.add(self, name: "scrollHandler")
-
-        let settings = Settings.shared
-
-        self.initFromSettings(settings)
 
         DispatchQueue.main.async {
             self.textView.setSelectedRange(NSRange(location: 0, length: 0))
@@ -715,116 +478,6 @@ document.addEventListener('scroll', function(e) {
         }
     }
     
-    internal func initFromSettings(_ settings: Settings) {
-        pauseAutoRefresh += 1
-        pauseAutoSave += 1
-
-        self.debugMode = settings.debug
-        self.isAboutVisible = settings.about
-        self.renderAsCode = settings.renderAsCode
-
-        self.qlWindowSizeCustomized = settings.qlWindowWidth ?? 0 > 0 && settings.qlWindowHeight ?? 0 > 0
-        self.qlWindowWidth = settings.qlWindowWidth ?? 1000
-        self.qlWindowHeight = settings.qlWindowHeight ?? 800
-
-        self.tableExtension = settings.tableExtension
-        self.autoLinkExtension = settings.autoLinkExtension
-        self.tagFilterExtension = settings.tagFilterExtension
-        self.taskListExtension = settings.taskListExtension
-
-        self.yamlExtension = settings.yamlExtension
-        self.yamlExtensionAll = settings.yamlExtensionAll
-
-        self.strikethroughExtension = settings.strikethroughExtension
-        self.strikethroughDoubleTildeOption = settings.strikethroughDoubleTildeOption
-
-        self.mathExtension = settings.mathExtension
-        self.mentionExtension = settings.mentionExtension
-        self.syntaxHighlightExtension = settings.syntaxHighlightExtension
-
-        self.emojiExtension = settings.emojiExtension
-        self.emojiImageOption = settings.emojiImageOption
-
-        self.headsExtension = settings.headsExtension
-        self.highlightExtension = settings.highlightExtension
-        self.inlineImageExtension = settings.inlineImageExtension
-        self.subSuperScriptExtension = settings.supExtension
-
-        self.hardBreakOption = settings.hardBreakOption
-        self.noSoftBreakOption = settings.noSoftBreakOption
-        self.unsafeHTMLOption = settings.unsafeHTMLOption
-        self.validateUTFOption = settings.validateUTFOption
-        self.smartQuotesOption = settings.smartQuotesOption
-        self.footnotesOption = settings.footnotesOption
-
-        self.customCSSFile = settings.customCSS
-        self.customCSSOverride = settings.customCSSOverride
-
-        self.syntaxLineNumbers = settings.syntaxLineNumbersOption
-        self.syntaxWrapEnabled = settings.syntaxWordWrapOption > 0
-        self.syntaxWrapCharacters = settings.syntaxWordWrapOption > 0 ? settings.syntaxWordWrapOption : 80
-        self.syntaxTabsOption = settings.syntaxTabsOption
-
-
-        self.isAboutVisible = settings.about
-
-        isDirty = false
-        pauseAutoRefresh -= 1
-        pauseAutoSave -= 1
-
-        doRefresh(self)
-    }
-    
-    internal func updateSettings() -> Settings {
-        let settings = Settings.shared
-        
-        settings.debug = self.debugMode
-        settings.renderAsCode = self.renderAsCode
-        settings.qlWindowWidth = self.qlWindowSizeCustomized ? self.qlWindowWidth : nil
-        settings.qlWindowHeight = self.qlWindowSizeCustomized ? self.qlWindowHeight : nil
-        
-        settings.tableExtension = self.tableExtension
-        settings.autoLinkExtension = self.autoLinkExtension
-        settings.tagFilterExtension = self.tagFilterExtension
-        settings.taskListExtension = self.taskListExtension
-        settings.yamlExtension = self.yamlExtension
-        settings.yamlExtensionAll = self.yamlExtensionAll
-        
-        settings.mathExtension = self.mathExtension
-        settings.mentionExtension = self.mentionExtension
-        
-        settings.emojiExtension = self.emojiExtension
-        settings.emojiImageOption = self.emojiImageOption
-        
-        settings.headsExtension = self.headsExtension
-        settings.highlightExtension = self.highlightExtension
-        settings.inlineImageExtension = self.inlineImageExtension
-        settings.subExtension = self.subSuperScriptExtension
-        settings.supExtension = self.subSuperScriptExtension
-        
-        settings.strikethroughExtension = self.strikethroughExtension
-        settings.strikethroughDoubleTildeOption = self.strikethroughDoubleTildeOption
-        
-        settings.syntaxHighlightExtension = self.syntaxHighlightExtension
-        settings.syntaxLineNumbersOption = self.syntaxLineNumbers
-        settings.syntaxWordWrapOption = self.syntaxWrapEnabled ? self.syntaxWrapCharacters : 0
-        
-        settings.syntaxTabsOption = self.syntaxTabsOption
-
-        
-        settings.hardBreakOption = self.hardBreakOption
-        settings.noSoftBreakOption = self.noSoftBreakOption
-        settings.unsafeHTMLOption = self.unsafeHTMLOption
-        settings.validateUTFOption = self.validateUTFOption
-        settings.smartQuotesOption = self.smartQuotesOption
-        settings.footnotesOption = self.footnotesOption
-        
-        settings.customCSSOverride = self.customCSSOverride
-        settings.customCSS = self.customCSSFile
-        settings.openInlineLink = Settings.shared.openInlineLink
-        settings.about = self.isAboutVisible
-        return settings
-    }
 }
 
 // MARK: - NSMenuItemValidation
@@ -884,9 +537,9 @@ extension DocumentViewController: WKScriptMessageHandler {
 extension DocumentViewController: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         if let item = menu.item(withTag: -6) {
-            item.title = self.customCSSFile == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
+            item.title = Settings.shared.customCSS == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
         }
-        
+
         // print("menuNeedsUpdate")
     }
 }

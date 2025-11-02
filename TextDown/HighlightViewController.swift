@@ -17,48 +17,54 @@ class HighlightViewController: NSViewController {
     
     @objc dynamic var syntaxLineNumbers: Bool {
         get {
-            return self.settingsViewController?.syntaxLineNumbers ?? false
+            return Settings.shared.syntaxLineNumbersOption
         }
         set {
-            guard newValue != self.settingsViewController?.syntaxLineNumbers else { return }
+            guard newValue != Settings.shared.syntaxLineNumbersOption else { return }
             self.willChangeValue(forKey: "syntaxLineNumbers")
-            self.settingsViewController?.syntaxLineNumbers = newValue
+            Settings.shared.syntaxLineNumbersOption = newValue
+            self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxLineNumbers")
         }
     }
-    
+
     @objc dynamic var syntaxWrapEnabled: Bool {
         get {
-            return self.settingsViewController?.syntaxWrapEnabled ?? false
+            return Settings.shared.syntaxWordWrapOption > 0
         }
         set {
-            guard newValue != self.settingsViewController?.syntaxWrapEnabled else { return }
+            guard newValue != (Settings.shared.syntaxWordWrapOption > 0) else { return }
             self.willChangeValue(forKey: "syntaxWrapEnabled")
-            self.settingsViewController?.syntaxWrapEnabled = newValue
+            Settings.shared.syntaxWordWrapOption = newValue ? (syntaxWrapCharacters > 0 ? syntaxWrapCharacters : 80) : 0
+            self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxWrapEnabled")
         }
     }
-    
+
     @objc dynamic var syntaxWrapCharacters: Int {
         get {
-            return self.settingsViewController?.syntaxWrapCharacters ?? 80
+            return Settings.shared.syntaxWordWrapOption > 0 ? Settings.shared.syntaxWordWrapOption : 80
         }
         set {
-            guard newValue != self.settingsViewController?.syntaxWrapCharacters else { return }
+            guard newValue != (Settings.shared.syntaxWordWrapOption > 0 ? Settings.shared.syntaxWordWrapOption : 80) else { return }
             self.willChangeValue(forKey: "syntaxWrapCharacters")
-            self.settingsViewController?.syntaxWrapCharacters = newValue
+            if syntaxWrapEnabled {
+                Settings.shared.syntaxWordWrapOption = newValue
+            }
+            self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxWrapCharacters")
         }
     }
-    
+
     @objc dynamic var syntaxTabsOption: Int {
         get {
-            return self.settingsViewController?.syntaxTabsOption ?? 80
+            return Settings.shared.syntaxTabsOption
         }
         set {
-            guard newValue != self.settingsViewController?.syntaxTabsOption else { return }
+            guard newValue != Settings.shared.syntaxTabsOption else { return }
             self.willChangeValue(forKey: "syntaxTabsOption")
-            self.settingsViewController?.syntaxTabsOption = newValue
+            Settings.shared.syntaxTabsOption = newValue
+            self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxTabsOption")
         }
     }
@@ -69,25 +75,8 @@ class HighlightViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let settings = self.settingsViewController?.updateSettings() {
-            self.initFromSettings(settings)
-        }
-    }
-
-    internal func initFromSettings(_ settings: Settings) {
-        self.settingsViewController?.pauseAutoRefresh += 1
-        self.settingsViewController?.pauseAutoSave += 1
-        
-        self.syntaxLineNumbers = settings.syntaxLineNumbersOption
-        self.syntaxWrapEnabled = settings.syntaxWordWrapOption > 0
-        
-        self.syntaxWrapCharacters = settings.syntaxWordWrapOption > 0 ? settings.syntaxWordWrapOption : 80
-        if let i = self.sourceTabsPopup.itemArray.firstIndex(where: { $0.tag == settings.syntaxTabsOption}) {
+        if let i = self.sourceTabsPopup.itemArray.firstIndex(where: { $0.tag == Settings.shared.syntaxTabsOption}) {
             self.sourceTabsPopup.selectItem(at: i)
         }
-        
-                
-        self.settingsViewController?.pauseAutoRefresh -= 1
-        self.settingsViewController?.pauseAutoSave -= 1
     }
 }
