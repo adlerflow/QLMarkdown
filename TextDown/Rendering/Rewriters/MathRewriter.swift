@@ -46,7 +46,6 @@ import OSLog
 /// For production-grade math support, consider:
 /// - Forking swift-markdown to add custom delimiter API
 /// - Using a dedicated LaTeX parser (e.g., KaTeX native parser)
-/// - Keeping cmark-gfm math extension (hybrid approach)
 ///
 struct MathRewriter: MarkupRewriter {
     let enabled: Bool
