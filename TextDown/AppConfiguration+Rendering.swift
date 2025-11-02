@@ -1,5 +1,5 @@
 //
-//  Settings+render.swift
+//  AppConfiguration+Rendering.swift
 //  TextDown
 //
 //  Created by adlerflow on 06/05/25.
@@ -12,7 +12,7 @@ import SwiftSoup
 import Yams
 import Markdown  // swift-markdown package
 
-extension Settings {
+extension AppConfiguration {
     func render(text: String, filename: String, forAppearance appearance: Appearance, baseDir: String) throws -> String {
         os_log("render() called with swift-markdown", log: OSLog.rendering, type: .info)
 

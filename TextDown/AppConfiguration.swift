@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  AppConfiguration.swift
 //  TextDown
 //
 //  Created by adlerflow on 13/12/20.
@@ -26,7 +26,7 @@ extension NSNotification.Name {
 }
 
 @Observable
-class Settings: Codable {
+class AppConfiguration: Codable {
     enum CodingKeys: String, CodingKey {
         case autoLinkExtension
         case checkboxExtension
@@ -79,9 +79,9 @@ class Settings: Codable {
     }
 
     static let shared = {
-        return Settings.settingsFromSharedFile() ?? Settings()
+        return AppConfiguration.settingsFromSharedFile() ?? AppConfiguration()
     }()
-    static let factorySettings = Settings(noInitFromDefault: true)
+    static let factorySettings = AppConfiguration(noInitFromDefault: true)
     static var appBundleUrl: URL?
     
     static var isLightAppearance: Bool {
@@ -343,11 +343,11 @@ class Settings: Codable {
     }
     
     func initFromDefaults() {
-        let s = Settings.settingsFromSharedFile() ?? Settings()
+        let s = AppConfiguration.settingsFromSharedFile() ?? AppConfiguration()
         update(from: s)
     }
-    
-    func update(from s: Settings) {
+
+    func update(from s: AppConfiguration) {
         self.autoLinkExtension = s.autoLinkExtension
         self.checkboxExtension = s.checkboxExtension
         
@@ -554,11 +554,11 @@ class Settings: Codable {
     }
     
     func resetToFactory() {
-        let s = Settings()
+        let s = AppConfiguration()
         update(from: s)
     }
-    
-    static func settingsFromSharedFile() -> Settings? {
+
+    static func settingsFromSharedFile() -> AppConfiguration? {
         guard let settingsURL = Self.settingsFileURL else {
             os_log(.error, log: .settings, "Unable to locate settings file URL")
             return nil

@@ -1,5 +1,5 @@
 //
-//  Settings+NoXPC.swift
+//  AppConfiguration+Persistence.swift
 //  TextDown
 //
 //  Created by adlerflow on 09/05/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Settings {
+extension AppConfiguration {
     static func isSandboxed() -> Bool {
         guard let task = SecTaskCreateFromSelf(nil) else { return false }
         let key = "com.apple.security.app-sandbox" as CFString
@@ -26,11 +26,11 @@ extension Settings {
     }
     
     class func getStylesFolder() -> URL? {
-        return Settings.applicationSupportUrl?.appendingPathComponent("themes")
+        return AppConfiguration.applicationSupportUrl?.appendingPathComponent("themes")
     }
 
     class var settingsFileURL: URL? {
-        return Settings.applicationSupportUrl?.appendingPathComponent("settings.json")
+        return AppConfiguration.applicationSupportUrl?.appendingPathComponent("settings.json")
     }
 
     func getCustomCSSCode() -> String? {

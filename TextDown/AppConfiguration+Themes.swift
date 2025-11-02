@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  AppConfiguration+Themes.swift
 //  TextDown
 //
 //  Created by adlerflow on 25/12/20.
@@ -9,9 +9,9 @@ import Foundation
 import AppKit
 import OSLog
 
-extension Settings {
+extension AppConfiguration {
     func getAvailableStyles(resetCache reset: Bool = false) -> [URL] {
-        guard let stylesFolder = Settings.getStylesFolder() else {
+        guard let stylesFolder = AppConfiguration.getStylesFolder() else {
             return []
         }
 
