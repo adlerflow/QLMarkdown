@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import OSLog
 
 extension Settings {
     func getAvailableStyles(resetCache reset: Bool = false) -> [URL] {
@@ -18,7 +19,8 @@ extension Settings {
         do {
             try FileManager.default.createDirectory(at: stylesFolder, withIntermediateDirectories: true)
         } catch {
-            print("Failed to create themes directory: \(error.localizedDescription)")
+            os_log(.error, log: .settings, "Failed to create themes directory: %{public}@",
+                   error.localizedDescription)
             return []
         }
 

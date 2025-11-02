@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct TextDownSettingsView: View {
     @State private var draftSettings: Settings
@@ -136,7 +137,8 @@ struct TextDownSettingsView: View {
         // Save to disk
         let (success, error) = shared.saveToSharedFile()
         if !success {
-            print("Failed to save settings: \(error ?? "unknown error")")
+            os_log(.error, log: .settings, "Failed to save settings: %{public}@",
+                   error ?? "unknown error")
         }
     }
 }

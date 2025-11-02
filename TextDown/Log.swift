@@ -17,4 +17,6 @@ extension OSLog {
     static let highlightWrapperExtension = OSLog(subsystem: subsystem, category: "Highlight Wrapper")
     static let rendering = OSLog(subsystem: subsystem, category: "Rendering")
     static let settings = OSLog(subsystem: subsystem, category: "Settings")
+    static let document = OSLog(subsystem: subsystem, category: "Document")
+    static let window = OSLog(subsystem: subsystem, category: "Window")
 }

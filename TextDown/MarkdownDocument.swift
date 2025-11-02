@@ -25,7 +25,6 @@ class MarkdownDocument: NSDocument {
 
     override init() {
         super.init()
-        Swift.print("MarkdownDocument: initialized")
         os_log(.info, log: log, "MarkdownDocument initialized")
     }
 
@@ -71,12 +70,12 @@ class MarkdownDocument: NSDocument {
         // This must happen AFTER addWindowController() because windowDidLoad() is called DURING
         // storyboard.instantiateController(), before self.document is set
         if let viewController = windowController.contentViewController as? DocumentViewController {
-            Swift.print("MarkdownDocument: Loading document content into view controller (\(markdownContent.count) bytes)")
+            os_log(.info, log: log, "Loading document content into view controller (%d bytes)", markdownContent.count)
             viewController.representedObject = self
             viewController.loadDocument(self)
-            Swift.print("MarkdownDocument: Document content loaded successfully")
+            os_log(.info, log: log, "Document content loaded successfully")
         } else {
-            Swift.print("MarkdownDocument: ERROR - Could not get DocumentViewController")
+            os_log(.error, log: log, "Could not get DocumentViewController")
         }
 
         // Update window display with document info (enables document proxy, version browser, etc.)
@@ -85,19 +84,17 @@ class MarkdownDocument: NSDocument {
 
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         super.windowControllerDidLoadNib(windowController)
-        Swift.print("MarkdownDocument: windowControllerDidLoadNib called, content: \(markdownContent.count) bytes")
         os_log(.info, log: log, "windowControllerDidLoadNib called, content: %d bytes", markdownContent.count)
 
         // Notify view controller that document content is ready
         if let markdownWindowController = windowController as? MarkdownWindowController,
            let viewController = markdownWindowController.contentViewController as? DocumentViewController {
-            Swift.print("MarkdownDocument: Loading document into view controller")
+            os_log(.info, log: log, "Loading document into view controller")
             viewController.representedObject = self
             viewController.loadDocument(self)
-            Swift.print("MarkdownDocument: Document content loaded into view controller")
             os_log(.info, log: log, "Document content loaded into view controller")
         } else {
-            Swift.print("MarkdownDocument: ERROR - Could not get view controller")
+            os_log(.error, log: log, "Could not get view controller")
         }
     }
 
@@ -117,12 +114,10 @@ class MarkdownDocument: NSDocument {
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        Swift.print("MarkdownDocument: read(from:ofType:) called with \(data.count) bytes, type: \(typeName)")
         os_log(.info, log: log, "read(from:ofType:) called with %d bytes, type: %{public}@",
                data.count, typeName)
 
         guard let content = String(data: data, encoding: .utf8) else {
-            Swift.print("MarkdownDocument: ERROR - Failed to decode data as UTF-8")
             os_log(.error, log: log, "Failed to decode data as UTF-8")
             throw NSError(
                 domain: NSOSStatusErrorDomain,
@@ -134,14 +129,12 @@ class MarkdownDocument: NSDocument {
         }
 
         markdownContent = content
-        Swift.print("MarkdownDocument: Document loaded: \(fileURL?.lastPathComponent ?? "untitled") (\(content.utf8.count) bytes)")
-        Swift.print("MarkdownDocument: Content preview: \(String(content.prefix(100)))")
         os_log(.info, log: log, "Document loaded: %{public}@ (%d bytes)",
                fileURL?.lastPathComponent ?? "untitled", content.utf8.count)
+        os_log(.debug, log: log, "Content preview: %{public}@", String(content.prefix(100)))
     }
 
     override func read(from url: URL, ofType typeName: String) throws {
-        Swift.print("MarkdownDocument: read(from url:ofType:) called: \(url.path)")
         os_log(.info, log: log, "read(from url:ofType:) called: %{public}@", url.path)
         try super.read(from: url, ofType: typeName)
     }
@@ -152,7 +145,7 @@ class MarkdownDocument: NSDocument {
         super.save(to: url, ofType: typeName, for: saveOperation) { [weak self] error in
             if error == nil {
                 // Update window display after successful save
-                Swift.print("MarkdownDocument: Document saved to: \(url.path)")
+                os_log(.info, log: self?.log ?? .document, "Document saved to: %{public}@", url.path)
                 self?.updateWindowDisplay()
             }
             completionHandler(error)

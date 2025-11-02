@@ -65,7 +65,8 @@ class MarkdownWindowController: NSWindowController, NSWindowDelegate {
         // Set represented URL to enable document proxy features (version browser, move, rename, etc.)
         window.representedURL = document.fileURL
 
-        Swift.print("MarkdownWindowController: Updated document display with URL: \(document.fileURL?.path ?? "nil")")
+        os_log(.info, log: log, "Updated document display with URL: %{public}@",
+               document.fileURL?.path ?? "nil")
     }
 
     // MARK: - NSWindowDelegate

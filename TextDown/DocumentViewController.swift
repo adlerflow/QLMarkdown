@@ -315,7 +315,6 @@ class DocumentViewController: NSViewController {
         if r.0 {
             isDirty = false
         } else {
-            print("Error saving settings: \(r.1 ?? "")")
             os_log(
                 "Error saving settings: %{public}@",
                 log: OSLog.quickLookExtension,
@@ -508,7 +507,8 @@ extension DocumentViewController: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print(error)
+        os_log(.error, log: OSLog.rendering, "WebView navigation failed: %{public}@",
+               error.localizedDescription)
         // self.webView.isHidden = false
     }
     

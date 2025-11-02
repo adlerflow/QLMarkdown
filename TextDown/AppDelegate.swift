@@ -8,6 +8,7 @@
 import Cocoa
 import Sparkle
 import SwiftUI
+import OSLog
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
@@ -27,7 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
             display: true
         ) { _, _, error in
             if let error = error {
-                print("Failed to open document: \(error.localizedDescription)")
+                os_log(.error, log: .default, "Failed to open document: %{public}@",
+                       error.localizedDescription)
             }
         }
 
@@ -55,7 +57,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         do {
             try self.updater!.start()
         } catch {
-            print("Failed to start updater with error: \(error)")
+            os_log(.error, log: .default, "Failed to start updater with error: %{public}@",
+                   error.localizedDescription)
 
             let alert = NSAlert()
             alert.messageText = "Updater Error"
@@ -67,7 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         // Create a new untitled document on launch
-        print("applicationShouldOpenUntitledFile called")
+        os_log(.debug, log: .default, "applicationShouldOpenUntitledFile called")
         return true
     }
 
@@ -80,10 +83,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
             display: false
         ) { document, _, error in
             if let error = error {
-                print("Failed to open document for printing: \(error.localizedDescription)")
+                os_log(.error, log: .default, "Failed to open document for printing: %{public}@",
+                       error.localizedDescription)
                 return
             }
-            
+
             document?.printDocument(nil)
         }
         
