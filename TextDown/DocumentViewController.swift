@@ -396,14 +396,6 @@ document.addEventListener('scroll', function(e) {
         elapsedTimeLabel = String(format: "Rendered in %.3f seconds", timeElapsed)
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "HighlightSegue" {
-            if let vc = segue.destinationController as? HighlightViewController {
-                vc.settingsViewController = self
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -513,7 +505,6 @@ extension DocumentViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if !AppConfiguration.shared.openInlineLink, navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url, url.scheme != "file" {
             let r = NSWorkspace.shared.open(url)
-            // print(r, url.absoluteString)
             if r {
                 decisionHandler(.cancel)
                 return
@@ -537,8 +528,6 @@ extension DocumentViewController: NSMenuDelegate {
         if let item = menu.item(withTag: -6) {
             item.title = AppConfiguration.shared.customCSS == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
         }
-
-        // print("menuNeedsUpdate")
     }
 }
 

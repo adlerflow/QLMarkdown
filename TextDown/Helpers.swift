@@ -111,10 +111,4 @@ extension String {
         let s = String(format: format, string, n+1)
         return s
     }
-    
-    func escapingForLua() -> String {
-        var s = self.replacingOccurrences(of: "\\", with: "\\\\")
-        s = s.replacingOccurrences(of: "\"", with: "\\\"")
-        return s
-    }
 }

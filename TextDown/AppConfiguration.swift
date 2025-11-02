@@ -141,7 +141,6 @@ class AppConfiguration: Codable {
             return UserDefaults.standard.integer(forKey: "ql-markdown-render-count");
         }
         set {
-            // print("Rendered \(newValue) files.")
             UserDefaults.standard.setValue(newValue, forKey: "ql-markdown-render-count")
             UserDefaults.standard.synchronize();
         }
@@ -338,7 +337,6 @@ class AppConfiguration: Codable {
     }
     
     @objc func handleSettingsChanged(_ notification: NSNotification) {
-        // print("settings changed")
         self.initFromDefaults()
     }
     
@@ -638,10 +636,18 @@ class AppConfiguration: Codable {
     /// Get the Bundle with the resources.
     /// For the host app return the main Bundle. For the appex return the bundle of the hosting app.
     static func getResourceBundle() -> Bundle {
+        // Try explicit app bundle URL first (for extensions)
         if let url = AppConfiguration.appBundleUrl, let appBundle = Bundle(url: url) {
             return appBundle
-        } else if Bundle.main.bundlePath.hasSuffix(".appex") {
-            // this is an app extension
+        }
+
+        // For test context, use Bundle(for:) to find the bundle containing AppConfiguration
+        if Bundle.main.bundlePath.contains(".xctest") {
+            return Bundle(for: AppConfiguration.self)
+        }
+
+        // For app extensions (.appex)
+        if Bundle.main.bundlePath.hasSuffix(".appex") {
             let url = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
 
             if let appBundle = Bundle(url: url) {
@@ -650,6 +656,7 @@ class AppConfiguration: Codable {
                 return appBundle
             }
         }
+
         return Bundle.main
     }
     
