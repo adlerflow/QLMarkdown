@@ -31,21 +31,35 @@ struct MarkdownRenderer {
     /// Render markdown to HTML
     /// - Parameters:
     ///   - markdown: Raw markdown string
+    ///   - filename: Filename for extension-based processing (.rmd, .qmd)
     ///   - baseDirectory: Base directory for resolving relative image paths
     ///   - appearance: Light/Dark mode for styling
     /// - Returns: Complete HTML document string
     /// - Throws: Rendering errors
-    func render(markdown: String, baseDirectory: URL, appearance: Appearance) throws -> String {
+    func render(markdown: String, filename: String = "", baseDirectory: URL, appearance: Appearance) throws -> String {
         os_log("MarkdownRenderer.render() called with swift-markdown", log: OSLog.rendering, type: .info)
 
-        // STEP 1: Parse markdown with options
+        // STAGE 1: YAML Header Processing (for R Markdown .rmd/.qmd files)
+        let yamlProcessor = YamlHeaderProcessor(settings: settings)
+        let (processedMarkdown, yamlHeader) = yamlProcessor.extractYamlHeader(from: markdown, filename: filename)
+
+        if !yamlHeader.isEmpty {
+            os_log("Extracted YAML header (%d bytes)", log: OSLog.rendering, type: .debug, yamlHeader.count)
+        }
+
+        // STAGE 2: Parse Options Configuration
         var parseOptions: ParseOptions = []
 
-        // Disable smart quotes/dashes if needed
-        // (Note: hardBreakOption and noSoftBreakOption are cmark-gfm specific and not directly
-        // supported in swift-markdown. Line break behavior is handled via Markdown syntax.)
+        // Disable smart quotes/dashes if user preference set
+        if settings.smartQuotesOption {
+            // Note: ParseOptions.disableSmartOpts DISABLES smart quotes
+            // Our setting is "enable smart quotes", so we DON'T add the option
+        } else {
+            parseOptions.insert(.disableSmartOpts)
+        }
 
-        let document = Document(parsing: markdown, options: parseOptions)
+        // STAGE 3: Parse markdown
+        let document = Document(parsing: processedMarkdown, options: parseOptions)
         os_log("Parsed markdown document with %d children", log: OSLog.rendering, type: .debug, document.childCount)
 
         // STEP 2: Apply rewriters
@@ -88,18 +102,18 @@ struct MarkdownRenderer {
             transformed = rewriter.visit(transformed) ?? transformed
         }
 
-        // STEP 3: Convert to HTML using HTMLFormatter
+        // STAGE 4: Convert to HTML using HTMLFormatter
         let htmlBody = HTMLFormatter.format(transformed)
         os_log("HTML generation complete, length: %d", log: OSLog.rendering, type: .debug, htmlBody.count)
 
-        // STEP 4: Post-process HTML
-        let finalHTML = try postProcessHTML(htmlBody, appearance: appearance)
+        // STAGE 5: Post-process HTML
+        let finalHTML = try postProcessHTML(htmlBody, yamlHeader: yamlHeader, appearance: appearance)
 
         return finalHTML
     }
 
-    /// Post-process HTML: Add heading IDs, inject CSS/JS
-    private func postProcessHTML(_ htmlBody: String, appearance: Appearance) throws -> String {
+    /// Post-process HTML: Add heading IDs, inject CSS/JS, prepend YAML header
+    private func postProcessHTML(_ htmlBody: String, yamlHeader: String, appearance: Appearance) throws -> String {
         // Parse HTML fragment
         let doc = try SwiftSoup.parseBodyFragment(htmlBody)
         guard let body = doc.body() else {
@@ -112,7 +126,7 @@ struct MarkdownRenderer {
         }
 
         // Build complete HTML document with CSS/JS
-        return try buildCompleteHTML(body: try body.html(), appearance: appearance)
+        return try buildCompleteHTML(body: try body.html(), yamlHeader: yamlHeader, appearance: appearance)
     }
 
     /// Add unique ID attributes to all headings
@@ -127,7 +141,7 @@ struct MarkdownRenderer {
     }
 
     /// Build complete HTML document with CSS and JavaScript
-    private func buildCompleteHTML(body: String, appearance: Appearance) throws -> String {
+    private func buildCompleteHTML(body: String, yamlHeader: String = "", appearance: Appearance) throws -> String {
         var html = """
         <!doctype html>
         <html>
@@ -190,9 +204,15 @@ struct MarkdownRenderer {
                     <tr><td><strong>Math:</strong></td><td>\(settings.mathExtension ? "Enabled" : "Disabled")</td></tr>
                     <tr><td><strong>Syntax Highlighting:</strong></td><td>\(settings.syntaxHighlightExtension ? "Enabled" : "Disabled")</td></tr>
                     <tr><td><strong>Tables:</strong></td><td>\(settings.tableExtension ? "Enabled (GFM)" : "Disabled")</td></tr>
+                    <tr><td><strong>YAML Header:</strong></td><td>\(!yamlHeader.isEmpty ? "Extracted (\(yamlHeader.count) bytes)" : "None")</td></tr>
                 </table>
             </div>
             """
+        }
+
+        // Add YAML header if extracted (R Markdown .rmd/.qmd files)
+        if !yamlHeader.isEmpty {
+            html += yamlHeader + "\n"
         }
 
         // Add body content

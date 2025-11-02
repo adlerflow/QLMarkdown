@@ -58,6 +58,7 @@
 		F4CB23DE2EB7D3690027B041 /* HeadingIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */; };
 		F4CB23DF2EB7D3690027B041 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */; };
 		F4CB23E02EB7D3690027B041 /* MathRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D22EB7D3690027B041 /* MathRewriter.swift */; };
+		F4CB241E2EB7E2530027B041 /* YamlHeaderProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,7 @@
 		F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSupRewriter.swift; sourceTree = "<group>"; };
 		F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingIDGenerator.swift; sourceTree = "<group>"; };
 		F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
+		F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamlHeaderProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -332,6 +334,7 @@
 				F4CB23D52EB7D3690027B041 /* Rewriters */,
 				F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */,
 				F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */,
+				F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */,
 				83598E6725818808004664D3 /* DocumentViewController.swift in Sources */,
 				F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */,
+				F4CB241E2EB7E2530027B041 /* YamlHeaderProcessor.swift in Sources */,
 				F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */,
 				F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */,
 				F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */,

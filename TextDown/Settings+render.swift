@@ -20,7 +20,7 @@ extension Settings {
         let renderer = MarkdownRenderer(settings: self)
         let baseDirectory = URL(fileURLWithPath: baseDir)
 
-        return try renderer.render(markdown: text, baseDirectory: baseDirectory, appearance: appearance)
+        return try renderer.render(markdown: text, filename: filename, baseDirectory: baseDirectory, appearance: appearance)
     }
 
     /// Helper function: Wraps HTML body in complete document structure
