@@ -188,7 +188,7 @@ See migration documents for complete technical analysis.
   - Markdown Input: NSTextView (linke Seite)
   - Preview: WKWebView (rechte Seite, Live-Update)
   - Debounced Rendering (0.5s delay)
-  - Direct access to Settings.shared (@Observable)
+  - Direct access to AppConfiguration.shared (@Observable)
 - `MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
 - `MarkdownWindowController.swift` (82 LOC) - Window Management
 - `AppDelegate.swift` - App Lifecycle, Sparkle Updates
@@ -469,8 +469,8 @@ highlight.js/
 
 **Theme Selection**:
 - User Settings:
-  - `Settings.syntaxThemeLightOption` (String) - Theme für Light Mode
-  - `Settings.syntaxThemeDarkOption` (String) - Theme für Dark Mode
+  - `AppConfiguration.syntaxThemeLightOption` (String) - Theme für Light Mode
+  - `AppConfiguration.syntaxThemeDarkOption` (String) - Theme für Dark Mode
 - Appearance-Based: Auto-Switch via `forAppearance:` parameter
   - macOS Light Mode → `syntaxThemeLightOption` (default: "github")
   - macOS Dark Mode → `syntaxThemeDarkOption` (default: "github-dark")
@@ -713,7 +713,7 @@ print("hi")
 - ✅ **MarkdownDocument**: NSDocument subclass für File Open/Save/Auto-Save (Phase 3)
 - ✅ **MarkdownWindowController**: NSWindowController für Multi-Window Management (Phase 3)
 - ✅ **SwiftUI Preferences Window**: 4-Tab Settings UI mit Apply/Cancel Pattern (Phase 4)
-- ✅ **SettingsViewModel**: Combine-based State Management für 40 Properties (Phase 4)
+- ✅ **AppConfigurationViewModel**: Combine-based State Management für 40 Properties (Phase 4)
 - ✅ **Live Rendering**: Debounced text change detection (0.5s) (Phase 3)
 
 ---
@@ -787,7 +787,7 @@ print("hi")
 ### Code Complexity
 - **Before**: ~8,000 LOC Swift
 - **After**: ~5,500 LOC Swift (900 LOC added, 448 LOC removed)
-- **Added**: MarkdownDocument, MarkdownWindowController, SettingsViewModel, 4 SwiftUI Views
+- **Added**: MarkdownDocument, MarkdownWindowController, AppConfigurationViewModel, 4 SwiftUI Views
 - **Removed**: XPCHelper, 3 Extensions, CLI
 
 ### Build Time
@@ -832,7 +832,7 @@ print("hi")
 ### Critical Files (Original)
 - `TextDown/AppConfiguration.swift` - 40+ Properties
 - `TextDown/AppConfiguration+Rendering.swift` - Main Rendering Engine
-- `TextDown/Settings+XPC.swift` - XPC Communication
+- `TextDown/AppConfiguration+XPC.swift` - XPC Communication
 - `TextDown/AppConfiguration+Persistence.swift` - Direct UserDefaults Fallback
 - `TextDown/ViewController.swift` - Settings UI (1200+ LOC)
 - `TextDown/AppDelegate.swift` - Lifecycle + Sparkle
@@ -1069,7 +1069,7 @@ All extensions present and functional:
   - TextDownXPCHelper/ folder (entire XPC service):
     - Info.plist, main.swift, TextDownXPCHelper.swift
     - TextDownXPCHelperProtocol.swift, TextDownXPCHelper.entitlements
-  - TextDown/Settings+XPC.swift (XPC wrapper)
+  - TextDown/AppConfiguration+XPC.swift (XPC wrapper)
   - TextDown/XPCWrapper.swift (XPC communication layer)
 
 - **Modified Files**:
@@ -1357,7 +1357,7 @@ ls: Extensions: No such file or directory  # ✅ Removed
 **Phase 4**: SwiftUI Preferences Window ✅ COMPLETED
 - [x] Fix Settings JSON persistence (AppConfiguration+Persistence.swift)
 - [x] Implement CSS theme scanning (AppConfiguration+Themes.swift)
-- [x] Create SettingsViewModel.swift (327 LOC)
+- [x] Create AppConfigurationViewModel.swift (327 LOC)
 - [x] Create 4 SwiftUI Settings views
 - [x] Update AppDelegate with showPreferences()
 - [x] Wire up Preferences menu (Cmd+,)
@@ -1376,11 +1376,11 @@ ls: Extensions: No such file or directory  # ✅ Removed
 
 **New Files Created** (11 files):
 
-1. **SettingsViewModel.swift** (327 LOC)
+1. **AppConfigurationViewModel.swift** (327 LOC)
    - @MainActor ObservableObject
    - 40 @Published properties for reactive state
    - Combine-based change tracking with hasUnsavedChanges flag
-   - apply() method: saves to Settings.shared + JSON file
+   - apply() method: saves to AppConfiguration.shared + JSON file
    - cancel() method: restores from originalSettings
    - resetToDefaults() method: factory reset
 
@@ -1428,7 +1428,7 @@ ls: Extensions: No such file or directory  # ✅ Removed
   - Added DistributedNotificationCenter for multi-window sync
   - Added os_log statements for debugging
 
-- **Log.swift**:
+- **OSLog.swift**:
   - Added .settings OSLog category
 
 **Code Cleanup**:

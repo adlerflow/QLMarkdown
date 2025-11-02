@@ -10,14 +10,12 @@
 		830277F52C60B3E20066EBCC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
 		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
 		830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3B272D68E500378FFE /* SwiftSoup */; };
-		8310245129E9F8D5004651DC /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8310245029E9F8D5004651DC /* HighlightViewController.swift */; };
 		831834E6277E10150044ECDA /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 831834E5277E10150044ECDA /* Sparkle */; };
 		83598E6525818808004664D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6425818808004664D3 /* AppDelegate.swift */; };
 		83598E6725818808004664D3 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83598E6625818808004664D3 /* DocumentViewController.swift */; };
 		83598E692581880A004664D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83598E682581880A004664D3 /* Assets.xcassets */; };
 		83598E6C2581880A004664D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6A2581880A004664D3 /* Main.storyboard */; };
 		836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */; };
-		837D20D6258362A5008FC698 /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 837D20D5258362A5008FC698 /* example.jpg */; };
 		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
 		83F4B9962586AB9700FC58A7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83D4B1C3258675D0000745DB /* README.md */; };
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
@@ -85,7 +83,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8310245029E9F8D5004651DC /* HighlightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightViewController.swift; sourceTree = "<group>"; };
 		831A8C40258ABADA00E36182 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		832D256125CC8894005F41AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		834CAB89259167B800673002 /* examples */ = {isa = PBXFileReference; lastKnownFileType = text; path = examples; sourceTree = SOURCE_ROOT; };
@@ -98,12 +95,8 @@
 		83598E6E2581880A004664D3 /* TextDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextDown.entitlements; sourceTree = "<group>"; };
 		83598F22258263C0004664D3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		837D20D5258362A5008FC698 /* example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpg; sourceTree = "<group>"; };
 		83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = TextDownXPCHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CF71D82C60ADA60066A195 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		83CF71DB2C60ADA60066A195 /* main_interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_interface.png; sourceTree = "<group>"; };
-		83CF71DC2C60ADA60066A195 /* preview-screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview-screenshot.png"; sourceTree = "<group>"; };
-		83CF71DE2C60ADA60066A195 /* syntax_interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = syntax_interface.png; sourceTree = "<group>"; };
 		83CF71E02C60ADA60066A195 /* icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.afdesign; sourceTree = "<group>"; };
 		83D4B1C3258675D0000745DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
@@ -207,9 +200,7 @@
 				83598E6425818808004664D3 /* AppDelegate.swift */,
 				83598E682581880A004664D3 /* Assets.xcassets */,
 				83598E6625818808004664D3 /* DocumentViewController.swift */,
-				837D20D5258362A5008FC698 /* example.jpg */,
 				834CAB89259167B800673002 /* examples */,
-				8310245029E9F8D5004651DC /* HighlightViewController.swift */,
 				F4CB24272EB7F6F90027B041 /* NSColor.swift */,
 				F4CB24292EB7F70B0027B041 /* Helpers.swift */,
 				83598E6D2581880A004664D3 /* Info.plist */,
@@ -250,9 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				83CF71D82C60ADA60066A195 /* icon.png */,
-				83CF71DB2C60ADA60066A195 /* main_interface.png */,
-				83CF71DC2C60ADA60066A195 /* preview-screenshot.png */,
-				83CF71DE2C60ADA60066A195 /* syntax_interface.png */,
 			);
 			path = img;
 			sourceTree = "<group>";
@@ -459,7 +447,6 @@
 				F4CB23BC2EB7D1B20027B041 /* xcode.min.css in Resources */,
 				83598E692581880A004664D3 /* Assets.xcassets in Resources */,
 				83598E6C2581880A004664D3 /* Main.storyboard in Resources */,
-				837D20D6258362A5008FC698 /* example.jpg in Resources */,
 				830277F72C60E48F0066EBCC /* icon.png in Resources */,
 				830277F52C60B3E20066EBCC /* default.css in Resources */,
 			);
@@ -502,7 +489,6 @@
 				F4CB24222EB7F4740027B041 /* AppConfiguration+Rendering.swift in Sources */,
 				F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */,
 				F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */,
-				8310245129E9F8D5004651DC /* HighlightViewController.swift in Sources */,
 				83598E6525818808004664D3 /* AppDelegate.swift in Sources */,
 				F4CB24202EB7F4470027B041 /* AppConfiguration.swift in Sources */,
 				F4CB24242EB7F4CE0027B041 /* AppConfiguration+Persistence.swift in Sources */,

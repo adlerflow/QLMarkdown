@@ -26,7 +26,7 @@
 - [x] Git commits: 0b0daee, e197268, 1dcf912, 5009714
 
 ### Phase 1: XPC Service Elimination ✅ COMPLETED
-- [x] Switch Settings.swift to use Settings+NoXPC exclusively
+- [x] Switch AppConfiguration.swift to use AppConfiguration+Persistence exclusively
 - [x] Remove TextDownXPCHelper target from build
 - [x] Delete TextDownXPCHelper/ folder (8 files)
 - [x] Comment out all XPCWrapper calls
@@ -75,10 +75,10 @@
 - [ ] Preview rendering (all extensions: emoji, math, syntax, tables, etc.)
 
 ### Phase 4: SwiftUI Preferences Window ✅ COMPLETED
-- [x] Fix Settings JSON persistence in Settings+NoXPC.swift
-- [x] Implement CSS theme filesystem scanning in Settings+ext.swift
-- [x] Add .settings log category to Log.swift
-- [x] Create SettingsViewModel.swift (327 LOC)
+- [x] Fix Settings JSON persistence in AppConfiguration+Persistence.swift
+- [x] Implement CSS theme filesystem scanning in AppConfiguration+Themes.swift
+- [x] Add .settings log category to OSLog.swift
+- [x] Create AppConfigurationViewModel.swift (327 LOC)
   - [x] 40 @Published properties for reactive state
   - [x] Combine-based change tracking with hasUnsavedChanges
   - [x] apply(), cancel(), resetToDefaults() methods
@@ -101,7 +101,7 @@
 
 ### Phase 0: Test Suite Creation ✅ COMPLETED
 - [x] Create migration branch: feature/swiftui-state-migration
-- [x] Record baseline metrics (Settings: 680 LOC, DocumentViewController: 964 LOC)
+- [x] Record baseline metrics (AppConfiguration: 680 LOC, DocumentViewController: 964 LOC)
 - [x] Create TextDownTests2/SettingsTests.swift (420 lines, 40+ tests)
   - [x] JSON Codable roundtrip tests (all 40 properties)
   - [x] Factory defaults verification
@@ -119,10 +119,10 @@
 - [x] Git commit: 7e4d77b, 34f7d39
 - [x] Git tag: migration-phase0-complete
 
-### Phase 1: Settings.swift Modernization ✅ COMPLETED
+### Phase 1: AppConfiguration.swift Modernization ✅ COMPLETED
 - [x] Create rollback tag: phase1-pre-start
-- [x] Add import Observation to Settings.swift
-- [x] Add @Observable macro to Settings class
+- [x] Add import Observation to AppConfiguration.swift
+- [x] Add @Observable macro to AppConfiguration class
 - [x] Remove all 40 @objc var declarations
 - [x] Fix @Observable compatibility issues:
   - [x] Convert lazy var resourceBundle → computed property
@@ -145,18 +145,18 @@
   - [x] All syntax settings (syntaxLineNumbers, syntaxWrapEnabled, etc.)
   - [x] Debug/UI properties (debugMode, renderAsCode, customCSSFile, etc.)
 - [x] Remove manual sync methods:
-  - [x] updateSettings() - 50 lines of local → Settings.shared copying
-  - [x] initFromSettings() - 60 lines of Settings.shared → local copying
-- [x] Update all methods to use Settings.shared directly:
-  - [x] saveAction() → Settings.shared.saveToSharedFile()
-  - [x] doRefresh() → Settings.shared.render()
-  - [x] exportPreview() → Settings.shared.render() + getCompleteHTML()
-  - [x] revertDocumentToSaved() → Settings.shared.initFromDefaults()
-  - [x] resetToFactory() → Settings.shared.resetToFactory()
+  - [x] updateSettings() - 50 lines of local → AppConfiguration.shared copying
+  - [x] initFromSettings() - 60 lines of AppConfiguration.shared → local copying
+- [x] Update all methods to use AppConfiguration.shared directly:
+  - [x] saveAction() → AppConfiguration.shared.saveToSharedFile()
+  - [x] doRefresh() → AppConfiguration.shared.render()
+  - [x] exportPreview() → AppConfiguration.shared.render() + getCompleteHTML()
+  - [x] revertDocumentToSaved() → AppConfiguration.shared.initFromDefaults()
+  - [x] resetToFactory() → AppConfiguration.shared.resetToFactory()
   - [x] viewDidLoad() → removed initFromSettings() call
-  - [x] menuNeedsUpdate() → Settings.shared.customCSS
+  - [x] menuNeedsUpdate() → AppConfiguration.shared.customCSS
 - [x] Update HighlightViewController.swift:
-  - [x] Update 4 computed properties to proxy Settings.shared
+  - [x] Update 4 computed properties to proxy AppConfiguration.shared
   - [x] Remove initFromSettings() method
   - [x] Simplify viewDidLoad()
 - [x] Clean build verification
@@ -172,18 +172,18 @@
 - HighlightViewController: 93 → 82 lines (-11/-12%)
 - **Total: -358 LOC**
 
-### Phase 3: SettingsViewModel Elimination ✅ COMPLETED
-- [x] Delete SettingsViewModel.swift (-327 LOC, 100% elimination)
+### Phase 3: AppConfigurationViewModel Elimination ✅ COMPLETED
+- [x] Delete AppConfigurationViewModel.swift (-327 LOC, 100% elimination)
 - [x] Delete 5 old SwiftUI files from TextDown/ root directory
 - [x] Update TextDownSettingsView.swift:
   - [x] Replace @StateObject viewModel with @State draftSettings
-  - [x] Create draft Settings copy via JSON encode/decode for Apply/Cancel
+  - [x] Create draft AppConfiguration copy via JSON encode/decode for Apply/Cancel
   - [x] Implement hasChanges computed property (compares draft to original)
-  - [x] Move Apply logic inline (40 property assignments to Settings.shared)
+  - [x] Move Apply logic inline (40 property assignments to AppConfiguration.shared)
 - [x] Update 4 child views (General, Extensions, Syntax, Advanced):
   - [x] Replace @ObservedObject var viewModel with @Bindable var settings
   - [x] Update all bindings: $viewModel.property → $settings.property
-  - [x] Update #Preview sections to create draft Settings copies
+  - [x] Update #Preview sections to create draft AppConfiguration copies
 - [x] Update AdvancedSettingsView.swift:
   - [x] Move resetToDefaults() inline (40 property assignments)
 - [x] Clean build verification
@@ -192,15 +192,15 @@
 - [x] Git tag: phase3-swiftui-complete
 
 **Code Reduction**:
-- SettingsViewModel.swift: -327 LOC (100% eliminated)
+- AppConfigurationViewModel.swift: -327 LOC (100% eliminated)
 - Old SwiftUI files deleted: -6 files from root directory
 - Combine subscriptions removed: -40 sink() calls
 - Manual sync methods removed: -170 LOC (apply, cancel, reset)
 - **Total: -327 LOC + eliminated 40 @Published properties + 40 sink() subscriptions**
 
 **Architecture Change**:
-- **BEFORE**: Settings.shared → SettingsViewModel (@Published) → SwiftUI Views
-- **AFTER**: Settings.shared (@Observable) → Draft Settings copy → SwiftUI Views
+- **BEFORE**: AppConfiguration.shared → AppConfigurationViewModel (@Published) → SwiftUI Views
+- **AFTER**: AppConfiguration.shared (@Observable) → Draft AppConfiguration copy → SwiftUI Views
 
 ### Phase 4: Documentation and Code Quality ✅ COMPLETED
 - [x] Reduce CLAUDE.md from 71KB to 51KB (27.9% reduction)
@@ -215,7 +215,7 @@
   - [x] TextDownSettingsView.swift: 1 print() statement replaced
   - [x] AppDelegate.swift: 4 print() statements replaced
   - [x] DocumentViewController.swift: 2 duplicate print() statements removed
-  - [x] Settings+ext.swift: 1 print() statement replaced
+  - [x] AppConfiguration+Themes.swift: 1 print() statement replaced
   - [x] Total: 23 print() statements eliminated
 - [x] Git maintenance
   - [x] Remove .DS_Store files (7 files)
@@ -244,9 +244,9 @@
 
 ### Completed Work - SwiftUI State Management Migration
 **Phase 0**: Test Suite Creation (1,470 LOC tests, 80+ tests, 6 HTML snapshots) ✅
-**Phase 1**: Settings.swift Modernization (@Observable macro, -90 LOC) ✅
+**Phase 1**: AppConfiguration.swift Modernization (@Observable macro, -90 LOC) ✅
 **Phase 2**: DocumentViewController State Layer Removal (-358 LOC, eliminated redundancy) ✅
-**Phase 3**: SettingsViewModel Elimination (-327 LOC, 100% ViewModel layer removed) ✅
+**Phase 3**: AppConfigurationViewModel Elimination (-327 LOC, 100% ViewModel layer removed) ✅
 **Phase 4**: Documentation and Code Quality (CLAUDE.md reduction, os_log() migration) ✅
 
 ### Key Achievements - Standalone Editor
@@ -261,11 +261,11 @@
 - Storyboard cleanup (fixed AboutViewController, removed unreachable scenes)
 
 ### Key Achievements - SwiftUI State Migration
-- **Eliminated triple state redundancy**: Settings + DocumentViewController + SettingsViewModel → Settings only
+- **Eliminated triple state redundancy**: AppConfiguration + DocumentViewController + AppConfigurationViewModel → AppConfiguration only
 - Adopted Swift Observation framework (@Observable macro)
-- Removed all 40 @objc property declarations from Settings
-- Single source of truth: Settings.shared accessed directly throughout app
-- **100% elimination of SettingsViewModel layer** (-327 LOC)
+- Removed all 40 @objc property declarations from AppConfiguration
+- Single source of truth: AppConfiguration.shared accessed directly throughout app
+- **100% elimination of AppConfigurationViewModel layer** (-327 LOC)
 - No manual synchronization code (updateSettings/initFromSettings removed)
 - No Combine subscriptions (40 sink() calls eliminated)
 - Direct @Bindable bindings in SwiftUI (no @Published wrapper)
@@ -276,7 +276,7 @@
 ### Files Changed - Standalone Editor Migration
 - **Added**:
   - MarkdownDocument.swift (180 LOC), MarkdownWindowController.swift (82 LOC)
-  - ~~SettingsViewModel.swift (327 LOC)~~ - Later removed in Phase 3 of SwiftUI migration
+  - ~~AppConfigurationViewModel.swift (327 LOC)~~ - Later removed in Phase 3 of SwiftUI migration
   - Preferences/*.swift (5 SwiftUI views: ~600 LOC total after Phase 3 refactor)
 - **Renamed**: ViewController.swift → DocumentViewController.swift
 - **Deleted**:
@@ -284,13 +284,13 @@
   - Extension/ (5 files)
   - Shortcut Extension/ (5 files)
   - external-launcher/ (5 files)
-  - Settings+XPC.swift
+  - AppConfiguration+XPC.swift
   - 3 .xcscheme files
 - **Modified**:
   - Main.storyboard (220 lines removed, Preferences menu added)
   - AppDelegate.swift (Preferences window integration)
-  - Settings.swift, Settings+NoXPC.swift, Settings+ext.swift
-  - Log.swift (.settings category)
+  - AppConfiguration.swift, AppConfiguration+Persistence.swift, AppConfiguration+Themes.swift
+  - OSLog.swift (.settings category)
   - DocumentViewController.swift (448 lines of commented code removed)
   - project.pbxproj (1004 lines removed)
 
@@ -304,14 +304,14 @@
   - PHASE_0_COMPLETE.md (414 LOC documentation)
   - REDUCTION_LOG.md (206 LOC - Phase 4)
 - **Deleted**:
-  - TextDown/SettingsViewModel.swift (327 LOC - Phase 3)
+  - TextDown/AppConfigurationViewModel.swift (327 LOC - Phase 3)
   - TextDown/TextDownSettingsView.swift (old - Phase 3)
   - TextDown/GeneralSettingsView.swift (old - Phase 3)
   - TextDown/ExtensionsSettingsView.swift (old - Phase 3)
   - TextDown/SyntaxSettingsView.swift (old - Phase 3)
   - TextDown/AdvancedSettingsView.swift (old - Phase 3)
 - **Modified**:
-  - Settings.swift (+import Observation, +@Observable, -40 @objc declarations)
+  - AppConfiguration.swift (+import Observation, +@Observable, -40 @objc declarations)
   - DocumentViewController.swift (964 → 617 lines, -347 LOC)
   - HighlightViewController.swift (93 → 82 lines, -11 LOC)
   - TextDown/Preferences/TextDownSettingsView.swift (Phase 3: @Bindable refactor, Phase 4: +OSLog import)
@@ -321,11 +321,11 @@
   - TextDown/Preferences/AdvancedSettingsView.swift (Phase 3: @Bindable refactor)
   - TextDown.xcodeproj/project.pbxproj (build configuration + file references)
   - CLAUDE.md (1917 → 1375 lines, -542 LOC / -27.9% - Phase 4)
-  - Log.swift (+.document, +.window categories - Phase 4)
+  - OSLog.swift (+.document, +.window categories - Phase 4)
   - MarkdownDocument.swift (-14 print() statements - Phase 4)
   - MarkdownWindowController.swift (-1 print() statement - Phase 4)
   - AppDelegate.swift (+OSLog, -4 print() statements - Phase 4)
-  - Settings+ext.swift (+OSLog, -1 print() statement - Phase 4)
+  - AppConfiguration+Themes.swift (+OSLog, -1 print() statement - Phase 4)
 
 ### Statistics - Standalone Editor Migration
 - Targets Reduced: 10 → 5 (removed TextDownXPCHelper + 3 extensions + CLI)
@@ -342,18 +342,18 @@
 - Test Suite: 1,470 LOC added (80+ tests across 3 files)
 - Test Pass Rate: 47/50 (94%), improved from 46/50 baseline
 - Code Reduction: -1,317 LOC total (62% reduction in state + documentation)
-  - Phase 1 - Settings.swift: -90 LOC (removed @objc boilerplate)
+  - Phase 1 - AppConfiguration.swift: -90 LOC (removed @objc boilerplate)
   - Phase 2 - DocumentViewController: -347 LOC (removed state layer)
   - Phase 2 - HighlightViewController: -11 LOC (simplified)
-  - Phase 3 - SettingsViewModel.swift: -327 LOC (100% elimination)
+  - Phase 3 - AppConfigurationViewModel.swift: -327 LOC (100% elimination)
   - Phase 4 - CLAUDE.md: -542 LOC (documentation reduction)
-- Files Deleted: 6 (SettingsViewModel + 5 old SwiftUI files) + 7 .DS_Store files
+- Files Deleted: 6 (AppConfigurationViewModel + 5 old SwiftUI files) + 7 .DS_Store files
 - Temporary Files Cleaned: cmark build artifacts (cmark-arm64/, cmark-x86_64/)
-- @objc Declarations Removed: 40 (100% elimination from Settings)
-- @Published Properties Removed: 40 (100% elimination from SettingsViewModel)
+- @objc Declarations Removed: 40 (100% elimination from AppConfiguration)
+- @Published Properties Removed: 40 (100% elimination from AppConfigurationViewModel)
 - Combine Subscriptions Removed: 40 sink() calls
 - Manual Sync Methods Removed: 4 (updateSettings, initFromSettings, apply, cancel = 280+ lines)
-- Duplicate Properties Removed: 35 from DocumentViewController + 40 from SettingsViewModel
+- Duplicate Properties Removed: 35 from DocumentViewController + 40 from AppConfigurationViewModel
 - print() Statements Replaced: 23 → os_log() calls (unified logging)
 - OSLog Categories Added: 2 (.document, .window)
 - Architecture Transformation: Triple redundancy → Single source of truth
@@ -396,9 +396,9 @@
 
 **Last Updated**: 2025-11-02
 **Phase 0 Completed**: 2025-10-31 (Test Suite Creation)
-**Phase 1 Completed**: 2025-11-02 (Settings.swift @Observable)
+**Phase 1 Completed**: 2025-11-02 (AppConfiguration.swift @Observable)
 **Phase 2 Completed**: 2025-11-02 (DocumentViewController State Removal)
-**Phase 3 Completed**: 2025-11-02 (SettingsViewModel Elimination)
+**Phase 3 Completed**: 2025-11-02 (AppConfigurationViewModel Elimination)
 **Phase 4 Completed**: 2025-11-02 (Documentation Reduction + Code Quality)
 **Git Commits**: 7e4d77b, 34f7d39, dc8fe34, 844f646, fc2aedb, ff30de1, c2bb970
 **Branch**: feature/swiftui-state-migration

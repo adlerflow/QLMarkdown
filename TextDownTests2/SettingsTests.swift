@@ -337,7 +337,9 @@ final class SettingsTests: XCTestCase {
         let defaultCSS = bundle.path(forResource: "default", ofType: "css")
         XCTAssertNotNil(defaultCSS, "default.css should exist in bundle")
 
-        let highlightJS = bundle.path(forResource: "highlight.min", ofType: "js", inDirectory: "highlight.js/lib")
+        // Note: Xcode flattens resource directories during build, so highlight.min.js
+        // is at top level, not in highlight.js/lib/ subdirectory
+        let highlightJS = bundle.path(forResource: "highlight.min", ofType: "js")
         XCTAssertNotNil(highlightJS, "highlight.js should exist in bundle")
     }
 
