@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -94,6 +94,7 @@
 		F40D9E832EB53A37001C10C6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */; };
 		F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */; };
 		F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */; };
+		F49E8C6F2EB77B8300E3161A /* TextDown.app in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6125818808004664D3 /* TextDown.app */; };
 		F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = F4A0C5CA2EB5B02800BC1997 /* highlight.js */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 83D9CCA027A12F3100E86BC9;
 			remoteInfo = libpcre2;
+		};
+		F49E8C602EB77A2200E3161A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83598E5925818808004664D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83598E6025818808004664D3;
+			remoteInfo = TextDown;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -330,8 +338,13 @@
 		F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownWindowController.swift; sourceTree = "<group>"; };
+		F49E8C5C2EB77A2200E3161A /* TextDownTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextDownTests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A0C5CA2EB5B02800BC1997 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = highlight.js; path = Resources/highlight.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F49E8C5D2EB77A2200E3161A /* TextDownTests2 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TextDownTests2; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		83598E5E25818808004664D3 /* Frameworks */ = {
@@ -343,6 +356,13 @@
 				83D82A89277C45B500C9B99F /* libpcre2-32.a in Frameworks */,
 				8382D05C2664051400210A0A /* Yams in Frameworks */,
 				830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49E8C592EB77A2200E3161A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +529,7 @@
 				834A4DC329E8674200692964 /* cmark-gfm */,
 				83598E6325818808004664D3 /* TextDown */,
 				837F29172597A01F00A5F7DE /* Resources */,
+				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
 			);
@@ -519,6 +540,7 @@
 			children = (
 				83598E6125818808004664D3 /* TextDown.app */,
 				83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */,
+				F49E8C5C2EB77A2200E3161A /* TextDownTests2.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -753,6 +775,29 @@
 			productReference = 83598E6125818808004664D3 /* TextDown.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F49E8C5B2EB77A2200E3161A /* TextDownTests2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F49E8C642EB77A2200E3161A /* Build configuration list for PBXNativeTarget "TextDownTests2" */;
+			buildPhases = (
+				F49E8C582EB77A2200E3161A /* Sources */,
+				F49E8C592EB77A2200E3161A /* Frameworks */,
+				F49E8C5A2EB77A2200E3161A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F49E8C612EB77A2200E3161A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
+			);
+			name = TextDownTests2;
+			packageProductDependencies = (
+			);
+			productName = TextDownTests2;
+			productReference = F49E8C5C2EB77A2200E3161A /* TextDownTests2.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -760,7 +805,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					83598E6025818808004664D3 = {
@@ -772,6 +817,10 @@
 					};
 					83D9CCA027A12F3100E86BC9 = {
 						CreatedOnToolsVersion = 13.2;
+					};
+					F49E8C5B2EB77A2200E3161A = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 83598E6025818808004664D3;
 					};
 				};
 			};
@@ -799,6 +848,7 @@
 				83D9CF0F27A1334800E86BC9 /* libjpcre2 */,
 				834A4F7429E9250800692964 /* cmark-headers */,
 				83B8DF002DD5DCA20054E345 /* magic.mgc */,
+				F49E8C5B2EB77A2200E3161A /* TextDownTests2 */,
 			);
 		};
 /* End PBXProject section */
@@ -820,6 +870,14 @@
 				830277F52C60B3E20066EBCC /* default.css in Resources */,
 				836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */,
 				834A4F0229E8AD8C00692964 /* ext_scanners.re in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49E8C5A2EB77A2200E3161A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F49E8C6F2EB77B8300E3161A /* TextDown.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +962,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F49E8C582EB77A2200E3161A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -944,6 +1009,11 @@
 			isa = PBXTargetDependency;
 			target = 83D9CCA027A12F3100E86BC9 /* libpcre2 */;
 			targetProxy = 83D9CF1727A1336E00E86BC9 /* PBXContainerItemProxy */;
+		};
+		F49E8C612EB77A2200E3161A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83598E6025818808004664D3 /* TextDown */;
+			targetProxy = F49E8C602EB77A2200E3161A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1355,6 +1425,53 @@
 			};
 			name = Release;
 		};
+		F49E8C622EB77A2200E3161A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZF3N876CR4;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDownTests2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextDown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TextDown";
+			};
+			name = Debug;
+		};
+		F49E8C632EB77A2200E3161A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZF3N876CR4;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.advison.TextDownTests2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextDown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TextDown";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1408,6 +1525,15 @@
 			buildConfigurations = (
 				83D9CF1127A1334800E86BC9 /* Debug */,
 				83D9CF1227A1334800E86BC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F49E8C642EB77A2200E3161A /* Build configuration list for PBXNativeTarget "TextDownTests2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F49E8C622EB77A2200E3161A /* Debug */,
+				F49E8C632EB77A2200E3161A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

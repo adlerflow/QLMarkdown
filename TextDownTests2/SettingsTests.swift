@@ -15,7 +15,12 @@ final class SettingsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        settings = Settings(noInitFromDefault: true)
+        // Create a fresh settings instance by decoding factory settings
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+        let data = try! encoder.encode(Settings.factorySettings)
+        settings = try! decoder.decode(Settings.self, from: data)
+
         tempDirectory = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
         try! FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)

@@ -248,10 +248,10 @@ final class RenderingTests: XCTestCase {
         let html = try settings.render(text: markdown, filename: "test.md",
                                        forAppearance: .light, baseDir: "/tmp")
 
-        // Smart quotes: " " and ' '
-        XCTAssertTrue(html.contains(""") || html.contains("&#8220;"),
+        // Smart quotes: " " and ' ' (checking HTML entities)
+        XCTAssertTrue(html.contains("&#8220;") || html.contains("\u{201C}"),
                      "Should contain smart opening quote")
-        XCTAssertTrue(html.contains(""") || html.contains("&#8221;"),
+        XCTAssertTrue(html.contains("&#8221;") || html.contains("\u{201D}"),
                      "Should contain smart closing quote")
     }
 
