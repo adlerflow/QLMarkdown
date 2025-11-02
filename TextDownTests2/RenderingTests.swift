@@ -10,11 +10,11 @@ import XCTest
 @testable import TextDown
 
 final class RenderingTests: XCTestCase {
-    var settings: Settings!
+    var settings: AppConfiguration!
 
     override func setUp() {
         super.setUp()
-        settings = Settings.factorySettings
+        settings = AppConfiguration.factorySettings
     }
 
     override func tearDown() {

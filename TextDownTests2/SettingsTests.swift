@@ -157,7 +157,7 @@ final class SettingsTests: XCTestCase {
     }
 
     func testFactoryDefaults() {
-        let factory = Settings.factorySettings
+        let factory = AppConfiguration.factorySettings
 
         // Verify default values for all 40 properties
 

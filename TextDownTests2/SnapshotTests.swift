@@ -10,12 +10,12 @@ import XCTest
 @testable import TextDown
 
 final class SnapshotTests: XCTestCase {
-    var settings: Settings!
+    var settings: AppConfiguration!
     let snapshotsDir = FileManager.default.temporaryDirectory.appendingPathComponent("textdown-snapshots")
 
     override func setUp() {
         super.setUp()
-        settings = Settings.factorySettings
+        settings = AppConfiguration.factorySettings
         try? FileManager.default.createDirectory(at: snapshotsDir, withIntermediateDirectories: true)
     }
 

@@ -103,7 +103,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
 | **Bridging Header** | Required (5 imports) | Deleted | **-100%** ✅ |
 | **Bundle Size** | ~50 MB | ~50 MB | 0% (no change) |
 | **Code Deleted** | N/A | -9,761 lines (C/C++) | **-91%** ✅ |
-| **Settings+render.swift** | 861 lines (90% comments) | 91 lines (pure Swift) | **-89%** ✅ |
+| **AppConfiguration+Rendering.swift** | 861 lines (90% comments) | 91 lines (pure Swift) | **-89%** ✅ |
 
 ### Implementation Summary
 
@@ -111,7 +111,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
 1. `a140381` - swift-markdown rendering pipeline with 8 custom extensions (+1,192 LOC)
 2. `3923659` - Removed Legacy Build Target schemes (-346 LOC)
 3. `e58e284` - Removed Bridging-Header and moved test files (-18 files)
-4. `702d585` - Extracted old cmark-gfm code to Settings+render.txt (-770 lines)
+4. `702d585` - Extracted old cmark-gfm code to AppConfiguration+Rendering.txt.ref (-770 lines)
 5. `bb46b5b` - YAML header processing for R Markdown/Quarto (+221 LOC)
 6. Total: **-9,761 LOC removed**, **+1,413 LOC added** = **-8,348 net LOC**
 
@@ -141,7 +141,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
 - ⚠️ 2 unit tests fail (hardBreak/noSoftBreak not supported)
 
 **Files Reference:**
-- Old implementation preserved: `TextDown/Settings+render.txt` (772 lines)
+- Old implementation preserved: `TextDown/AppConfiguration+Rendering.txt.ref` (772 lines)
 - Migration documentation: `SWIFT_MARKDOWN_MIGRATION_PLAN.md`, `IMPLEMENTATION_GUIDE.md`
 
 ### Removed Components (swift-markdown Migration)
@@ -192,12 +192,12 @@ See migration documents for complete technical analysis.
 - `MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
 - `MarkdownWindowController.swift` (82 LOC) - Window Management
 - `AppDelegate.swift` - App Lifecycle, Sparkle Updates
-- `Settings.swift` (~40 Properties, @Observable) - Single Source of Truth
-- `Settings+render.swift` - Haupt-Rendering-Engine
-- `Settings+NoXPC.swift` - Standalone Persistenz (JSON in Application Support)
+- `AppConfiguration.swift` (~40 Properties, @Observable) - Single Source of Truth
+- `AppConfiguration+Rendering.swift` - Haupt-Rendering-Engine
+- `AppConfiguration+Persistence.swift` - Standalone Persistenz (JSON in Application Support)
 - `Preferences/*.swift` (5 SwiftUI Views) - Settings UI with @Bindable bindings
 
-**Wichtige Properties in Settings.swift**:
+**Wichtige Properties in AppConfiguration.swift**:
 ````
 // GitHub Flavored Markdown
 useGitHubStyleLineBreaks: Bool
@@ -277,7 +277,7 @@ customCSSCode: String                // Custom CSS override
 ````
 Markdown Input String (.md, .rmd, .qmd)
   ↓
-Settings+render.swift: render(text:filename:forAppearance:baseDir:)
+AppConfiguration+Rendering.swift: render(text:filename:forAppearance:baseDir:)
   ↓
 MarkdownRenderer.render(markdown:filename:baseDirectory:appearance:)
   ↓
@@ -412,7 +412,7 @@ Final Rendered Markdown in WKWebView
 - `Document(parsing:options:)` - Entry Point (swift-markdown)
 - `HTMLFormatter.format(_:)` - AST → HTML Body Fragment (swift-markdown)
 - `MarkdownRenderer.render()` - Main orchestration layer (Swift)
-- `Settings+render.swift:render()` - Delegation to MarkdownRenderer (Swift)
+- `AppConfiguration+Rendering.swift:render()` - Delegation to MarkdownRenderer (Swift)
 - `hljs.highlightElement()` - Client-side syntax highlighting (JavaScript)
 
 **Performance Notes**:
@@ -475,7 +475,7 @@ highlight.js/
   - macOS Light Mode → `syntaxThemeLightOption` (default: "github")
   - macOS Dark Mode → `syntaxThemeDarkOption` (default: "github-dark")
 
-**Implementation** (Settings+render.swift:592-639):
+**Implementation** (AppConfiguration+Rendering.swift:592-639):
 ````swift
 if self.syntaxHighlightExtension {
     let hlTheme = appearance == .light ? self.syntaxThemeLightOption : self.syntaxThemeDarkOption
@@ -705,7 +705,7 @@ print("hi")
 - **Rendering-Engine**: ✅ Migrated to swift-markdown + 8 custom Swift Rewriters (emoji, heads, inlineimage, math, highlight, sub, sup, mention, yaml)
 - **Syntax Highlighting**: ✅ Client-side highlight.js v11.11.1 (JavaScript in WKWebView)
 - **Theme System**: ✅ 12 CSS-based themes (highlight.js/styles/)
-- **Settings-Logik**: Settings.swift mit Settings+NoXPC.swift (JSON Persistenz)
+- **Settings-Logik**: AppConfiguration.swift mit AppConfiguration+Persistence.swift (JSON Persistenz)
 - **SPM Dependencies**: swift-markdown, Sparkle (Auto-Update), SwiftSoup, Yams
 
 ### Neue Komponenten (✅ IMPLEMENTED)
@@ -748,7 +748,7 @@ print("hi")
 
 ## Key Files
 
-**Rendering**: `MarkdownRenderer.swift` (265 LOC), `Settings+render.swift` (91 LOC), `Settings.swift` (40 properties), `Settings+NoXPC.swift`
+**Rendering**: `MarkdownRenderer.swift` (265 LOC), `AppConfiguration+Rendering.swift` (91 LOC), `AppConfiguration.swift` (40 properties), `AppConfiguration+Persistence.swift`
 
 **Rewriters** (967 LOC total):
 - `EmojiRewriter.swift` (143 LOC)
@@ -764,7 +764,7 @@ print("hi")
 
 **Build**: `TextDown.xcodeproj/project.pbxproj`
 
-**Reference**: `Settings+render.txt` (772 LOC - old cmark-gfm implementation preserved)
+**Reference**: `AppConfiguration+Rendering.txt.ref` (772 LOC - old cmark-gfm implementation preserved)
 
 ---
 
@@ -830,10 +830,10 @@ print("hi")
 - **Build Time**: 10-15 min (clean build)
 
 ### Critical Files (Original)
-- `TextDown/Settings.swift` - 40+ Properties
-- `TextDown/Settings+render.swift` - Main Rendering Engine
+- `TextDown/AppConfiguration.swift` - 40+ Properties
+- `TextDown/AppConfiguration+Rendering.swift` - Main Rendering Engine
 - `TextDown/Settings+XPC.swift` - XPC Communication
-- `TextDown/Settings+NoXPC.swift` - Direct UserDefaults Fallback
+- `TextDown/AppConfiguration+Persistence.swift` - Direct UserDefaults Fallback
 - `TextDown/ViewController.swift` - Settings UI (1200+ LOC)
 - `TextDown/AppDelegate.swift` - Lifecycle + Sparkle
 
@@ -1074,7 +1074,7 @@ All extensions present and functional:
 
 - **Modified Files**:
   - TextDown.xcodeproj/project.pbxproj: Removed TextDownXPCHelper target
-  - TextDown/Settings.swift: Switched to Settings+NoXPC.swift exclusively
+  - TextDown/AppConfiguration.swift: Switched to AppConfiguration+Persistence.swift exclusively
   - TextDown/Info.plist: Removed XPCServices declarations
 
 - **Persistence Method**: JSON file in Application Support
@@ -1159,7 +1159,7 @@ git rm -r "Extension/" "Shortcut Extension/" "external-launcher/"
 **Core Tests** (4/4 passed):
 1. ✅ Clean build succeeds (Release configuration)
 2. ✅ App launches without crash
-3. ✅ Settings persistence verified (Settings+NoXPC.swift)
+3. ✅ Settings persistence verified (AppConfiguration+Persistence.swift)
 
 **Extended Tests** (Manual verification pending):
 - ⚠️ Settings roundtrip test (requires GUI)
@@ -1187,7 +1187,7 @@ git rm -r "Extension/" "Shortcut Extension/" "external-launcher/"
 
 **Extension/** (5 files):
 - PreviewViewController.swift (~500 LOC - QuickLook implementation)
-- Settings+ext.swift (12 LOC)
+- AppConfiguration+Themes.swift (12 LOC)
 - PreviewViewController.xib, Info.plist, Extension.entitlements
 
 **Shortcut Extension/** (5 files):
@@ -1355,8 +1355,8 @@ ls: Extensions: No such file or directory  # ✅ Removed
 - 🎯 Live preview with 0.5s debounce
 
 **Phase 4**: SwiftUI Preferences Window ✅ COMPLETED
-- [x] Fix Settings JSON persistence (Settings+NoXPC.swift)
-- [x] Implement CSS theme scanning (Settings+ext.swift)
+- [x] Fix Settings JSON persistence (AppConfiguration+Persistence.swift)
+- [x] Implement CSS theme scanning (AppConfiguration+Themes.swift)
 - [x] Create SettingsViewModel.swift (327 LOC)
 - [x] Create 4 SwiftUI Settings views
 - [x] Update AppDelegate with showPreferences()
@@ -1411,18 +1411,18 @@ ls: Extensions: No such file or directory  # ✅ Removed
 
 **Bug Fixes**:
 
-- **Settings+NoXPC.swift**:
+- **AppConfiguration+Persistence.swift**:
   - Implemented settingsFromSharedFile() with JSON decoding
   - Implemented saveToSharedFile() with atomic writes
   - Added directory creation if doesn't exist
   - Added error logging via os_log(.settings)
 
-- **Settings+ext.swift**:
+- **AppConfiguration+Themes.swift**:
   - Fixed getAvailableStyles() to scan filesystem correctly
   - Returns sorted array of .css files
   - Creates themes directory if missing
 
-- **Settings.swift**:
+- **AppConfiguration.swift**:
   - Added JSON Codable conformance
   - Implemented settingsFileURL property
   - Added DistributedNotificationCenter for multi-window sync
@@ -1533,7 +1533,7 @@ ls: Extensions: No such file or directory  # ✅ Removed
 **Testing Results**:
 - ✅ Clean build succeeds (Release configuration)
 - ✅ App launches without crash
-- ✅ Settings persistence verified (Settings+NoXPC.swift)
+- ✅ Settings persistence verified (AppConfiguration+Persistence.swift)
 
 ---
 
