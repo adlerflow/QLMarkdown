@@ -17,17 +17,18 @@ Transformation von TextDown (QuickLook Extension) zu einem eigenständigen Markd
 **Primary Function**: Markdown Editor with Live Preview
 
 **Kernklassen**:
-- `DocumentViewController.swift` (~600 LOC) - Split-View Editor
+- `DocumentViewController.swift` (~617 LOC) - Split-View Editor
   - Markdown Input: NSTextView (linke Seite)
   - Preview: WKWebView (rechte Seite, Live-Update)
   - Debounced Rendering (0.5s delay)
+  - Direct access to Settings.shared (@Observable)
 - `MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
 - `MarkdownWindowController.swift` (82 LOC) - Window Management
 - `AppDelegate.swift` - App Lifecycle, Sparkle Updates
-- `Settings.swift` (~40 Properties) - Rendering-Konfiguration
+- `Settings.swift` (~40 Properties, @Observable) - Single Source of Truth
 - `Settings+render.swift` - Haupt-Rendering-Engine
 - `Settings+NoXPC.swift` - Standalone Persistenz (JSON in Application Support)
-- `SettingsViewModel.swift` (327 LOC) - SwiftUI Preferences State Management
+- `Preferences/*.swift` (5 SwiftUI Views) - Settings UI with @Bindable bindings
 
 **Wichtige Properties in Settings.swift**:
 ````
@@ -520,52 +521,86 @@ print("hi")
 
 ---
 
-## SwiftUI Preferences Window (Phase 4)
+## SwiftUI Preferences Window (Phase 4, Updated in SwiftUI Migration Phase 3)
 
 ### Architektur
 
 **Implementierte SwiftUI Settings Scene** (macOS 13+):
-- **Pattern**: Apply/Cancel Button (kein auto-save)
+- **Pattern**: Apply/Cancel Button mit Draft Settings Copy
 - **Keyboard Shortcut**: Cmd+, (standard Preferences shortcut)
 - **Window Management**: NSHostingController Bridge zu AppKit
-- **State Management**: Combine @Published properties mit change tracking
+- **State Management**: Swift @Observable (kein Combine, keine @Published properties)
 
 ### Komponenten
 
-**SettingsViewModel.swift** (327 LOC):
+**TextDownSettingsView.swift** (Main Window):
 ```swift
-@MainActor
-class SettingsViewModel: ObservableObject {
-    // 40 @Published properties für reactive state
-    @Published var tableExtension: Bool
-    @Published var emojiExtension: Bool
-    // ... 38 weitere properties
+struct TextDownSettingsView: View {
+    @State private var draftSettings: Settings      // Draft copy for editing
+    @State private var originalSettings: Settings   // Baseline for comparison
+    @Environment(\.dismiss) var dismiss
 
-    @Published var hasUnsavedChanges = false
+    init() {
+        // Create deep copies via JSON encode/decode
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+        if let data = try? encoder.encode(Settings.shared),
+           let copy1 = try? decoder.decode(Settings.self, from: data),
+           let copy2 = try? decoder.decode(Settings.self, from: data) {
+            _draftSettings = State(initialValue: copy1)
+            _originalSettings = State(initialValue: copy2)
+        }
+    }
 
-    private var cancellables = Set<AnyCancellable>()
-    private var originalSettings: Settings
+    private var hasChanges: Bool {
+        // Compare draft to original using JSON encoding
+        let draftData = try? JSONEncoder().encode(draftSettings)
+        let originalData = try? JSONEncoder().encode(originalSettings)
+        return draftData != originalData
+    }
 
-    init(from settings: Settings)
-    func apply()                // Speichert zu Settings.shared + JSON file
-    func cancel()               // Restore von originalSettings
-    func resetToDefaults()      // Factory defaults
+    private func applyChanges() {
+        // Copy all 40 properties from draft to Settings.shared
+        Settings.shared.tableExtension = draftSettings.tableExtension
+        // ... (40 property assignments)
+        Settings.shared.saveToSharedFile()
+    }
 }
 ```
 
 **SwiftUI View Hierarchy**:
 ```
-TextDownSettingsView (Main Window)
-├─ TabView (4 Tabs)
-│  ├─ GeneralSettingsView (8 properties)
+TextDownSettingsView (Main Window with Draft Settings)
+├─ TabView (5 Tabs)
+│  ├─ GeneralSettingsView(settings: draftSettings)
+│  │  └─ @Bindable var settings: Settings
 │  │  └─ CSS, Appearance, Links, QL Window Size
-│  ├─ ExtensionsSettingsView (17 properties)
+│  ├─ ExtensionsSettingsView(settings: draftSettings)
+│  │  └─ @Bindable var settings: Settings
 │  │  └─ GFM Extensions + Custom Extensions
-│  ├─ SyntaxSettingsView (7 properties)
+│  ├─ SyntaxSettingsView(settings: draftSettings)
+│  │  └─ @Bindable var settings: Settings
 │  │  └─ Highlighting, Line Numbers, Language Detection
-│  └─ AdvancedSettingsView (8 properties)
+│  └─ AdvancedSettingsView(settings: draftSettings)
+│     └─ @Bindable var settings: Settings
 │     └─ Parser Options, Reset to Defaults
 └─ Toolbar (Apply/Cancel Buttons)
+   └─ Apply disabled when !hasChanges
+```
+
+**Child View Pattern**:
+```swift
+struct ExtensionsSettingsView: View {
+    @Bindable var settings: Settings  // Direct @Observable binding
+
+    var body: some View {
+        Form {
+            Toggle("Tables", isOn: $settings.tableExtension)
+            Toggle("Emoji", isOn: $settings.emojiExtension)
+            // ... all bindings use $settings.property directly
+        }
+    }
+}
 ```
 
 **Integration mit AppKit**:
@@ -591,10 +626,21 @@ TextDownSettingsView (Main Window)
 
 **Change Tracking**:
 ```swift
-// Combine sink() pattern für alle 40 properties
-$tableExtension.sink { [weak self] _ in
-    self?.hasUnsavedChanges = true
-}.store(in: &cancellables)
+// Automatic via Swift @Observable
+// No Combine subscriptions needed
+// hasChanges computed property compares JSON representations
+private var hasChanges: Bool {
+    let draftData = try? JSONEncoder().encode(draftSettings)
+    let originalData = try? JSONEncoder().encode(originalSettings)
+    return draftData != originalData
+}
+
+// Apply button automatically enabled/disabled based on hasChanges
+Button("Apply") {
+    applyChanges()
+    dismiss()
+}
+.disabled(!hasChanges)
 ```
 
 ### Settings Properties (40 Total)
@@ -791,11 +837,12 @@ chore: Maintenance tasks
 - `TextDown/TextDown-Bridging-Header.h` - C/Swift Bridge (9 Imports)
 
 ### UI Layer
-- `TextDown/DocumentViewController.swift` - Editor View Controller (972 Zeilen, cleaned up)
+- `TextDown/DocumentViewController.swift` - Editor View Controller (617 Zeilen, after SwiftUI migration)
 - `TextDown/MarkdownDocument.swift` - NSDocument Implementation (180 Zeilen)
 - `TextDown/MarkdownWindowController.swift` - Window Controller (82 Zeilen)
-- `TextDown/SettingsViewModel.swift` - SwiftUI State Management (327 Zeilen)
-- `TextDown/Preferences/*.swift` - 4 SwiftUI Settings Views
+- `TextDown/Preferences/*.swift` - 5 SwiftUI Settings Views mit @Bindable (@Observable bindings)
+  - TextDownSettingsView.swift - Main window mit draft Settings copy
+  - GeneralSettingsView.swift, ExtensionsSettingsView.swift, SyntaxSettingsView.swift, AdvancedSettingsView.swift
 - `TextDown/AppDelegate.swift` - App Lifecycle, Sparkle Integration, Preferences Window
 - `TextDown/Theme.swift` - Theme Datenstrukturen
 - `TextDown/ThemePreview.swift` - Theme Preview UI

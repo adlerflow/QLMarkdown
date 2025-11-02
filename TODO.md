@@ -172,6 +172,36 @@
 - HighlightViewController: 93 → 82 lines (-11/-12%)
 - **Total: -358 LOC**
 
+### Phase 3: SettingsViewModel Elimination ✅ COMPLETED
+- [x] Delete SettingsViewModel.swift (-327 LOC, 100% elimination)
+- [x] Delete 5 old SwiftUI files from TextDown/ root directory
+- [x] Update TextDownSettingsView.swift:
+  - [x] Replace @StateObject viewModel with @State draftSettings
+  - [x] Create draft Settings copy via JSON encode/decode for Apply/Cancel
+  - [x] Implement hasChanges computed property (compares draft to original)
+  - [x] Move Apply logic inline (40 property assignments to Settings.shared)
+- [x] Update 4 child views (General, Extensions, Syntax, Advanced):
+  - [x] Replace @ObservedObject var viewModel with @Bindable var settings
+  - [x] Update all bindings: $viewModel.property → $settings.property
+  - [x] Update #Preview sections to create draft Settings copies
+- [x] Update AdvancedSettingsView.swift:
+  - [x] Move resetToDefaults() inline (40 property assignments)
+- [x] Clean build verification
+- [x] Test suite: **47/50 passing (94%)** - maintained! ✨
+- [x] Git commit: fc2aedb
+- [x] Git tag: phase3-swiftui-complete
+
+**Code Reduction**:
+- SettingsViewModel.swift: -327 LOC (100% eliminated)
+- Old SwiftUI files deleted: -6 files from root directory
+- Combine subscriptions removed: -40 sink() calls
+- Manual sync methods removed: -170 LOC (apply, cancel, reset)
+- **Total: -327 LOC + eliminated 40 @Published properties + 40 sink() subscriptions**
+
+**Architecture Change**:
+- **BEFORE**: Settings.shared → SettingsViewModel (@Published) → SwiftUI Views
+- **AFTER**: Settings.shared (@Observable) → Draft Settings copy → SwiftUI Views
+
 ---
 
 ## Migration Summary
@@ -189,6 +219,7 @@
 **Phase 0**: Test Suite Creation (1,470 LOC tests, 80+ tests, 6 HTML snapshots) ✅
 **Phase 1**: Settings.swift Modernization (@Observable macro, -90 LOC) ✅
 **Phase 2**: DocumentViewController State Layer Removal (-358 LOC, eliminated redundancy) ✅
+**Phase 3**: SettingsViewModel Elimination (-327 LOC, 100% ViewModel layer removed) ✅
 
 ### Key Achievements - Standalone Editor
 - Multi-window support with NSDocument architecture
@@ -202,20 +233,23 @@
 - Storyboard cleanup (fixed AboutViewController, removed unreachable scenes)
 
 ### Key Achievements - SwiftUI State Migration
-- Eliminated triple state redundancy (Settings + DocumentViewController + SettingsViewModel)
+- **Eliminated triple state redundancy**: Settings + DocumentViewController + SettingsViewModel → Settings only
 - Adopted Swift Observation framework (@Observable macro)
-- Removed all 40 @objc property declarations
-- Single source of truth: Settings.shared accessed directly
+- Removed all 40 @objc property declarations from Settings
+- Single source of truth: Settings.shared accessed directly throughout app
+- **100% elimination of SettingsViewModel layer** (-327 LOC)
 - No manual synchronization code (updateSettings/initFromSettings removed)
+- No Combine subscriptions (40 sink() calls eliminated)
+- Direct @Bindable bindings in SwiftUI (no @Published wrapper)
 - Automatic UI updates via @Observable
 - Improved test pass rate: 46/50 → 47/50 (94%)
-- **Total code reduction: -448 LOC (22% reduction in state management)**
+- **Total code reduction: -775 LOC (48% reduction in state management code)**
 
 ### Files Changed - Standalone Editor Migration
 - **Added**:
   - MarkdownDocument.swift (180 LOC), MarkdownWindowController.swift (82 LOC)
-  - SettingsViewModel.swift (327 LOC)
-  - Preferences/*.swift (4 SwiftUI views: ~900 LOC total)
+  - ~~SettingsViewModel.swift (327 LOC)~~ - Later removed in Phase 3 of SwiftUI migration
+  - Preferences/*.swift (5 SwiftUI views: ~600 LOC total after Phase 3 refactor)
 - **Renamed**: ViewController.swift → DocumentViewController.swift
 - **Deleted**:
   - TextDownXPCHelper/ (8 files)
@@ -240,11 +274,23 @@
   - TextDownTests2/Snapshots/*.html (6 baseline HTML files)
   - migration_baseline.txt (baseline metrics)
   - PHASE_0_COMPLETE.md (414 LOC documentation)
+- **Deleted**:
+  - TextDown/SettingsViewModel.swift (327 LOC - Phase 3)
+  - TextDown/TextDownSettingsView.swift (old - Phase 3)
+  - TextDown/GeneralSettingsView.swift (old - Phase 3)
+  - TextDown/ExtensionsSettingsView.swift (old - Phase 3)
+  - TextDown/SyntaxSettingsView.swift (old - Phase 3)
+  - TextDown/AdvancedSettingsView.swift (old - Phase 3)
 - **Modified**:
   - Settings.swift (+import Observation, +@Observable, -40 @objc declarations)
   - DocumentViewController.swift (964 → 617 lines, -347 LOC)
   - HighlightViewController.swift (93 → 82 lines, -11 LOC)
-  - TextDown.xcodeproj/project.pbxproj (build configuration)
+  - TextDown/Preferences/TextDownSettingsView.swift (Phase 3: @Bindable refactor)
+  - TextDown/Preferences/GeneralSettingsView.swift (Phase 3: @Bindable refactor)
+  - TextDown/Preferences/ExtensionsSettingsView.swift (Phase 3: @Bindable refactor)
+  - TextDown/Preferences/SyntaxSettingsView.swift (Phase 3: @Bindable refactor)
+  - TextDown/Preferences/AdvancedSettingsView.swift (Phase 3: @Bindable refactor)
+  - TextDown.xcodeproj/project.pbxproj (build configuration + file references)
 
 ### Statistics - Standalone Editor Migration
 - Targets Reduced: 10 → 5 (removed TextDownXPCHelper + 3 extensions + CLI)
@@ -260,14 +306,19 @@
 ### Statistics - SwiftUI State Migration
 - Test Suite: 1,470 LOC added (80+ tests across 3 files)
 - Test Pass Rate: 47/50 (94%), improved from 46/50 baseline
-- Code Reduction: -448 LOC total
-  - Settings.swift: -90 LOC (removed @objc boilerplate)
-  - DocumentViewController: -347 LOC (removed state layer)
-  - HighlightViewController: -11 LOC (simplified)
-- @objc Declarations Removed: 40 (100% elimination)
-- Manual Sync Methods Removed: 2 (updateSettings, initFromSettings = 110 lines)
-- Duplicate Properties Removed: 35 from DocumentViewController
-- Single Source of Truth: Settings.shared accessed directly via @Observable
+- Code Reduction: -775 LOC total (48% reduction in state management)
+  - Phase 1 - Settings.swift: -90 LOC (removed @objc boilerplate)
+  - Phase 2 - DocumentViewController: -347 LOC (removed state layer)
+  - Phase 2 - HighlightViewController: -11 LOC (simplified)
+  - Phase 3 - SettingsViewModel.swift: -327 LOC (100% elimination)
+- Files Deleted: 6 (SettingsViewModel + 5 old SwiftUI files)
+- @objc Declarations Removed: 40 (100% elimination from Settings)
+- @Published Properties Removed: 40 (100% elimination from SettingsViewModel)
+- Combine Subscriptions Removed: 40 sink() calls
+- Manual Sync Methods Removed: 4 (updateSettings, initFromSettings, apply, cancel = 280+ lines)
+- Duplicate Properties Removed: 35 from DocumentViewController + 40 from SettingsViewModel
+- Architecture Transformation: Triple redundancy → Single source of truth
+- SwiftUI Binding: @ObservedObject → @Bindable (direct @Observable binding)
 
 ### Bundle Impact
 - Removed: XPCHelper process (was consuming excessive memory)
@@ -291,6 +342,8 @@
 
 ---
 
+## Standalone Editor Migration Timeline
+
 **Last Updated**: 2025-10-31
 **Phase 1 Completed**: 2025-10-31 (XPC Elimination)
 **Phase 2 Completed**: 2025-10-31 (Extension Elimination)
@@ -299,3 +352,14 @@
 **Git Commits**: f6831b6, 5f7cb01, 8857d1a, 0ec1bd0, 69394e7
 **Branch**: feature/standalone-editor
 **Tags**: phase2-pre-removal, phase2-complete
+
+## SwiftUI State Migration Timeline
+
+**Last Updated**: 2025-11-02
+**Phase 0 Completed**: 2025-10-31 (Test Suite Creation)
+**Phase 1 Completed**: 2025-11-02 (Settings.swift @Observable)
+**Phase 2 Completed**: 2025-11-02 (DocumentViewController State Removal)
+**Phase 3 Completed**: 2025-11-02 (SettingsViewModel Elimination)
+**Git Commits**: 7e4d77b, 34f7d39, dc8fe34, 844f646, fc2aedb
+**Branch**: feature/swiftui-state-migration
+**Tags**: migration-phase0-complete, phase1-complete, phase2-swiftui-complete, phase3-swiftui-complete
