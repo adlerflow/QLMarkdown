@@ -55,10 +55,10 @@ struct SyntaxSettingsView: View {
             }
 
             Section("Theme") {
-                // TODO: Implement theme selector with 97 themes
+                // TODO: Implement theme selector with 12 highlight.js themes
                 Text("Theme selector coming soon")
                     .foregroundStyle(.secondary)
-                Text("Themes: solarized-dark, github, zenburn, and 94 more available in highlight/themes/")
+                Text("Available themes: github, github-dark, atom-one-dark, monokai, nord, vs2015, xcode, and 5 more")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
