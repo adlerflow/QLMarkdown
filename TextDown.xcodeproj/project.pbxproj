@@ -32,13 +32,34 @@
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
 		F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */; };
 		F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */; };
-		F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = F4A0C5CA2EB5B02800BC1997 /* highlight.js */; };
 		F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */; };
 		F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */; };
 		F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */; };
 		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
 		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
 		F4CB23862EB7C7430027B041 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = F4CB23852EB7C7430027B041 /* Markdown */; };
+		F4CB23AF2EB7D1B20027B041 /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */; };
+		F4CB23B02EB7D1B20027B041 /* monokai-sublime.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */; };
+		F4CB23B12EB7D1B20027B041 /* stackoverflow-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */; };
+		F4CB23B22EB7D1B20027B041 /* vs.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A92EB7D1B20027B041 /* vs.min.css */; };
+		F4CB23B32EB7D1B20027B041 /* highlight.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F4CB239E2EB7D1B20027B041 /* highlight.min.js */; };
+		F4CB23B42EB7D1B20027B041 /* atom-one-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */; };
+		F4CB23B52EB7D1B20027B041 /* github-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A32EB7D1B20027B041 /* github-dark.min.css */; };
+		F4CB23B62EB7D1B20027B041 /* base16-github.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A22EB7D1B20027B041 /* base16-github.min.css */; };
+		F4CB23B72EB7D1B20027B041 /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A62EB7D1B20027B041 /* monokai.min.css */; };
+		F4CB23B82EB7D1B20027B041 /* github.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A42EB7D1B20027B041 /* github.min.css */; };
+		F4CB23B92EB7D1B20027B041 /* THEMES.md in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AD2EB7D1B20027B041 /* THEMES.md */; };
+		F4CB23BA2EB7D1B20027B041 /* nord.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A72EB7D1B20027B041 /* nord.min.css */; };
+		F4CB23BB2EB7D1B20027B041 /* vs2015.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */; };
+		F4CB23BC2EB7D1B20027B041 /* xcode.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AB2EB7D1B20027B041 /* xcode.min.css */; };
+		F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */; };
+		F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */; };
+		F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */; };
+		F4CB23DC2EB7D3690027B041 /* MentionRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */; };
+		F4CB23DD2EB7D3690027B041 /* SubSupRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */; };
+		F4CB23DE2EB7D3690027B041 /* HeadingIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */; };
+		F4CB23DF2EB7D3690027B041 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */; };
+		F4CB23E02EB7D3690027B041 /* MathRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D22EB7D3690027B041 /* MathRewriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,12 +122,33 @@
 		F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownWindowController.swift; sourceTree = "<group>"; };
 		F49E8C5C2EB77A2200E3161A /* TextDownTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextDownTests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4A0C5CA2EB5B02800BC1997 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = highlight.js; path = Resources/highlight.js; sourceTree = "<group>"; };
 		F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
+		F4CB239E2EB7D1B20027B041 /* highlight.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = highlight.min.js; sourceTree = "<group>"; };
+		F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "atom-one-dark.min.css"; sourceTree = "<group>"; };
+		F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "atom-one-light.min.css"; sourceTree = "<group>"; };
+		F4CB23A22EB7D1B20027B041 /* base16-github.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "base16-github.min.css"; sourceTree = "<group>"; };
+		F4CB23A32EB7D1B20027B041 /* github-dark.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "github-dark.min.css"; sourceTree = "<group>"; };
+		F4CB23A42EB7D1B20027B041 /* github.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = github.min.css; sourceTree = "<group>"; };
+		F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "monokai-sublime.min.css"; sourceTree = "<group>"; };
+		F4CB23A62EB7D1B20027B041 /* monokai.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = monokai.min.css; sourceTree = "<group>"; };
+		F4CB23A72EB7D1B20027B041 /* nord.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = nord.min.css; sourceTree = "<group>"; };
+		F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "stackoverflow-light.min.css"; sourceTree = "<group>"; };
+		F4CB23A92EB7D1B20027B041 /* vs.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = vs.min.css; sourceTree = "<group>"; };
+		F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = vs2015.min.css; sourceTree = "<group>"; };
+		F4CB23AB2EB7D1B20027B041 /* xcode.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = xcode.min.css; sourceTree = "<group>"; };
+		F4CB23AD2EB7D1B20027B041 /* THEMES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = THEMES.md; sourceTree = "<group>"; };
+		F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D22EB7D3690027B041 /* MathRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSupRewriter.swift; sourceTree = "<group>"; };
+		F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingIDGenerator.swift; sourceTree = "<group>"; };
+		F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -139,7 +181,6 @@
 		83598E5825818808004664D3 = {
 			isa = PBXGroup;
 			children = (
-				F4A0C5CA2EB5B02800BC1997 /* highlight.js */,
 				83D4B1C3258675D0000745DB /* README.md */,
 				83E7FEED258FBE54003ECF9B /* TODO.md */,
 				832D256125CC8894005F41AC /* .gitignore */,
@@ -165,29 +206,30 @@
 		83598E6325818808004664D3 /* TextDown */ = {
 			isa = PBXGroup;
 			children = (
+				836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */,
+				83598E6425818808004664D3 /* AppDelegate.swift */,
+				83598E682581880A004664D3 /* Assets.xcassets */,
+				83598E6625818808004664D3 /* DocumentViewController.swift */,
+				837D20D5258362A5008FC698 /* example.jpg */,
+				834CAB89259167B800673002 /* examples */,
+				8310245029E9F8D5004651DC /* HighlightViewController.swift */,
+				83598E6D2581880A004664D3 /* Info.plist */,
+				8376EADC27E8BD3D00AB44B8 /* Log.swift */,
+				83598E6A2581880A004664D3 /* Main.storyboard */,
 				F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */,
 				F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */,
-				83598E6D2581880A004664D3 /* Info.plist */,
-				83598E682581880A004664D3 /* Assets.xcassets */,
-				83598E6E2581880A004664D3 /* TextDown.entitlements */,
-				83598E7925818839004664D3 /* TextDown-Bridging-Header.h */,
-				83598E6425818808004664D3 /* AppDelegate.swift */,
-				83598E6625818808004664D3 /* DocumentViewController.swift */,
-				8310245029E9F8D5004651DC /* HighlightViewController.swift */,
-				83598E6A2581880A004664D3 /* Main.storyboard */,
-				836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */,
-				83598EF92582098A004664D3 /* test1.md */,
-				83598EFA258209C7004664D3 /* test2.md */,
-				837D20D5258362A5008FC698 /* example.jpg */,
+				83EF951C2585367500B56FA3 /* NSColor+ext.swift */,
+				F4CB237E2EB78FAB0027B041 /* Preferences */,
+				F4CB23D82EB7D3690027B041 /* Rendering */,
 				83F4B99125868A7400FC58A7 /* Settings.swift */,
+				83327D452595E15700E76CF6 /* Settings+ext.swift */,
 				838D197B2DCDD96100963323 /* Settings+NoXPC.swift */,
 				83D22E632DCA65980013EB9D /* Settings+render.swift */,
-				83327D452595E15700E76CF6 /* Settings+ext.swift */,
 				8357EB7E2588262C002C2C45 /* String+ext.swift */,
-				83EF951C2585367500B56FA3 /* NSColor+ext.swift */,
-				8376EADC27E8BD3D00AB44B8 /* Log.swift */,
-				834CAB89259167B800673002 /* examples */,
-				F4CB237E2EB78FAB0027B041 /* Preferences */,
+				83598EF92582098A004664D3 /* test1.md */,
+				83598EFA258209C7004664D3 /* test2.md */,
+				83598E6E2581880A004664D3 /* TextDown.entitlements */,
+				83598E7925818839004664D3 /* TextDown-Bridging-Header.h */,
 			);
 			path = TextDown;
 			sourceTree = "<group>";
@@ -205,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				83598F22258263C0004664D3 /* default.css */,
+				F4CB23AE2EB7D1B20027B041 /* highlight.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -239,6 +282,66 @@
 				F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		F4CB239F2EB7D1B20027B041 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB239E2EB7D1B20027B041 /* highlight.min.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		F4CB23AC2EB7D1B20027B041 /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */,
+				F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */,
+				F4CB23A22EB7D1B20027B041 /* base16-github.min.css */,
+				F4CB23A32EB7D1B20027B041 /* github-dark.min.css */,
+				F4CB23A42EB7D1B20027B041 /* github.min.css */,
+				F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */,
+				F4CB23A62EB7D1B20027B041 /* monokai.min.css */,
+				F4CB23A72EB7D1B20027B041 /* nord.min.css */,
+				F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */,
+				F4CB23A92EB7D1B20027B041 /* vs.min.css */,
+				F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */,
+				F4CB23AB2EB7D1B20027B041 /* xcode.min.css */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		F4CB23AE2EB7D1B20027B041 /* highlight.js */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB239F2EB7D1B20027B041 /* lib */,
+				F4CB23AC2EB7D1B20027B041 /* styles */,
+				F4CB23AD2EB7D1B20027B041 /* THEMES.md */,
+			);
+			path = highlight.js;
+			sourceTree = "<group>";
+		};
+		F4CB23D52EB7D3690027B041 /* Rewriters */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */,
+				F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */,
+				F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */,
+				F4CB23D22EB7D3690027B041 /* MathRewriter.swift */,
+				F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */,
+				F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */,
+			);
+			path = Rewriters;
+			sourceTree = "<group>";
+		};
+		F4CB23D82EB7D3690027B041 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB23D52EB7D3690027B041 /* Rewriters */,
+				F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */,
+				F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */,
+			);
+			path = Rendering;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,10 +447,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */,
 				83598EFC25820A72004664D3 /* test2.md in Resources */,
 				83F4B9962586AB9700FC58A7 /* README.md in Resources */,
 				83598EFD25820A72004664D3 /* test1.md in Resources */,
+				F4CB23AF2EB7D1B20027B041 /* atom-one-light.min.css in Resources */,
+				F4CB23B02EB7D1B20027B041 /* monokai-sublime.min.css in Resources */,
+				F4CB23B12EB7D1B20027B041 /* stackoverflow-light.min.css in Resources */,
+				F4CB23B22EB7D1B20027B041 /* vs.min.css in Resources */,
+				F4CB23B32EB7D1B20027B041 /* highlight.min.js in Resources */,
+				F4CB23B42EB7D1B20027B041 /* atom-one-dark.min.css in Resources */,
+				F4CB23B52EB7D1B20027B041 /* github-dark.min.css in Resources */,
+				F4CB23B62EB7D1B20027B041 /* base16-github.min.css in Resources */,
+				F4CB23B72EB7D1B20027B041 /* monokai.min.css in Resources */,
+				F4CB23B82EB7D1B20027B041 /* github.min.css in Resources */,
+				F4CB23B92EB7D1B20027B041 /* THEMES.md in Resources */,
+				F4CB23BA2EB7D1B20027B041 /* nord.min.css in Resources */,
+				F4CB23BB2EB7D1B20027B041 /* vs2015.min.css in Resources */,
+				F4CB23BC2EB7D1B20027B041 /* xcode.min.css in Resources */,
 				83598E692581880A004664D3 /* Assets.xcassets in Resources */,
 				83598E6C2581880A004664D3 /* Main.storyboard in Resources */,
 				837D20D6258362A5008FC698 /* example.jpg in Resources */,
@@ -375,6 +491,14 @@
 				836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */,
 				83598E6725818808004664D3 /* DocumentViewController.swift in Sources */,
 				F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */,
+				F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */,
+				F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */,
+				F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */,
+				F4CB23DC2EB7D3690027B041 /* MentionRewriter.swift in Sources */,
+				F4CB23DD2EB7D3690027B041 /* SubSupRewriter.swift in Sources */,
+				F4CB23DE2EB7D3690027B041 /* HeadingIDGenerator.swift in Sources */,
+				F4CB23DF2EB7D3690027B041 /* MarkdownRenderer.swift in Sources */,
+				F4CB23E02EB7D3690027B041 /* MathRewriter.swift in Sources */,
 				F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */,
 				F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */,
 				F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */,

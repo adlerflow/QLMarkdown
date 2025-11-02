@@ -2,7 +2,7 @@
 //  MarkdownWindowController.swift
 //  TextDown
 //
-//  Created by Claude Code on 2025-10-31.
+//  Created by adlerflow on 2025-10-31.
 //
 
 import Cocoa
