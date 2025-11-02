@@ -85,15 +85,14 @@
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
 		83F88259259906C7008C5071 /* heads.c in Sources */ = {isa = PBXBuildFile; fileRef = 83F88258259906C7008C5071 /* heads.c */; };
 		83F8825E25991BFC008C5071 /* heads_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83F8825C25991BFC008C5071 /* heads_utils.cpp */; };
-		F40D9E7D2EB53A18001C10C6 /* TextDownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7C2EB53A18001C10C6 /* TextDownSettingsView.swift */; };
-		F40D9E7E2EB53A18001C10C6 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7B2EB53A18001C10C6 /* SyntaxSettingsView.swift */; };
-		F40D9E7F2EB53A18001C10C6 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E7A2EB53A18001C10C6 /* GeneralSettingsView.swift */; };
-		F40D9E802EB53A18001C10C6 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E782EB53A18001C10C6 /* AdvancedSettingsView.swift */; };
-		F40D9E812EB53A18001C10C6 /* ExtensionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E792EB53A18001C10C6 /* ExtensionsSettingsView.swift */; };
-		F40D9E832EB53A37001C10C6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */; };
 		F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */; };
 		F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */; };
 		F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = F4A0C5CA2EB5B02800BC1997 /* highlight.js */; };
+		F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */; };
+		F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */; };
+		F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */; };
+		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
+		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,16 +318,15 @@
 		83F88258259906C7008C5071 /* heads.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = heads.c; sourceTree = "<group>"; };
 		83F8825C25991BFC008C5071 /* heads_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = heads_utils.cpp; sourceTree = "<group>"; };
 		83F8825D25991BFC008C5071 /* heads_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = heads_utils.hpp; sourceTree = "<group>"; };
-		F40D9E782EB53A18001C10C6 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
-		F40D9E792EB53A18001C10C6 /* ExtensionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsSettingsView.swift; sourceTree = "<group>"; };
-		F40D9E7A2EB53A18001C10C6 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		F40D9E7B2EB53A18001C10C6 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
-		F40D9E7C2EB53A18001C10C6 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
-		F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDocument.swift; sourceTree = "<group>"; };
 		F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownWindowController.swift; sourceTree = "<group>"; };
 		F49E8C5C2EB77A2200E3161A /* TextDownTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextDownTests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A0C5CA2EB5B02800BC1997 /* highlight.js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = highlight.js; path = Resources/highlight.js; sourceTree = "<group>"; };
+		F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
+		F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsSettingsView.swift; sourceTree = "<group>"; };
+		F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
+		F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -537,12 +535,6 @@
 		83598E6325818808004664D3 /* TextDown */ = {
 			isa = PBXGroup;
 			children = (
-				F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */,
-				F40D9E782EB53A18001C10C6 /* AdvancedSettingsView.swift */,
-				F40D9E792EB53A18001C10C6 /* ExtensionsSettingsView.swift */,
-				F40D9E7A2EB53A18001C10C6 /* GeneralSettingsView.swift */,
-				F40D9E7B2EB53A18001C10C6 /* SyntaxSettingsView.swift */,
-				F40D9E7C2EB53A18001C10C6 /* TextDownSettingsView.swift */,
 				F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */,
 				F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */,
 				83598E6D2581880A004664D3 /* Info.plist */,
@@ -567,6 +559,7 @@
 				83D82A90277C466500C9B99F /* jpcre2.hpp */,
 				83D82A91277C467A00C9B99F /* pcre2.h */,
 				834CAB89259167B800673002 /* examples */,
+				F4CB237E2EB78FAB0027B041 /* Preferences */,
 			);
 			path = TextDown;
 			sourceTree = "<group>";
@@ -665,6 +658,18 @@
 				83D82A5D277BCAED00C9B99F /* MakefilePCRE */,
 			);
 			path = dependencies;
+			sourceTree = "<group>";
+		};
+		F4CB237E2EB78FAB0027B041 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */,
+				F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */,
+				F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */,
+				F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */,
+				F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -864,17 +869,17 @@
 				836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */,
 				83327D202593FCEB00E76CF6 /* url.cpp in Sources */,
 				834A4F5529E8AD8E00692964 /* html.c in Sources */,
-				F40D9E7D2EB53A18001C10C6 /* TextDownSettingsView.swift in Sources */,
-				F40D9E7E2EB53A18001C10C6 /* SyntaxSettingsView.swift in Sources */,
-				F40D9E7F2EB53A18001C10C6 /* GeneralSettingsView.swift in Sources */,
-				F40D9E802EB53A18001C10C6 /* AdvancedSettingsView.swift in Sources */,
-				F40D9E812EB53A18001C10C6 /* ExtensionsSettingsView.swift in Sources */,
 				834A4F3229E8AD8D00692964 /* houdini_html_e.c in Sources */,
 				834A4F3D29E8AD8D00692964 /* references.c in Sources */,
 				83598E6725818808004664D3 /* DocumentViewController.swift in Sources */,
 				834A4F0429E8AD8C00692964 /* tasklist.c in Sources */,
 				834A4F2929E8AD8D00692964 /* syntax_extension.c in Sources */,
 				834A4F5D29E8AD8E00692964 /* scanners.c in Sources */,
+				F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */,
+				F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */,
+				F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */,
+				F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */,
+				F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */,
 				834A4EF729E8AD8C00692964 /* table.c in Sources */,
 				83CF71CE2C60023E0066A195 /* sup_ext.c in Sources */,
 				834A4F3A29E8AD8D00692964 /* utf8.c in Sources */,
@@ -893,7 +898,6 @@
 				834A4F2629E8AD8D00692964 /* houdini_href_e.c in Sources */,
 				834A4F4329E8AD8D00692964 /* iterator.c in Sources */,
 				83F4B99225868A7400FC58A7 /* Settings.swift in Sources */,
-				F40D9E832EB53A37001C10C6 /* SettingsViewModel.swift in Sources */,
 				83760301258C1813004799ED /* inlineimage.c in Sources */,
 				834A4F0729E8AD8C00692964 /* core-extensions.c in Sources */,
 				834A4F1B29E8AD8D00692964 /* cmark_ctype.c in Sources */,

@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct SyntaxSettingsView: View {
-    @ObservedObject var viewModel: SettingsViewModel
+    @Bindable var settings: Settings
 
     var body: some View {
         Form {
             Section("Syntax Highlighting") {
-                Toggle("Enable syntax highlighting", isOn: $viewModel.syntaxHighlightExtension)
+                Toggle("Enable syntax highlighting", isOn: $settings.syntaxHighlightExtension)
                     .help("Apply color syntax highlighting to fenced code blocks")
 
-                if viewModel.syntaxHighlightExtension {
-                    Toggle("Show line numbers", isOn: $viewModel.syntaxLineNumbersOption)
+                if settings.syntaxHighlightExtension {
+                    Toggle("Show line numbers", isOn: $settings.syntaxLineNumbersOption)
                         .padding(.leading, 20)
                         .help("Display line numbers in code blocks")
 
                     HStack {
                         Text("Tab width:")
                             .frame(width: 120, alignment: .trailing)
-                        TextField("Tab width", value: $viewModel.syntaxTabsOption, format: .number)
+                        TextField("Tab width", value: $settings.syntaxTabsOption, format: .number)
                             .textFieldStyle(.roundedBorder)
                             .frame(maxWidth: 80)
                         Text("spaces")
@@ -35,7 +35,7 @@ struct SyntaxSettingsView: View {
                     HStack {
                         Text("Word wrap:")
                             .frame(width: 120, alignment: .trailing)
-                        TextField("Word wrap", value: $viewModel.syntaxWordWrapOption, format: .number)
+                        TextField("Word wrap", value: $settings.syntaxWordWrapOption, format: .number)
                             .textFieldStyle(.roundedBorder)
                             .frame(maxWidth: 80)
                         Text("characters (0 = disabled)")
@@ -46,17 +46,12 @@ struct SyntaxSettingsView: View {
             }
 
             Section("Language Detection") {
-                    Text("Disabled").tag(GuessEngine.none)
-                    Text("Simple (libmagic MIME)").tag(GuessEngine.simple)
-                    Text("Accurate (GitHub Linguist)").tag(GuessEngine.accurate)
-                }
-                .pickerStyle(.radioGroup)
-                .help("Automatically detect programming language when code fence has no language tag")
-
                 Text("Note: Language detection only applies to code blocks without explicit language tags (e.g., ``` without specifying ```python).")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .padding(.top, 4)
+
+                Text("Language detection disabled in current version")
+                    .foregroundStyle(.secondary)
             }
 
             Section("Theme") {
@@ -74,6 +69,11 @@ struct SyntaxSettingsView: View {
 }
 
 #Preview {
-    SyntaxSettingsView(viewModel: SettingsViewModel(from: Settings.shared))
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+    let data = try! encoder.encode(Settings.shared)
+    let previewSettings = try! decoder.decode(Settings.self, from: data)
+
+    return SyntaxSettingsView(settings: previewSettings)
         .frame(width: 600, height: 500)
 }
