@@ -44,6 +44,99 @@ Transformation von TextDown (QuickLook Extension) zu einem eigenständigen Markd
 
 ---
 
+## 🔮 Proposed: Swift-Markdown Migration (November 2025)
+
+**Status**: PROPOSAL (Branch: `feature/swift-markdown-migration`)
+
+A comprehensive migration plan has been developed to replace the current cmark-gfm + custom C/C++ extensions architecture with Apple's swift-markdown library.
+
+### Migration Documents
+
+**Comprehensive Migration Plan**:
+- **[SWIFT_MARKDOWN_MIGRATION_PLAN.md](SWIFT_MARKDOWN_MIGRATION_PLAN.md)** (1,245 lines) - Complete analysis, risks, recommendations
+  - Executive Summary with **CONDITIONAL PROCEED** recommendation
+  - Feature-by-feature migration analysis (9 custom extensions)
+  - Critical gaps & showstoppers (math/highlight/sub/sup custom delimiters)
+  - Build system impact (eliminate 4 Legacy Targets, -75% build time)
+  - Hybrid approach recommendation (keep cmark-gfm for math only)
+
+**Technical Implementation**:
+- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** (1,190 lines) - Production-ready code templates
+  - 8 MarkupRewriter implementations with full source code
+  - HeadingIDFormatter (custom HTMLFormatter subclass)
+  - MarkdownRenderer orchestration layer
+  - Error handling, performance optimization strategies
+
+**Execution Plan**:
+- **[PHASED_ROLLOUT.md](PHASED_ROLLOUT.md)** - 4-week implementation timeline
+  - Phase 1: Foundation (swift-markdown SPM, GFM baseline)
+  - Phase 2: Low-risk extensions (heads, inlineimage, emoji)
+  - Phase 3: High-risk extensions (math, highlight, sub/sup, mention)
+  - Phase 4: Cleanup (remove Legacy Targets, C/C++ code)
+
+**Quality Assurance**:
+- **[TESTING_STRATEGY.md](TESTING_STRATEGY.md)** - Comprehensive test coverage plan
+  - Unit tests (200+ per-rewriter test cases)
+  - Integration tests (end-to-end rendering)
+  - Regression test suite (markdown fixtures)
+  - Performance benchmarks
+
+**Alternative Solutions**:
+- **[ALTERNATIVE_APPROACHES.md](ALTERNATIVE_APPROACHES.md)** - Options analysis
+  - Hybrid architecture (swift-markdown + cmark-gfm math only)
+  - Feature deferral matrix
+  - Upstream contribution path (fork swift-markdown)
+  - Trade-off analysis
+
+### Key Metrics (If Implemented)
+
+| Metric | Current (cmark-gfm) | Target (swift-markdown) | Impact |
+|--------|---------------------|------------------------|--------|
+| **Build Time (clean)** | ~2 minutes | ~30 seconds | **-75%** |
+| **Custom Extension LOC** | ~4,100 (C/C++) | ~800-1,200 (Swift) | **-70%** |
+| **Legacy Targets** | 4 (cmark, pcre2, jpcre2, magic) | 0 | **-100%** |
+| **C Dependencies** | 3 (libpcre2, libjpcre2, libmagic) | 0 | **-100%** |
+| **Bridging Header** | Required (5 imports) | Not needed | **-100%** |
+| **Bundle Size** | ~50 MB | ~49.2 MB | -1.6% |
+
+### Critical Risks ⚠️
+
+**🔴 BLOCKER: Custom Inline Delimiter Parsing**
+- swift-markdown does NOT provide API for custom inline delimiters (`$`, `==`, `~`, `^`, `:`, `@`)
+- Workaround: Regex-based text rewriters (FRAGILE - breaks on nesting, escaping, multi-line)
+- **Affected Features**: Math (`$...$`), Highlight (`==...==`), Sub/Sup (`~`, `^`), Emoji (`:...:`), Mention (`@user`)
+
+**Impact on Users**:
+- Math-heavy technical documents will experience silent rendering failures
+- Edge cases like `\$5`, `$$nested $math$$`, multi-line equations will break
+- No migration path for users (syntax is correct, parser is wrong)
+
+### Recommendation: CONDITIONAL PROCEED
+
+**✅ Proceed IF**:
+1. Willing to accept feature regression on math/highlight/sub/sup
+2. Prioritize build simplicity over feature parity (pure Swift codebase)
+3. Can allocate 3-4 weeks for implementation + extensive beta testing
+4. **PREFERRED**: Adopt hybrid approach (swift-markdown + keep cmark-gfm math only)
+
+**❌ Do NOT Proceed IF**:
+1. Math support is mission-critical with zero regression tolerance
+2. User base heavily relies on complex math documents
+3. Cannot afford extended testing period with user feedback
+
+### Decision Status
+
+**Current**: Proposal stage - awaiting stakeholder review
+**Next Steps**:
+1. User survey to gauge math extension usage
+2. Prototype Phase 1 (foundation) to validate approach
+3. Beta release for power user feedback
+4. Final decision meeting on full vs. hybrid vs. defer
+
+See migration documents for complete technical analysis and implementation roadmap.
+
+---
+
 ## Aktuelle Projektstruktur (Post-Migration)
 
 ### TextDown.app - Standalone Editor
