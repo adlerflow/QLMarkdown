@@ -92,6 +92,7 @@
 		F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237A2EB78FAB0027B041 /* ExtensionsSettingsView.swift */; };
 		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
 		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
+		F4CB23862EB7C7430027B041 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = F4CB23852EB7C7430027B041 /* Markdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +339,7 @@
 				831834E6277E10150044ECDA /* Sparkle in Frameworks */,
 				83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */,
 				83D82A89277C45B500C9B99F /* libpcre2-32.a in Frameworks */,
+				F4CB23862EB7C7430027B041 /* Markdown in Frameworks */,
 				8382D05C2664051400210A0A /* Yams in Frameworks */,
 				830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */,
 			);
@@ -740,6 +742,7 @@
 				8382D05B2664051400210A0A /* Yams */,
 				830B5B3B272D68E500378FFE /* SwiftSoup */,
 				831834E5277E10150044ECDA /* Sparkle */,
+				F4CB23852EB7C7430027B041 /* Markdown */,
 			);
 			productName = TextDown;
 			productReference = 83598E6125818808004664D3 /* TextDown.app */;
@@ -805,6 +808,7 @@
 				8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */,
 				830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */,
+				F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */,
 			);
 			productRefGroup = 83598E6225818808004664D3 /* Products */;
 			projectDirPath = "";
@@ -1476,6 +1480,14 @@
 				minimumVersion = 4.0.6;
 			};
 		};
+		F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-markdown.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1503,6 +1515,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;
+		};
+		F4CB23852EB7C7430027B041 /* Markdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */;
+			productName = Markdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
