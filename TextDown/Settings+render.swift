@@ -3,6 +3,77 @@
 //  TextDown
 //
 //  Created by adlerflow on 06/05/25.
+//  swift-markdown migration: 2025-11-02
+//
+
+import Foundation
+import OSLog
+import SwiftSoup
+import Yams
+import Markdown  // swift-markdown package
+
+extension Settings {
+    func render(text: String, filename: String, forAppearance appearance: Appearance, baseDir: String) throws -> String {
+        os_log("render() called - swift-markdown STUB (old cmark-gfm implementation commented out below)", log: OSLog.rendering, type: .info)
+        
+        // TODO: Implement full swift-markdown rendering pipeline
+        // For now, return minimal placeholder
+        
+        return """
+        <!doctype html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Migration in Progress</title>
+        </head>
+        <body>
+            <h1>⚠️ swift-markdown Migration WIP</h1>
+            <pre>\(text.replacingOccurrences(of: "<", with: "&lt;"))</pre>
+        </body>
+        </html>
+        """
+    }
+
+    /// Helper function: Wraps HTML body in complete document structure
+    /// STUB - returns basic HTML document during migration
+    func getCompleteHTML(title: String, body: String, header: String = "", footer: String = "", basedir: URL, forAppearance appearance: Appearance) -> String {
+        return """
+        <!doctype html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>\(title)</title>
+        </head>
+        <body>
+            \(header)
+            \(body)
+            \(footer)
+        </body>
+        </html>
+        """
+    }
+}
+
+/*
+ ===============================================================================
+ OLD CMARK-GFM IMPLEMENTATION - COMMENTED OUT DURING SWIFT-MARKDOWN MIGRATION
+ ===============================================================================
+ 
+ This is the original 765-line render() function using cmark-gfm (C library).
+ Kept as reference during migration. Will be deleted once new implementation
+ is complete and tested.
+ 
+ Branch: feature/swift-markdown-migration
+ Date: 2025-11-02
+ ===============================================================================
+*/
+
+/*
+//
+//  Settings+render.swift
+//  TextDown
+//
+//  Created by adlerflow on 06/05/25.
 //
 
 import Foundation
@@ -763,3 +834,4 @@ if (document.readyState === 'loading') {
     }
     
 }
+*/

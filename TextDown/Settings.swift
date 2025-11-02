@@ -9,10 +9,14 @@ import Foundation
 import OSLog
 import Observation
 
+// COMMENTED OUT during swift-markdown migration (2025-11-02)
+// Only used by old cmark-gfm render() implementation
+/*
 enum CMARK_Error: Error {
     case parser_create
     case parser_parse
 }
+*/
 
 enum Appearance: Int {
     case undefined
