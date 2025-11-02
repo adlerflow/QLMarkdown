@@ -14,7 +14,7 @@ import OSLog
 
 /// Processes YAML frontmatter in R Markdown and Quarto documents
 struct YamlHeaderProcessor {
-    let settings: Settings
+    let settings: AppConfiguration
 
     /// Extract and process YAML header from markdown text
     /// - Parameters:

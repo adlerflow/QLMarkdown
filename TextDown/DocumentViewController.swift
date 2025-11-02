@@ -265,12 +265,12 @@ class DocumentViewController: NSViewController {
         let body: String
         let appearance: Appearance = Settings.isLightAppearance ? .light : .dark
         do {
-            body = try Settings.shared.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
+            body = try AppConfiguration.shared.render(text: self.textView.string, filename: document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
 
-        let html = Settings.shared.getCompleteHTML(title: document?.fileURL?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+        let html = AppConfiguration.shared.getCompleteHTML(title: document?.fileURL?.lastPathComponent ?? "markdown", body: body, basedir: Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         do {
             try html.write(to: dst, atomically: true, encoding: .utf8)
         } catch {
@@ -287,7 +287,7 @@ class DocumentViewController: NSViewController {
     }
     
     @IBAction func revertDocumentToSaved(_ sender: Any) {
-        Settings.shared.initFromDefaults()
+        AppConfiguration.shared.initFromDefaults()
         isDirty = false
         doRefresh(self)
     }
@@ -299,8 +299,8 @@ class DocumentViewController: NSViewController {
         alert.addButton(withTitle: "No").keyEquivalent = "\u{1b}"
         let r = alert.runModal()
         if r == .alertFirstButtonReturn {
-            Settings.shared.resetToFactory()
-            Settings.shared.saveToSharedFile()
+            AppConfiguration.shared.resetToFactory()
+            AppConfiguration.shared.saveToSharedFile()
             isDirty = false
             doRefresh(self)
         }
@@ -311,7 +311,7 @@ class DocumentViewController: NSViewController {
     }
 
     @IBAction func saveAction(_ sender: Any) {
-        let r = Settings.shared.saveToSharedFile()
+        let r = AppConfiguration.shared.saveToSharedFile()
         if r.0 {
             isDirty = false
         } else {
@@ -347,7 +347,7 @@ class DocumentViewController: NSViewController {
         let startTime = CFAbsoluteTimeGetCurrent()
 
         do {
-            body = try Settings.shared.render(text: self.textView.string, filename: self.document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
+            body = try AppConfiguration.shared.render(text: self.textView.string, filename: self.document?.fileURL?.lastPathComponent ?? "", forAppearance: appearance, baseDir: document?.fileURL?.deletingLastPathComponent().path ?? "")
         } catch {
             body = "Error"
         }
@@ -386,7 +386,7 @@ document.addEventListener('scroll', function(e) {
 </script>
 """
 
-        let html = Settings.shared.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
+        let html = AppConfiguration.shared.getCompleteHTML(title: ".md", body: body, header: header, footer: "", basedir: self.document?.fileURL?.deletingLastPathComponent() ?? Bundle.main.resourceURL ?? Bundle.main.bundleURL.deletingLastPathComponent(), forAppearance: appearance)
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
 
         // Use loadHTMLString with document directory as baseURL
@@ -513,7 +513,7 @@ extension DocumentViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if !Settings.shared.openInlineLink, navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url, url.scheme != "file" {
+        if !AppConfiguration.shared.openInlineLink, navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url, url.scheme != "file" {
             let r = NSWorkspace.shared.open(url)
             // print(r, url.absoluteString)
             if r {
@@ -537,7 +537,7 @@ extension DocumentViewController: WKScriptMessageHandler {
 extension DocumentViewController: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         if let item = menu.item(withTag: -6) {
-            item.title = Settings.shared.customCSS == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
+            item.title = AppConfiguration.shared.customCSS == nil ? "Download default CSS theme" : "Reveal CSS in Finder"
         }
 
         // print("menuNeedsUpdate")

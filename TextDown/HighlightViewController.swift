@@ -17,12 +17,12 @@ class HighlightViewController: NSViewController {
     
     @objc dynamic var syntaxLineNumbers: Bool {
         get {
-            return Settings.shared.syntaxLineNumbersOption
+            return AppConfiguration.shared.syntaxLineNumbersOption
         }
         set {
-            guard newValue != Settings.shared.syntaxLineNumbersOption else { return }
+            guard newValue != AppConfiguration.shared.syntaxLineNumbersOption else { return }
             self.willChangeValue(forKey: "syntaxLineNumbers")
-            Settings.shared.syntaxLineNumbersOption = newValue
+            AppConfiguration.shared.syntaxLineNumbersOption = newValue
             self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxLineNumbers")
         }
@@ -30,12 +30,12 @@ class HighlightViewController: NSViewController {
 
     @objc dynamic var syntaxWrapEnabled: Bool {
         get {
-            return Settings.shared.syntaxWordWrapOption > 0
+            return AppConfiguration.shared.syntaxWordWrapOption > 0
         }
         set {
-            guard newValue != (Settings.shared.syntaxWordWrapOption > 0) else { return }
+            guard newValue != (AppConfiguration.shared.syntaxWordWrapOption > 0) else { return }
             self.willChangeValue(forKey: "syntaxWrapEnabled")
-            Settings.shared.syntaxWordWrapOption = newValue ? (syntaxWrapCharacters > 0 ? syntaxWrapCharacters : 80) : 0
+            AppConfiguration.shared.syntaxWordWrapOption = newValue ? (syntaxWrapCharacters > 0 ? syntaxWrapCharacters : 80) : 0
             self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxWrapEnabled")
         }
@@ -43,13 +43,13 @@ class HighlightViewController: NSViewController {
 
     @objc dynamic var syntaxWrapCharacters: Int {
         get {
-            return Settings.shared.syntaxWordWrapOption > 0 ? Settings.shared.syntaxWordWrapOption : 80
+            return AppConfiguration.shared.syntaxWordWrapOption > 0 ? AppConfiguration.shared.syntaxWordWrapOption : 80
         }
         set {
-            guard newValue != (Settings.shared.syntaxWordWrapOption > 0 ? Settings.shared.syntaxWordWrapOption : 80) else { return }
+            guard newValue != (AppConfiguration.shared.syntaxWordWrapOption > 0 ? AppConfiguration.shared.syntaxWordWrapOption : 80) else { return }
             self.willChangeValue(forKey: "syntaxWrapCharacters")
             if syntaxWrapEnabled {
-                Settings.shared.syntaxWordWrapOption = newValue
+                AppConfiguration.shared.syntaxWordWrapOption = newValue
             }
             self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxWrapCharacters")
@@ -58,12 +58,12 @@ class HighlightViewController: NSViewController {
 
     @objc dynamic var syntaxTabsOption: Int {
         get {
-            return Settings.shared.syntaxTabsOption
+            return AppConfiguration.shared.syntaxTabsOption
         }
         set {
-            guard newValue != Settings.shared.syntaxTabsOption else { return }
+            guard newValue != AppConfiguration.shared.syntaxTabsOption else { return }
             self.willChangeValue(forKey: "syntaxTabsOption")
-            Settings.shared.syntaxTabsOption = newValue
+            AppConfiguration.shared.syntaxTabsOption = newValue
             self.settingsViewController?.isDirty = true
             self.didChangeValue(forKey: "syntaxTabsOption")
         }
@@ -75,7 +75,7 @@ class HighlightViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let i = self.sourceTabsPopup.itemArray.firstIndex(where: { $0.tag == Settings.shared.syntaxTabsOption}) {
+        if let i = self.sourceTabsPopup.itemArray.firstIndex(where: { $0.tag == AppConfiguration.shared.syntaxTabsOption}) {
             self.sourceTabsPopup.selectItem(at: i)
         }
     }

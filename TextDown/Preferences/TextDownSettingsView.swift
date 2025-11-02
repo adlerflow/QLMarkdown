@@ -18,15 +18,15 @@ struct TextDownSettingsView: View {
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
 
-        if let data = try? encoder.encode(Settings.shared),
+        if let data = try? encoder.encode(AppConfiguration.shared),
            let copy1 = try? decoder.decode(Settings.self, from: data),
            let copy2 = try? decoder.decode(Settings.self, from: data) {
             _draftSettings = State(initialValue: copy1)
             _originalSettings = State(initialValue: copy2)
         } else {
             // Fallback: use shared instance
-            _draftSettings = State(initialValue: Settings.shared)
-            _originalSettings = State(initialValue: Settings.shared)
+            _draftSettings = State(initialValue: AppConfiguration.shared)
+            _originalSettings = State(initialValue: AppConfiguration.shared)
         }
     }
 
@@ -81,8 +81,8 @@ struct TextDownSettingsView: View {
     }
 
     private func applyChanges() {
-        // Copy all properties from draft to Settings.shared
-        let shared = Settings.shared
+        // Copy all properties from draft to AppConfiguration.shared
+        let shared = AppConfiguration.shared
 
         // GitHub Flavored Markdown
         shared.tableExtension = draftSettings.tableExtension

@@ -22,9 +22,9 @@ import OSLog
 /// 4. Post-process HTML (heading IDs, CSS injection, MathJax)
 /// 5. Return complete HTML document
 struct MarkdownRenderer {
-    let settings: Settings
+    let settings: AppConfiguration
 
-    init(settings: Settings) {
+    init(settings: AppConfiguration) {
         self.settings = settings
     }
 

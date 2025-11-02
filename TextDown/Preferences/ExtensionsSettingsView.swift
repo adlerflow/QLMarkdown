@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExtensionsSettingsView: View {
-    @Bindable var settings: Settings
+    @Bindable var settings: AppConfiguration
 
     var body: some View {
         Form {
@@ -93,7 +93,7 @@ struct ExtensionsSettingsView: View {
 #Preview {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
-    let data = try! encoder.encode(Settings.shared)
+    let data = try! encoder.encode(AppConfiguration.shared)
     let previewSettings = try! decoder.decode(Settings.self, from: data)
 
     return ExtensionsSettingsView(settings: previewSettings)
