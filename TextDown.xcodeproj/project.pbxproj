@@ -60,7 +60,6 @@
 		83598E6C2581880A004664D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6A2581880A004664D3 /* Main.storyboard */; };
 		83598EFC25820A72004664D3 /* test2.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EFA258209C7004664D3 /* test2.md */; };
 		83598EFD25820A72004664D3 /* test1.md in Resources */ = {isa = PBXBuildFile; fileRef = 83598EF92582098A004664D3 /* test1.md */; };
-		836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */ = {isa = PBXBuildFile; fileRef = 836B7474259E2B4000A6A5F7 /* magic.mgc */; };
 		836B747D259E2D7B00A6A5F7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */; };
 		83720A2825B8E93D00B49FEC /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2025B8E93D00B49FEC /* decode.c */; };
 		83720A2925B8E93D00B49FEC /* encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 83720A2125B8E93D00B49FEC /* encode.c */; };
@@ -94,7 +93,6 @@
 		F40D9E832EB53A37001C10C6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40D9E822EB53A37001C10C6 /* SettingsViewModel.swift */; };
 		F45946BE2EB4D0F60093B91A /* MarkdownWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */; };
 		F45946BF2EB4D0F60093B91A /* MarkdownDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */; };
-		F49E8C6F2EB77B8300E3161A /* TextDown.app in Resources */ = {isa = PBXBuildFile; fileRef = 83598E6125818808004664D3 /* TextDown.app */; };
 		F4A0C5CB2EB5B02900BC1997 /* highlight.js in Resources */ = {isa = PBXBuildFile; fileRef = F4A0C5CA2EB5B02800BC1997 /* highlight.js */; };
 /* End PBXBuildFile section */
 
@@ -112,13 +110,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 834A4F7429E9250800692964;
 			remoteInfo = "cmark-headers";
-		};
-		83B8DF042DD5DD9D0054E345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83598E5925818808004664D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83B8DF002DD5DCA20054E345;
-			remoteInfo = magic.mgc;
 		};
 		83D9CF0B27A12FB000E86BC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -270,7 +261,6 @@
 		83598EF92582098A004664D3 /* test1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test1.md; sourceTree = "<group>"; };
 		83598EFA258209C7004664D3 /* test2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = test2.md; sourceTree = "<group>"; };
 		83598F22258263C0004664D3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
-		836B7474259E2B4000A6A5F7 /* magic.mgc */ = {isa = PBXFileReference; lastKnownFileType = file; path = magic.mgc; sourceTree = BUILT_PRODUCTS_DIR; };
 		836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		83720A1D25B8E93D00B49FEC /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
 		83720A1E25B8E93D00B49FEC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -320,7 +310,6 @@
 		83D82A91277C467A00C9B99F /* pcre2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pcre2.h; path = libpcre2/include/pcre2.h; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		83E7FEF0258FBF37003ECF9B /* highlight */ = {isa = PBXFileReference; lastKnownFileType = folder; path = highlight; sourceTree = "<group>"; };
-		83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libwrapper_highlight.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EF951C2585367500B56FA3 /* NSColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+ext.swift"; sourceTree = "<group>"; };
 		83EF95212585476800B56FA3 /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		83EF95222585476800B56FA3 /* emoji.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = emoji.c; sourceTree = "<group>"; };
@@ -591,8 +580,6 @@
 				83D82A88277C45B500C9B99F /* libpcre2-32.a */,
 				83F8822C2598A5C0008C5071 /* WebKit.framework */,
 				831A8C40258ABADA00E36182 /* Quartz.framework */,
-				83E7FEF7258FBF9F003ECF9B /* libwrapper_highlight.dylib */,
-				836B7474259E2B4000A6A5F7 /* magic.mgc */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -698,22 +685,6 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = libpcre2;
 		};
-		83B8DF002DD5DCA20054E345 /* magic.mgc */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "-C -m \"${PROJECT_DIR}/highlight-wrapper/magic/\"";
-			buildConfigurationList = 83B8DF012DD5DCA20054E345 /* Build configuration list for PBXLegacyTarget "magic.mgc" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/file;
-			buildWorkingDirectory = $BUILT_PRODUCTS_DIR;
-			dependencies = (
-			);
-			name = magic.mgc;
-			packageProductDependencies = (
-			);
-			passBuildSettingsInEnvironment = 1;
-			productName = magic.mgc;
-		};
 		83D9CCA027A12F3100E86BC9 /* libpcre2 */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ./dependencies/MakefilePCRE $(ACTION) VERBOSE=0";
@@ -763,7 +734,6 @@
 				83D9CF1427A1336400E86BC9 /* PBXTargetDependency */,
 				830B5B42272D6D8A00378FFE /* PBXTargetDependency */,
 				830B5B37272D613A00378FFE /* PBXTargetDependency */,
-				83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */,
 			);
 			name = TextDown;
 			packageProductDependencies = (
@@ -812,9 +782,6 @@
 						CreatedOnToolsVersion = 12.2;
 						LastSwiftMigration = 1220;
 					};
-					83B8DF002DD5DCA20054E345 = {
-						CreatedOnToolsVersion = 16.3;
-					};
 					83D9CCA027A12F3100E86BC9 = {
 						CreatedOnToolsVersion = 13.2;
 					};
@@ -847,7 +814,6 @@
 				83D9CCA027A12F3100E86BC9 /* libpcre2 */,
 				83D9CF0F27A1334800E86BC9 /* libjpcre2 */,
 				834A4F7429E9250800692964 /* cmark-headers */,
-				83B8DF002DD5DCA20054E345 /* magic.mgc */,
 				F49E8C5B2EB77A2200E3161A /* TextDownTests2 */,
 			);
 		};
@@ -868,7 +834,6 @@
 				830277F72C60E48F0066EBCC /* icon.png in Resources */,
 				83E7FEF1258FBF37003ECF9B /* highlight in Resources */,
 				830277F52C60B3E20066EBCC /* default.css in Resources */,
-				836B7475259E2B4100A6A5F7 /* magic.mgc in Resources */,
 				834A4F0229E8AD8C00692964 /* ext_scanners.re in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -877,7 +842,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F49E8C6F2EB77B8300E3161A /* TextDown.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,11 +953,6 @@
 			isa = PBXTargetDependency;
 			target = 834A4F7429E9250800692964 /* cmark-headers */;
 			targetProxy = 834A4F7A29E9293600692964 /* PBXContainerItemProxy */;
-		};
-		83B8DF052DD5DD9D0054E345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83B8DF002DD5DCA20054E345 /* magic.mgc */;
-			targetProxy = 83B8DF042DD5DD9D0054E345 /* PBXContainerItemProxy */;
 		};
 		83D9CF0C27A12FB000E86BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1222,7 +1181,6 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/cmark-extra\"",
 					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/highlight-wrapper\"",
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
@@ -1239,7 +1197,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/highlight-wrapper",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
@@ -1294,7 +1251,6 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/cmark-extra\"",
 					"\"$(SRCROOT)/cmark-extra/extensions\"",
-					"\"$(SRCROOT)/highlight-wrapper\"",
 					"\"$(SRCROOT)/cmark-gfm/src\"",
 					"\"$(SRCROOT)/cmark-gfm/extensions\"",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/include",
@@ -1311,7 +1267,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/highlight-wrapper",
 					"$(BUILT_PRODUCTS_DIR)/libpcre2/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
@@ -1327,39 +1282,6 @@
 				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "TextDown/TextDown-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		83B8DF022DD5DCA20054E345 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		83B8DF032DD5DCA20054E345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1498,15 +1420,6 @@
 			buildConfigurations = (
 				83598E722581880A004664D3 /* Debug */,
 				83598E732581880A004664D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83B8DF012DD5DCA20054E345 /* Build configuration list for PBXLegacyTarget "magic.mgc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83B8DF022DD5DCA20054E345 /* Debug */,
-				83B8DF032DD5DCA20054E345 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

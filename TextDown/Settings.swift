@@ -7,6 +7,7 @@
 
 import Foundation
 import OSLog
+import Observation
 
 enum CMARK_Error: Error {
     case parser_create
@@ -21,7 +22,7 @@ enum Appearance: Int {
 
 // GuessEngine enum removed - was for server-side language detection (libhighlight)
 
-@objc enum BackgroundColor: Int {
+enum BackgroundColor: Int {
     case fromMarkdown = 0
     case fromScheme = 1
     case custom = 2
@@ -31,6 +32,7 @@ extension NSNotification.Name {
     public static let TextDownSettingsUpdated: NSNotification.Name = NSNotification.Name("org.advison.textdown-settings-changed")
 }
 
+@Observable
 class Settings: Codable {
     enum CodingKeys: String, CodingKey {
         case autoLinkExtension
@@ -95,51 +97,51 @@ class Settings: Codable {
         }
     }
     
-    @objc var autoLinkExtension: Bool = true
-    @objc var checkboxExtension: Bool = false
-    @objc var emojiExtension: Bool = true
-    @objc var emojiImageOption: Bool = false
-    @objc var headsExtension: Bool = true
-    @objc var highlightExtension: Bool = false
-    @objc var inlineImageExtension: Bool = true
-    @objc var mathExtension: Bool = true
-    @objc var mentionExtension: Bool = false
-    
-    @objc var strikethroughExtension: Bool = true
-    @objc var strikethroughDoubleTildeOption: Bool = false
-    
-    @objc var subExtension: Bool = false
-    @objc var supExtension: Bool = false
-    
-    @objc var syntaxHighlightExtension: Bool = true
-    @objc var syntaxWordWrapOption: Int = 0
-    @objc var syntaxLineNumbersOption: Bool = false
-    @objc var syntaxTabsOption: Int = 4
-    @objc var syntaxThemeLightOption: String = "github"
-    @objc var syntaxThemeDarkOption: String = "github-dark"
+    var autoLinkExtension: Bool = true
+    var checkboxExtension: Bool = false
+    var emojiExtension: Bool = true
+    var emojiImageOption: Bool = false
+    var headsExtension: Bool = true
+    var highlightExtension: Bool = false
+    var inlineImageExtension: Bool = true
+    var mathExtension: Bool = true
+    var mentionExtension: Bool = false
+
+    var strikethroughExtension: Bool = true
+    var strikethroughDoubleTildeOption: Bool = false
+
+    var subExtension: Bool = false
+    var supExtension: Bool = false
+
+    var syntaxHighlightExtension: Bool = true
+    var syntaxWordWrapOption: Int = 0
+    var syntaxLineNumbersOption: Bool = false
+    var syntaxTabsOption: Int = 4
+    var syntaxThemeLightOption: String = "github"
+    var syntaxThemeDarkOption: String = "github-dark"
     // syntaxFontFamily, syntaxFontSize, guessEngine removed - were for server-side highlighting
 
-    @objc var tableExtension: Bool = true
-    @objc var tagFilterExtension: Bool = true
-    @objc var taskListExtension: Bool = true
-    @objc var yamlExtension: Bool = true
-    @objc var yamlExtensionAll: Bool = false
-    
-    @objc var footnotesOption: Bool = true
-    @objc var hardBreakOption: Bool = false
-    @objc var noSoftBreakOption: Bool = false
-    @objc var unsafeHTMLOption: Bool = false
-    @objc var smartQuotesOption: Bool = true
-    @objc var validateUTFOption: Bool = false
-    
-    @objc var customCSS: URL?
-    @objc var customCSSFetched: Bool = false
-    @objc var customCSSCode: String?
-    @objc var customCSSOverride: Bool = false
-    
-    @objc var openInlineLink: Bool = false
-    
-    @objc var renderAsCode: Bool = false
+    var tableExtension: Bool = true
+    var tagFilterExtension: Bool = true
+    var taskListExtension: Bool = true
+    var yamlExtension: Bool = true
+    var yamlExtensionAll: Bool = false
+
+    var footnotesOption: Bool = true
+    var hardBreakOption: Bool = false
+    var noSoftBreakOption: Bool = false
+    var unsafeHTMLOption: Bool = false
+    var smartQuotesOption: Bool = true
+    var validateUTFOption: Bool = false
+
+    var customCSS: URL?
+    var customCSSFetched: Bool = false
+    var customCSSCode: String?
+    var customCSSOverride: Bool = false
+
+    var openInlineLink: Bool = false
+
+    var renderAsCode: Bool = false
     
     var renderStats: Int {
         get {
@@ -167,8 +169,8 @@ class Settings: Codable {
         }
     }
     
-    @objc var debug: Bool = false
-    @objc var about: Bool = false
+    var debug: Bool = false
+    var about: Bool = false
     
     var app_version: String {
         var title: String = "<a href='https://github.com/'>";
@@ -203,9 +205,9 @@ class Settings: Codable {
         return title
     }
     
-    lazy fileprivate(set) var resourceBundle: Bundle = {
+    var resourceBundle: Bundle {
         return Self.getResourceBundle()
-    }()
+    }
     
     private init(noInitFromDefault: Bool = false) {
         if !noInitFromDefault {

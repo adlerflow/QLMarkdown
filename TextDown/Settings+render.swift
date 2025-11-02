@@ -249,12 +249,7 @@ extension Settings {
                                 }
                                 guard let data = get_base64_image(
                                     file.cString(using: .utf8),
-                                    { (path: UnsafePointer<Int8>?, context: UnsafeMutableRawPointer?) -> UnsafeMutablePointer<Int8>? in
-                                        let magic_file = Settings.getResourceBundle().path(forResource: "magic", ofType: "mgc")?.cString(using: .utf8)
-                                        
-                                        let r = magic_get_mime_by_file(path, magic_file)
-                                        return r
-                                    },
+                                    nil, // No MIME callback - browser handles it automatically
                                     nil,
                                     /*{ (url, _ )->UnsafeMutablePointer<Int8>? in
                                         guard let s = url else {
@@ -514,19 +509,19 @@ table.debug td {
             os_log("Unable to read the file %{private}@", log: OSLog.rendering, type: .error, url.path)
             return ""
         }
-        
+
         return try self.render(data: data, forAppearance: appearance, filename: url.lastPathComponent, baseDir: baseDir ?? url.deletingLastPathComponent().path)
     }
-    
+
     func render(data: Data, forAppearance appearance: Appearance, filename: String = "file.md", baseDir: String) throws -> String {
         guard let markdown_string = String(data: data, encoding: .utf8) else {
             os_log("Unable to read the data %{private}@", log: OSLog.rendering, type: .error, data.base64EncodedString())
             return ""
         }
-        
+
         return try self.render(text: markdown_string, filename: filename, forAppearance: appearance, baseDir: baseDir)
     }
-    
+
     func getCompleteHTML(title: String, body: String, header: String = "", footer: String = "", basedir: URL, forAppearance appearance: Appearance) -> String {
         
         let css_doc: String
