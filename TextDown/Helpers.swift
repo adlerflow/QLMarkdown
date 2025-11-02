@@ -1,5 +1,5 @@
 //
-//  String+ext.swift
+//  Helpers.swift
 //  TextDown
 //
 //  Created by adlerflow on 15/12/20.

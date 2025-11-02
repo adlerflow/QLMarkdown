@@ -1,5 +1,5 @@
 //
-//  NSColor+ext.swift
+//  NSColor.swift
 //  TextDown
 //
 //  Created by adlerflow on 12/12/20.
