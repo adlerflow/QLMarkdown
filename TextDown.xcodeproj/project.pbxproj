@@ -77,7 +77,6 @@
 		83CF71D52C60053A0066A195 /* sub_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = 83CF71D22C60053A0066A195 /* sub_ext.c */; };
 		83D22E642DCA659C0013EB9D /* Settings+render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D22E632DCA65980013EB9D /* Settings+render.swift */; };
 		83D82A89277C45B500C9B99F /* libpcre2-32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D82A88277C45B500C9B99F /* libpcre2-32.a */; };
-		83E7FEF1258FBF37003ECF9B /* highlight in Resources */ = {isa = PBXBuildFile; fileRef = 83E7FEF0258FBF37003ECF9B /* highlight */; };
 		83EF951D2585367500B56FA3 /* NSColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF951C2585367500B56FA3 /* NSColor+ext.swift */; };
 		83EF95232585476800B56FA3 /* emoji.c in Sources */ = {isa = PBXBuildFile; fileRef = 83EF95222585476800B56FA3 /* emoji.c */; };
 		83F4B99225868A7400FC58A7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F4B99125868A7400FC58A7 /* Settings.swift */; };
@@ -273,7 +272,6 @@
 		8376EAE027E8C67F00AB44B8 /* c_log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_log.h; sourceTree = "<group>"; };
 		8376EAE127E8C67F00AB44B8 /* c_log.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_log.c; sourceTree = "<group>"; };
 		837D20D5258362A5008FC698 /* example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpg; sourceTree = "<group>"; };
-		837F291E2597AAC000A5F7DE /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		838109C1258403CA000AFE3C /* mention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mention.h; sourceTree = "<group>"; };
 		838109C2258403CA000AFE3C /* mention.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mention.c; sourceTree = "<group>"; };
 		838109C525840429000AFE3C /* checkbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = checkbox.h; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 		83D82A90277C466500C9B99F /* jpcre2.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; name = jpcre2.hpp; path = libjpcre2/include/jpcre2.hpp; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D82A91277C467A00C9B99F /* pcre2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = pcre2.h; path = libpcre2/include/pcre2.h; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		83E7FEF0258FBF37003ECF9B /* highlight */ = {isa = PBXFileReference; lastKnownFileType = folder; path = highlight; sourceTree = "<group>"; };
 		83EF951C2585367500B56FA3 /* NSColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+ext.swift"; sourceTree = "<group>"; };
 		83EF95212585476800B56FA3 /* emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = emoji.h; sourceTree = "<group>"; };
 		83EF95222585476800B56FA3 /* emoji.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = emoji.c; sourceTree = "<group>"; };
@@ -508,7 +505,6 @@
 				F4A0C5CA2EB5B02800BC1997 /* highlight.js */,
 				83D4B1C3258675D0000745DB /* README.md */,
 				83E7FEED258FBE54003ECF9B /* TODO.md */,
-				837F291E2597AAC000A5F7DE /* LICENSE.txt */,
 				832D256125CC8894005F41AC /* .gitignore */,
 				83CF71E12C60ADA60066A195 /* assets */,
 				83D9CCA427A12F8F00E86BC9 /* dependencies */,
@@ -594,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				83598F22258263C0004664D3 /* default.css */,
-				83E7FEF0258FBF37003ECF9B /* highlight */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -837,7 +832,6 @@
 				83598E6C2581880A004664D3 /* Main.storyboard in Resources */,
 				837D20D6258362A5008FC698 /* example.jpg in Resources */,
 				830277F72C60E48F0066EBCC /* icon.png in Resources */,
-				83E7FEF1258FBF37003ECF9B /* highlight in Resources */,
 				830277F52C60B3E20066EBCC /* default.css in Resources */,
 				834A4F0229E8AD8C00692964 /* ext_scanners.re in Resources */,
 			);
