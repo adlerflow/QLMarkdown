@@ -21,7 +21,7 @@ struct TextDownCommands: Commands {
 
         // MARK: - View Menu
 
-        CommandMenu("View") {
+        CommandGroup(after: .toolbar) {
             Toggle("Preview Auto-Refresh", isOn: $autoRefresh)
                 .keyboardShortcut("r", modifiers: .command)
 
@@ -31,13 +31,6 @@ struct TextDownCommands: Commands {
             }
             .keyboardShortcut("r", modifiers: [.command, .shift])
             .disabled(editorText == nil)
-
-            Divider()
-
-            Button("Toggle Toolbar") {
-                // macOS handles this automatically
-            }
-            .keyboardShortcut("t", modifiers: [.command, .option])
         }
 
         // MARK: - Window Menu
