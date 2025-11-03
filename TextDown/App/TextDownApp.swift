@@ -15,7 +15,7 @@ struct TextDownApp: App {
         }
 
         // Einstellungen (bereits SwiftUI)
-        Settings {
+        SwiftUI.Settings {
             TextDownSettingsView()
                 .environmentObject(appState)
         }
