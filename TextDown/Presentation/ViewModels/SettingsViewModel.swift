@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import OSLog
 
 /// ViewModel for all settings views (General, Extensions, Syntax, Advanced)
 @MainActor
@@ -51,7 +52,7 @@ class SettingsViewModel: ObservableObject {
         do {
             try await saveSettingsUseCase.execute(settings)
         } catch {
-            print("❌ Failed to save settings: \(error)")
+            os_log("Failed to save settings: %{public}@", log: .settings, type: .error, String(describing: error))
         }
     }
 
@@ -60,7 +61,7 @@ class SettingsViewModel: ObservableObject {
             try await saveSettingsUseCase.resetToDefaults()
             settings = .default
         } catch {
-            print("❌ Failed to reset settings: \(error)")
+            os_log("Failed to reset settings: %{public}@", log: .settings, type: .error, String(describing: error))
         }
     }
 

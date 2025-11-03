@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Markdown
+import OSLog
 
 /// ViewModel for markdown editor and preview coordination
 /// Uses Clean Architecture with dependency injection
@@ -65,7 +66,7 @@ class MarkdownEditorViewModel: ObservableObject {
             )
             renderedDocument = document
         } catch {
-            print("❌ Parse error: \(error)")
+            os_log("Parse error: %{public}@", log: .rendering, type: .error, String(describing: error))
             renderedDocument = nil
         }
     }

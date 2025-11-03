@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 
 /// Use case for loading app settings from persistent storage
 /// Thread-safe actor that handles settings loading with validation
@@ -22,7 +23,7 @@ actor LoadSettingsUseCase {
         do {
             // Try to load saved settings
             guard let loadedSettings = try await settingsRepository.load() else {
-                print("ℹ️ No saved settings found, using defaults")
+                os_log("No saved settings found, using defaults", log: .settings, type: .info)
                 return .default
             }
 
@@ -31,13 +32,13 @@ actor LoadSettingsUseCase {
 
             // Log if validation changed anything
             if validatedSettings != loadedSettings {
-                print("⚠️ Settings were corrected during validation")
+                os_log("Settings were corrected during validation", log: .settings, type: .default)
             }
 
             return validatedSettings
         } catch {
-            print("❌ Failed to load settings: \(error)")
-            print("ℹ️ Using default settings")
+            os_log("Failed to load settings: %{public}@", log: .settings, type: .error, String(describing: error))
+            os_log("Using default settings", log: .settings, type: .info)
             return .default
         }
     }

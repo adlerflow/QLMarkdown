@@ -1,7 +1,7 @@
 import SwiftUI
 import Markdown
 
-/// Haupt-Editor-View mit Split-Layout (Editor | Preview)
+/// Main editor view with split layout (Editor | Preview)
 /// Uses Clean Architecture with dependency injection
 struct MarkdownEditorView: View {
     @Binding var document: MarkdownFileDocument
@@ -27,7 +27,7 @@ struct MarkdownEditorView: View {
 
     var body: some View {
         HSplitView {
-            // Links: Pure SwiftUI Text Editor
+            // Left: Pure SwiftUI Text Editor
             PureSwiftUITextEditor(
                 text: $document.content
             )
@@ -35,7 +35,7 @@ struct MarkdownEditorView: View {
             .focusedSceneValue(\.editorText, $document.content)
             .focusedSceneObject(settingsViewModel)
 
-            // Rechts: Native SwiftUI Markdown Renderer
+            // Right: Native SwiftUI Markdown Renderer
             MarkdownASTView(document: viewModel.renderedDocument)
                 .frame(minWidth: 300)
         }

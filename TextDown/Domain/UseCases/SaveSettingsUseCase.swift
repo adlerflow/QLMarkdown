@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 
 /// Use case for saving app settings to persistent storage
 /// Thread-safe actor that handles settings persistence with validation
@@ -25,13 +26,13 @@ actor SaveSettingsUseCase {
         // Save to storage
         try await settingsRepository.save(validatedSettings)
 
-        print("✅ Settings saved successfully")
+        os_log("Settings saved successfully", log: .settings, type: .debug)
     }
 
     /// Resets settings to factory defaults
     /// - Throws: If reset operation fails
     func resetToDefaults() async throws {
         try await settingsRepository.resetToDefaults()
-        print("✅ Settings reset to defaults")
+        os_log("Settings reset to defaults", log: .settings, type: .info)
     }
 }

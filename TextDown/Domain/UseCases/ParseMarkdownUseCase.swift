@@ -1,5 +1,6 @@
 import Foundation
 import Markdown
+import OSLog
 
 /// Use case for parsing markdown text with configured settings
 /// Thread-safe actor that orchestrates markdown parsing operations
@@ -29,7 +30,7 @@ actor ParseMarkdownUseCase {
         // Check complexity for performance warning
         let complexity = await parserRepository.estimateComplexity(markdown)
         if complexity > 5000 {
-            print("⚠️ High complexity markdown (\(complexity)ms estimated) - may cause UI lag")
+            os_log("High complexity markdown (%d ms estimated) - may cause UI lag", log: .rendering, type: .info, complexity)
         }
 
         // Parse with validated settings

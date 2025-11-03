@@ -1,7 +1,7 @@
 import Foundation
 
 /// Concrete implementation of SettingsRepository using JSON file persistence
-/// Stores settings in ~/Library/Application Support/org.advison.TextDown/settings.json
+/// Stores settings in ~/Library/Application Support/{bundleIdentifier}/settings.json
 actor SettingsRepositoryImpl: SettingsRepository {
     // MARK: - Properties
 
@@ -18,8 +18,9 @@ actor SettingsRepositoryImpl: SettingsRepository {
             in: .userDomainMask
         ).first!
 
+        let bundleID = Bundle.main.bundleIdentifier ?? "org.advison.TextDown"
         let appDirectory = appSupport
-            .appendingPathComponent("org.advison.TextDown", isDirectory: true)
+            .appendingPathComponent(bundleID, isDirectory: true)
 
         self.settingsURL = appDirectory
             .appendingPathComponent("settings.json")

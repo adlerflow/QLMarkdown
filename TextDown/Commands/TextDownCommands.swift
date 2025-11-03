@@ -8,18 +8,6 @@ struct TextDownCommands: Commands {
     @Environment(\.openURL) var openURL
 
     var body: some Commands {
-        // MARK: - File Menu Ergänzungen
-
-        CommandGroup(after: .saveItem) {
-            Button("Export as HTML...") {
-                // Future enhancement: Implement HTML export via .fileExporter
-                // Requires: 1) AST → HTML conversion, 2) SwiftUI .fileExporter modifier
-                // Currently not implemented due to Pure SwiftUI architecture
-            }
-            .keyboardShortcut("e", modifiers: .command)
-            .disabled(true)  // Disabled until implementation
-        }
-
         // MARK: - Window Menu
 
         CommandGroup(replacing: .windowArrangement) {

@@ -1,5 +1,6 @@
 import SwiftUI
 import Markdown
+import OSLog
 
 /// ViewModel for document operations (parse, save, etc.)
 /// Manages a single markdown document's lifecycle
@@ -58,7 +59,7 @@ class DocumentViewModel: ObservableObject {
             )
             parsedDocument = document
         } catch {
-            print("❌ Parse error: \(error)")
+            os_log("Parse error: %{public}@", log: .document, type: .error, String(describing: error))
             parsedDocument = nil
         }
     }

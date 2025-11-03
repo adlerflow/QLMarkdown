@@ -1,7 +1,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Pure SwiftUI Text Editor mit Undo/Redo, Find Bar, Drag & Drop
+/// Pure SwiftUI Text Editor with Undo/Redo, Find Bar, Drag & Drop
 struct PureSwiftUITextEditor: View {
     @Binding var text: String
     @StateObject private var viewModel = TextEditorViewModel()
@@ -108,29 +108,6 @@ struct FindBar: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-
-            Divider()
-                .frame(height: 16)
-
-            // Previous Button (disabled - SwiftUI limitation)
-            Button {
-                // SwiftUI TextEditor doesn't support programmatic selection
-            } label: {
-                Image(systemName: "chevron.up")
-            }
-            .buttonStyle(.plain)
-            .disabled(true)
-            .help("Find previous (not available in SwiftUI TextEditor)")
-
-            // Next Button (disabled - SwiftUI limitation)
-            Button {
-                // SwiftUI TextEditor doesn't support programmatic selection
-            } label: {
-                Image(systemName: "chevron.down")
-            }
-            .buttonStyle(.plain)
-            .disabled(true)
-            .help("Find next (not available in SwiftUI TextEditor)")
 
             Spacer()
 

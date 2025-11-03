@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 
 /// Use case for saving markdown documents to disk
 /// Thread-safe actor that handles document persistence with backups
@@ -34,9 +35,9 @@ actor SaveDocumentUseCase {
             if fileExists {
                 do {
                     let backupURL = try await documentRepository.createBackup(for: url)
-                    print("✅ Created backup: \(backupURL.lastPathComponent)")
+                    os_log("Created backup: %{public}@", log: .document, type: .debug, backupURL.lastPathComponent)
                 } catch {
-                    print("⚠️ Failed to create backup: \(error)")
+                    os_log("Failed to create backup: %{public}@", log: .document, type: .default, String(describing: error))
                     // Continue with save even if backup fails
                 }
             }
@@ -45,7 +46,7 @@ actor SaveDocumentUseCase {
         // Write content
         try await documentRepository.write(content, to: url, encoding: encoding)
 
-        print("✅ Saved document: \(url.lastPathComponent)")
+        os_log("Saved document: %{public}@", log: .document, type: .info, url.lastPathComponent)
     }
 
     /// Validates that a URL is writable before attempting save

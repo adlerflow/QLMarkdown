@@ -59,7 +59,7 @@ struct TextDownApp: App {
     }
 
     var body: some Scene {
-        // Haupt-Dokumenten-Szene
+        // Main document scene
         DocumentGroup(newDocument: MarkdownFileDocument()) { file in
             MarkdownEditorView(
                 document: file.$document,
@@ -72,13 +72,13 @@ struct TextDownApp: App {
             TextDownCommands()
         }
 
-        // Einstellungen (bereits SwiftUI)
+        // Settings window
         SwiftUI.Settings {
             TextDownSettingsView()
                 .environmentObject(settingsViewModel)
         }
 
-        // About-Fenster
+        // About window
         Window("About TextDown", id: "about") {
             AboutView()
         }

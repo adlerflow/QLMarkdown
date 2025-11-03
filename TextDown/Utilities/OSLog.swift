@@ -9,7 +9,7 @@ import Foundation
 import OSLog
 
 extension OSLog {
-    private static let subsystem = "org.advison.TextDown"
+    private static let subsystem = Bundle.main.bundleIdentifier ?? "org.advison.TextDown"
 
     static let rendering = OSLog(subsystem: subsystem, category: "Rendering")
     static let settings = OSLog(subsystem: subsystem, category: "Settings")
