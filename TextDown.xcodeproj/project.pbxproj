@@ -176,7 +176,7 @@
 				832D256125CC8894005F41AC /* .gitignore */,
 				83CF71E12C60ADA60066A195 /* assets */,
 				83598E6325818808004664D3 /* TextDown */,
-				837F29172597A01F00A5F7DE /* Resources */,
+				837F29172597A01F00A5F7DE /* BundleResources */,
 				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
@@ -196,25 +196,16 @@
 		83598E6325818808004664D3 /* TextDown */ = {
 			isa = PBXGroup;
 			children = (
-				836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */,
-				83598E6425818808004664D3 /* AppDelegate.swift */,
-				83598E682581880A004664D3 /* Assets.xcassets */,
-				83598E6625818808004664D3 /* DocumentViewController.swift */,
-				834CAB89259167B800673002 /* examples */,
-				F4CB24272EB7F6F90027B041 /* NSColor.swift */,
-				F4CB24292EB7F70B0027B041 /* Helpers.swift */,
-				83598E6D2581880A004664D3 /* Info.plist */,
-				F4CB242B2EB7F7250027B041 /* OSLog.swift */,
-				83598E6A2581880A004664D3 /* Main.storyboard */,
-				F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */,
-				F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */,
-				F4CB237E2EB78FAB0027B041 /* Preferences */,
+				F4CB24502EC9D1A00027B041 /* Core */,
+				F4CB24512EC9D1A00027B041 /* Models */,
+				F4CB24522EC9D1A00027B041 /* ViewControllers */,
+				F4CB24532EC9D1A00027B041 /* Views */,
+				F4CB24542EC9D1A00027B041 /* Utilities */,
+				F4CB24552EC9D1A00027B041 /* Resources */,
 				F4CB23D82EB7D3690027B041 /* Rendering */,
+				834CAB89259167B800673002 /* examples */,
+				83598E6D2581880A004664D3 /* Info.plist */,
 				83598E6E2581880A004664D3 /* TextDown.entitlements */,
-				F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */,
-				F4CB24212EB7F4740027B041 /* AppConfiguration+Rendering.swift */,
-				F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */,
-				F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */,
 			);
 			path = TextDown;
 			sourceTree = "<group>";
@@ -228,13 +219,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		837F29172597A01F00A5F7DE /* Resources */ = {
+		837F29172597A01F00A5F7DE /* BundleResources */ = {
 			isa = PBXGroup;
 			children = (
 				83598F22258263C0004664D3 /* default.css */,
 				F4CB23AE2EB7D1B20027B041 /* highlight.js */,
 			);
-			path = Resources;
+			path = BundleResources;
 			sourceTree = "<group>";
 		};
 		83CF71DF2C60ADA60066A195 /* img */ = {
@@ -254,7 +245,7 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
-		F4CB237E2EB78FAB0027B041 /* Preferences */ = {
+		F4CB237E2EB78FAB0027B041 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */,
@@ -263,7 +254,7 @@
 				F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */,
 				F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */,
 			);
-			path = Preferences;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F4CB239F2EB7D1B20027B041 /* lib */ = {
@@ -325,6 +316,63 @@
 				F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */,
 			);
 			path = Rendering;
+			sourceTree = "<group>";
+		};
+		F4CB24502EC9D1A00027B041 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				83598E6425818808004664D3 /* AppDelegate.swift */,
+				F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */,
+				F4CB24212EB7F4740027B041 /* AppConfiguration+Rendering.swift */,
+				F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */,
+				F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F4CB24512EC9D1A00027B041 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F45946BC2EB4D0F60093B91A /* MarkdownDocument.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F4CB24522EC9D1A00027B041 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				83598E6625818808004664D3 /* DocumentViewController.swift */,
+				F45946BD2EB4D0F60093B91A /* MarkdownWindowController.swift */,
+				836B747C259E2D7B00A6A5F7 /* AboutViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F4CB24532EC9D1A00027B041 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB237E2EB78FAB0027B041 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F4CB24542EC9D1A00027B041 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F4CB24292EB7F70B0027B041 /* Helpers.swift */,
+				F4CB24272EB7F6F90027B041 /* NSColor.swift */,
+				F4CB242B2EB7F7250027B041 /* OSLog.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F4CB24552EC9D1A00027B041 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83598E682581880A004664D3 /* Assets.xcassets */,
+				83598E6A2581880A004664D3 /* Main.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

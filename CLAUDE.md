@@ -15,7 +15,7 @@
 - **Markdown Parser**: swift-markdown 0.5.0 (Pure Swift, Apple's library)
 - **Custom Extensions**: 8 Swift Rewriters (967 LOC, replacing 4.1K LOC C/C++)
 - **Client-side Syntax Highlighting**: highlight.js v11.11.1 (JavaScript in WKWebView)
-- **CSS-basierte Themes**: 12 .min.css files in Resources/highlight.js/styles/
+- **CSS-basierte Themes**: 12 .min.css files in BundleResources/highlight.js/styles/
 - **Language Detection**: highlight.js auto-detection (JavaScript heuristics)
 - **Build Complexity**: ~30-45 seconds clean build (pure Swift + SPM)
 
@@ -57,7 +57,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
 ### Migration Documents
 
 **Comprehensive Migration Plan**:
-- **[SWIFT_MARKDOWN_MIGRATION_PLAN.md](SWIFT_MARKDOWN_MIGRATION_PLAN.md)** (1,245 lines) - Complete analysis, risks, recommendations
+- **[SWIFT_MARKDOWN_MIGRATION_PLAN.md](docs/migration/SWIFT_MARKDOWN_MIGRATION_PLAN.md)** (1,245 lines) - Complete analysis, risks, recommendations
   - Executive Summary with **CONDITIONAL PROCEED** recommendation
   - Feature-by-feature migration analysis (9 custom extensions)
   - Critical gaps & showstoppers (math/highlight/sub/sup custom delimiters)
@@ -65,7 +65,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
   - Hybrid approach recommendation (keep cmark-gfm for math only)
 
 **Technical Implementation**:
-- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** (1,190 lines) - Production-ready code templates
+- **[IMPLEMENTATION_GUIDE.md](docs/migration/IMPLEMENTATION_GUIDE.md)** (1,190 lines) - Production-ready code templates
   - 8 MarkupRewriter implementations with full source code
   - HeadingIDFormatter (custom HTMLFormatter subclass)
   - MarkdownRenderer orchestration layer
@@ -141,7 +141,7 @@ The cmark-gfm + custom C/C++ extensions architecture has been successfully repla
 - ⚠️ 2 unit tests fail (hardBreak/noSoftBreak not supported)
 
 **Files Reference:**
-- Old implementation preserved: `TextDown/AppConfiguration+Rendering.txt.ref` (772 lines)
+- Old implementation preserved: `TextDown/Core/AppConfiguration+Rendering.txt.ref` (772 lines)
 - Migration documentation: `SWIFT_MARKDOWN_MIGRATION_PLAN.md`, `IMPLEMENTATION_GUIDE.md`
 
 ### Removed Components (swift-markdown Migration)
@@ -184,18 +184,18 @@ See migration documents for complete technical analysis.
 **Primary Function**: Markdown Editor with Live Preview
 
 **Kernklassen**:
-- `DocumentViewController.swift` (~617 LOC) - Split-View Editor
+- `ViewControllers/DocumentViewController.swift` (~617 LOC) - Split-View Editor
   - Markdown Input: NSTextView (linke Seite)
   - Preview: WKWebView (rechte Seite, Live-Update)
   - Debounced Rendering (0.5s delay)
   - Direct access to AppConfiguration.shared (@Observable)
-- `MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
-- `MarkdownWindowController.swift` (82 LOC) - Window Management
-- `AppDelegate.swift` - App Lifecycle, Sparkle Updates
-- `AppConfiguration.swift` (~40 Properties, @Observable) - Single Source of Truth
-- `AppConfiguration+Rendering.swift` - Haupt-Rendering-Engine
-- `AppConfiguration+Persistence.swift` - Standalone Persistenz (JSON in Application Support)
-- `Preferences/*.swift` (5 SwiftUI Views) - Settings UI with @Bindable bindings
+- `Models/MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
+- `ViewControllers/MarkdownWindowController.swift` (82 LOC) - Window Management
+- `Core/AppDelegate.swift` - App Lifecycle, Sparkle Updates
+- `Core/AppConfiguration.swift` (~40 Properties, @Observable) - Single Source of Truth
+- `Core/AppConfiguration+Rendering.swift` - Haupt-Rendering-Engine
+- `Core/AppConfiguration+Persistence.swift` - Standalone Persistenz (JSON in Application Support)
+- `Views/Settings/*.swift` (5 SwiftUI Views) - Settings UI with @Bindable bindings
 
 **Wichtige Properties in AppConfiguration.swift**:
 ````
@@ -426,7 +426,7 @@ Final Rendered Markdown in WKWebView
 
 ## Theme System
 
-**Location**: `Resources/highlight.js/styles/` (CSS Themes)
+**Location**: `BundleResources/highlight.js/styles/` (CSS Themes)
 
 **Structure**:
 ````
@@ -493,7 +493,7 @@ if self.syntaxHighlightExtension {
 
 **Migration Notes**:
 - **Old System** (❌ Removed Nov 2025): Lua tables in Resources/highlight/themes/ (97 themes)
-- **New System** (✅ Current): CSS files in Resources/highlight.js/styles/ (12 themes)
+- **New System** (✅ Current): CSS files in BundleResources/highlight.js/styles/ (12 themes)
 - **Compatibility**: No migration needed - themes are independent of markdown files
 
 ---
@@ -748,7 +748,7 @@ print("hi")
 
 ## Key Files
 
-**Rendering**: `MarkdownRenderer.swift` (265 LOC), `AppConfiguration+Rendering.swift` (91 LOC), `AppConfiguration.swift` (40 properties), `AppConfiguration+Persistence.swift`
+**Rendering**: `MarkdownRenderer.swift` (265 LOC), `Core/AppConfiguration+Rendering.swift` (91 LOC), `Core/AppConfiguration.swift` (40 properties), `Core/AppConfiguration+Persistence.swift`
 
 **Rewriters** (967 LOC total):
 - `EmojiRewriter.swift` (143 LOC)
@@ -760,7 +760,7 @@ print("hi")
 - `HeadingIDGenerator.swift` (78 LOC)
 - `YamlHeaderProcessor.swift` (183 LOC)
 
-**UI**: `DocumentViewController.swift` (617 LOC), `MarkdownDocument.swift` (180 LOC), `MarkdownWindowController.swift` (82 LOC), `Preferences/*.swift` (5 views), `AppDelegate.swift`
+**UI**: `ViewControllers/DocumentViewController.swift` (617 LOC), `Models/MarkdownDocument.swift` (180 LOC), `ViewControllers/MarkdownWindowController.swift` (82 LOC), `Views/Settings/*.swift` (5 views), `Core/AppDelegate.swift`
 
 **Build**: `TextDown.xcodeproj/project.pbxproj`
 
@@ -830,12 +830,12 @@ print("hi")
 - **Build Time**: 10-15 min (clean build)
 
 ### Critical Files (Original)
-- `TextDown/AppConfiguration.swift` - 40+ Properties
-- `TextDown/AppConfiguration+Rendering.swift` - Main Rendering Engine
-- `TextDown/AppConfiguration+XPC.swift` - XPC Communication
-- `TextDown/AppConfiguration+Persistence.swift` - Direct UserDefaults Fallback
+- `TextDown/Core/AppConfiguration.swift` - 40+ Properties
+- `TextDown/Core/AppConfiguration+Rendering.swift` - Main Rendering Engine
+- `TextDown/Core/AppConfiguration+XPC.swift` - XPC Communication
+- `TextDown/Core/AppConfiguration+Persistence.swift` - Direct UserDefaults Fallback
 - `TextDown/ViewController.swift` - Settings UI (1200+ LOC)
-- `TextDown/AppDelegate.swift` - Lifecycle + Sparkle
+- `TextDown/Core/AppDelegate.swift` - Lifecycle + Sparkle
 
 ### Bundle Size (Original)
 - **Total**: ~77 MB
@@ -1069,12 +1069,12 @@ All extensions present and functional:
   - TextDownXPCHelper/ folder (entire XPC service):
     - Info.plist, main.swift, TextDownXPCHelper.swift
     - TextDownXPCHelperProtocol.swift, TextDownXPCHelper.entitlements
-  - TextDown/AppConfiguration+XPC.swift (XPC wrapper)
+  - TextDown/Core/AppConfiguration+XPC.swift (XPC wrapper)
   - TextDown/XPCWrapper.swift (XPC communication layer)
 
 - **Modified Files**:
   - TextDown.xcodeproj/project.pbxproj: Removed TextDownXPCHelper target
-  - TextDown/AppConfiguration.swift: Switched to AppConfiguration+Persistence.swift exclusively
+  - TextDown/Core/AppConfiguration.swift: Switched to AppConfiguration+Persistence.swift exclusively
   - TextDown/Info.plist: Removed XPCServices declarations
 
 - **Persistence Method**: JSON file in Application Support
@@ -1384,27 +1384,27 @@ ls: Extensions: No such file or directory  # ✅ Removed
    - cancel() method: restores from originalSettings
    - resetToDefaults() method: factory reset
 
-2. **Preferences/TextDownSettingsView.swift**
+2. **Views/Settings/TextDownSettingsView.swift**
    - Main SwiftUI window with TabView
    - Apply/Cancel buttons in toolbar
    - Apply disabled when no changes
    - Environment(\.dismiss) for window closing
 
-3. **Preferences/GeneralSettingsView.swift** (8 properties)
+3. **Views/Settings/GeneralSettingsView.swift** (8 properties)
    - About footer toggle, CSS theme override
    - Inline links behavior, Debug mode
    - QuickLook window size (width/height)
 
-4. **Preferences/ExtensionsSettingsView.swift** (17 properties)
+4. **Views/Settings/ExtensionsSettingsView.swift** (17 properties)
    - GitHub Flavored Markdown (6): Tables, Autolink, Tag filter, Task lists, YAML headers
    - Custom Extensions (11): Emoji, Heads, Highlight, Inline images, Math, Mentions, Subscript, Superscript, Strikethrough, Custom checkbox styling
 
-5. **Preferences/SyntaxSettingsView.swift** (7 properties)
+5. **Views/Settings/SyntaxSettingsView.swift** (7 properties)
    - Syntax highlighting enable/disable
    - Line numbers option, Tab width, Word wrap
    - Language detection: None / Simple (libmagic) / Accurate (Enry)
 
-6. **Preferences/AdvancedSettingsView.swift** (8 properties)
+6. **Views/Settings/AdvancedSettingsView.swift** (8 properties)
    - cmark Parser Options: Footnotes, Hard breaks, No soft breaks, Unsafe HTML, Smart quotes, Validate UTF-8
    - Render as code toggle
    - Reset to Factory Defaults button
