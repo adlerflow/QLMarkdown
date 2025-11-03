@@ -87,32 +87,6 @@ This will resolve the error of an unsigned application when launching the app.
 - Click Apply to save changes
 
 
-## Markdown processing
-
-For maximum compatibility with the Markdown format, the [`cmark-gfm`](https://github.com/github/cmark-gfm) library is used. The library is a GitHub fork of the standard cmark tool to [process the Markdown files](https://github.github.com/gfm/). 
-
-Compared to the `cmark-gfm`, these extensions have been added:
-- [`Emoji`](#emoji): translate the emoji shortcodes like `:smile:` to :smile:.
-- [`Heads anchors`](#heads-anchors): create anchors for the heads.
-- `Highlight`: highlight the text contained between the markers `==`.
-- [`Inline local images`](#inline-local-images): embed the image files inside the formatted output (required for the Quick Look preview).
-- `Subscript`: subscript text between the markers `~`.
-- `Superscript`: superscript text between the markers `^`.
-- [`Math`](#mathematical-expressions): format the mathematical expressions.
-- [`Syntax highlighting`](#syntax-highlighting): highlight the code inside fenced block.
-- [`YAML header`](#yaml-header): render the yaml header at the begin of `rmd` or `qmd` files.
-
-
-## Difference with the GitHub Markdown engine
-
-Although GitHub has customized the [`cmark-gfm`](https://github.com/github/cmark-gfm) library, it does not use it directly in the rendering process of Markdown files (see [this repository](https://github.com/github/markup)).
-GitHub uses a number of libraries in Ruby for parsing and formatting source code that cannot easily be converted into a compiled library.
-
-The main difference between this application and GitHub is the formatting of the source code.
-Syntax highlighting uses a different library, so the formatting, colors scheme, and language token recognition are potentially different.
-
-This application, when set to use the accurate engine for the language detection (used only when the language is not specified) uses a library derived from the [`Linguistic`](https://github.com/github/linguist#syntax-highlighting) framework adopted by GitHub.
-
 
 ## Settings
 
@@ -220,28 +194,6 @@ Alternatively, you can use the ` ```math ` code block syntax to display a math e
 The [MathJax](https://www.mathjax.org/) library is loaded from cdn.jsdelivr.net. The library is loaded if the markdown code contains ` ```math ` code blocks or one or more dollar sign.
 
 
-#### Syntax Highlighting
-
-This extension highlights the source code inside a fenced box.
-
-The rendering engine is based on the [Highlight](http://www.andre-simon.de/doku/highlight/en/highlight.php) library embedded in the app.
-
-![syntax highlighting settings](./assets/img/syntax_interface.png)
-
-You can customize the settings:
-
-- Line numbers visibility.
-- Word wrap options.
-- Tabs replacements.
-- Guess engine for undefined languages.
-
-When the code block does not specify the language, it is possible to activate a guessing function. Two engines are available:
-
-- Simple guess: it is based on the `magic` library;
-- Accurate guess: it is based on the [`Enry`](https://github.com/go-enry/go-enry) library, that is a Golang porting of the Ruby [`linguist`](https://github.com/github/linguist/) library used by GitHub.
-
-If no language is defined and the guessing fail (or is not enabled), the code is rendered as normal text.
-
 
 ### YAML header
 
@@ -255,28 +207,6 @@ When the `table` extension is enabled, the header is rendered as a table, otherw
 ## Build from source
 
 When you clone this repository, remember to fetch also the submodule with `git submodule update --init`.
-
-Some libraries (`Sparkle`, `Yams` and `SwiftSoup`) are handled by the Swift Package Manager. In case of problems it might be useful to reset the cache with the command from the menu `File/Packages/Reset Package Caches`.
-
-
-### Dependency
-
-The app uses the following libraries built directly from Xcode:
-- [`highlight`](http://www.andre-simon.de/doku/highlight/en/highlight.php) for syntax highlighting.
-- [`magic`](https://www.darwinsys.com/file/), used to guess the source code language when the guess mode is set to _simple_.
-- [`Enry`](https://github.com/go-enry/go-enry), used to guess the source code language when the guess mode is set to _accurate_.
-- [`PCRE2`](https://github.com/PhilipHazel/pcre2) and [`JPCRE2`](https://github.com/jpcre2/jpcre2) used by the heads extension.
-
-
-`libpcre` require the `autoconf` utility to be build. You can install it with [`homebrew`](https://brew.sh/):
-
-```sh
-brew install autoconf
-``` 
-
-Because `Enry` is developed in `go`, to build the wrapper library you must have the `go` compiler installed (you can use `brew install go`). 
-
-The compilation of `cmark-gfm` require `cmake` (`brew install cmake`).
 
 
 ## Note about the developer

@@ -2,8 +2,6 @@
 
 ## User settings
 xcuserdata/
-jpcre2.xcodeproj/xcuserdata/
-pcre2.xcodeproj/xcuserdata/*
 
 ## Xcode Build Artifacts
 build/
@@ -25,14 +23,6 @@ DerivedData/
 
 ## XCBuild Cache
 *.xcbuilddata/
-
-## CMark Build Artifacts
-cmark-gfm/cmark-arm64/
-cmark-gfm/cmark-x86_64/
-cmark-arm64/
-cmark-x86_64/
-src/cmark-gfm_export.h
-src/cmark-gfm_version.h
 
 /*/.idea/
 

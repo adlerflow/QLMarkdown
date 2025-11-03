@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
-		831834E6277E10150044ECDA /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 831834E5277E10150044ECDA /* Sparkle */; };
 		83598E692581880A004664D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83598E682581880A004664D3 /* Assets.xcassets */; };
 		83F4B9962586AB9700FC58A7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83D4B1C3258675D0000745DB /* README.md */; };
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
@@ -18,10 +16,6 @@
 		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
 		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
 		F4CB23862EB7C7430027B041 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = F4CB23852EB7C7430027B041 /* Markdown */; };
-		F4CB24202EB7F4470027B041 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */; };
-		F4CB24242EB7F4CE0027B041 /* AppConfiguration+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */; };
-		F4CB24262EB7F5020027B041 /* AppConfiguration+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */; };
-		F4CB242A2EB7F70B0027B041 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24292EB7F70B0027B041 /* Helpers.swift */; };
 		F4CB242C2EB7F7250027B041 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB242B2EB7F7250027B041 /* OSLog.swift */; };
 		F4CB24B92EB8D0290027B041 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24B82EB8D0290027B041 /* AboutView.swift */; };
 		F4CB24BC2EB8D0550027B041 /* MarkdownFileDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24BA2EB8D0550027B041 /* MarkdownFileDocument.swift */; };
@@ -56,13 +50,11 @@
 /* Begin PBXFileReference section */
 		831A8C40258ABADA00E36182 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		832D256125CC8894005F41AC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		834CAB89259167B800673002 /* examples */ = {isa = PBXFileReference; lastKnownFileType = text; path = examples; sourceTree = SOURCE_ROOT; };
 		83598E6125818808004664D3 /* TextDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83598E682581880A004664D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83598E6D2581880A004664D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83598E6E2581880A004664D3 /* TextDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextDown.entitlements; sourceTree = "<group>"; };
 		83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = TextDownXPCHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		83CF71D82C60ADA60066A195 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		83CF71E02C60ADA60066A195 /* icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.afdesign; sourceTree = "<group>"; };
 		83D4B1C3258675D0000745DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
@@ -73,10 +65,6 @@
 		F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
-		F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfiguration+Persistence.swift"; sourceTree = "<group>"; };
-		F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfiguration+Themes.swift"; sourceTree = "<group>"; };
-		F4CB24292EB7F70B0027B041 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F4CB242B2EB7F7250027B041 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		F4CB24B82EB8D0290027B041 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		F4CB24BA2EB8D0550027B041 /* MarkdownFileDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownFileDocument.swift; sourceTree = "<group>"; };
@@ -91,7 +79,6 @@
 			membershipExceptions = (
 				Color.swift,
 				MarkdownASTView.swift,
-				SwiftHighlighter.swift,
 			);
 			target = 83598E6025818808004664D3 /* TextDown */;
 		};
@@ -106,7 +93,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F49E8C5D2EB77A2200E3161A /* TextDownTests2 */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TextDownTests2; sourceTree = "<group>"; };
+		F49E8C5D2EB77A2200E3161A /* TextDownTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TextDownTests; sourceTree = "<group>"; };
 		F4CB24AE2EB8C1B80027B041 /* Preview */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F4CB24C72EB8D3310027B041 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Preview; sourceTree = "<group>"; };
 		F4CB24B42EB8CFA50027B041 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F4CB24CB2EB8D3400027B041 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -116,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831834E6277E10150044ECDA /* Sparkle in Frameworks */,
 				83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */,
 				F4CB23862EB7C7430027B041 /* Markdown in Frameworks */,
 			);
@@ -140,7 +126,7 @@
 				832D256125CC8894005F41AC /* .gitignore */,
 				83CF71E12C60ADA60066A195 /* assets */,
 				83598E6325818808004664D3 /* TextDown */,
-				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
+				F49E8C5D2EB77A2200E3161A /* TextDownTests */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
 			);
@@ -161,11 +147,9 @@
 			children = (
 				F4CB24B42EB8CFA50027B041 /* App */,
 				F4CB24AE2EB8C1B80027B041 /* Preview */,
-				F4CB24502EC9D1A00027B041 /* Core */,
 				F4CB24532EC9D1A00027B041 /* Views */,
 				F4CB24542EC9D1A00027B041 /* Utilities */,
 				F4CB24552EC9D1A00027B041 /* Resources */,
-				834CAB89259167B800673002 /* examples */,
 				83598E6D2581880A004664D3 /* Info.plist */,
 				83598E6E2581880A004664D3 /* TextDown.entitlements */,
 				F4CB24B72EB8CFF40027B041 /* About */,
@@ -185,18 +169,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		83CF71DF2C60ADA60066A195 /* img */ = {
-			isa = PBXGroup;
-			children = (
-				83CF71D82C60ADA60066A195 /* icon.png */,
-			);
-			path = img;
-			sourceTree = "<group>";
-		};
 		83CF71E12C60ADA60066A195 /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				83CF71DF2C60ADA60066A195 /* img */,
 				83CF71E02C60ADA60066A195 /* icon.afdesign */,
 			);
 			path = assets;
@@ -214,16 +189,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		F4CB24502EC9D1A00027B041 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */,
-				F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */,
-				F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		F4CB24532EC9D1A00027B041 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +200,6 @@
 		F4CB24542EC9D1A00027B041 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F4CB24292EB7F70B0027B041 /* Helpers.swift */,
 				F4CB242B2EB7F7250027B041 /* OSLog.swift */,
 			);
 			path = Utilities;
@@ -300,7 +264,6 @@
 			);
 			name = TextDown;
 			packageProductDependencies = (
-				831834E5277E10150044ECDA /* Sparkle */,
 				F4CB23852EB7C7430027B041 /* Markdown */,
 			);
 			productName = TextDown;
@@ -321,7 +284,7 @@
 				F49E8C612EB77A2200E3161A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
+				F49E8C5D2EB77A2200E3161A /* TextDownTests */,
 			);
 			name = TextDownTests2;
 			packageProductDependencies = (
@@ -361,7 +324,6 @@
 			);
 			mainGroup = 83598E5825818808004664D3;
 			packageReferences = (
-				831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */,
 				F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */,
 			);
 			productRefGroup = 83598E6225818808004664D3 /* Products */;
@@ -381,7 +343,6 @@
 			files = (
 				83F4B9962586AB9700FC58A7 /* README.md in Resources */,
 				83598E692581880A004664D3 /* Assets.xcassets in Resources */,
-				830277F72C60E48F0066EBCC /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,10 +362,8 @@
 			files = (
 				F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */,
 				F4CB24B92EB8D0290027B041 /* AboutView.swift in Sources */,
-				F4CB24262EB7F5020027B041 /* AppConfiguration+Themes.swift in Sources */,
 				F4CB24C32EB8D0940027B041 /* PureSwiftUITextEditor.swift in Sources */,
 				F4CB24C42EB8D0940027B041 /* MarkdownEditorView.swift in Sources */,
-				F4CB242A2EB7F70B0027B041 /* Helpers.swift in Sources */,
 				F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */,
 				F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */,
 				F4CB24BF2EB8D0830027B041 /* TextDownCommands.swift in Sources */,
@@ -412,8 +371,6 @@
 				F4CB242C2EB7F7250027B041 /* OSLog.swift in Sources */,
 				F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */,
 				F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */,
-				F4CB24202EB7F4470027B041 /* AppConfiguration.swift in Sources */,
-				F4CB24242EB7F4CE0027B041 /* AppConfiguration+Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,14 +718,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swiftlang/swift-markdown.git";
@@ -780,11 +729,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		831834E5277E10150044ECDA /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
 		F4CB23852EB7C7430027B041 /* Markdown */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */;

@@ -51,7 +51,7 @@ struct MarkdownEditorView: View {
     @MainActor
     private func renderMarkdown() {
         // Parse with swift-markdown
-        let parseOptions: ParseOptions = appState.renderingSettings.enableGFMTables
+        let parseOptions: ParseOptions = appState.enableTable
             ? [] // GFM options not yet exposed in swift-markdown 0.5.0
             : []
 

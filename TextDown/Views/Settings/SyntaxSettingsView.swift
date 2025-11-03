@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct SyntaxSettingsView: View {
-    @Bindable var settings: AppConfiguration
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         Form {
             Section("Syntax Highlighting") {
-                Toggle("Enable syntax highlighting", isOn: $settings.syntaxHighlightExtension)
+                Toggle("Enable syntax highlighting", isOn: $appState.enableSyntaxHighlighting)
                     .help("Apply color syntax highlighting to fenced code blocks")
 
-                if settings.syntaxHighlightExtension {
-                    Toggle("Show line numbers", isOn: $settings.syntaxLineNumbersOption)
+                if appState.enableSyntaxHighlighting {
+                    Toggle("Show line numbers", isOn: $appState.syntaxLineNumbers)
                         .padding(.leading, 20)
                         .help("Display line numbers in code blocks")
 
                     HStack {
                         Text("Tab width:")
                             .frame(width: 120, alignment: .trailing)
-                        TextField("Tab width", value: $settings.syntaxTabsOption, format: .number)
+                        TextField("Tab width", value: $appState.syntaxTabWidth, format: .number)
                             .textFieldStyle(.roundedBorder)
                             .frame(maxWidth: 80)
                         Text("spaces")
@@ -35,7 +35,7 @@ struct SyntaxSettingsView: View {
                     HStack {
                         Text("Word wrap:")
                             .frame(width: 120, alignment: .trailing)
-                        TextField("Word wrap", value: $settings.syntaxWordWrapOption, format: .number)
+                        TextField("Word wrap", value: $appState.syntaxWordWrap, format: .number)
                             .textFieldStyle(.roundedBorder)
                             .frame(maxWidth: 80)
                         Text("characters (0 = disabled)")
@@ -69,11 +69,7 @@ struct SyntaxSettingsView: View {
 }
 
 #Preview {
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
-    let data = try! encoder.encode(AppConfiguration.shared)
-    let previewSettings = try! decoder.decode(AppConfiguration.self, from: data)
-
-    SyntaxSettingsView(settings: previewSettings)
+    SyntaxSettingsView()
+        .environmentObject(AppState())
         .frame(width: 600, height: 500)
 }

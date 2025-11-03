@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct AdvancedSettingsView: View {
-    @Bindable var settings: AppConfiguration
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         Form {
             Section("cmark Parser Options") {
-                Toggle("Footnotes", isOn: $settings.footnotesOption)
+                Toggle("Footnotes", isOn: $appState.enableFootnotes)
                     .help("Enable footnote syntax: [^1] and [^1]: footnote text")
 
-                Toggle("Hard line breaks", isOn: $settings.hardBreakOption)
+                Toggle("Hard line breaks", isOn: $appState.enableHardBreaks)
                     .help("Treat single line breaks (\\n) as <br> tags")
 
-                Toggle("Disable soft line breaks", isOn: $settings.noSoftBreakOption)
+                Toggle("Disable soft line breaks", isOn: $appState.disableSoftBreaks)
                     .help("Don't convert soft line breaks to spaces")
 
-                Toggle("Allow unsafe HTML", isOn: $settings.unsafeHTMLOption)
+                Toggle("Allow unsafe HTML", isOn: $appState.allowUnsafeHTML)
                     .help("⚠️ Allow raw HTML in markdown (security risk!)")
 
-                Toggle("Smart quotes", isOn: $settings.smartQuotesOption)
+                Toggle("Smart quotes", isOn: $appState.enableSmartQuotes)
                     .help("Convert straight quotes to \"curly quotes\"")
 
-                Toggle("Validate UTF-8 strictly", isOn: $settings.validateUTFOption)
+                Toggle("Validate UTF-8 strictly", isOn: $appState.validateUTF8)
                     .help("Enforce strict UTF-8 validation (may reject some files)")
             }
 
@@ -38,7 +38,7 @@ struct AdvancedSettingsView: View {
                 }
                 .buttonStyle(.bordered)
 
-                Text("This will reset all settings to their default values. You must click Apply to save changes.")
+                Text("This will reset all settings to their default values. Changes are auto-saved after 1 second.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.top, 4)
@@ -49,63 +49,62 @@ struct AdvancedSettingsView: View {
     }
 
     private func resetToDefaults() {
-        let defaults = AppConfiguration()
+        let defaults = AppState()
+
+        // UI Behavior
+        appState.autoRefresh = defaults.autoRefresh
+        appState.openInlineLink = defaults.openInlineLink
+        appState.debug = defaults.debug
+        appState.about = defaults.about
 
         // GitHub Flavored Markdown
-        settings.tableExtension = defaults.tableExtension
-        settings.autoLinkExtension = defaults.autoLinkExtension
-        settings.tagFilterExtension = defaults.tagFilterExtension
-        settings.taskListExtension = defaults.taskListExtension
-        settings.yamlExtension = defaults.yamlExtension
-        settings.yamlExtensionAll = defaults.yamlExtensionAll
+        appState.enableAutolink = defaults.enableAutolink
+        appState.enableTable = defaults.enableTable
+        appState.enableTagFilter = defaults.enableTagFilter
+        appState.enableTaskList = defaults.enableTaskList
+        appState.enableYAML = defaults.enableYAML
+        appState.enableYAMLAll = defaults.enableYAMLAll
 
         // Custom Extensions
-        settings.emojiExtension = defaults.emojiExtension
-        settings.emojiImageOption = defaults.emojiImageOption
-        settings.headsExtension = defaults.headsExtension
-        settings.highlightExtension = defaults.highlightExtension
-        settings.inlineImageExtension = defaults.inlineImageExtension
-        settings.mathExtension = defaults.mathExtension
-        settings.mentionExtension = defaults.mentionExtension
-        settings.subExtension = defaults.subExtension
-        settings.supExtension = defaults.supExtension
-        settings.strikethroughExtension = defaults.strikethroughExtension
-        settings.strikethroughDoubleTildeOption = defaults.strikethroughDoubleTildeOption
-        settings.checkboxExtension = defaults.checkboxExtension
+        appState.enableCheckbox = defaults.enableCheckbox
+        appState.enableEmoji = defaults.enableEmoji
+        appState.enableEmojiImages = defaults.enableEmojiImages
+        appState.enableHeads = defaults.enableHeads
+        appState.enableHighlight = defaults.enableHighlight
+        appState.enableInlineImage = defaults.enableInlineImage
+        appState.enableMath = defaults.enableMath
+        appState.enableMention = defaults.enableMention
+        appState.enableStrikethrough = defaults.enableStrikethrough
+        appState.enableStrikethroughDoubleTilde = defaults.enableStrikethroughDoubleTilde
+        appState.enableSubscript = defaults.enableSubscript
+        appState.enableSuperscript = defaults.enableSuperscript
 
         // Syntax Highlighting
-        settings.syntaxHighlightExtension = defaults.syntaxHighlightExtension
-        settings.syntaxWordWrapOption = defaults.syntaxWordWrapOption
-        settings.syntaxLineNumbersOption = defaults.syntaxLineNumbersOption
-        settings.syntaxTabsOption = defaults.syntaxTabsOption
-        settings.syntaxThemeLightOption = defaults.syntaxThemeLightOption
-        settings.syntaxThemeDarkOption = defaults.syntaxThemeDarkOption
+        appState.enableSyntaxHighlighting = defaults.enableSyntaxHighlighting
+        appState.syntaxLineNumbers = defaults.syntaxLineNumbers
+        appState.syntaxTabWidth = defaults.syntaxTabWidth
+        appState.syntaxWordWrap = defaults.syntaxWordWrap
+        appState.syntaxThemeLight = defaults.syntaxThemeLight
+        appState.syntaxThemeDark = defaults.syntaxThemeDark
 
         // Parser Options
-        settings.footnotesOption = defaults.footnotesOption
-        settings.hardBreakOption = defaults.hardBreakOption
-        settings.noSoftBreakOption = defaults.noSoftBreakOption
-        settings.unsafeHTMLOption = defaults.unsafeHTMLOption
-        settings.smartQuotesOption = defaults.smartQuotesOption
-        settings.validateUTFOption = defaults.validateUTFOption
+        appState.enableFootnotes = defaults.enableFootnotes
+        appState.enableHardBreaks = defaults.enableHardBreaks
+        appState.disableSoftBreaks = defaults.disableSoftBreaks
+        appState.allowUnsafeHTML = defaults.allowUnsafeHTML
+        appState.enableSmartQuotes = defaults.enableSmartQuotes
+        appState.validateUTF8 = defaults.validateUTF8
 
         // CSS Theming
-        settings.customCSS = defaults.customCSS
-        settings.customCSSOverride = defaults.customCSSOverride
-
-        // Application Behavior
-        settings.openInlineLink = defaults.openInlineLink
-        settings.about = defaults.about
-        settings.debug = defaults.debug
+        appState.customCSS = defaults.customCSS
+        appState.customCSSCode = defaults.customCSSCode
+        appState.customCSSFetched = defaults.customCSSFetched
+        appState.customCSSOverride = defaults.customCSSOverride
     }
 }
 
 #Preview {
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
-    let data = try! encoder.encode(AppConfiguration.shared)
-    let previewSettings = try! decoder.decode(AppConfiguration.self, from: data)
-
-    AdvancedSettingsView(settings: previewSettings)
+    AdvancedSettingsView()
+        .environmentObject(AppState())
         .frame(width: 600, height: 500)
 }
