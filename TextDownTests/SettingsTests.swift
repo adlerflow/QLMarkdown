@@ -251,6 +251,7 @@ final class SettingsTests: XCTestCase {
     }
 
 
+
     func testSyntaxTabsOption() {
         // Valid tab widths
         settings.syntaxTabsOption = 2

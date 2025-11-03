@@ -1,5 +1,5 @@
 {
-  "originHash" : "b009acfa03e4a4f2e63464a2fad73d4805321fd9218a72b94d370c7602496d60",
+  "originHash" : "51acec2bab3d7b7592c5aa5413acee79097c191ac990cfd3ee7c6ec0ca820956",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -26,24 +26,6 @@
       "state" : {
         "revision" : "7d9a5ce307528578dfa777d505496bd5f544ad94",
         "version" : "0.7.3"
-      }
-    },
-    {
-      "identity" : "swiftsoup",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/scinfu/SwiftSoup",
-      "state" : {
-        "revision" : "bba848db50462894e7fc0891d018dfecad4ef11e",
-        "version" : "2.8.7"
-      }
-    },
-    {
-      "identity" : "yams",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jpsim/Yams.git",
-      "state" : {
-        "revision" : "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
-        "version" : "4.0.6"
       }
     }
   ],

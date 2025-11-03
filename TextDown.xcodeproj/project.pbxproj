@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
-		830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3B272D68E500378FFE /* SwiftSoup */; };
 		831834E6277E10150044ECDA /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 831834E5277E10150044ECDA /* Sparkle */; };
 		83598E692581880A004664D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83598E682581880A004664D3 /* Assets.xcassets */; };
-		8382D05C2664051400210A0A /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8382D05B2664051400210A0A /* Yams */; };
 		83F4B9962586AB9700FC58A7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83D4B1C3258675D0000745DB /* README.md */; };
 		83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8822C2598A5C0008C5071 /* WebKit.framework */; };
 		F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */; };
@@ -20,17 +18,7 @@
 		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
 		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
 		F4CB23862EB7C7430027B041 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = F4CB23852EB7C7430027B041 /* Markdown */; };
-		F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */; };
-		F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */; };
-		F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */; };
-		F4CB23DC2EB7D3690027B041 /* MentionRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */; };
-		F4CB23DD2EB7D3690027B041 /* SubSupRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */; };
-		F4CB23DE2EB7D3690027B041 /* HeadingIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */; };
-		F4CB23DF2EB7D3690027B041 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */; };
-		F4CB23E02EB7D3690027B041 /* MathRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D22EB7D3690027B041 /* MathRewriter.swift */; };
-		F4CB241E2EB7E2530027B041 /* YamlHeaderProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */; };
 		F4CB24202EB7F4470027B041 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */; };
-		F4CB24222EB7F4740027B041 /* AppConfiguration+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24212EB7F4740027B041 /* AppConfiguration+Rendering.swift */; };
 		F4CB24242EB7F4CE0027B041 /* AppConfiguration+Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */; };
 		F4CB24262EB7F5020027B041 /* AppConfiguration+Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */; };
 		F4CB242A2EB7F70B0027B041 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB24292EB7F70B0027B041 /* Helpers.swift */; };
@@ -85,17 +73,7 @@
 		F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
-		F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D22EB7D3690027B041 /* MathRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubSupRewriter.swift; sourceTree = "<group>"; };
-		F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingIDGenerator.swift; sourceTree = "<group>"; };
-		F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
-		F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YamlHeaderProcessor.swift; sourceTree = "<group>"; };
 		F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		F4CB24212EB7F4740027B041 /* AppConfiguration+Rendering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfiguration+Rendering.swift"; sourceTree = "<group>"; };
 		F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfiguration+Persistence.swift"; sourceTree = "<group>"; };
 		F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfiguration+Themes.swift"; sourceTree = "<group>"; };
 		F4CB24292EB7F70B0027B041 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -141,8 +119,6 @@
 				831834E6277E10150044ECDA /* Sparkle in Frameworks */,
 				83F8822D2598A5C0008C5071 /* WebKit.framework in Frameworks */,
 				F4CB23862EB7C7430027B041 /* Markdown in Frameworks */,
-				8382D05C2664051400210A0A /* Yams in Frameworks */,
-				830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +165,6 @@
 				F4CB24532EC9D1A00027B041 /* Views */,
 				F4CB24542EC9D1A00027B041 /* Utilities */,
 				F4CB24552EC9D1A00027B041 /* Resources */,
-				F4CB23D82EB7D3690027B041 /* Rendering */,
 				834CAB89259167B800673002 /* examples */,
 				83598E6D2581880A004664D3 /* Info.plist */,
 				83598E6E2581880A004664D3 /* TextDown.entitlements */,
@@ -239,35 +214,10 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		F4CB23D52EB7D3690027B041 /* Rewriters */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */,
-				F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */,
-				F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */,
-				F4CB23D22EB7D3690027B041 /* MathRewriter.swift */,
-				F4CB23D32EB7D3690027B041 /* MentionRewriter.swift */,
-				F4CB23D42EB7D3690027B041 /* SubSupRewriter.swift */,
-			);
-			path = Rewriters;
-			sourceTree = "<group>";
-		};
-		F4CB23D82EB7D3690027B041 /* Rendering */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB23D52EB7D3690027B041 /* Rewriters */,
-				F4CB23D62EB7D3690027B041 /* HeadingIDGenerator.swift */,
-				F4CB23D72EB7D3690027B041 /* MarkdownRenderer.swift */,
-				F4CB241D2EB7E2530027B041 /* YamlHeaderProcessor.swift */,
-			);
-			path = Rendering;
-			sourceTree = "<group>";
-		};
 		F4CB24502EC9D1A00027B041 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				F4CB241F2EB7F4470027B041 /* AppConfiguration.swift */,
-				F4CB24212EB7F4740027B041 /* AppConfiguration+Rendering.swift */,
 				F4CB24232EB7F4CE0027B041 /* AppConfiguration+Persistence.swift */,
 				F4CB24252EB7F5020027B041 /* AppConfiguration+Themes.swift */,
 			);
@@ -347,13 +297,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				830B5B42272D6D8A00378FFE /* PBXTargetDependency */,
-				830B5B37272D613A00378FFE /* PBXTargetDependency */,
 			);
 			name = TextDown;
 			packageProductDependencies = (
-				8382D05B2664051400210A0A /* Yams */,
-				830B5B3B272D68E500378FFE /* SwiftSoup */,
 				831834E5277E10150044ECDA /* Sparkle */,
 				F4CB23852EB7C7430027B041 /* Markdown */,
 			);
@@ -415,8 +361,6 @@
 			);
 			mainGroup = 83598E5825818808004664D3;
 			packageReferences = (
-				8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */,
-				830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */,
 				F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */,
 			);
@@ -457,18 +401,9 @@
 			files = (
 				F4CB237F2EB78FAB0027B041 /* TextDownSettingsView.swift in Sources */,
 				F4CB24B92EB8D0290027B041 /* AboutView.swift in Sources */,
-				F4CB241E2EB7E2530027B041 /* YamlHeaderProcessor.swift in Sources */,
-				F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */,
 				F4CB24262EB7F5020027B041 /* AppConfiguration+Themes.swift in Sources */,
-				F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */,
-				F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */,
-				F4CB23DC2EB7D3690027B041 /* MentionRewriter.swift in Sources */,
-				F4CB23DD2EB7D3690027B041 /* SubSupRewriter.swift in Sources */,
 				F4CB24C32EB8D0940027B041 /* PureSwiftUITextEditor.swift in Sources */,
 				F4CB24C42EB8D0940027B041 /* MarkdownEditorView.swift in Sources */,
-				F4CB23DE2EB7D3690027B041 /* HeadingIDGenerator.swift in Sources */,
-				F4CB23DF2EB7D3690027B041 /* MarkdownRenderer.swift in Sources */,
-				F4CB23E02EB7D3690027B041 /* MathRewriter.swift in Sources */,
 				F4CB242A2EB7F70B0027B041 /* Helpers.swift in Sources */,
 				F4CB23802EB78FAB0027B041 /* GeneralSettingsView.swift in Sources */,
 				F4CB23812EB78FAB0027B041 /* ExtensionsSettingsView.swift in Sources */,
@@ -477,7 +412,6 @@
 				F4CB242C2EB7F7250027B041 /* OSLog.swift in Sources */,
 				F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */,
 				F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */,
-				F4CB24222EB7F4740027B041 /* AppConfiguration+Rendering.swift in Sources */,
 				F4CB24202EB7F4470027B041 /* AppConfiguration.swift in Sources */,
 				F4CB24242EB7F4CE0027B041 /* AppConfiguration+Persistence.swift in Sources */,
 			);
@@ -493,14 +427,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		830B5B37272D613A00378FFE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 830B5B36272D613A00378FFE /* Yams */;
-		};
-		830B5B42272D6D8A00378FFE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 830B5B41272D6D8A00378FFE /* SwiftSoup */;
-		};
 		F49E8C612EB77A2200E3161A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83598E6025818808004664D3 /* TextDown */;
@@ -835,28 +761,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scinfu/SwiftSoup";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparkle-project/Sparkle";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jpsim/Yams.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.6;
 			};
 		};
 		F4CB23842EB7C7430027B041 /* XCRemoteSwiftPackageReference "swift-markdown" */ = {
@@ -870,30 +780,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		830B5B36272D613A00378FFE /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
-		830B5B3B272D68E500378FFE /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-		830B5B41272D6D8A00378FFE /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 830B5B3A272D68E500378FFE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
 		831834E5277E10150044ECDA /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 831834E4277E10150044ECDA /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
-		};
-		8382D05B2664051400210A0A /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8382D054266403B000210A0A /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
 		};
 		F4CB23852EB7C7430027B041 /* Markdown */ = {
 			isa = XCSwiftPackageProductDependency;
