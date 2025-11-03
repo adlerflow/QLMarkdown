@@ -8,7 +8,7 @@ struct MarkdownEditorView: View {
 
     @State private var renderedDocument: Document?
     @State private var debounceTask: Task<Void, Never>?
-    @FocusState private var isEditorFocused: Bool
+    @State private var isEditorFocused: Bool = false
 
     var body: some View {
         HSplitView {

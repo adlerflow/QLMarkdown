@@ -7,8 +7,8 @@ struct MarkdownFileDocument: FileDocument {
 
     static var readableContentTypes: [UTType] {
         [
-            .markdown,
             .plainText,
+            UTType("net.daringfireball.markdown")!,
             .rMarkdown,
             .qmdMarkdown
         ]
@@ -68,9 +68,10 @@ extension UTType {
 extension UTType {
     /// Check if UTType is a markdown variant
     var isMarkdown: Bool {
-        conforms(to: .markdown) ||
+        conforms(to: .plainText) ||
         conforms(to: .rMarkdown) ||
         conforms(to: .qmdMarkdown) ||
-        conforms(to: .plainText)
+        identifier == "net.daringfireball.markdown" ||
+        identifier == "public.markdown"
     }
 }

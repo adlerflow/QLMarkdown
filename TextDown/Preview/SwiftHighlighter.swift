@@ -1,3 +1,10 @@
+//
+//  SwiftHighlighter.swift
+//  TextDown
+//
+//  Created by adlerflow on 2025-11-03.
+//
+
 import SwiftUI
 
 /// Pure Swift Syntax Highlighter (ersetzt highlight.js)
@@ -240,8 +247,8 @@ enum SwiftHighlighter {
         case comment
         case number
         case type
-        case function
-        case operator
+        case `func`
+        case `operator`
     }
 
     // MARK: - Theme Colors
@@ -256,7 +263,7 @@ enum SwiftHighlighter {
                     .comment: Color(red: 0.5, green: 0.5, blue: 0.5),
                     .number: Color(red: 0.7, green: 0.85, blue: 1.0),
                     .type: Color(red: 0.85, green: 0.85, blue: 0.5),
-                    .function: Color(red: 0.68, green: 0.77, blue: 1.0),
+                    .func: Color(red: 0.68, green: 0.77, blue: 1.0),
                     .plain: Color.primary
                 ]
             case "github-light":
@@ -266,7 +273,7 @@ enum SwiftHighlighter {
                     .comment: Color(red: 0.4, green: 0.4, blue: 0.4),
                     .number: Color(red: 0.0, green: 0.4, blue: 0.8),
                     .type: Color(red: 0.4, green: 0.2, blue: 0.0),
-                    .function: Color(red: 0.5, green: 0.0, blue: 0.8),
+                    .func: Color(red: 0.5, green: 0.0, blue: 0.8),
                     .plain: Color.primary
                 ]
             default:
