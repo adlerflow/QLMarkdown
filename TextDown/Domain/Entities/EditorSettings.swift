@@ -14,16 +14,12 @@ struct EditorSettings: Sendable, Codable, Equatable {
     /// Enable debug mode for diagnostics
     var debug: Bool
 
-    /// Show about dialog
-    var about: Bool
-
     // MARK: - Defaults
 
     static let `default` = EditorSettings(
         autoRefresh: true,
         openInlineLink: false,
-        debug: false,
-        about: false
+        debug: false
     )
 
     // MARK: - Validation

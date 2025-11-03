@@ -11,7 +11,6 @@ import Markdown
 /// Renders fenced code blocks (```language)
 struct CodeBlockView: View {
     let codeBlock: CodeBlock
-    @EnvironmentObject var appState: AppState
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {

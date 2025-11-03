@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// SwiftUI Commands (ersetzt Storyboard Menu Bar)
+/// SwiftUI Commands (Clean Architecture)
 struct TextDownCommands: Commands {
     @FocusedBinding(\.editorText) var editorText: String?
-    @FocusedObject var appState: AppState?
+    @FocusedObject var settingsViewModel: SettingsViewModel?
     @Environment(\.openWindow) var openWindow
     @Environment(\.openURL) var openURL
 
@@ -23,19 +23,20 @@ struct TextDownCommands: Commands {
         // MARK: - View Menu
 
         CommandGroup(after: .toolbar) {
-            if let appState = appState {
+            if let settingsViewModel = settingsViewModel {
                 Toggle("Preview Auto-Refresh", isOn: Binding(
-                    get: { appState.autoRefresh },
-                    set: { appState.autoRefresh = $0 }
+                    get: { settingsViewModel.settings.editor.autoRefresh },
+                    set: { settingsViewModel.settings.editor.autoRefresh = $0 }
                 ))
                 .keyboardShortcut("r", modifiers: .command)
 
                 Button("Refresh Preview") {
-                    // Force refresh via reactive trigger
-                    appState.refreshTrigger = UUID()
+                    // Note: Manual refresh trigger removed in Clean Architecture
+                    // Refresh happens automatically via MarkdownEditorViewModel
+                    // This command is kept for future enhancement
                 }
                 .keyboardShortcut("r", modifiers: [.command, .shift])
-                .disabled(editorText == nil)
+                .disabled(true)  // Disabled until refresh mechanism implemented
             }
         }
 

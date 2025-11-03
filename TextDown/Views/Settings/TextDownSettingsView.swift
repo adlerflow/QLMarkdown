@@ -7,32 +7,64 @@
 
 import SwiftUI
 
-/// Pure SwiftUI Settings Window with direct AppState bindings
+/// Pure SwiftUI Settings Window with Clean Architecture
 struct TextDownSettingsView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var selectedTab: SettingsTab = .general
+
+    enum SettingsTab: String, CaseIterable {
+        case general = "General"
+        case extensions = "Extensions"
+        case syntax = "Syntax"
+        case advanced = "Advanced"
+
+        var icon: String {
+            switch self {
+            case .general: return "gearshape"
+            case .extensions: return "puzzlepiece.extension"
+            case .syntax: return "chevron.left.forwardslash.chevron.right"
+            case .advanced: return "gearshape.2"
+            }
+        }
+    }
 
     var body: some View {
-        TabView {
-            GeneralSettingsView()
-                .tabItem {
-                    Label("General", systemImage: "gearshape")
+        VStack(spacing: 0) {
+            // Custom Tab Bar
+            HStack(spacing: 8) {
+                ForEach(SettingsTab.allCases, id: \.self) { tab in
+                    Button(action: {
+                        selectedTab = tab
+                    }) {
+                        Label(tab.rawValue, systemImage: tab.icon)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                            .background(selectedTab == tab ? Color.accentColor.opacity(0.15) : Color.clear)
+                            .cornerRadius(6)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundColor(selectedTab == tab ? .accentColor : .primary)
                 }
+            }
+            .padding(12)
+            .background(Color(nsColor: .controlBackgroundColor))
 
-            ExtensionsSettingsView()
-                .tabItem {
-                    Label("Extensions", systemImage: "puzzlepiece.extension")
-                }
+            Divider()
 
-            SyntaxSettingsView()
-                .tabItem {
-                    Label("Syntax", systemImage: "chevron.left.forwardslash.chevron.right")
+            // Content
+            Group {
+                switch selectedTab {
+                case .general:
+                    GeneralSettingsView()
+                case .extensions:
+                    ExtensionsSettingsView()
+                case .syntax:
+                    SyntaxSettingsView()
+                case .advanced:
+                    AdvancedSettingsView()
                 }
-
-            AdvancedSettingsView()
-                .tabItem {
-                    Label("Advanced", systemImage: "gearshape.2")
-                }
+            }
         }
         .frame(width: 650, height: 550)
         .toolbar {
@@ -47,7 +79,18 @@ struct TextDownSettingsView: View {
 }
 
 #Preview {
-    TextDownSettingsView()
-        .environmentObject(AppState())
+    let settingsRepo = SettingsRepositoryImpl()
+    let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepo)
+    let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepo)
+    let validateUseCase = ValidateSettingsUseCase()
+
+    let viewModel = SettingsViewModel(
+        loadSettingsUseCase: loadUseCase,
+        saveSettingsUseCase: saveUseCase,
+        validateSettingsUseCase: validateUseCase
+    )
+
+    return TextDownSettingsView()
+        .environmentObject(viewModel)
         .frame(width: 650, height: 550)
 }

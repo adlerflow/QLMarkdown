@@ -71,8 +71,7 @@ class EditorViewModel: ObservableObject {
         editor = EditorSettings(
             autoRefresh: !editor.autoRefresh,
             openInlineLink: editor.openInlineLink,
-            debug: editor.debug,
-            about: editor.about
+            debug: editor.debug
         )
         settingsViewModel.editor = editor
     }

@@ -12,21 +12,6 @@ struct GeneralSettingsView: View {
 
     var body: some View {
         Form {
-            Section("Appearance") {
-                Toggle("Show \"About TextDown\" footer", isOn: $settingsViewModel.settings.editor.about)
-                    .help("Display About TextDown credit at bottom of rendered preview")
-            }
-
-            Section("CSS Theme") {
-                Text("Note: TextDown uses native SwiftUI rendering (not CSS)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
-                Text("CSS theming is not applicable in Pure SwiftUI mode. Colors are controlled by the system appearance (light/dark mode).")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
             Section("Behavior") {
                 Toggle("Open inline links in preview", isOn: $settingsViewModel.settings.editor.openInlineLink)
                     .help("Open markdown links inline instead of external browser")

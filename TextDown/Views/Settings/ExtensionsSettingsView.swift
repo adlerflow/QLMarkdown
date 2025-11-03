@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct ExtensionsSettingsView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
 
     var body: some View {
         Form {
             Section("GitHub Flavored Markdown") {
-                Toggle("Tables", isOn: $appState.enableTable)
+                Toggle("Tables", isOn: $settingsViewModel.settings.markdown.enableTable)
                     .help("Enable GitHub-style table syntax")
 
-                Toggle("Autolink", isOn: $appState.enableAutolink)
+                Toggle("Autolink", isOn: $settingsViewModel.settings.markdown.enableAutolink)
                     .help("Automatically convert URLs to links")
 
-                Toggle("Tag filter", isOn: $appState.enableTagFilter)
+                Toggle("Tag filter", isOn: $settingsViewModel.settings.markdown.enableTagFilter)
                     .help("Filter unsafe HTML tags")
 
-                Toggle("Task lists", isOn: $appState.enableTaskList)
+                Toggle("Task lists", isOn: $settingsViewModel.settings.markdown.enableTaskList)
                     .help("Enable checkbox task lists: - [ ] unchecked, - [x] checked")
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Toggle("YAML headers", isOn: $appState.enableYAML)
+                    Toggle("YAML headers", isOn: $settingsViewModel.settings.markdown.enableYAML)
                         .help("Parse YAML front-matter in documents")
 
-                    if appState.enableYAML {
-                        Toggle("Apply to all files (not just .rmd/.qmd)", isOn: $appState.enableYAMLAll)
+                    if settingsViewModel.settings.markdown.enableYAML {
+                        Toggle("Apply to all files (not just .rmd/.qmd)", isOn: $settingsViewModel.settings.markdown.enableYAMLAll)
                             .padding(.leading, 20)
                             .help("Parse YAML in all markdown files instead of only R Markdown files")
                     }
@@ -39,49 +39,49 @@ struct ExtensionsSettingsView: View {
 
             Section("Custom Extensions") {
                 VStack(alignment: .leading, spacing: 4) {
-                    Toggle("Emoji", isOn: $appState.enableEmoji)
+                    Toggle("Emoji", isOn: $settingsViewModel.settings.markdown.enableEmoji)
                         .help("Convert :emoji_name: to emoji characters (e.g., :smile: → 😄)")
 
-                    if appState.enableEmoji {
-                        Toggle("Render as images instead of font", isOn: $appState.enableEmojiImages)
+                    if settingsViewModel.settings.markdown.enableEmoji {
+                        Toggle("Render as images instead of font", isOn: $settingsViewModel.settings.markdown.enableEmojiImages)
                             .padding(.leading, 20)
                             .help("Use emoji images instead of system font")
                     }
                 }
 
-                Toggle("Headline anchors", isOn: $appState.enableHeads)
+                Toggle("Headline anchors", isOn: $settingsViewModel.settings.markdown.enableHeads)
                     .help("Automatically generate id attributes for headlines (e.g., ## Hello → <h2 id=\"hello\">)")
 
-                Toggle("Highlight", isOn: $appState.enableHighlight)
+                Toggle("Highlight", isOn: $settingsViewModel.settings.markdown.enableHighlight)
                     .help("Enable ==highlighted text== syntax")
 
-                Toggle("Inline images", isOn: $appState.enableInlineImage)
+                Toggle("Inline images", isOn: $settingsViewModel.settings.markdown.enableInlineImage)
                     .help("Embed local images as Base64 data URLs")
 
-                Toggle("Math (LaTeX)", isOn: $appState.enableMath)
+                Toggle("Math (LaTeX)", isOn: $settingsViewModel.settings.markdown.enableMath)
                     .help("Render LaTeX math expressions: $inline$ or $$display$$")
 
-                Toggle("Mentions", isOn: $appState.enableMention)
+                Toggle("Mentions", isOn: $settingsViewModel.settings.markdown.enableMention)
                     .help("Convert @username to GitHub profile links")
 
-                Toggle("Subscript", isOn: $appState.enableSubscript)
+                Toggle("Subscript", isOn: $settingsViewModel.settings.markdown.enableSubscript)
                     .help("Enable subscript syntax: ~text~")
 
-                Toggle("Superscript", isOn: $appState.enableSuperscript)
+                Toggle("Superscript", isOn: $settingsViewModel.settings.markdown.enableSuperscript)
                     .help("Enable superscript syntax: ^text^")
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Toggle("Strikethrough", isOn: $appState.enableStrikethrough)
+                    Toggle("Strikethrough", isOn: $settingsViewModel.settings.markdown.enableStrikethrough)
                         .help("Enable strikethrough text")
 
-                    if appState.enableStrikethrough {
-                        Toggle("Use double-tilde (~~text~~) instead of single (~text~)", isOn: $appState.enableStrikethroughDoubleTilde)
+                    if settingsViewModel.settings.markdown.enableStrikethrough {
+                        Toggle("Use double-tilde (~~text~~) instead of single (~text~)", isOn: $settingsViewModel.settings.markdown.enableStrikethroughDoubleTilde)
                             .padding(.leading, 20)
                             .help("Require ~~double~~ instead of ~single~ tilde syntax")
                     }
                 }
 
-                Toggle("Custom checkbox styling", isOn: $appState.enableCheckbox)
+                Toggle("Custom checkbox styling", isOn: $settingsViewModel.settings.markdown.enableCheckbox)
                     .help("Apply custom CSS styling to task list checkboxes")
             }
         }
@@ -91,7 +91,18 @@ struct ExtensionsSettingsView: View {
 }
 
 #Preview {
-    ExtensionsSettingsView()
-        .environmentObject(AppState())
+    let settingsRepo = SettingsRepositoryImpl()
+    let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepo)
+    let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepo)
+    let validateUseCase = ValidateSettingsUseCase()
+
+    let viewModel = SettingsViewModel(
+        loadSettingsUseCase: loadUseCase,
+        saveSettingsUseCase: saveUseCase,
+        validateSettingsUseCase: validateUseCase
+    )
+
+    return ExtensionsSettingsView()
+        .environmentObject(viewModel)
         .frame(width: 600, height: 500)
 }

@@ -2,7 +2,6 @@ import SwiftUI
 import Combine
 
 /// ViewModel for all settings views (General, Extensions, Syntax, Advanced)
-/// Replaces AppState settings management with focused responsibility
 @MainActor
 class SettingsViewModel: ObservableObject {
     // MARK: - Published Properties

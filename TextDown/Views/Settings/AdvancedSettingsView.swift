@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct AdvancedSettingsView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
 
     var body: some View {
         Form {
             Section("cmark Parser Options") {
-                Toggle("Footnotes", isOn: $appState.enableFootnotes)
+                Toggle("Footnotes", isOn: $settingsViewModel.settings.markdown.enableFootnotes)
                     .help("Enable footnote syntax: [^1] and [^1]: footnote text")
 
-                Toggle("Hard line breaks", isOn: $appState.enableHardBreaks)
+                Toggle("Hard line breaks", isOn: $settingsViewModel.settings.markdown.enableHardBreaks)
                     .help("Treat single line breaks (\\n) as <br> tags")
 
-                Toggle("Disable soft line breaks", isOn: $appState.disableSoftBreaks)
+                Toggle("Disable soft line breaks", isOn: $settingsViewModel.settings.markdown.disableSoftBreaks)
                     .help("Don't convert soft line breaks to spaces")
 
-                Toggle("Allow unsafe HTML", isOn: $appState.allowUnsafeHTML)
+                Toggle("Allow unsafe HTML", isOn: $settingsViewModel.settings.markdown.allowUnsafeHTML)
                     .help("⚠️ Allow raw HTML in markdown (security risk!)")
 
-                Toggle("Smart quotes", isOn: $appState.enableSmartQuotes)
+                Toggle("Smart quotes", isOn: $settingsViewModel.settings.markdown.enableSmartQuotes)
                     .help("Convert straight quotes to \"curly quotes\"")
 
-                Toggle("Validate UTF-8 strictly", isOn: $appState.validateUTF8)
+                Toggle("Validate UTF-8 strictly", isOn: $settingsViewModel.settings.markdown.validateUTF8)
                     .help("Enforce strict UTF-8 validation (may reject some files)")
             }
 
@@ -49,12 +49,25 @@ struct AdvancedSettingsView: View {
     }
 
     private func resetToDefaults() {
-        appState.resetToDefaults()
+        Task {
+            await settingsViewModel.resetToDefaults()
+        }
     }
 }
 
 #Preview {
-    AdvancedSettingsView()
-        .environmentObject(AppState())
+    let settingsRepo = SettingsRepositoryImpl()
+    let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepo)
+    let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepo)
+    let validateUseCase = ValidateSettingsUseCase()
+
+    let viewModel = SettingsViewModel(
+        loadSettingsUseCase: loadUseCase,
+        saveSettingsUseCase: saveUseCase,
+        validateSettingsUseCase: validateUseCase
+    )
+
+    return AdvancedSettingsView()
+        .environmentObject(viewModel)
         .frame(width: 600, height: 500)
 }

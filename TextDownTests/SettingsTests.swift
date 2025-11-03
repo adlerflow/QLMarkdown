@@ -2,9 +2,8 @@
 //  SettingsTests.swift
 //  TextDownTests
 //
-//  Created by Claude Code on 2025-11-02.
-//  Updated for AppState migration on 2025-11-03
-//  Phase 2: AppState JSON Persistence Tests
+//  Clean Architecture Settings Tests
+//  Tests SettingsViewModel, SettingsRepository, and AppSettings domain entities
 //
 
 import XCTest
@@ -12,404 +11,365 @@ import XCTest
 
 @MainActor
 final class SettingsTests: XCTestCase {
-    var appState: AppState!
+    var settingsViewModel: SettingsViewModel!
+    var settingsRepository: SettingsRepositoryImpl!
     var tempDirectory: URL!
+    var tempSettingsURL: URL!
 
-    override func setUp() {
-        super.setUp()
-        // Create a fresh AppState instance (factory defaults)
-        appState = AppState(loadFromDisk: false)
-
+    override func setUp() async throws {
+        // Create temporary directory for test settings
         tempDirectory = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
-        try! FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: tempDirectory, withIntermediateDirectories: true)
+
+        tempSettingsURL = tempDirectory.appendingPathComponent("test_settings.json")
+
+        // Create repository with temp location
+        settingsRepository = SettingsRepositoryImpl(settingsURL: tempSettingsURL)
+
+        // Create use cases
+        let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepository)
+        let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepository)
+        let validateUseCase = ValidateSettingsUseCase()
+
+        // Create view model
+        settingsViewModel = SettingsViewModel(
+            loadSettingsUseCase: loadUseCase,
+            saveSettingsUseCase: saveUseCase,
+            validateSettingsUseCase: validateUseCase
+        )
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         try? FileManager.default.removeItem(at: tempDirectory)
-        appState = nil
+        settingsViewModel = nil
+        settingsRepository = nil
         tempDirectory = nil
-        super.tearDown()
+        tempSettingsURL = nil
     }
 
-    // MARK: - JSON Persistence Tests
+    // MARK: - Domain Entity Tests
 
-    func testJSONRoundtrip() throws {
-        // Set all 39 properties to non-default values
+    func testAppSettingsDefaultValues() {
+        let settings = AppSettings.default
 
-        // UI Behavior (4)
-        appState.autoRefresh = false
-        appState.openInlineLink = true
-        appState.debug = true
-        appState.about = true
+        // Editor defaults
+        XCTAssertTrue(settings.editor.autoRefresh, "autoRefresh should default to true")
+        XCTAssertFalse(settings.editor.openInlineLink, "openInlineLink should default to false")
+        XCTAssertFalse(settings.editor.debug, "debug should default to false")
 
-        // GFM Extensions (6)
-        appState.enableTable = false
-        appState.enableAutolink = false
-        appState.enableTagFilter = false
-        appState.enableTaskList = false
-        appState.enableYAML = false
-        appState.enableYAMLAll = true
+        // Markdown GFM defaults
+        XCTAssertTrue(settings.markdown.enableAutolink, "enableAutolink should default to true")
+        XCTAssertTrue(settings.markdown.enableTable, "enableTable should default to true")
+        XCTAssertTrue(settings.markdown.enableTaskList, "enableTaskList should default to true")
 
-        // Custom Extensions (12)
-        appState.enableEmoji = false
-        appState.enableEmojiImages = true
-        appState.enableHeads = false
-        appState.enableHighlight = true
-        appState.enableInlineImage = false
-        appState.enableMath = false
-        appState.enableMention = true
-        appState.enableSubscript = true
-        appState.enableSuperscript = true
-        appState.enableStrikethrough = false
-        appState.enableStrikethroughDoubleTilde = true
-        appState.enableCheckbox = true
+        // Syntax theme defaults
+        XCTAssertTrue(settings.syntaxTheme.enabled, "syntax highlighting should default to enabled")
+        XCTAssertEqual(settings.syntaxTheme.tabWidth, 4, "tab width should default to 4")
+        XCTAssertEqual(settings.syntaxTheme.lightTheme, "github", "light theme should default to github")
+        XCTAssertEqual(settings.syntaxTheme.darkTheme, "github-dark", "dark theme should default to github-dark")
+    }
 
-        // Syntax Highlighting (6)
-        appState.enableSyntaxHighlighting = false
-        appState.syntaxLineNumbers = true
-        appState.syntaxTabWidth = 8
-        appState.syntaxWordWrap = 120
-        appState.syntaxThemeLight = "solarized-light"
-        appState.syntaxThemeDark = "solarized-dark"
+    func testAppSettingsValidation() {
+        var settings = AppSettings.default
 
-        // Parser Options (6)
-        appState.enableFootnotes = false
-        appState.enableHardBreaks = true
-        appState.disableSoftBreaks = true
-        appState.allowUnsafeHTML = true
-        appState.enableSmartQuotes = false
-        appState.validateUTF8 = true
+        // Test conflicting strikethrough settings
+        settings.markdown.enableStrikethrough = false
+        settings.markdown.enableStrikethroughDoubleTilde = true
 
-        // CSS Theming (4)
-        appState.customCSS = URL(fileURLWithPath: "/tmp/custom.css")
-        appState.customCSSCode = "body { color: red; }"
-        appState.customCSSFetched = true
-        appState.customCSSOverride = true
+        let validated = settings.validated()
 
-        // Create Settings struct
-        let settings = Settings(
-            autoRefresh: appState.autoRefresh,
-            openInlineLink: appState.openInlineLink,
-            debug: appState.debug,
-            about: appState.about,
-            enableAutolink: appState.enableAutolink,
-            enableTable: appState.enableTable,
-            enableTagFilter: appState.enableTagFilter,
-            enableTaskList: appState.enableTaskList,
-            enableYAML: appState.enableYAML,
-            enableYAMLAll: appState.enableYAMLAll,
-            enableCheckbox: appState.enableCheckbox,
-            enableEmoji: appState.enableEmoji,
-            enableEmojiImages: appState.enableEmojiImages,
-            enableHeads: appState.enableHeads,
-            enableHighlight: appState.enableHighlight,
-            enableInlineImage: appState.enableInlineImage,
-            enableMath: appState.enableMath,
-            enableMention: appState.enableMention,
-            enableStrikethrough: appState.enableStrikethrough,
-            enableStrikethroughDoubleTilde: appState.enableStrikethroughDoubleTilde,
-            enableSubscript: appState.enableSubscript,
-            enableSuperscript: appState.enableSuperscript,
-            enableSyntaxHighlighting: appState.enableSyntaxHighlighting,
-            syntaxLineNumbers: appState.syntaxLineNumbers,
-            syntaxTabWidth: appState.syntaxTabWidth,
-            syntaxWordWrap: appState.syntaxWordWrap,
-            syntaxThemeLight: appState.syntaxThemeLight,
-            syntaxThemeDark: appState.syntaxThemeDark,
-            enableFootnotes: appState.enableFootnotes,
-            enableHardBreaks: appState.enableHardBreaks,
-            disableSoftBreaks: appState.disableSoftBreaks,
-            allowUnsafeHTML: appState.allowUnsafeHTML,
-            enableSmartQuotes: appState.enableSmartQuotes,
-            validateUTF8: appState.validateUTF8,
-            customCSS: appState.customCSS,
-            customCSSCode: appState.customCSSCode,
-            customCSSFetched: appState.customCSSFetched,
-            customCSSOverride: appState.customCSSOverride
-        )
+        // Should disable double tilde when strikethrough is disabled
+        XCTAssertFalse(validated.markdown.enableStrikethroughDoubleTilde,
+                      "Double tilde should be disabled when strikethrough is disabled")
+    }
 
-        // Encode to JSON
+    func testAppSettingsCodableRoundtrip() throws {
+        var settings = AppSettings.default
+
+        // Modify some values
+        settings.editor.autoRefresh = false
+        settings.editor.openInlineLink = true
+        settings.markdown.enableTable = false
+        settings.markdown.enableEmoji = true
+        settings.syntaxTheme.tabWidth = 8
+        settings.syntaxTheme.lightTheme = "solarized-light"
+
+        // Encode
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let data = try encoder.encode(settings)
 
-        // Decode from JSON
+        // Decode
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(Settings.self, from: data)
+        let decoded = try decoder.decode(AppSettings.self, from: data)
 
-        // Verify all 39 properties match
-
-        // UI Behavior
-        XCTAssertEqual(decoded.autoRefresh, appState.autoRefresh, "autoRefresh mismatch")
-        XCTAssertEqual(decoded.openInlineLink, appState.openInlineLink, "openInlineLink mismatch")
-        XCTAssertEqual(decoded.debug, appState.debug, "debug mismatch")
-        XCTAssertEqual(decoded.about, appState.about, "about mismatch")
-
-        // GFM Extensions
-        XCTAssertEqual(decoded.enableTable, appState.enableTable, "enableTable mismatch")
-        XCTAssertEqual(decoded.enableAutolink, appState.enableAutolink, "enableAutolink mismatch")
-        XCTAssertEqual(decoded.enableTagFilter, appState.enableTagFilter, "enableTagFilter mismatch")
-        XCTAssertEqual(decoded.enableTaskList, appState.enableTaskList, "enableTaskList mismatch")
-        XCTAssertEqual(decoded.enableYAML, appState.enableYAML, "enableYAML mismatch")
-        XCTAssertEqual(decoded.enableYAMLAll, appState.enableYAMLAll, "enableYAMLAll mismatch")
-
-        // Custom Extensions
-        XCTAssertEqual(decoded.enableEmoji, appState.enableEmoji, "enableEmoji mismatch")
-        XCTAssertEqual(decoded.enableEmojiImages, appState.enableEmojiImages, "enableEmojiImages mismatch")
-        XCTAssertEqual(decoded.enableHeads, appState.enableHeads, "enableHeads mismatch")
-        XCTAssertEqual(decoded.enableHighlight, appState.enableHighlight, "enableHighlight mismatch")
-        XCTAssertEqual(decoded.enableInlineImage, appState.enableInlineImage, "enableInlineImage mismatch")
-        XCTAssertEqual(decoded.enableMath, appState.enableMath, "enableMath mismatch")
-        XCTAssertEqual(decoded.enableMention, appState.enableMention, "enableMention mismatch")
-        XCTAssertEqual(decoded.enableSubscript, appState.enableSubscript, "enableSubscript mismatch")
-        XCTAssertEqual(decoded.enableSuperscript, appState.enableSuperscript, "enableSuperscript mismatch")
-        XCTAssertEqual(decoded.enableStrikethrough, appState.enableStrikethrough, "enableStrikethrough mismatch")
-        XCTAssertEqual(decoded.enableStrikethroughDoubleTilde, appState.enableStrikethroughDoubleTilde, "enableStrikethroughDoubleTilde mismatch")
-        XCTAssertEqual(decoded.enableCheckbox, appState.enableCheckbox, "enableCheckbox mismatch")
-
-        // Syntax Highlighting
-        XCTAssertEqual(decoded.enableSyntaxHighlighting, appState.enableSyntaxHighlighting, "enableSyntaxHighlighting mismatch")
-        XCTAssertEqual(decoded.syntaxLineNumbers, appState.syntaxLineNumbers, "syntaxLineNumbers mismatch")
-        XCTAssertEqual(decoded.syntaxTabWidth, appState.syntaxTabWidth, "syntaxTabWidth mismatch")
-        XCTAssertEqual(decoded.syntaxWordWrap, appState.syntaxWordWrap, "syntaxWordWrap mismatch")
-        XCTAssertEqual(decoded.syntaxThemeLight, appState.syntaxThemeLight, "syntaxThemeLight mismatch")
-        XCTAssertEqual(decoded.syntaxThemeDark, appState.syntaxThemeDark, "syntaxThemeDark mismatch")
-
-        // Parser Options
-        XCTAssertEqual(decoded.enableFootnotes, appState.enableFootnotes, "enableFootnotes mismatch")
-        XCTAssertEqual(decoded.enableHardBreaks, appState.enableHardBreaks, "enableHardBreaks mismatch")
-        XCTAssertEqual(decoded.disableSoftBreaks, appState.disableSoftBreaks, "disableSoftBreaks mismatch")
-        XCTAssertEqual(decoded.allowUnsafeHTML, appState.allowUnsafeHTML, "allowUnsafeHTML mismatch")
-        XCTAssertEqual(decoded.enableSmartQuotes, appState.enableSmartQuotes, "enableSmartQuotes mismatch")
-        XCTAssertEqual(decoded.validateUTF8, appState.validateUTF8, "validateUTF8 mismatch")
-
-        // CSS Theming
-        XCTAssertEqual(decoded.customCSS, appState.customCSS, "customCSS mismatch")
-        XCTAssertEqual(decoded.customCSSCode, appState.customCSSCode, "customCSSCode mismatch")
-        XCTAssertEqual(decoded.customCSSFetched, appState.customCSSFetched, "customCSSFetched mismatch")
-        XCTAssertEqual(decoded.customCSSOverride, appState.customCSSOverride, "customCSSOverride mismatch")
+        // Verify
+        XCTAssertEqual(decoded.editor.autoRefresh, false)
+        XCTAssertEqual(decoded.editor.openInlineLink, true)
+        XCTAssertEqual(decoded.markdown.enableTable, false)
+        XCTAssertEqual(decoded.markdown.enableEmoji, true)
+        XCTAssertEqual(decoded.syntaxTheme.tabWidth, 8)
+        XCTAssertEqual(decoded.syntaxTheme.lightTheme, "solarized-light")
     }
 
-    func testFactoryDefaults() {
-        let factory = AppState(loadFromDisk: false)
+    // MARK: - Repository Tests
 
-        // Verify default values for all 39 properties
-
-        // UI Behavior
-        XCTAssertTrue(factory.autoRefresh, "autoRefresh default should be true")
-        XCTAssertFalse(factory.openInlineLink, "openInlineLink default should be false")
-        XCTAssertFalse(factory.debug, "debug default should be false")
-        XCTAssertFalse(factory.about, "about default should be false")
-
-        // GFM Extensions (default: all true except enableYAMLAll)
-        XCTAssertTrue(factory.enableTable, "enableTable default should be true")
-        XCTAssertTrue(factory.enableAutolink, "enableAutolink default should be true")
-        XCTAssertTrue(factory.enableTagFilter, "enableTagFilter default should be true")
-        XCTAssertTrue(factory.enableTaskList, "enableTaskList default should be true")
-        XCTAssertTrue(factory.enableYAML, "enableYAML default should be true")
-        XCTAssertFalse(factory.enableYAMLAll, "enableYAMLAll default should be false")
-
-        // Custom Extensions
-        XCTAssertTrue(factory.enableEmoji, "enableEmoji default should be true")
-        XCTAssertFalse(factory.enableEmojiImages, "enableEmojiImages default should be false")
-        XCTAssertTrue(factory.enableHeads, "enableHeads default should be true")
-        XCTAssertFalse(factory.enableHighlight, "enableHighlight default should be false")
-        XCTAssertTrue(factory.enableInlineImage, "enableInlineImage default should be true")
-        XCTAssertTrue(factory.enableMath, "enableMath default should be true")
-        XCTAssertFalse(factory.enableMention, "enableMention default should be false")
-        XCTAssertFalse(factory.enableSubscript, "enableSubscript default should be false")
-        XCTAssertFalse(factory.enableSuperscript, "enableSuperscript default should be false")
-        XCTAssertTrue(factory.enableStrikethrough, "enableStrikethrough default should be true")
-        XCTAssertFalse(factory.enableStrikethroughDoubleTilde, "enableStrikethroughDoubleTilde default should be false")
-        XCTAssertFalse(factory.enableCheckbox, "enableCheckbox default should be false")
-
-        // Syntax Highlighting
-        XCTAssertTrue(factory.enableSyntaxHighlighting, "enableSyntaxHighlighting default should be true")
-        XCTAssertFalse(factory.syntaxLineNumbers, "syntaxLineNumbers default should be false")
-        XCTAssertEqual(factory.syntaxTabWidth, 4, "syntaxTabWidth default should be 4")
-        XCTAssertEqual(factory.syntaxWordWrap, 0, "syntaxWordWrap default should be 0")
-        XCTAssertEqual(factory.syntaxThemeLight, "github", "syntaxThemeLight default should be 'github'")
-        XCTAssertEqual(factory.syntaxThemeDark, "github-dark", "syntaxThemeDark default should be 'github-dark'")
-
-        // Parser Options
-        XCTAssertTrue(factory.enableFootnotes, "enableFootnotes default should be true")
-        XCTAssertFalse(factory.enableHardBreaks, "enableHardBreaks default should be false")
-        XCTAssertFalse(factory.disableSoftBreaks, "disableSoftBreaks default should be false")
-        XCTAssertFalse(factory.allowUnsafeHTML, "allowUnsafeHTML default should be false")
-        XCTAssertTrue(factory.enableSmartQuotes, "enableSmartQuotes default should be true")
-        XCTAssertFalse(factory.validateUTF8, "validateUTF8 default should be false")
-
-        // CSS Theming
-        XCTAssertNil(factory.customCSS, "customCSS default should be nil")
-        XCTAssertNil(factory.customCSSCode, "customCSSCode default should be nil")
-        XCTAssertFalse(factory.customCSSFetched, "customCSSFetched default should be false")
-        XCTAssertFalse(factory.customCSSOverride, "customCSSOverride default should be false")
+    func testSettingsRepositoryLoad() async throws {
+        // No settings file exists yet
+        let loaded = try await settingsRepository.load()
+        XCTAssertNil(loaded, "Should return nil when no settings file exists")
     }
 
-    func testSettingsFileIO() throws {
-        let fileURL = tempDirectory.appendingPathComponent("settings.json")
+    func testSettingsRepositorySave() async throws {
+        var settings = AppSettings.default
+        settings.editor.autoRefresh = false
+        settings.markdown.enableTable = false
 
-        // Set some non-default values
-        appState.enableTable = false
-        appState.enableEmoji = false
-        appState.syntaxThemeLight = "solarized-light"
-
-        // Save settings using AppState method
-        appState.saveSettings()
-
-        // Manually write to our temp file for testing
-        let settings = Settings(
-            autoRefresh: appState.autoRefresh,
-            openInlineLink: appState.openInlineLink,
-            debug: appState.debug,
-            about: appState.about,
-            enableAutolink: appState.enableAutolink,
-            enableTable: appState.enableTable,
-            enableTagFilter: appState.enableTagFilter,
-            enableTaskList: appState.enableTaskList,
-            enableYAML: appState.enableYAML,
-            enableYAMLAll: appState.enableYAMLAll,
-            enableCheckbox: appState.enableCheckbox,
-            enableEmoji: appState.enableEmoji,
-            enableEmojiImages: appState.enableEmojiImages,
-            enableHeads: appState.enableHeads,
-            enableHighlight: appState.enableHighlight,
-            enableInlineImage: appState.enableInlineImage,
-            enableMath: appState.enableMath,
-            enableMention: appState.enableMention,
-            enableStrikethrough: appState.enableStrikethrough,
-            enableStrikethroughDoubleTilde: appState.enableStrikethroughDoubleTilde,
-            enableSubscript: appState.enableSubscript,
-            enableSuperscript: appState.enableSuperscript,
-            enableSyntaxHighlighting: appState.enableSyntaxHighlighting,
-            syntaxLineNumbers: appState.syntaxLineNumbers,
-            syntaxTabWidth: appState.syntaxTabWidth,
-            syntaxWordWrap: appState.syntaxWordWrap,
-            syntaxThemeLight: appState.syntaxThemeLight,
-            syntaxThemeDark: appState.syntaxThemeDark,
-            enableFootnotes: appState.enableFootnotes,
-            enableHardBreaks: appState.enableHardBreaks,
-            disableSoftBreaks: appState.disableSoftBreaks,
-            allowUnsafeHTML: appState.allowUnsafeHTML,
-            enableSmartQuotes: appState.enableSmartQuotes,
-            validateUTF8: appState.validateUTF8,
-            customCSS: appState.customCSS,
-            customCSSCode: appState.customCSSCode,
-            customCSSFetched: appState.customCSSFetched,
-            customCSSOverride: appState.customCSSOverride
-        )
-
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let data = try encoder.encode(settings)
-        try data.write(to: fileURL, options: .atomic)
+        // Save
+        try await settingsRepository.save(settings)
 
         // Verify file exists
-        XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path), "Settings file should exist")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: tempSettingsURL.path),
+                     "Settings file should exist")
 
-        // Read settings from file
-        let readData = try Data(contentsOf: fileURL)
-        let decoder = JSONDecoder()
-        let loaded = try decoder.decode(Settings.self, from: readData)
+        // Load
+        let loaded = try await settingsRepository.load()
 
-        // Verify properties match
-        XCTAssertEqual(loaded.enableTable, appState.enableTable)
-        XCTAssertEqual(loaded.enableEmoji, appState.enableEmoji)
-        XCTAssertEqual(loaded.syntaxThemeLight, appState.syntaxThemeLight)
+        XCTAssertNotNil(loaded)
+        XCTAssertEqual(loaded?.editor.autoRefresh, false)
+        XCTAssertEqual(loaded?.markdown.enableTable, false)
     }
 
-    // MARK: - Property Validation Tests
+    func testSettingsRepositoryResetToDefaults() async throws {
+        // Save non-default settings
+        var settings = AppSettings.default
+        settings.editor.autoRefresh = false
+        settings.markdown.enableTable = false
+        try await settingsRepository.save(settings)
 
-    func testSyntaxThemeValidation() {
-        // Valid themes
-        appState.syntaxThemeLight = "github"
-        appState.syntaxThemeDark = "github-dark"
-        XCTAssertEqual(appState.syntaxThemeLight, "github")
-        XCTAssertEqual(appState.syntaxThemeDark, "github-dark")
+        // Reset (deletes the file)
+        try await settingsRepository.resetToDefaults()
 
-        // Change to different valid themes
-        appState.syntaxThemeLight = "solarized-light"
-        appState.syntaxThemeDark = "solarized-dark"
-        XCTAssertEqual(appState.syntaxThemeLight, "solarized-light")
-        XCTAssertEqual(appState.syntaxThemeDark, "solarized-dark")
+        // Load should return nil after reset
+        let loaded = try await settingsRepository.load()
 
-        // Invalid theme (should not crash, just store the value)
-        appState.syntaxThemeLight = "nonexistent-theme"
-        XCTAssertEqual(appState.syntaxThemeLight, "nonexistent-theme")
+        XCTAssertNil(loaded, "Should return nil after reset (file deleted)")
+
+        // LoadSettingsUseCase would handle returning .default for nil
     }
 
-    func testSyntaxTabWidth() {
-        // Valid tab widths
-        appState.syntaxTabWidth = 2
-        XCTAssertEqual(appState.syntaxTabWidth, 2)
+    func testSettingsRepositoryHasSettings() async throws {
+        // Initially no settings
+        let hasBefore = await settingsRepository.hasSettings()
+        XCTAssertFalse(hasBefore, "Should not have settings initially")
 
-        appState.syntaxTabWidth = 4
-        XCTAssertEqual(appState.syntaxTabWidth, 4)
+        // Save settings
+        try await settingsRepository.save(.default)
 
-        appState.syntaxTabWidth = 8
-        XCTAssertEqual(appState.syntaxTabWidth, 8)
-
-        // Edge cases
-        appState.syntaxTabWidth = 0
-        XCTAssertEqual(appState.syntaxTabWidth, 0)
-
-        appState.syntaxTabWidth = 100
-        XCTAssertEqual(appState.syntaxTabWidth, 100)
+        // Now has settings
+        let hasAfter = await settingsRepository.hasSettings()
+        XCTAssertTrue(hasAfter, "Should have settings after save")
     }
 
-    // MARK: - Edge Cases
+    // MARK: - Use Case Tests
 
-    func testEmptyCustomCSS() {
-        appState.customCSS = nil
-        appState.customCSSCode = nil
-        appState.customCSSOverride = false
+    func testLoadSettingsUseCaseWithNoFile() async {
+        let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepository)
 
-        XCTAssertNil(appState.customCSS)
-        XCTAssertNil(appState.customCSSCode)
-        XCTAssertFalse(appState.customCSSOverride)
+        let settings = await loadUseCase.execute()
+
+        // Should return defaults when no file exists
+        XCTAssertEqual(settings.editor.autoRefresh, true)
+        XCTAssertEqual(settings.markdown.enableTable, true)
     }
 
-    func testMultipleExtensionsEnabled() {
-        // Enable all extensions
-        appState.enableTable = true
-        appState.enableEmoji = true
-        appState.enableMath = true
-        appState.enableStrikethrough = true
-        appState.enableHeads = true
-        appState.enableSyntaxHighlighting = true
+    func testLoadSettingsUseCaseWithValidFile() async throws {
+        // Save settings first
+        var testSettings = AppSettings.default
+        testSettings.editor.autoRefresh = false
+        testSettings.markdown.enableEmoji = false
+        try await settingsRepository.save(testSettings)
 
-        XCTAssertTrue(appState.enableTable)
-        XCTAssertTrue(appState.enableEmoji)
-        XCTAssertTrue(appState.enableMath)
-        XCTAssertTrue(appState.enableStrikethrough)
-        XCTAssertTrue(appState.enableHeads)
-        XCTAssertTrue(appState.enableSyntaxHighlighting)
+        let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepository)
+
+        let loaded = await loadUseCase.execute()
+
+        XCTAssertEqual(loaded.editor.autoRefresh, false)
+        XCTAssertEqual(loaded.markdown.enableEmoji, false)
     }
 
-    func testAllExtensionsDisabled() {
-        // Disable all extensions
-        appState.enableTable = false
-        appState.enableAutolink = false
-        appState.enableTagFilter = false
-        appState.enableTaskList = false
-        appState.enableYAML = false
-        appState.enableEmoji = false
-        appState.enableHeads = false
-        appState.enableHighlight = false
-        appState.enableInlineImage = false
-        appState.enableMath = false
-        appState.enableMention = false
-        appState.enableSubscript = false
-        appState.enableSuperscript = false
-        appState.enableStrikethrough = false
-        appState.enableSyntaxHighlighting = false
-        appState.enableCheckbox = false
+    func testSaveSettingsUseCaseValidatesBeforeSaving() async throws {
+        let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepository)
 
-        XCTAssertFalse(appState.enableTable)
-        XCTAssertFalse(appState.enableAutolink)
-        XCTAssertFalse(appState.enableEmoji)
-        XCTAssertFalse(appState.enableMath)
-        XCTAssertFalse(appState.enableSyntaxHighlighting)
+        var settings = AppSettings.default
+        settings.markdown.enableStrikethrough = false
+        settings.markdown.enableStrikethroughDoubleTilde = true  // Invalid!
+
+        try await saveUseCase.execute(settings)
+
+        // Load back
+        let loaded = try await settingsRepository.load()
+
+        // Should have validated and fixed the conflict
+        XCTAssertNotNil(loaded)
+        XCTAssertFalse(loaded!.markdown.enableStrikethroughDoubleTilde,
+                      "Should fix conflict during save")
+    }
+
+    func testSaveSettingsUseCaseResetToDefaults() async throws {
+        let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepository)
+
+        // Save non-default
+        var settings = AppSettings.default
+        settings.editor.autoRefresh = false
+        try await saveUseCase.execute(settings)
+
+        // Reset (delegates to repository which deletes file)
+        try await saveUseCase.resetToDefaults()
+
+        // Verify file was deleted
+        let hasSettings = await settingsRepository.hasSettings()
+        XCTAssertFalse(hasSettings, "Settings file should be deleted after reset")
+    }
+
+    func testValidateSettingsUseCaseFindsConflicts() async {
+        let validateUseCase = ValidateSettingsUseCase()
+
+        var settings = AppSettings.default
+        settings.markdown.enableStrikethrough = false
+        settings.markdown.enableStrikethroughDoubleTilde = true  // Conflict!
+
+        let issues = await validateUseCase.validate(settings)
+
+        XCTAssertGreaterThan(issues.count, 0, "Should find the conflict")
+        XCTAssertTrue(issues.contains { $0.property == "enableStrikethroughDoubleTilde" },
+                     "Should identify the conflicting property")
+    }
+
+    // MARK: - ViewModel Tests
+
+    func testSettingsViewModelInitialization() async {
+        // ViewModel should load settings on init
+        // Wait a bit for async init to complete
+        try? await Task.sleep(for: .milliseconds(100))
+
+        // Should have default settings (no file exists in temp location)
+        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+        XCTAssertEqual(settingsViewModel.settings.markdown.enableTable, true)
+    }
+
+    func testSettingsViewModelAutoSave() async throws {
+        // Wait for initial load
+        try await Task.sleep(for: .milliseconds(100))
+
+        // Modify settings
+        settingsViewModel.settings.editor.autoRefresh = false
+
+        // Wait for debounced auto-save (1 second + buffer)
+        try await Task.sleep(for: .milliseconds(1200))
+
+        // Verify saved to disk
+        let loaded = try await settingsRepository.load()
+        XCTAssertNotNil(loaded)
+        XCTAssertEqual(loaded?.editor.autoRefresh, false, "Should auto-save changes")
+    }
+
+    func testSettingsViewModelResetToDefaults() async throws {
+        // Wait for initial load
+        try await Task.sleep(for: .milliseconds(100))
+
+        // Modify settings
+        settingsViewModel.settings.editor.autoRefresh = false
+        settingsViewModel.settings.markdown.enableTable = false
+
+        // Wait for auto-save
+        try await Task.sleep(for: .milliseconds(1200))
+
+        // Reset
+        await settingsViewModel.resetToDefaults()
+
+        // Verify reset
+        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+        XCTAssertEqual(settingsViewModel.settings.markdown.enableTable, true)
+    }
+
+    // MARK: - Integration Tests
+
+    func testFullSettingsPersistenceFlow() async throws {
+        // 1. Initial state (defaults)
+        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+
+        // 2. Modify settings
+        settingsViewModel.settings.editor.autoRefresh = false
+        settingsViewModel.settings.editor.openInlineLink = true
+        settingsViewModel.settings.markdown.enableTable = false
+        settingsViewModel.settings.markdown.enableEmoji = false
+        settingsViewModel.settings.syntaxTheme.tabWidth = 8
+
+        // 3. Wait for auto-save
+        try await Task.sleep(for: .milliseconds(1200))
+
+        // 4. Create new ViewModel (simulates app restart)
+        let newLoadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepository)
+        let newSaveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepository)
+        let newValidateUseCase = ValidateSettingsUseCase()
+
+        let newViewModel = SettingsViewModel(
+            loadSettingsUseCase: newLoadUseCase,
+            saveSettingsUseCase: newSaveUseCase,
+            validateSettingsUseCase: newValidateUseCase
+        )
+
+        // 5. Wait for load
+        try await Task.sleep(for: .milliseconds(100))
+
+        // 6. Verify persisted values loaded
+        XCTAssertEqual(newViewModel.settings.editor.autoRefresh, false)
+        XCTAssertEqual(newViewModel.settings.editor.openInlineLink, true)
+        XCTAssertEqual(newViewModel.settings.markdown.enableTable, false)
+        XCTAssertEqual(newViewModel.settings.markdown.enableEmoji, false)
+        XCTAssertEqual(newViewModel.settings.syntaxTheme.tabWidth, 8)
+    }
+
+    func testAllMarkdownSettingsRoundtrip() async throws {
+        // Set all markdown settings to non-default values
+        settingsViewModel.settings.markdown.enableAutolink = false
+        settingsViewModel.settings.markdown.enableTable = false
+        settingsViewModel.settings.markdown.enableTagFilter = false
+        settingsViewModel.settings.markdown.enableTaskList = false
+        settingsViewModel.settings.markdown.enableYAML = false
+        settingsViewModel.settings.markdown.enableYAMLAll = true
+        settingsViewModel.settings.markdown.enableEmoji = false
+        settingsViewModel.settings.markdown.enableEmojiImages = true
+        settingsViewModel.settings.markdown.enableHeads = false
+        settingsViewModel.settings.markdown.enableHighlight = true
+        settingsViewModel.settings.markdown.enableInlineImage = false
+        settingsViewModel.settings.markdown.enableMath = false
+        settingsViewModel.settings.markdown.enableMention = true
+        settingsViewModel.settings.markdown.enableSubscript = true
+        settingsViewModel.settings.markdown.enableSuperscript = true
+        settingsViewModel.settings.markdown.enableStrikethrough = false
+        settingsViewModel.settings.markdown.enableStrikethroughDoubleTilde = false
+        settingsViewModel.settings.markdown.enableFootnotes = false
+        settingsViewModel.settings.markdown.enableHardBreaks = true
+        settingsViewModel.settings.markdown.disableSoftBreaks = true
+        settingsViewModel.settings.markdown.allowUnsafeHTML = true
+        settingsViewModel.settings.markdown.enableSmartQuotes = false
+        settingsViewModel.settings.markdown.validateUTF8 = true
+
+        // Wait for auto-save
+        try await Task.sleep(for: .milliseconds(1200))
+
+        // Load fresh
+        let loaded = try await settingsRepository.load()
+
+        XCTAssertNotNil(loaded)
+        XCTAssertEqual(loaded?.markdown.enableAutolink, false)
+        XCTAssertEqual(loaded?.markdown.enableTable, false)
+        XCTAssertEqual(loaded?.markdown.enableEmoji, false)
+        XCTAssertEqual(loaded?.markdown.enableMath, false)
+        XCTAssertEqual(loaded?.markdown.enableStrikethrough, false)
+        XCTAssertEqual(loaded?.markdown.validateUTF8, true)
     }
 }

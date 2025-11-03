@@ -142,7 +142,6 @@
 		F4CB24CB2EB8D3400027B041 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				AppState.swift,
 				TextDownApp.swift,
 			);
 			target = 83598E6025818808004664D3 /* TextDown */;
