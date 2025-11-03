@@ -127,24 +127,7 @@ final class MarkdownEditorViewModelTests: XCTestCase {
 
     // MARK: - Debouncing Tests
 
-    func testDebounceRenderWithAutoRefreshDisabled() async {
-        // Disable auto-refresh
-        settingsViewModel.settings.editor.autoRefresh = false
-
-        let markdown = "# Test"
-
-        viewModel.debounceRender(content: markdown)
-
-        // Wait for debounce delay
-        try? await Task.sleep(for: .milliseconds(600))
-
-        XCTAssertNil(viewModel.renderedDocument, "Should not render when autoRefresh is disabled")
-    }
-
-    func testDebounceRenderWithAutoRefreshEnabled() async {
-        // Enable auto-refresh
-        settingsViewModel.settings.editor.autoRefresh = true
-
+    func testDebounceRenderExecutes() async {
         let markdown = "# Test Heading"
 
         viewModel.debounceRender(content: markdown)
@@ -156,9 +139,6 @@ final class MarkdownEditorViewModelTests: XCTestCase {
     }
 
     func testDebounceRenderCancellation() async {
-        // Enable auto-refresh
-        settingsViewModel.settings.editor.autoRefresh = true
-
         let markdown1 = "# First"
         let markdown2 = "# Second"
 
@@ -200,9 +180,6 @@ final class MarkdownEditorViewModelTests: XCTestCase {
     }
 
     func testForceRenderCancelsDebounce() async {
-        // Enable auto-refresh
-        settingsViewModel.settings.editor.autoRefresh = true
-
         let markdown1 = "# Debounced"
         let markdown2 = "# Forced"
 
@@ -242,25 +219,6 @@ final class MarkdownEditorViewModelTests: XCTestCase {
         await viewModel.render(content: markdown)
 
         XCTAssertNotNil(viewModel.renderedDocument, "Should render with settings")
-    }
-
-    func testAutoRefreshSettingControlsDebounce() async {
-        let markdown = "# Test"
-
-        // Test with autoRefresh enabled
-        settingsViewModel.settings.editor.autoRefresh = true
-        viewModel.debounceRender(content: markdown)
-        try? await Task.sleep(for: .milliseconds(600))
-        XCTAssertNotNil(viewModel.renderedDocument, "Should render when autoRefresh is enabled")
-
-        // Clear document
-        viewModel.renderedDocument = nil
-
-        // Test with autoRefresh disabled
-        settingsViewModel.settings.editor.autoRefresh = false
-        viewModel.debounceRender(content: markdown)
-        try? await Task.sleep(for: .milliseconds(600))
-        XCTAssertNil(viewModel.renderedDocument, "Should not render when autoRefresh is disabled")
     }
 
     // MARK: - Complex Markdown Tests

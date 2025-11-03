@@ -10,11 +10,6 @@ class EditorViewModel: ObservableObject {
     /// Force refresh trigger for manual preview updates
     @Published var refreshTrigger: UUID = UUID()
 
-    /// Whether auto-refresh is enabled
-    var autoRefresh: Bool {
-        settingsViewModel.settings.editor.autoRefresh
-    }
-
     // MARK: - Dependencies
 
     private let settingsViewModel: SettingsViewModel
@@ -46,13 +41,10 @@ class EditorViewModel: ObservableObject {
         }
     }
 
-    /// Handles content changes with debounced parsing
+    /// Handles content changes with debounced parsing (always enabled)
     func handleContentChange() {
         // Cancel previous parse task
         parseTask?.cancel()
-
-        // Only parse if auto-refresh is enabled
-        guard autoRefresh else { return }
 
         // Schedule new parse with debounce
         parseTask = Task {
@@ -63,16 +55,5 @@ class EditorViewModel: ObservableObject {
             await documentViewModel.parseContent()
             refreshTrigger = UUID()
         }
-    }
-
-    /// Toggles auto-refresh setting
-    func toggleAutoRefresh() {
-        var editor = settingsViewModel.editor
-        editor = EditorSettings(
-            autoRefresh: !editor.autoRefresh,
-            openInlineLink: editor.openInlineLink,
-            debug: editor.debug
-        )
-        settingsViewModel.editor = editor
     }
 }

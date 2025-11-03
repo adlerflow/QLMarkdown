@@ -54,7 +54,6 @@ final class SettingsTests: XCTestCase {
         let settings = AppSettings.default
 
         // Editor defaults
-        XCTAssertTrue(settings.editor.autoRefresh, "autoRefresh should default to true")
         XCTAssertFalse(settings.editor.openInlineLink, "openInlineLink should default to false")
         XCTAssertFalse(settings.editor.debug, "debug should default to false")
 
@@ -88,7 +87,6 @@ final class SettingsTests: XCTestCase {
         var settings = AppSettings.default
 
         // Modify some values
-        settings.editor.autoRefresh = false
         settings.editor.openInlineLink = true
         settings.markdown.enableTable = false
         settings.markdown.enableStrikethrough = false
@@ -105,7 +103,6 @@ final class SettingsTests: XCTestCase {
         let decoded = try decoder.decode(AppSettings.self, from: data)
 
         // Verify
-        XCTAssertEqual(decoded.editor.autoRefresh, false)
         XCTAssertEqual(decoded.editor.openInlineLink, true)
         XCTAssertEqual(decoded.markdown.enableTable, false)
         XCTAssertEqual(decoded.markdown.enableStrikethrough, false)
