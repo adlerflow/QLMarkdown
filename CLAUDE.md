@@ -183,7 +183,7 @@ See migration documents for complete technical analysis.
 
 **Status**: ✅ COMPLETED (Branch: `feature/pure-swiftui-migration`)
 **Date**: 2025-11-03
-**Commits**: 2e6dd4a, 163a6f5, 14e88fe, 2a68066, 9d1ca6f, bf618ca, 9f562ba, 0133649
+**Commits**: 2e6dd4a, 163a6f5, 14e88fe, 2a68066, 9d1ca6f, bf618ca, 9f562ba, 0133649, f2c3248, 0f74ebf, 9ebff56, 2146ac6
 
 The AppKit/NSDocument architecture has been completely replaced with 100% Pure SwiftUI, eliminating all Cocoa dependencies and achieving full SwiftUI compliance with CI enforcement.
 
@@ -289,6 +289,24 @@ Markdown String
 **Phase 4: UI Polish** (Commit: 0133649)
 - Fixed duplicate View menu
 - Cleaned up menu bar commands
+
+**Phase 5: BundleResources Cleanup** (Commit: 9ebff56)
+- Removed obsolete BundleResources/ folder (212 KB)
+- Deleted default.css (14 KB) - no longer used
+- Deleted highlight.js library (77 KB) - replaced by SwiftHighlighter
+- Deleted 12 CSS themes (90 KB) - replaced by hardcoded Swift themes
+- Fixed 3 minor bugs (unused variable, missing openURL, unnecessary await)
+
+**Phase 6: Rendering Pipeline & Migration Artifacts Cleanup** (Commit: 2146ac6)
+- Deleted entire Rendering/ folder (10 files, 1,321 LOC)
+  - MarkdownRenderer.swift - HTML generation (obsolete)
+  - HeadingIDGenerator, YamlHeaderProcessor
+  - 6 Rewriters (Emoji, Highlight, Math, etc.)
+- Removed SPM dependencies: SwiftSoup (500 KB), Yams (300 KB)
+- Deleted test infrastructure: RenderingTests.swift (343 LOC), 6 HTML snapshots (597 KB)
+- Deleted migration artifacts: analysis/ folder (37 files, 304 KB)
+- Deleted obsolete assets: examples/ (116 KB), 18 imagesets (~3.8 MB)
+- **Total cleanup**: -1,664 LOC, -103 files, ~5 MB bundle size
 
 ### Known Limitations (Accepted Trade-offs)
 
@@ -481,25 +499,36 @@ customCSSCode: String                // Custom CSS override
 
 ---
 
-## Markdown Extensions (swift-markdown Rewriters)
+## Markdown Extensions (Pure SwiftUI - Nov 2025)
 
-**Implementierte Extensions** (Pure Swift):
+**Current Architecture**: Direct SwiftUI rendering (no HTML, no Rewriters)
 
-| Extension | File | Function | Dependencies | Status |
-|-----------|------|----------|--------------|--------|
-| **emoji** | EmojiRewriter.swift | `:smile:` → 😄 | Static emoji map (65 mappings) | ✅ Active |
-| **heads** | HeadingIDGenerator.swift | Auto-Anchor `## Hello` → `id="hello"` | SwiftSoup (post-processing) | ✅ Active |
-| **inlineimage** | InlineImageRewriter.swift | `![](local.png)` → Base64 Data URL | Magic byte sniffing (8 formats) | ✅ Active |
-| **math** | MathRewriter.swift | `$E=mc^2$` → MathJax `\(...\)` | Regex (⚠️ FRAGILE) | ✅ Active |
-| **highlight** | HighlightRewriter.swift | `==marked text==` → `<mark>` | - | ✅ Active |
-| **sub/sup** | SubSupRewriter.swift | `~sub~` und `^sup^` | - | ✅ Active |
-| **mention** | MentionRewriter.swift | GitHub `@username` | - | ✅ Active |
-| **yaml** | YamlHeaderProcessor.swift | R Markdown/Quarto frontmatter | Yams library | ✅ Active |
+**Supported Extensions** (MarkdownASTView.swift):
 
-**WICHTIG**: Syntax Highlighting erfolgt nun **client-side via highlight.js** (siehe Rendering Pipeline).
+| Extension | Status | Implementation | Notes |
+|-----------|--------|----------------|-------|
+| **Headings** | ✅ Active | HeadingView (SwiftUI) | Font sizes: .largeTitle → .body.bold() |
+| **Paragraphs** | ✅ Active | ParagraphView (SwiftUI) | Inline styles: bold, italic, code, links, strikethrough |
+| **Code Blocks** | ✅ Active | CodeBlockView + SwiftHighlighter | 5 languages (Swift, Python, JS, HTML, CSS) |
+| **Lists** | ✅ Active | UnorderedListView, OrderedListView | Bullets + numbering |
+| **Block Quotes** | ✅ Active | BlockQuoteView | Blue accent bar |
+| **Thematic Break** | ✅ Active | Divider() | Horizontal rule |
+| **Tables** | ⚠️ Placeholder | Text("⚠️ Tables not yet supported") | GFM extension |
+| **Task Lists** | ⚠️ Placeholder | Text("⚠️ Task lists not yet supported") | GFM extension |
+| **Strikethrough** | ✅ Active | .strikethroughStyle = .single | GFM extension |
+| **Autolinks** | ✅ Active | .link attribute | GFM extension |
 
-**GitHub Core Extensions** (swift-markdown built-in):
-- table, strikethrough, autolink, tasklist, tagfilter (no rewriter needed)
+**Removed After Pure SwiftUI Migration** (Nov 2025):
+- ❌ EmojiRewriter.swift - HTML-based, no longer needed
+- ❌ HeadingIDGenerator.swift - HTML anchors, no longer needed
+- ❌ InlineImageRewriter.swift - Base64 injection, no longer needed
+- ❌ MathRewriter.swift - MathJax, no longer needed
+- ❌ HighlightRewriter.swift - HTML `<mark>` tags, no longer needed
+- ❌ SubSupRewriter.swift - HTML `<sub>`/`<sup>`, no longer needed
+- ❌ MentionRewriter.swift - GitHub links, no longer needed
+- ❌ YamlHeaderProcessor.swift - HTML table generation, no longer needed
+
+**Syntax Highlighting**: Pure Swift tokenizer (SwiftHighlighter.swift)
 
 ---
 
@@ -797,53 +826,35 @@ Standalone Editor benötigt:
 - Usage: Core markdown parsing with GFM support
 - Transitive: swift-cmark (Apple's Swift wrapper)
 
-**Sparkle** - Auto-Update Framework
-- Version: 2.7.0
+**Sparkle** - Auto-Update Framework ❌ NOT USED (Nov 2025)
+- Version: 2.7.0 (still in Package.resolved)
 - Repository: https://github.com/sparkle-project/Sparkle
-- Revision: `0ca3004e98712ea2b39dd881d28448630cce1c99`
 - Size: ~3 MB
-- Used By: TextDown.app only (nicht Extensions)
-
-**SwiftSoup** - HTML Parser
-- Version: 2.8.7
-- Repository: https://github.com/scinfu/SwiftSoup
-- Revision: `bba848db50462894e7fc0891d018dfecad4ef11e`
-- Size: ~500 KB
-- Usage: HTML Post-Processing (CSS Injection, Inline Images)
-
-**Yams** - YAML Parser
-- Version: 4.0.6
-- Repository: https://github.com/jpsim/Yams
-- Revision: `9ff1cc9327586db4e0c8f46f064b6a82ec1566fa`
-- Size: ~300 KB
-- Usage: R Markdown YAML Headers (.rmd, .qmd)
+- Status: Unused after Pure SwiftUI migration (AppDelegate deleted)
+- Note: Auto-updates disabled (known limitation)
 
 ---
 
-## Bundle Struktur (Post-Migration - Stand Nov 2025)
+## Bundle Struktur (Post-Pure-SwiftUI - Nov 2025)
 ````
 TextDown.app/
 ├── Contents/
 │   ├── MacOS/
 │   │   └── TextDown                 # Main Binary (~10M)
 │   ├── Frameworks/
-│   │   └── Sparkle.framework          # Auto-Update (~3M)
+│   │   └── Sparkle.framework          # ~3M (unused, in Package.resolved)
 │   └── Resources/
-│       ├── highlight.js/
-│       │   ├── lib/
-│       │   │   └── highlight.min.js   # Core library (77 KB)
-│       │   └── styles/
-│       │       └── *.min.css          # 12 CSS Themes (~6-12 KB each)
-│       ├── default.css                # Base CSS (14 KB)
-│       └── magic.mgc                  # libmagic Database (800 KB)
+│       ├── Assets.xcassets            # AppIcon + AccentColor (~100 KB)
+│       └── Base.lproj/
+│           └── (empty - no storyboards)
 ````
 
-**Size Breakdown (Nov 2025 - Post-Optimization)**:
-- **Total Bundle**: ~40M (projected, down from 50M)
+**Size Breakdown (Nov 2025 - Post-Pure-SwiftUI)**:
+- **Total Bundle**: ~45M (down from 50M)
 - MacOS Binary: ~10M
-- Sparkle.framework: ~3M
-- Resources: ~1.5M (highlight.js 150 KB, default.css 14 KB, magic.mgc 800 KB, other assets ~500 KB)
-- **Reduction vs Phase 2**: -10M (libwrapper_highlight.dylib 26M + Resources/highlight/ 10M removed, highlight.js 150 KB added)
+- Sparkle.framework: ~3M (unused)
+- Resources: ~100 KB (Assets.xcassets only)
+- **Reduction**: -5M vs Pre-Pure-SwiftUI (BundleResources + obsolete Assets removed)
 
 **Entfernt (Phase 2)**:
 - PlugIns/ (QLExtension.appex 8.8M)
@@ -851,7 +862,7 @@ TextDown.app/
 - XPCServices/ (TextDownXPCHelper.xpc)
 - Resources/qlmarkdown_cli
 
-**Entfernt (Nov 2025 - Optimization + swift-markdown Migration)**:
+**Entfernt (Nov 2025 - swift-markdown Migration)**:
 - ❌ Frameworks/libwrapper_highlight.dylib (26M) - Replaced by highlight.js (77 KB)
 - ❌ Resources/highlight/ (10M) - 386 files (Lua language definitions, themes, plugins)
 - ❌ cmark-gfm/ (126 C files, ~15K LOC) - Replaced by swift-markdown
@@ -859,6 +870,15 @@ TextDown.app/
 - ❌ dependencies/pcre2 (Git submodule) - No longer needed
 - ❌ dependencies/jpcre2 (Git submodule) - No longer needed
 - ❌ TextDown-Bridging-Header.h - Pure Swift, no bridging needed
+
+**Entfernt (Nov 2025 - Pure SwiftUI Migration Phase 5+6)**:
+- ❌ BundleResources/ (15 files, 212 KB) - highlight.js + CSS themes
+- ❌ TextDown/Rendering/ (10 files, 1,321 LOC) - HTML rendering pipeline
+- ❌ SPM Dependencies: SwiftSoup (500 KB), Yams (300 KB)
+- ❌ TextDownTests2/Rendering/ + Snapshots/ (8 files, 940 KB)
+- ❌ analysis/ (37 files, 304 KB) - Migration artifacts
+- ❌ examples/ (26 files, 116 KB) - Language samples
+- ❌ Assets.xcassets (18 obsolete imagesets, ~3.8 MB) - Storyboard icons
 
 ---
 
