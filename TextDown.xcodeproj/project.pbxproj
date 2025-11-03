@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		830277F52C60B3E20066EBCC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 83598F22258263C0004664D3 /* default.css */; };
 		830277F72C60E48F0066EBCC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83CF71D82C60ADA60066A195 /* icon.png */; };
 		830B5B3C272D68E500378FFE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 830B5B3B272D68E500378FFE /* SwiftSoup */; };
 		831834E6277E10150044ECDA /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 831834E5277E10150044ECDA /* Sparkle */; };
@@ -21,20 +20,6 @@
 		F4CB23822EB78FAB0027B041 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23792EB78FAB0027B041 /* AdvancedSettingsView.swift */; };
 		F4CB23832EB78FAB0027B041 /* SyntaxSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */; };
 		F4CB23862EB7C7430027B041 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = F4CB23852EB7C7430027B041 /* Markdown */; };
-		F4CB23AF2EB7D1B20027B041 /* atom-one-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */; };
-		F4CB23B02EB7D1B20027B041 /* monokai-sublime.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */; };
-		F4CB23B12EB7D1B20027B041 /* stackoverflow-light.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */; };
-		F4CB23B22EB7D1B20027B041 /* vs.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A92EB7D1B20027B041 /* vs.min.css */; };
-		F4CB23B32EB7D1B20027B041 /* highlight.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F4CB239E2EB7D1B20027B041 /* highlight.min.js */; };
-		F4CB23B42EB7D1B20027B041 /* atom-one-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */; };
-		F4CB23B52EB7D1B20027B041 /* github-dark.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A32EB7D1B20027B041 /* github-dark.min.css */; };
-		F4CB23B62EB7D1B20027B041 /* base16-github.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A22EB7D1B20027B041 /* base16-github.min.css */; };
-		F4CB23B72EB7D1B20027B041 /* monokai.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A62EB7D1B20027B041 /* monokai.min.css */; };
-		F4CB23B82EB7D1B20027B041 /* github.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A42EB7D1B20027B041 /* github.min.css */; };
-		F4CB23B92EB7D1B20027B041 /* THEMES.md in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AD2EB7D1B20027B041 /* THEMES.md */; };
-		F4CB23BA2EB7D1B20027B041 /* nord.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23A72EB7D1B20027B041 /* nord.min.css */; };
-		F4CB23BB2EB7D1B20027B041 /* vs2015.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */; };
-		F4CB23BC2EB7D1B20027B041 /* xcode.min.css in Resources */ = {isa = PBXBuildFile; fileRef = F4CB23AB2EB7D1B20027B041 /* xcode.min.css */; };
 		F4CB23D92EB7D3690027B041 /* EmojiRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */; };
 		F4CB23DA2EB7D3690027B041 /* InlineImageRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */; };
 		F4CB23DB2EB7D3690027B041 /* HighlightRewriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */; };
@@ -88,7 +73,6 @@
 		83598E682581880A004664D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83598E6D2581880A004664D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83598E6E2581880A004664D3 /* TextDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextDown.entitlements; sourceTree = "<group>"; };
-		83598F22258263C0004664D3 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = TextDownXPCHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CF71D82C60ADA60066A195 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		83CF71E02C60ADA60066A195 /* icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.afdesign; sourceTree = "<group>"; };
@@ -101,20 +85,6 @@
 		F4CB237B2EB78FAB0027B041 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237C2EB78FAB0027B041 /* SyntaxSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxSettingsView.swift; sourceTree = "<group>"; };
 		F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDownSettingsView.swift; sourceTree = "<group>"; };
-		F4CB239E2EB7D1B20027B041 /* highlight.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = highlight.min.js; sourceTree = "<group>"; };
-		F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "atom-one-dark.min.css"; sourceTree = "<group>"; };
-		F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "atom-one-light.min.css"; sourceTree = "<group>"; };
-		F4CB23A22EB7D1B20027B041 /* base16-github.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "base16-github.min.css"; sourceTree = "<group>"; };
-		F4CB23A32EB7D1B20027B041 /* github-dark.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "github-dark.min.css"; sourceTree = "<group>"; };
-		F4CB23A42EB7D1B20027B041 /* github.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = github.min.css; sourceTree = "<group>"; };
-		F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "monokai-sublime.min.css"; sourceTree = "<group>"; };
-		F4CB23A62EB7D1B20027B041 /* monokai.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = monokai.min.css; sourceTree = "<group>"; };
-		F4CB23A72EB7D1B20027B041 /* nord.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = nord.min.css; sourceTree = "<group>"; };
-		F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "stackoverflow-light.min.css"; sourceTree = "<group>"; };
-		F4CB23A92EB7D1B20027B041 /* vs.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = vs.min.css; sourceTree = "<group>"; };
-		F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = vs2015.min.css; sourceTree = "<group>"; };
-		F4CB23AB2EB7D1B20027B041 /* xcode.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = xcode.min.css; sourceTree = "<group>"; };
-		F4CB23AD2EB7D1B20027B041 /* THEMES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = THEMES.md; sourceTree = "<group>"; };
 		F4CB23CF2EB7D3690027B041 /* EmojiRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRewriter.swift; sourceTree = "<group>"; };
 		F4CB23D02EB7D3690027B041 /* HighlightRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightRewriter.swift; sourceTree = "<group>"; };
 		F4CB23D12EB7D3690027B041 /* InlineImageRewriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineImageRewriter.swift; sourceTree = "<group>"; };
@@ -194,7 +164,6 @@
 				832D256125CC8894005F41AC /* .gitignore */,
 				83CF71E12C60ADA60066A195 /* assets */,
 				83598E6325818808004664D3 /* TextDown */,
-				837F29172597A01F00A5F7DE /* BundleResources */,
 				F49E8C5D2EB77A2200E3161A /* TextDownTests2 */,
 				83598F0525825B8D004664D3 /* Frameworks */,
 				83598E6225818808004664D3 /* Products */,
@@ -241,15 +210,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		837F29172597A01F00A5F7DE /* BundleResources */ = {
-			isa = PBXGroup;
-			children = (
-				83598F22258263C0004664D3 /* default.css */,
-				F4CB23AE2EB7D1B20027B041 /* highlight.js */,
-			);
-			path = BundleResources;
-			sourceTree = "<group>";
-		};
 		83CF71DF2C60ADA60066A195 /* img */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,43 +237,6 @@
 				F4CB237D2EB78FAB0027B041 /* TextDownSettingsView.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		F4CB239F2EB7D1B20027B041 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB239E2EB7D1B20027B041 /* highlight.min.js */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		F4CB23AC2EB7D1B20027B041 /* styles */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB23A02EB7D1B20027B041 /* atom-one-dark.min.css */,
-				F4CB23A12EB7D1B20027B041 /* atom-one-light.min.css */,
-				F4CB23A22EB7D1B20027B041 /* base16-github.min.css */,
-				F4CB23A32EB7D1B20027B041 /* github-dark.min.css */,
-				F4CB23A42EB7D1B20027B041 /* github.min.css */,
-				F4CB23A52EB7D1B20027B041 /* monokai-sublime.min.css */,
-				F4CB23A62EB7D1B20027B041 /* monokai.min.css */,
-				F4CB23A72EB7D1B20027B041 /* nord.min.css */,
-				F4CB23A82EB7D1B20027B041 /* stackoverflow-light.min.css */,
-				F4CB23A92EB7D1B20027B041 /* vs.min.css */,
-				F4CB23AA2EB7D1B20027B041 /* vs2015.min.css */,
-				F4CB23AB2EB7D1B20027B041 /* xcode.min.css */,
-			);
-			path = styles;
-			sourceTree = "<group>";
-		};
-		F4CB23AE2EB7D1B20027B041 /* highlight.js */ = {
-			isa = PBXGroup;
-			children = (
-				F4CB239F2EB7D1B20027B041 /* lib */,
-				F4CB23AC2EB7D1B20027B041 /* styles */,
-				F4CB23AD2EB7D1B20027B041 /* THEMES.md */,
-			);
-			path = highlight.js;
 			sourceTree = "<group>";
 		};
 		F4CB23D52EB7D3690027B041 /* Rewriters */ = {
@@ -513,23 +436,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F4B9962586AB9700FC58A7 /* README.md in Resources */,
-				F4CB23AF2EB7D1B20027B041 /* atom-one-light.min.css in Resources */,
-				F4CB23B02EB7D1B20027B041 /* monokai-sublime.min.css in Resources */,
-				F4CB23B12EB7D1B20027B041 /* stackoverflow-light.min.css in Resources */,
-				F4CB23B22EB7D1B20027B041 /* vs.min.css in Resources */,
-				F4CB23B32EB7D1B20027B041 /* highlight.min.js in Resources */,
-				F4CB23B42EB7D1B20027B041 /* atom-one-dark.min.css in Resources */,
-				F4CB23B52EB7D1B20027B041 /* github-dark.min.css in Resources */,
-				F4CB23B62EB7D1B20027B041 /* base16-github.min.css in Resources */,
-				F4CB23B72EB7D1B20027B041 /* monokai.min.css in Resources */,
-				F4CB23B82EB7D1B20027B041 /* github.min.css in Resources */,
-				F4CB23B92EB7D1B20027B041 /* THEMES.md in Resources */,
-				F4CB23BA2EB7D1B20027B041 /* nord.min.css in Resources */,
-				F4CB23BB2EB7D1B20027B041 /* vs2015.min.css in Resources */,
-				F4CB23BC2EB7D1B20027B041 /* xcode.min.css in Resources */,
 				83598E692581880A004664D3 /* Assets.xcassets in Resources */,
 				830277F72C60E48F0066EBCC /* icon.png in Resources */,
-				830277F52C60B3E20066EBCC /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

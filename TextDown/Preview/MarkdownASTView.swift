@@ -61,7 +61,7 @@ struct MarkdownBlockView: View {
                 OrderedListView(list: list)
             } else if let blockQuote = markup as? BlockQuote {
                 BlockQuoteView(blockQuote: blockQuote)
-            } else if let thematicBreak = markup as? ThematicBreak {
+            } else if markup is ThematicBreak {
                 Divider()
                     .padding(.vertical, 8)
             } else {

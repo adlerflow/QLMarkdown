@@ -43,7 +43,7 @@ struct MarkdownEditorView: View {
         debounceTask = Task {
             try? await Task.sleep(for: .milliseconds(500))
             if !Task.isCancelled {
-                await renderMarkdown()
+                renderMarkdown()
             }
         }
     }

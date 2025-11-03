@@ -2,6 +2,8 @@ import SwiftUI
 
 /// Pure SwiftUI About Dialog
 struct AboutView: View {
+    @Environment(\.openURL) private var openURL
+
     var body: some View {
         VStack(spacing: 16) {
             // App Icon (from Asset Catalog)
@@ -45,8 +47,7 @@ struct AboutView: View {
             // GitHub Link Button
             Button {
                 if let url = URL(string: "https://github.com/adlerflow/TextDown") {
-                    // Use openURL from Environment
-                    // (injected in parent)
+                    openURL(url)
                 }
             } label: {
                 HStack(spacing: 4) {
