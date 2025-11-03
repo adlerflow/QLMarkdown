@@ -959,3 +959,212 @@ git log --follow --oneline TextDown/Core/AppConfiguration.swift
 6. **Resource Disambiguation**: BundleResources/ vs TextDown/Resources/ clear distinction
 
 ---
+## ✅ COMPLETED: Code Quality & Clean Architecture Refactoring (November 2025)
+
+**Status**: ✅ COMPLETED
+**Date**: 2025-11-03
+
+Comprehensive code quality cleanup implementing Clean Architecture patterns and removing all code violations.
+
+### Code Quality Violations Fixed (26 total)
+
+**1. Logging Migration (14 violations)**: Replaced all `print()` statements with proper OSLog
+- ✅ MarkdownEditorViewModel.swift - Parse error logging
+- ✅ DocumentViewModel.swift - Parse error logging
+- ✅ SettingsViewModel.swift (2) - Save/reset error logging
+- ✅ ParseMarkdownUseCase.swift - High complexity warnings
+- ✅ SaveSettingsUseCase.swift (2) - Save/reset success logging
+- ✅ LoadSettingsUseCase.swift (4) - Load status, errors, defaults
+- ✅ SaveDocumentUseCase.swift (3) - Backup/save operations
+- **Impact**: Proper structured logging via OSLog categories (.rendering, .settings, .document)
+
+**2. Bundle Identifier Hardcoding (2 violations)**: Dynamic bundle ID resolution
+- ✅ OSLog.swift:12 - `"org.advison.TextDown"` → `Bundle.main.bundleIdentifier ?? "org.advison.TextDown"`
+- ✅ SettingsRepositoryImpl.swift:22 - Dynamic Application Support path
+- **Impact**: Code works across bundle ID changes, no hardcoded strings
+
+**3. Internationalization (8 violations)**: Translated German comments to English
+- ✅ TextDownApp.swift (3) - "Haupt-Dokumenten-Szene" → "Main document scene", etc.
+- ✅ TextDownCommands.swift - "File Menu Ergänzungen" → "File Menu Extensions"
+- ✅ PureSwiftUITextEditor.swift - "mit Undo/Redo" → "with Undo/Redo"
+- ✅ MarkdownEditorView.swift (3) - "Haupt-Editor-View" → "Main editor view", "Links/Rechts" → "Left/Right"
+- **Impact**: English-only codebase, improved maintainability
+
+**4. Dead Code Removal (2 violations)**: Removed non-functional UI elements
+- ✅ TextDownCommands.swift - Removed disabled "Export as HTML..." button
+- ✅ PureSwiftUITextEditor.swift - Removed disabled find previous/next buttons (SwiftUI limitations)
+- **Impact**: Cleaner UI, no confusing disabled features
+
+### Clean Architecture Implementation
+
+**Architecture Pattern**: Domain → Data → Presentation (Dependency Inversion)
+
+**Domain Layer** (Business Logic):
+```
+Domain/
+├── Entities/
+│   ├── AppSettings.swift - Root aggregate (editor, markdown, syntaxTheme, css)
+│   ├── EditorSettings.swift - Editor behavior (openInlineLink, debug)
+│   ├── MarkdownSettings.swift - GFM options + validation
+│   ├── SyntaxTheme.swift - Highlighting configuration
+│   └── CSSSettings.swift - Custom CSS overrides
+├── UseCases/
+│   ├── ParseMarkdownUseCase.swift - Markdown → AST conversion
+│   ├── LoadSettingsUseCase.swift - Settings loading + validation
+│   ├── SaveSettingsUseCase.swift - Settings persistence
+│   ├── ValidateSettingsUseCase.swift - Conflict detection
+│   └── SaveDocumentUseCase.swift - Document persistence + backups
+├── Repositories/ (Protocols)
+│   ├── MarkdownParserRepository.swift
+│   ├── SettingsRepository.swift
+│   └── DocumentRepository.swift
+└── Errors/
+    ├── DocumentError.swift
+    ├── ParseError.swift
+    └── ValidationError.swift
+```
+
+**Data Layer** (Infrastructure):
+```
+Data/
+└── Repositories/
+    ├── MarkdownParserRepositoryImpl.swift - swift-markdown wrapper
+    ├── SettingsRepositoryImpl.swift - JSON persistence (Application Support)
+    └── DocumentRepositoryImpl.swift - FileManager wrapper
+```
+
+**Presentation Layer** (UI):
+```
+Presentation/
+└── ViewModels/
+    ├── SettingsViewModel.swift - Settings UI coordination
+    ├── DocumentViewModel.swift - Document lifecycle (OBSOLETE - replaced by Clean Architecture)
+    └── EditorViewModel.swift - Editor coordination (OBSOLETE - replaced by MarkdownEditorViewModel)
+
+Editor/
+├── MarkdownEditorViewModel.swift - NEW: Clean Architecture ViewModel
+├── MarkdownEditorView.swift - Main split-view UI
+├── PureSwiftUITextEditor.swift - Text editor component
+└── TextEditorViewModel.swift - Undo/redo/find logic
+```
+
+### Key Architecture Changes
+
+**Before (Mixed Architecture)**:
+- ViewModels directly called repositories
+- Business logic scattered across Views and ViewModels
+- No clear separation of concerns
+- print() statements everywhere
+
+**After (Clean Architecture)**:
+- **Domain**: Pure business logic (Use Cases)
+- **Data**: Infrastructure implementations (Repositories)
+- **Presentation**: UI logic only (ViewModels)
+- **Dependencies flow inward**: Presentation → Domain ← Data
+- **Proper logging**: OSLog with categories
+- **Dependency Injection**: Composition root in TextDownApp.swift
+
+### Dependency Injection Flow
+
+```swift
+// TextDownApp.swift (Composition Root)
+init() {
+    // 1. Create Repositories (Data Layer)
+    let settingsRepo = SettingsRepositoryImpl()
+    let parserRepo = MarkdownParserRepositoryImpl()
+
+    // 2. Create Use Cases (Domain Layer) - Inject Repositories
+    let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepo)
+    let saveUseCase = SaveSettingsUseCase(settingsRepository: settingsRepo)
+    let parseUseCase = ParseMarkdownUseCase(parserRepository: parserRepo)
+
+    // 3. Create ViewModels (Presentation Layer) - Inject Use Cases
+    let settingsVM = SettingsViewModel(
+        loadSettingsUseCase: loadUseCase,
+        saveSettingsUseCase: saveUseCase,
+        validateSettingsUseCase: validateUseCase
+    )
+
+    self._settingsViewModel = StateObject(wrappedValue: settingsVM)
+}
+```
+
+### Auto-Refresh Simplification
+
+**Removed Complexity**:
+- ❌ `autoRefresh` property from EditorSettings
+- ❌ Auto-refresh toggle in View menu
+- ❌ Auto-refresh toggle in Settings UI
+- ❌ Conditional rendering logic
+
+**New Behavior**:
+- ✅ Auto-refresh always enabled (500ms debounce)
+- ✅ Simplified ViewModel logic
+- ✅ Better UX (fewer settings, less confusion)
+
+### OSLog Categories
+
+```swift
+extension OSLog {
+    private static let subsystem = Bundle.main.bundleIdentifier ?? "org.advison.TextDown"
+
+    static let rendering = OSLog(subsystem: subsystem, category: "Rendering")
+    static let settings = OSLog(subsystem: subsystem, category: "Settings")
+    static let document = OSLog(subsystem: subsystem, category: "Document")
+    static let window = OSLog(subsystem: subsystem, category: "Window")
+}
+```
+
+**Usage Examples**:
+```swift
+// Before
+print("❌ Parse error: \(error)")
+
+// After
+os_log("Parse error: %{public}@", log: .rendering, type: .error, String(describing: error))
+```
+
+### Settings Validation
+
+**Domain-Driven Validation**:
+```swift
+// MarkdownSettings.swift
+func validated() -> MarkdownSettings {
+    var validated = self
+
+    // Business rule: Double tilde requires strikethrough enabled
+    if enableStrikethroughDoubleTilde && !enableStrikethrough {
+        validated.enableStrikethrough = true
+    }
+
+    // Business rule: YAML-all requires YAML enabled
+    if enableYAMLAll && !enableYAML {
+        validated.enableYAML = true
+    }
+
+    return validated
+}
+```
+
+### Testing Updates
+
+**Updated Test Files**:
+- SettingsTests.swift - Removed all `autoRefresh` test cases
+- MarkdownEditorViewModelTests.swift - Simplified debounce tests
+- **Status**: ✅ All tests passing
+
+### Build Status
+
+**Verification**:
+```bash
+xcodebuild -scheme TextDown -configuration Debug build
+** BUILD SUCCEEDED **
+```
+
+**Metrics**:
+- Zero compilation warnings
+- Zero code violations
+- 100% English codebase
+- Proper logging throughout
+
+---
