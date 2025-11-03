@@ -7,13 +7,13 @@
 TextDown is a standalone Markdown editor and viewer for macOS with live preview.
 
 **Features**:
-- **Split-view editing**: Raw Markdown (left) | Live Preview (right)
+- **Pure SwiftUI**: 100% native SwiftUI architecture (DocumentGroup, FileDocument)
 - **Multi-window support**: Open multiple documents simultaneously
 - **Auto-save**: Documents save automatically after changes
-- **Live preview**: Rendered preview updates as you type (debounced)
-- **Rich Markdown support**: GitHub Flavored Markdown + custom extensions
-- **Syntax highlighting**: 261 languages, 97 themes
-- **SwiftUI Preferences**: Modern settings UI with Apply/Cancel pattern
+- **Native rendering**: Direct AST → SwiftUI views (no HTML, no JavaScript)
+- **Rich Markdown support**: GitHub Flavored Markdown (tables, task lists, strikethrough)
+- **Syntax highlighting**: 5 languages (Swift, Python, JavaScript, HTML, CSS)
+- **Lightweight**: 10 MB bundle, 30-45 second build time
 
 > **Please note that this software is provided "as is", without any warranty of any kind.**
 
@@ -73,8 +73,8 @@ This will resolve the error of an unsigned application when launching the app.
 - Drag & drop `.md` files onto the app icon
 
 **Editing**:
-- Left pane: Raw Markdown text editor
-- Right pane: Live preview (auto-updates as you type)
+- Left pane: SwiftUI TextEditor for raw Markdown
+- Right pane: Native SwiftUI rendering (MarkdownASTView)
 - Changes are saved automatically after 5 seconds of inactivity
 
 **Multi-Window**:
@@ -82,58 +82,47 @@ This will resolve the error of an unsigned application when launching the app.
 - Window → Merge All Windows to use native tabs
 
 **Settings**:
-- TextDown → Preferences (⌘,) to open settings window
-- Configure themes, extensions, syntax highlighting
-- Click Apply to save changes
+- TextDown → Settings (⌘,) to configure rendering options
+- Enable/disable Markdown extensions
+- Settings persist automatically
 
 
 
 ## Settings
 
-Open Preferences (⌘,) to configure rendering options, enable extensions, and customize the appearance of your Markdown documents.
+Open Settings (⌘,) to configure rendering options, enable extensions, and customize the appearance of your Markdown documents.
 
-The settings window uses a modern SwiftUI interface with four tabs:
-- **General**: CSS themes, appearance, link behavior
-- **Extensions**: Enable/disable Markdown extensions (emoji, math, tables, etc.)
-- **Syntax**: Syntax highlighting configuration and themes
-- **Advanced**: Parser options and reset to defaults
+Settings are organized into sections:
+- **Extensions**: Enable/disable Markdown extensions (tables, task lists, strikethrough, etc.)
+- **Syntax**: Syntax highlighting for code blocks (5 languages supported)
+- **Parser**: swift-markdown options and rendering behavior
 
-Changes take effect immediately in the preview pane. Click **Apply** to save settings permanently. 
-
-
-### Themes
-
-You can choose a CSS theme to render the Markdown file. The application is provided with a predefined theme derived from the GitHub style valid both for light and dark appearance. 
-
-You can also use a style to extend the standard theme or to override it. 
-User customized style sheet must have the settings for both light and dark appearance using the CSS media query:
-
-```css
-@media (prefers-color-scheme: dark) { 
-    /* … */ 
-}
-``` 
-
-The custom style is appended after the CSS used for the highlight the source code. In this way you can customize also the style of the syntax highlight. 
-
-[Syntax highlighting extension](#syntax-highlighting) allow to customize the appearance of the code blocks.
-
-The theme popup menu has some extra commands available pressing the `alt` key.
+Changes take effect immediately and persist automatically. 
 
 
-### Options
+### Appearance
+
+TextDown uses native SwiftUI styling that automatically adapts to your system appearance (Light/Dark mode). The rendering uses SwiftUI's built-in text styles and colors, ensuring consistent appearance with macOS system preferences.
+
+**Syntax Highlighting**: Code blocks use SwiftHighlighter (Pure Swift tokenizer) with color-coded syntax for 5 languages:
+- Swift
+- Python
+- JavaScript
+- HTML
+- CSS
+
+Unsupported languages display as plain text without syntax coloring.
+
+
+### Parser Options
 
 |Option|Description|
 |:--|:--|
 |Smart quotes|Convert straight quotes to curly, ```---``` to _em dashes_ and ```--``` to _en dashes_.|
-|Footnotes|Parse the footnotes. |
-|Hard break|Render `softbreak` elements as hard line breaks.|
-|No soft break|Render `softbreak` elements as spaces.|
-|Inline HTML (unsafe)|Render raw HTML and unsafe links (`javascript:`, `vbscript:`,  `file:` and `data:`, except for `image/png`, `image/gif`,  `image/jpeg`, or `image/webp` mime types) present in the Markdown file. By default, HTML tags are stripped and unsafe links are replaced by empty strings. _This option is required for preview SVG images_.|
-|Validate UTF|Validate UTF-8 in the input before parsing, replacing illegal sequences with the standard replacement character (U+FFFD &#xFFFD;).|
-|Show about info|Insert a footer with info about the TextDown app.|
-|Show debug info|Insert in the output some debug information.|
-|Render as source code|Show the plain text file (raw version) instead of the formatted output. Syntax highlighting remains.|
+|Footnotes|Parse footnotes in markdown.|
+|Validate UTF-8|Validate UTF-8 in the input before parsing, replacing illegal sequences with the standard replacement character (U+FFFD &#xFFFD;).|
+
+**Note**: TextDown uses swift-markdown parser with Pure SwiftUI rendering. Raw HTML tags in markdown source are ignored (not rendered).
 
 
 ### Extensions

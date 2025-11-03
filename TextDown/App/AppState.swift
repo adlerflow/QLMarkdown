@@ -62,7 +62,7 @@ class AppState: ObservableObject {
     private let settingsURL: URL
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    init(loadFromDisk: Bool = true) {
         // Settings Location: ~/Library/Application Support/org.advison.TextDown/settings.json
         let appSupport = FileManager.default.urls(
             for: .applicationSupportDirectory,
@@ -81,8 +81,10 @@ class AppState: ObservableObject {
             withIntermediateDirectories: true
         )
 
-        // Load settings
-        loadSettings()
+        // Load settings (unless testing factory defaults)
+        if loadFromDisk {
+            loadSettings()
+        }
 
         // Auto-save on changes
         setupAutoSave()

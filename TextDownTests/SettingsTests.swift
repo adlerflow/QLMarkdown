@@ -3,23 +3,22 @@
 //  TextDownTests
 //
 //  Created by Claude Code on 2025-11-02.
-//  Phase 0: Test Suite Creation - Settings JSON Persistence Tests
+//  Updated for AppState migration on 2025-11-03
+//  Phase 2: AppState JSON Persistence Tests
 //
 
 import XCTest
 @testable import TextDown
 
+@MainActor
 final class SettingsTests: XCTestCase {
-    var settings: AppConfiguration!
+    var appState: AppState!
     var tempDirectory: URL!
 
     override func setUp() {
         super.setUp()
-        // Create a fresh settings instance by decoding factory settings
-        let encoder = JSONEncoder()
-        let decoder = JSONDecoder()
-        let data = try! encoder.encode(AppConfiguration.factorySettings)
-        settings = try! decoder.decode(AppConfiguration.self, from: data)
+        // Create a fresh AppState instance (factory defaults)
+        appState = AppState(loadFromDisk: false)
 
         tempDirectory = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
@@ -28,7 +27,7 @@ final class SettingsTests: XCTestCase {
 
     override func tearDown() {
         try? FileManager.default.removeItem(at: tempDirectory)
-        settings = nil
+        appState = nil
         tempDirectory = nil
         super.tearDown()
     }
@@ -36,56 +35,99 @@ final class SettingsTests: XCTestCase {
     // MARK: - JSON Persistence Tests
 
     func testJSONRoundtrip() throws {
-        // Set all 40 properties to non-default values
+        // Set all 39 properties to non-default values
+
+        // UI Behavior (4)
+        appState.autoRefresh = false
+        appState.openInlineLink = true
+        appState.debug = true
+        appState.about = true
 
         // GFM Extensions (6)
-        settings.tableExtension = false
-        settings.autoLinkExtension = false
-        settings.tagFilterExtension = false
-        settings.taskListExtension = false
-        settings.yamlExtension = false
-        settings.yamlExtensionAll = true
+        appState.enableTable = false
+        appState.enableAutolink = false
+        appState.enableTagFilter = false
+        appState.enableTaskList = false
+        appState.enableYAML = false
+        appState.enableYAMLAll = true
 
-        // Custom Extensions (11)
-        settings.emojiExtension = false
-        settings.emojiImageOption = true
-        settings.headsExtension = false
-        settings.highlightExtension = true
-        settings.inlineImageExtension = false
-        settings.mathExtension = false
-        settings.mentionExtension = true
-        settings.subExtension = true
-        settings.supExtension = true
-        settings.strikethroughExtension = false
-        settings.strikethroughDoubleTildeOption = true
-        settings.checkboxExtension = true
+        // Custom Extensions (12)
+        appState.enableEmoji = false
+        appState.enableEmojiImages = true
+        appState.enableHeads = false
+        appState.enableHighlight = true
+        appState.enableInlineImage = false
+        appState.enableMath = false
+        appState.enableMention = true
+        appState.enableSubscript = true
+        appState.enableSuperscript = true
+        appState.enableStrikethrough = false
+        appState.enableStrikethroughDoubleTilde = true
+        appState.enableCheckbox = true
 
-        // Syntax Highlighting (7)
-        settings.syntaxHighlightExtension = false
-        settings.syntaxWordWrapOption = 120
-        settings.syntaxLineNumbersOption = true
-        settings.syntaxTabsOption = 8
-        settings.syntaxThemeLightOption = "solarized-light"
-        settings.syntaxThemeDarkOption = "solarized-dark"
+        // Syntax Highlighting (6)
+        appState.enableSyntaxHighlighting = false
+        appState.syntaxLineNumbers = true
+        appState.syntaxTabWidth = 8
+        appState.syntaxWordWrap = 120
+        appState.syntaxThemeLight = "solarized-light"
+        appState.syntaxThemeDark = "solarized-dark"
 
         // Parser Options (6)
-        settings.footnotesOption = false
-        settings.hardBreakOption = true
-        settings.noSoftBreakOption = true
-        settings.unsafeHTMLOption = true
-        settings.smartQuotesOption = false
-        settings.validateUTFOption = true
+        appState.enableFootnotes = false
+        appState.enableHardBreaks = true
+        appState.disableSoftBreaks = true
+        appState.allowUnsafeHTML = true
+        appState.enableSmartQuotes = false
+        appState.validateUTF8 = true
 
         // CSS Theming (4)
-        settings.customCSS = URL(fileURLWithPath: "/tmp/custom.css")
-        settings.customCSSCode = "body { color: red; }"
-        settings.customCSSFetched = true
-        settings.customCSSOverride = true
+        appState.customCSS = URL(fileURLWithPath: "/tmp/custom.css")
+        appState.customCSSCode = "body { color: red; }"
+        appState.customCSSFetched = true
+        appState.customCSSOverride = true
 
-        // Application Behavior (6)
-        settings.openInlineLink = true
-        settings.about = true
-        settings.debug = true
+        // Create Settings struct
+        let settings = Settings(
+            autoRefresh: appState.autoRefresh,
+            openInlineLink: appState.openInlineLink,
+            debug: appState.debug,
+            about: appState.about,
+            enableAutolink: appState.enableAutolink,
+            enableTable: appState.enableTable,
+            enableTagFilter: appState.enableTagFilter,
+            enableTaskList: appState.enableTaskList,
+            enableYAML: appState.enableYAML,
+            enableYAMLAll: appState.enableYAMLAll,
+            enableCheckbox: appState.enableCheckbox,
+            enableEmoji: appState.enableEmoji,
+            enableEmojiImages: appState.enableEmojiImages,
+            enableHeads: appState.enableHeads,
+            enableHighlight: appState.enableHighlight,
+            enableInlineImage: appState.enableInlineImage,
+            enableMath: appState.enableMath,
+            enableMention: appState.enableMention,
+            enableStrikethrough: appState.enableStrikethrough,
+            enableStrikethroughDoubleTilde: appState.enableStrikethroughDoubleTilde,
+            enableSubscript: appState.enableSubscript,
+            enableSuperscript: appState.enableSuperscript,
+            enableSyntaxHighlighting: appState.enableSyntaxHighlighting,
+            syntaxLineNumbers: appState.syntaxLineNumbers,
+            syntaxTabWidth: appState.syntaxTabWidth,
+            syntaxWordWrap: appState.syntaxWordWrap,
+            syntaxThemeLight: appState.syntaxThemeLight,
+            syntaxThemeDark: appState.syntaxThemeDark,
+            enableFootnotes: appState.enableFootnotes,
+            enableHardBreaks: appState.enableHardBreaks,
+            disableSoftBreaks: appState.disableSoftBreaks,
+            allowUnsafeHTML: appState.allowUnsafeHTML,
+            enableSmartQuotes: appState.enableSmartQuotes,
+            validateUTF8: appState.validateUTF8,
+            customCSS: appState.customCSS,
+            customCSSCode: appState.customCSSCode,
+            customCSSFetched: appState.customCSSFetched,
+            customCSSOverride: appState.customCSSOverride
+        )
 
         // Encode to JSON
         let encoder = JSONEncoder()
@@ -94,123 +136,170 @@ final class SettingsTests: XCTestCase {
 
         // Decode from JSON
         let decoder = JSONDecoder()
-        let decoded = try decoder.decode(AppConfiguration.self, from: data)
+        let decoded = try decoder.decode(Settings.self, from: data)
 
-        // Verify all 40 properties match
+        // Verify all 39 properties match
+
+        // UI Behavior
+        XCTAssertEqual(decoded.autoRefresh, appState.autoRefresh, "autoRefresh mismatch")
+        XCTAssertEqual(decoded.openInlineLink, appState.openInlineLink, "openInlineLink mismatch")
+        XCTAssertEqual(decoded.debug, appState.debug, "debug mismatch")
+        XCTAssertEqual(decoded.about, appState.about, "about mismatch")
 
         // GFM Extensions
-        XCTAssertEqual(decoded.tableExtension, settings.tableExtension, "tableExtension mismatch")
-        XCTAssertEqual(decoded.autoLinkExtension, settings.autoLinkExtension, "autoLinkExtension mismatch")
-        XCTAssertEqual(decoded.tagFilterExtension, settings.tagFilterExtension, "tagFilterExtension mismatch")
-        XCTAssertEqual(decoded.taskListExtension, settings.taskListExtension, "taskListExtension mismatch")
-        XCTAssertEqual(decoded.yamlExtension, settings.yamlExtension, "yamlExtension mismatch")
-        XCTAssertEqual(decoded.yamlExtensionAll, settings.yamlExtensionAll, "yamlExtensionAll mismatch")
+        XCTAssertEqual(decoded.enableTable, appState.enableTable, "enableTable mismatch")
+        XCTAssertEqual(decoded.enableAutolink, appState.enableAutolink, "enableAutolink mismatch")
+        XCTAssertEqual(decoded.enableTagFilter, appState.enableTagFilter, "enableTagFilter mismatch")
+        XCTAssertEqual(decoded.enableTaskList, appState.enableTaskList, "enableTaskList mismatch")
+        XCTAssertEqual(decoded.enableYAML, appState.enableYAML, "enableYAML mismatch")
+        XCTAssertEqual(decoded.enableYAMLAll, appState.enableYAMLAll, "enableYAMLAll mismatch")
 
         // Custom Extensions
-        XCTAssertEqual(decoded.emojiExtension, settings.emojiExtension, "emojiExtension mismatch")
-        XCTAssertEqual(decoded.emojiImageOption, settings.emojiImageOption, "emojiImageOption mismatch")
-        XCTAssertEqual(decoded.headsExtension, settings.headsExtension, "headsExtension mismatch")
-        XCTAssertEqual(decoded.highlightExtension, settings.highlightExtension, "highlightExtension mismatch")
-        XCTAssertEqual(decoded.inlineImageExtension, settings.inlineImageExtension, "inlineImageExtension mismatch")
-        XCTAssertEqual(decoded.mathExtension, settings.mathExtension, "mathExtension mismatch")
-        XCTAssertEqual(decoded.mentionExtension, settings.mentionExtension, "mentionExtension mismatch")
-        XCTAssertEqual(decoded.subExtension, settings.subExtension, "subExtension mismatch")
-        XCTAssertEqual(decoded.supExtension, settings.supExtension, "supExtension mismatch")
-        XCTAssertEqual(decoded.strikethroughExtension, settings.strikethroughExtension, "strikethroughExtension mismatch")
-        XCTAssertEqual(decoded.strikethroughDoubleTildeOption, settings.strikethroughDoubleTildeOption, "strikethroughDoubleTildeOption mismatch")
-        XCTAssertEqual(decoded.checkboxExtension, settings.checkboxExtension, "checkboxExtension mismatch")
+        XCTAssertEqual(decoded.enableEmoji, appState.enableEmoji, "enableEmoji mismatch")
+        XCTAssertEqual(decoded.enableEmojiImages, appState.enableEmojiImages, "enableEmojiImages mismatch")
+        XCTAssertEqual(decoded.enableHeads, appState.enableHeads, "enableHeads mismatch")
+        XCTAssertEqual(decoded.enableHighlight, appState.enableHighlight, "enableHighlight mismatch")
+        XCTAssertEqual(decoded.enableInlineImage, appState.enableInlineImage, "enableInlineImage mismatch")
+        XCTAssertEqual(decoded.enableMath, appState.enableMath, "enableMath mismatch")
+        XCTAssertEqual(decoded.enableMention, appState.enableMention, "enableMention mismatch")
+        XCTAssertEqual(decoded.enableSubscript, appState.enableSubscript, "enableSubscript mismatch")
+        XCTAssertEqual(decoded.enableSuperscript, appState.enableSuperscript, "enableSuperscript mismatch")
+        XCTAssertEqual(decoded.enableStrikethrough, appState.enableStrikethrough, "enableStrikethrough mismatch")
+        XCTAssertEqual(decoded.enableStrikethroughDoubleTilde, appState.enableStrikethroughDoubleTilde, "enableStrikethroughDoubleTilde mismatch")
+        XCTAssertEqual(decoded.enableCheckbox, appState.enableCheckbox, "enableCheckbox mismatch")
 
         // Syntax Highlighting
-        XCTAssertEqual(decoded.syntaxHighlightExtension, settings.syntaxHighlightExtension, "syntaxHighlightExtension mismatch")
-        XCTAssertEqual(decoded.syntaxWordWrapOption, settings.syntaxWordWrapOption, "syntaxWordWrapOption mismatch")
-        XCTAssertEqual(decoded.syntaxLineNumbersOption, settings.syntaxLineNumbersOption, "syntaxLineNumbersOption mismatch")
-        XCTAssertEqual(decoded.syntaxTabsOption, settings.syntaxTabsOption, "syntaxTabsOption mismatch")
-        XCTAssertEqual(decoded.syntaxThemeLightOption, settings.syntaxThemeLightOption, "syntaxThemeLightOption mismatch")
-        XCTAssertEqual(decoded.syntaxThemeDarkOption, settings.syntaxThemeDarkOption, "syntaxThemeDarkOption mismatch")
+        XCTAssertEqual(decoded.enableSyntaxHighlighting, appState.enableSyntaxHighlighting, "enableSyntaxHighlighting mismatch")
+        XCTAssertEqual(decoded.syntaxLineNumbers, appState.syntaxLineNumbers, "syntaxLineNumbers mismatch")
+        XCTAssertEqual(decoded.syntaxTabWidth, appState.syntaxTabWidth, "syntaxTabWidth mismatch")
+        XCTAssertEqual(decoded.syntaxWordWrap, appState.syntaxWordWrap, "syntaxWordWrap mismatch")
+        XCTAssertEqual(decoded.syntaxThemeLight, appState.syntaxThemeLight, "syntaxThemeLight mismatch")
+        XCTAssertEqual(decoded.syntaxThemeDark, appState.syntaxThemeDark, "syntaxThemeDark mismatch")
 
         // Parser Options
-        XCTAssertEqual(decoded.footnotesOption, settings.footnotesOption, "footnotesOption mismatch")
-        XCTAssertEqual(decoded.hardBreakOption, settings.hardBreakOption, "hardBreakOption mismatch")
-        XCTAssertEqual(decoded.noSoftBreakOption, settings.noSoftBreakOption, "noSoftBreakOption mismatch")
-        XCTAssertEqual(decoded.unsafeHTMLOption, settings.unsafeHTMLOption, "unsafeHTMLOption mismatch")
-        XCTAssertEqual(decoded.smartQuotesOption, settings.smartQuotesOption, "smartQuotesOption mismatch")
-        XCTAssertEqual(decoded.validateUTFOption, settings.validateUTFOption, "validateUTFOption mismatch")
+        XCTAssertEqual(decoded.enableFootnotes, appState.enableFootnotes, "enableFootnotes mismatch")
+        XCTAssertEqual(decoded.enableHardBreaks, appState.enableHardBreaks, "enableHardBreaks mismatch")
+        XCTAssertEqual(decoded.disableSoftBreaks, appState.disableSoftBreaks, "disableSoftBreaks mismatch")
+        XCTAssertEqual(decoded.allowUnsafeHTML, appState.allowUnsafeHTML, "allowUnsafeHTML mismatch")
+        XCTAssertEqual(decoded.enableSmartQuotes, appState.enableSmartQuotes, "enableSmartQuotes mismatch")
+        XCTAssertEqual(decoded.validateUTF8, appState.validateUTF8, "validateUTF8 mismatch")
 
         // CSS Theming
-        XCTAssertEqual(decoded.customCSS, settings.customCSS, "customCSS mismatch")
-        XCTAssertEqual(decoded.customCSSCode, settings.customCSSCode, "customCSSCode mismatch")
-        XCTAssertEqual(decoded.customCSSFetched, settings.customCSSFetched, "customCSSFetched mismatch")
-        XCTAssertEqual(decoded.customCSSOverride, settings.customCSSOverride, "customCSSOverride mismatch")
-
-        // Application Behavior
-        XCTAssertEqual(decoded.openInlineLink, settings.openInlineLink, "openInlineLink mismatch")
-        XCTAssertEqual(decoded.about, settings.about, "about mismatch")
-        XCTAssertEqual(decoded.debug, settings.debug, "debug mismatch")
+        XCTAssertEqual(decoded.customCSS, appState.customCSS, "customCSS mismatch")
+        XCTAssertEqual(decoded.customCSSCode, appState.customCSSCode, "customCSSCode mismatch")
+        XCTAssertEqual(decoded.customCSSFetched, appState.customCSSFetched, "customCSSFetched mismatch")
+        XCTAssertEqual(decoded.customCSSOverride, appState.customCSSOverride, "customCSSOverride mismatch")
     }
 
     func testFactoryDefaults() {
-        let factory = AppConfiguration.factorySettings
+        let factory = AppState(loadFromDisk: false)
 
-        // Verify default values for all 40 properties
+        // Verify default values for all 39 properties
 
-        // GFM Extensions (default: all true except yamlExtensionAll)
-        XCTAssertTrue(factory.tableExtension, "tableExtension default should be true")
-        XCTAssertTrue(factory.autoLinkExtension, "autoLinkExtension default should be true")
-        XCTAssertTrue(factory.tagFilterExtension, "tagFilterExtension default should be true")
-        XCTAssertTrue(factory.taskListExtension, "taskListExtension default should be true")
-        XCTAssertTrue(factory.yamlExtension, "yamlExtension default should be true")
-        XCTAssertFalse(factory.yamlExtensionAll, "yamlExtensionAll default should be false")
-
-        // Custom Extensions
-        XCTAssertTrue(factory.emojiExtension, "emojiExtension default should be true")
-        XCTAssertFalse(factory.emojiImageOption, "emojiImageOption default should be false")
-        XCTAssertTrue(factory.headsExtension, "headsExtension default should be true")
-        XCTAssertFalse(factory.highlightExtension, "highlightExtension default should be false")
-        XCTAssertTrue(factory.inlineImageExtension, "inlineImageExtension default should be true")
-        XCTAssertTrue(factory.mathExtension, "mathExtension default should be true")
-        XCTAssertFalse(factory.mentionExtension, "mentionExtension default should be false")
-        XCTAssertFalse(factory.subExtension, "subExtension default should be false")
-        XCTAssertFalse(factory.supExtension, "supExtension default should be false")
-        XCTAssertTrue(factory.strikethroughExtension, "strikethroughExtension default should be true")
-        XCTAssertFalse(factory.strikethroughDoubleTildeOption, "strikethroughDoubleTildeOption default should be false")
-        XCTAssertFalse(factory.checkboxExtension, "checkboxExtension default should be false")
-
-        // Syntax Highlighting
-        XCTAssertTrue(factory.syntaxHighlightExtension, "syntaxHighlightExtension default should be true")
-        XCTAssertEqual(factory.syntaxWordWrapOption, 0, "syntaxWordWrapOption default should be 0")
-        XCTAssertFalse(factory.syntaxLineNumbersOption, "syntaxLineNumbersOption default should be false")
-        XCTAssertEqual(factory.syntaxTabsOption, 4, "syntaxTabsOption default should be 4")
-        XCTAssertEqual(factory.syntaxThemeLightOption, "github", "syntaxThemeLightOption default should be 'github'")
-        XCTAssertEqual(factory.syntaxThemeDarkOption, "github-dark", "syntaxThemeDarkOption default should be 'github-dark'")
-
-        // Parser Options
-        XCTAssertTrue(factory.footnotesOption, "footnotesOption default should be true")
-        XCTAssertFalse(factory.hardBreakOption, "hardBreakOption default should be false")
-        XCTAssertFalse(factory.noSoftBreakOption, "noSoftBreakOption default should be false")
-        XCTAssertFalse(factory.unsafeHTMLOption, "unsafeHTMLOption default should be false")
-        XCTAssertTrue(factory.smartQuotesOption, "smartQuotesOption default should be true")
-        XCTAssertFalse(factory.validateUTFOption, "validateUTFOption default should be false")
-
-        // CSS Theming
-        XCTAssertNil(factory.customCSS, "customCSS default should be nil")
-        XCTAssertFalse(factory.customCSSFetched, "customCSSFetched default should be false")
-        XCTAssertFalse(factory.customCSSOverride, "customCSSOverride default should be false")
-
-        // Application Behavior
+        // UI Behavior
+        XCTAssertTrue(factory.autoRefresh, "autoRefresh default should be true")
         XCTAssertFalse(factory.openInlineLink, "openInlineLink default should be false")
         XCTAssertFalse(factory.debug, "debug default should be false")
         XCTAssertFalse(factory.about, "about default should be false")
+
+        // GFM Extensions (default: all true except enableYAMLAll)
+        XCTAssertTrue(factory.enableTable, "enableTable default should be true")
+        XCTAssertTrue(factory.enableAutolink, "enableAutolink default should be true")
+        XCTAssertTrue(factory.enableTagFilter, "enableTagFilter default should be true")
+        XCTAssertTrue(factory.enableTaskList, "enableTaskList default should be true")
+        XCTAssertTrue(factory.enableYAML, "enableYAML default should be true")
+        XCTAssertFalse(factory.enableYAMLAll, "enableYAMLAll default should be false")
+
+        // Custom Extensions
+        XCTAssertTrue(factory.enableEmoji, "enableEmoji default should be true")
+        XCTAssertFalse(factory.enableEmojiImages, "enableEmojiImages default should be false")
+        XCTAssertTrue(factory.enableHeads, "enableHeads default should be true")
+        XCTAssertFalse(factory.enableHighlight, "enableHighlight default should be false")
+        XCTAssertTrue(factory.enableInlineImage, "enableInlineImage default should be true")
+        XCTAssertTrue(factory.enableMath, "enableMath default should be true")
+        XCTAssertFalse(factory.enableMention, "enableMention default should be false")
+        XCTAssertFalse(factory.enableSubscript, "enableSubscript default should be false")
+        XCTAssertFalse(factory.enableSuperscript, "enableSuperscript default should be false")
+        XCTAssertTrue(factory.enableStrikethrough, "enableStrikethrough default should be true")
+        XCTAssertFalse(factory.enableStrikethroughDoubleTilde, "enableStrikethroughDoubleTilde default should be false")
+        XCTAssertFalse(factory.enableCheckbox, "enableCheckbox default should be false")
+
+        // Syntax Highlighting
+        XCTAssertTrue(factory.enableSyntaxHighlighting, "enableSyntaxHighlighting default should be true")
+        XCTAssertFalse(factory.syntaxLineNumbers, "syntaxLineNumbers default should be false")
+        XCTAssertEqual(factory.syntaxTabWidth, 4, "syntaxTabWidth default should be 4")
+        XCTAssertEqual(factory.syntaxWordWrap, 0, "syntaxWordWrap default should be 0")
+        XCTAssertEqual(factory.syntaxThemeLight, "github", "syntaxThemeLight default should be 'github'")
+        XCTAssertEqual(factory.syntaxThemeDark, "github-dark", "syntaxThemeDark default should be 'github-dark'")
+
+        // Parser Options
+        XCTAssertTrue(factory.enableFootnotes, "enableFootnotes default should be true")
+        XCTAssertFalse(factory.enableHardBreaks, "enableHardBreaks default should be false")
+        XCTAssertFalse(factory.disableSoftBreaks, "disableSoftBreaks default should be false")
+        XCTAssertFalse(factory.allowUnsafeHTML, "allowUnsafeHTML default should be false")
+        XCTAssertTrue(factory.enableSmartQuotes, "enableSmartQuotes default should be true")
+        XCTAssertFalse(factory.validateUTF8, "validateUTF8 default should be false")
+
+        // CSS Theming
+        XCTAssertNil(factory.customCSS, "customCSS default should be nil")
+        XCTAssertNil(factory.customCSSCode, "customCSSCode default should be nil")
+        XCTAssertFalse(factory.customCSSFetched, "customCSSFetched default should be false")
+        XCTAssertFalse(factory.customCSSOverride, "customCSSOverride default should be false")
     }
 
     func testSettingsFileIO() throws {
         let fileURL = tempDirectory.appendingPathComponent("settings.json")
 
         // Set some non-default values
-        settings.tableExtension = false
-        settings.emojiExtension = false
-        settings.syntaxThemeLightOption = "solarized-light"
+        appState.enableTable = false
+        appState.enableEmoji = false
+        appState.syntaxThemeLight = "solarized-light"
 
-        // Write settings to file
+        // Save settings using AppState method
+        appState.saveSettings()
+
+        // Manually write to our temp file for testing
+        let settings = Settings(
+            autoRefresh: appState.autoRefresh,
+            openInlineLink: appState.openInlineLink,
+            debug: appState.debug,
+            about: appState.about,
+            enableAutolink: appState.enableAutolink,
+            enableTable: appState.enableTable,
+            enableTagFilter: appState.enableTagFilter,
+            enableTaskList: appState.enableTaskList,
+            enableYAML: appState.enableYAML,
+            enableYAMLAll: appState.enableYAMLAll,
+            enableCheckbox: appState.enableCheckbox,
+            enableEmoji: appState.enableEmoji,
+            enableEmojiImages: appState.enableEmojiImages,
+            enableHeads: appState.enableHeads,
+            enableHighlight: appState.enableHighlight,
+            enableInlineImage: appState.enableInlineImage,
+            enableMath: appState.enableMath,
+            enableMention: appState.enableMention,
+            enableStrikethrough: appState.enableStrikethrough,
+            enableStrikethroughDoubleTilde: appState.enableStrikethroughDoubleTilde,
+            enableSubscript: appState.enableSubscript,
+            enableSuperscript: appState.enableSuperscript,
+            enableSyntaxHighlighting: appState.enableSyntaxHighlighting,
+            syntaxLineNumbers: appState.syntaxLineNumbers,
+            syntaxTabWidth: appState.syntaxTabWidth,
+            syntaxWordWrap: appState.syntaxWordWrap,
+            syntaxThemeLight: appState.syntaxThemeLight,
+            syntaxThemeDark: appState.syntaxThemeDark,
+            enableFootnotes: appState.enableFootnotes,
+            enableHardBreaks: appState.enableHardBreaks,
+            disableSoftBreaks: appState.disableSoftBreaks,
+            allowUnsafeHTML: appState.allowUnsafeHTML,
+            enableSmartQuotes: appState.enableSmartQuotes,
+            validateUTF8: appState.validateUTF8,
+            customCSS: appState.customCSS,
+            customCSSCode: appState.customCSSCode,
+            customCSSFetched: appState.customCSSFetched,
+            customCSSOverride: appState.customCSSOverride
+        )
+
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let data = try encoder.encode(settings)
@@ -222,140 +311,105 @@ final class SettingsTests: XCTestCase {
         // Read settings from file
         let readData = try Data(contentsOf: fileURL)
         let decoder = JSONDecoder()
-        let loaded = try decoder.decode(AppConfiguration.self, from: readData)
+        let loaded = try decoder.decode(Settings.self, from: readData)
 
         // Verify properties match
-        XCTAssertEqual(loaded.tableExtension, settings.tableExtension)
-        XCTAssertEqual(loaded.emojiExtension, settings.emojiExtension)
-        XCTAssertEqual(loaded.syntaxThemeLightOption, settings.syntaxThemeLightOption)
+        XCTAssertEqual(loaded.enableTable, appState.enableTable)
+        XCTAssertEqual(loaded.enableEmoji, appState.enableEmoji)
+        XCTAssertEqual(loaded.syntaxThemeLight, appState.syntaxThemeLight)
     }
 
     // MARK: - Property Validation Tests
 
     func testSyntaxThemeValidation() {
         // Valid themes
-        settings.syntaxThemeLightOption = "github"
-        settings.syntaxThemeDarkOption = "github-dark"
-        XCTAssertEqual(settings.syntaxThemeLightOption, "github")
-        XCTAssertEqual(settings.syntaxThemeDarkOption, "github-dark")
+        appState.syntaxThemeLight = "github"
+        appState.syntaxThemeDark = "github-dark"
+        XCTAssertEqual(appState.syntaxThemeLight, "github")
+        XCTAssertEqual(appState.syntaxThemeDark, "github-dark")
 
         // Change to different valid themes
-        settings.syntaxThemeLightOption = "solarized-light"
-        settings.syntaxThemeDarkOption = "solarized-dark"
-        XCTAssertEqual(settings.syntaxThemeLightOption, "solarized-light")
-        XCTAssertEqual(settings.syntaxThemeDarkOption, "solarized-dark")
+        appState.syntaxThemeLight = "solarized-light"
+        appState.syntaxThemeDark = "solarized-dark"
+        XCTAssertEqual(appState.syntaxThemeLight, "solarized-light")
+        XCTAssertEqual(appState.syntaxThemeDark, "solarized-dark")
 
         // Invalid theme (should not crash, just store the value)
-        settings.syntaxThemeLightOption = "nonexistent-theme"
-        XCTAssertEqual(settings.syntaxThemeLightOption, "nonexistent-theme")
+        appState.syntaxThemeLight = "nonexistent-theme"
+        XCTAssertEqual(appState.syntaxThemeLight, "nonexistent-theme")
     }
 
-
-
-    func testSyntaxTabsOption() {
+    func testSyntaxTabWidth() {
         // Valid tab widths
-        settings.syntaxTabsOption = 2
-        XCTAssertEqual(settings.syntaxTabsOption, 2)
+        appState.syntaxTabWidth = 2
+        XCTAssertEqual(appState.syntaxTabWidth, 2)
 
-        settings.syntaxTabsOption = 4
-        XCTAssertEqual(settings.syntaxTabsOption, 4)
+        appState.syntaxTabWidth = 4
+        XCTAssertEqual(appState.syntaxTabWidth, 4)
 
-        settings.syntaxTabsOption = 8
-        XCTAssertEqual(settings.syntaxTabsOption, 8)
+        appState.syntaxTabWidth = 8
+        XCTAssertEqual(appState.syntaxTabWidth, 8)
 
         // Edge cases
-        settings.syntaxTabsOption = 0
-        XCTAssertEqual(settings.syntaxTabsOption, 0)
+        appState.syntaxTabWidth = 0
+        XCTAssertEqual(appState.syntaxTabWidth, 0)
 
-        settings.syntaxTabsOption = 100
-        XCTAssertEqual(settings.syntaxTabsOption, 100)
-    }
-
-    // MARK: - Computed Properties Tests
-
-    func testAppVersion() {
-        let version = settings.app_version
-        XCTAssertFalse(version.isEmpty, "app_version should not be empty")
-        XCTAssertTrue(version.contains("TextDown"), "app_version should contain 'TextDown'")
-        // Should contain HTML link and version info
-        XCTAssertTrue(version.contains("<a"), "app_version should contain HTML link")
-    }
-
-    func testAppVersion2() {
-        let version2 = settings.app_version2
-        XCTAssertFalse(version2.isEmpty, "app_version2 should not be empty")
-        XCTAssertTrue(version2.contains("TextDown"), "app_version2 should contain 'TextDown'")
-        // Should be an HTML comment
-        XCTAssertTrue(version2.hasPrefix("<!--"), "app_version2 should start with HTML comment")
-        XCTAssertTrue(version2.hasSuffix("-->\n"), "app_version2 should end with HTML comment")
-    }
-
-    func testResourceBundle() {
-        let bundle = settings.resourceBundle
-        XCTAssertNotNil(bundle, "resourceBundle should not be nil")
-
-        // Verify key resources exist
-        let defaultCSS = bundle.path(forResource: "default", ofType: "css")
-        XCTAssertNotNil(defaultCSS, "default.css should exist in bundle")
-
-        // Note: Xcode flattens resource directories during build, so highlight.min.js
-        // is at top level, not in highlight.js/lib/ subdirectory
-        let highlightJS = bundle.path(forResource: "highlight.min", ofType: "js")
-        XCTAssertNotNil(highlightJS, "highlight.js should exist in bundle")
+        appState.syntaxTabWidth = 100
+        XCTAssertEqual(appState.syntaxTabWidth, 100)
     }
 
     // MARK: - Edge Cases
 
     func testEmptyCustomCSS() {
-        settings.customCSS = nil
-        settings.customCSSCode = nil
-        settings.customCSSOverride = false
+        appState.customCSS = nil
+        appState.customCSSCode = nil
+        appState.customCSSOverride = false
 
-        XCTAssertNil(settings.customCSS)
-        XCTAssertNil(settings.customCSSCode)
-        XCTAssertFalse(settings.customCSSOverride)
+        XCTAssertNil(appState.customCSS)
+        XCTAssertNil(appState.customCSSCode)
+        XCTAssertFalse(appState.customCSSOverride)
     }
 
     func testMultipleExtensionsEnabled() {
         // Enable all extensions
-        settings.tableExtension = true
-        settings.emojiExtension = true
-        settings.mathExtension = true
-        settings.strikethroughExtension = true
-        settings.headsExtension = true
-        settings.syntaxHighlightExtension = true
+        appState.enableTable = true
+        appState.enableEmoji = true
+        appState.enableMath = true
+        appState.enableStrikethrough = true
+        appState.enableHeads = true
+        appState.enableSyntaxHighlighting = true
 
-        XCTAssertTrue(settings.tableExtension)
-        XCTAssertTrue(settings.emojiExtension)
-        XCTAssertTrue(settings.mathExtension)
-        XCTAssertTrue(settings.strikethroughExtension)
-        XCTAssertTrue(settings.headsExtension)
-        XCTAssertTrue(settings.syntaxHighlightExtension)
+        XCTAssertTrue(appState.enableTable)
+        XCTAssertTrue(appState.enableEmoji)
+        XCTAssertTrue(appState.enableMath)
+        XCTAssertTrue(appState.enableStrikethrough)
+        XCTAssertTrue(appState.enableHeads)
+        XCTAssertTrue(appState.enableSyntaxHighlighting)
     }
 
     func testAllExtensionsDisabled() {
         // Disable all extensions
-        settings.tableExtension = false
-        settings.autoLinkExtension = false
-        settings.tagFilterExtension = false
-        settings.taskListExtension = false
-        settings.yamlExtension = false
-        settings.emojiExtension = false
-        settings.headsExtension = false
-        settings.highlightExtension = false
-        settings.inlineImageExtension = false
-        settings.mathExtension = false
-        settings.mentionExtension = false
-        settings.subExtension = false
-        settings.supExtension = false
-        settings.strikethroughExtension = false
-        settings.syntaxHighlightExtension = false
-        settings.checkboxExtension = false
+        appState.enableTable = false
+        appState.enableAutolink = false
+        appState.enableTagFilter = false
+        appState.enableTaskList = false
+        appState.enableYAML = false
+        appState.enableEmoji = false
+        appState.enableHeads = false
+        appState.enableHighlight = false
+        appState.enableInlineImage = false
+        appState.enableMath = false
+        appState.enableMention = false
+        appState.enableSubscript = false
+        appState.enableSuperscript = false
+        appState.enableStrikethrough = false
+        appState.enableSyntaxHighlighting = false
+        appState.enableCheckbox = false
 
-        XCTAssertFalse(settings.tableExtension)
-        XCTAssertFalse(settings.autoLinkExtension)
-        XCTAssertFalse(settings.emojiExtension)
-        XCTAssertFalse(settings.mathExtension)
-        XCTAssertFalse(settings.syntaxHighlightExtension)
+        XCTAssertFalse(appState.enableTable)
+        XCTAssertFalse(appState.enableAutolink)
+        XCTAssertFalse(appState.enableEmoji)
+        XCTAssertFalse(appState.enableMath)
+        XCTAssertFalse(appState.enableSyntaxHighlighting)
     }
 }
