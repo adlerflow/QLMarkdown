@@ -55,10 +55,11 @@ struct SyntaxSettingsView: View {
             }
 
             Section("Theme") {
-                // TODO: Implement theme selector with 12 highlight.js themes
-                Text("Theme selector coming soon")
+                Text("Note: Syntax highlighting currently shows plain monospaced text")
+                    .font(.caption)
                     .foregroundStyle(.secondary)
-                Text("Available themes: github, github-dark, atom-one-dark, monokai, nord, vs2015, xcode, and 5 more")
+
+                Text("Future enhancement: SwiftHighlighter integration (github-light, github-dark themes)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

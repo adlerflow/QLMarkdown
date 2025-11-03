@@ -2,7 +2,8 @@
 //  MarkdownASTView.swift
 //  TextDown
 //
-//  Created by adlerflow on 2025-11-03.
+//  Main container and dispatcher for markdown rendering
+//  Individual view implementations are in separate files
 //
 
 import SwiftUI
@@ -39,11 +40,14 @@ struct MarkdownASTView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .background(Color(.textBackgroundColor))  // SwiftUI semantic color
+        .background(Color.Markdown.textBackground)
     }
 }
 
+// MARK: - Block Dispatcher
+
 /// Block-Level Renderer (Dispatcher)
+/// Routes markdown blocks to appropriate view renderers
 struct MarkdownBlockView: View {
     let markup: Markup
 
@@ -65,223 +69,14 @@ struct MarkdownBlockView: View {
                 Divider()
                     .padding(.vertical, 8)
             } else {
-                // Fallback für unbekannte Blöcke
+                // Fallback for unsupported blocks
                 Text("⚠️ Unsupported block: \(String(describing: type(of: markup)))")
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(Color.Markdown.warning)
                     .font(.caption)
                     .padding(8)
-                    .background(Color.orange.opacity(0.1))
+                    .background(Color.Markdown.warning.opacity(0.1))
                     .cornerRadius(4)
             }
         }
-    }
-}
-
-// MARK: - Heading Renderer
-
-struct HeadingView: View {
-    let heading: Heading
-
-    var body: some View {
-        Text(heading.plainText)
-            .font(fontForLevel(heading.level))
-            .fontWeight(.bold)
-            .id("heading-\(heading.plainText.hashValue)")  // Für Scroll-Sync
-            .padding(.vertical, verticalPaddingForLevel(heading.level))
-    }
-
-    private func fontForLevel(_ level: Int) -> Font {
-        switch level {
-        case 1: return .largeTitle
-        case 2: return .title
-        case 3: return .title2
-        case 4: return .title3
-        case 5: return .headline
-        default: return .body.bold()
-        }
-    }
-
-    private func verticalPaddingForLevel(_ level: Int) -> CGFloat {
-        switch level {
-        case 1: return 8
-        case 2: return 6
-        case 3, 4: return 4
-        default: return 2
-        }
-    }
-}
-
-// MARK: - Paragraph Renderer
-
-struct ParagraphView: View {
-    let paragraph: Paragraph
-
-    var body: some View {
-        Text(renderInlineText(paragraph))
-            .fixedSize(horizontal: false, vertical: true)
-            .textSelection(.enabled)
-    }
-
-    private func renderInlineText(_ markup: Markup) -> AttributedString {
-        var result = AttributedString()
-
-        for child in markup.children {
-            if let text = child as? Markdown.Text {
-                result += AttributedString(text.string)
-            } else if let strong = child as? Strong {
-                var bold = renderInlineText(strong)
-                bold.font = .body.bold()
-                result += bold
-            } else if let emphasis = child as? Emphasis {
-                var italic = renderInlineText(emphasis)
-                italic.font = .body.italic()
-                result += italic
-            } else if let code = child as? InlineCode {
-                var codeText = AttributedString(code.code)
-                codeText.font = .system(.body, design: .monospaced)
-                codeText.backgroundColor = Color.gray.opacity(0.15)
-                codeText.foregroundColor = Color.pink
-                result += codeText
-            } else if let link = child as? Markdown.Link {
-                var linkText = AttributedString(link.plainText)
-                linkText.foregroundColor = Color.blue
-                linkText.underlineStyle = .single
-                if let url = link.destination {
-                    linkText.link = URL(string: url)
-                }
-                result += linkText
-            } else if let strikethrough = child as? Strikethrough {
-                var struck = renderInlineText(strikethrough)
-                struck.strikethroughStyle = .single
-                struck.foregroundColor = Color.secondary
-                result += struck
-            }
-        }
-
-        return result
-    }
-}
-
-// MARK: - Code Block Renderer
-
-struct CodeBlockView: View {
-    let codeBlock: CodeBlock
-    @EnvironmentObject var appState: AppState
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            // Language Badge (optional)
-            if let language = codeBlock.language, !language.isEmpty {
-                HStack {
-                    Text(language.uppercased())
-                        .font(.caption2.bold())
-                        .foregroundStyle(.secondary)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(4)
-
-                    Spacer()
-                }
-                .padding(.horizontal, 12)
-                .padding(.top, 8)
-            }
-
-            // Code Content
-            ScrollView(.horizontal, showsIndicators: false) {
-                Text(highlightedCode)
-                    .font(.system(.body, design: .monospaced))
-                    .textSelection(.enabled)
-                    .padding(12)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .background(Color(.controlBackgroundColor))  // SwiftUI semantic color
-        .cornerRadius(8)
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-        )
-    }
-
-    private var highlightedCode: AttributedString {
-        // Pure SwiftUI rendering: Plain monospaced text
-        // TODO: Implement native SwiftUI syntax highlighting
-        var attributed = AttributedString(codeBlock.code)
-        attributed.font = .system(.body, design: .monospaced)
-        return attributed
-    }
-}
-
-// MARK: - List Renderers
-
-struct UnorderedListView: View {
-    let list: UnorderedList
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ForEach(Array(list.listItems.enumerated()), id: \.offset) { index, item in
-                HStack(alignment: .top, spacing: 8) {
-                    Text("•")
-                        .font(.body.bold())
-                        .frame(width: 20, alignment: .leading)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        ForEach(Array(item.children.enumerated()), id: \.offset) { _, child in
-                            MarkdownBlockView(markup: child)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-        }
-        .padding(.leading, 20)
-    }
-}
-
-struct OrderedListView: View {
-    let list: OrderedList
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ForEach(Array(list.listItems.enumerated()), id: \.offset) { index, item in
-                HStack(alignment: .top, spacing: 8) {
-                    Text("\(Int(list.startIndex) + index).")
-                        .font(.body)
-                        .frame(width: 30, alignment: .trailing)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        ForEach(Array(item.children.enumerated()), id: \.offset) { _, child in
-                            MarkdownBlockView(markup: child)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-        }
-        .padding(.leading, 20)
-    }
-}
-
-// MARK: - Block Quote Renderer
-
-struct BlockQuoteView: View {
-    let blockQuote: BlockQuote
-
-    var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            Rectangle()
-                .fill(Color.blue.opacity(0.4))
-                .frame(width: 4)
-
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(Array(blockQuote.children.enumerated()), id: \.offset) { _, child in
-                    MarkdownBlockView(markup: child)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding(.leading, 12)
-        .padding(.vertical, 8)
     }
 }

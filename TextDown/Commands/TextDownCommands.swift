@@ -3,7 +3,7 @@ import SwiftUI
 /// SwiftUI Commands (ersetzt Storyboard Menu Bar)
 struct TextDownCommands: Commands {
     @FocusedBinding(\.editorText) var editorText: String?
-    @AppStorage("auto-refresh") var autoRefresh: Bool = true
+    @FocusedObject var appState: AppState?
     @Environment(\.openWindow) var openWindow
     @Environment(\.openURL) var openURL
 
@@ -12,25 +12,31 @@ struct TextDownCommands: Commands {
 
         CommandGroup(after: .saveItem) {
             Button("Export as HTML...") {
-                // TODO: Implement HTML export via .fileExporter
-                print("Export HTML action")
+                // Future enhancement: Implement HTML export via .fileExporter
+                // Requires: 1) AST → HTML conversion, 2) SwiftUI .fileExporter modifier
+                // Currently not implemented due to Pure SwiftUI architecture
             }
             .keyboardShortcut("e", modifiers: .command)
-            .disabled(editorText == nil)
+            .disabled(true)  // Disabled until implementation
         }
 
         // MARK: - View Menu
 
         CommandGroup(after: .toolbar) {
-            Toggle("Preview Auto-Refresh", isOn: $autoRefresh)
+            if let appState = appState {
+                Toggle("Preview Auto-Refresh", isOn: Binding(
+                    get: { appState.autoRefresh },
+                    set: { appState.autoRefresh = $0 }
+                ))
                 .keyboardShortcut("r", modifiers: .command)
 
-            Button("Refresh Preview") {
-                // Force refresh via Notification
-                NotificationCenter.default.post(name: .forceRefresh, object: nil)
+                Button("Refresh Preview") {
+                    // Force refresh via reactive trigger
+                    appState.refreshTrigger = UUID()
+                }
+                .keyboardShortcut("r", modifiers: [.command, .shift])
+                .disabled(editorText == nil)
             }
-            .keyboardShortcut("r", modifiers: [.command, .shift])
-            .disabled(editorText == nil)
         }
 
         // MARK: - Window Menu

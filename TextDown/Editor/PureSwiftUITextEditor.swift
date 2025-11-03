@@ -4,26 +4,14 @@ import UniformTypeIdentifiers
 /// Pure SwiftUI Text Editor mit Undo/Redo, Find Bar, Drag & Drop
 struct PureSwiftUITextEditor: View {
     @Binding var text: String
-
-    @State private var searchText: String = ""
-    @State private var showingFindBar: Bool = false
-    @State private var undoStack: [String] = []
-    @State private var redoStack: [String] = []
-    @State private var lastSavedText: String = ""
-
+    @StateObject private var viewModel = TextEditorViewModel()
     @Environment(\.openURL) var openURL
 
     var body: some View {
         VStack(spacing: 0) {
             // Find Bar (conditional)
-            if showingFindBar {
-                FindBar(
-                    searchText: $searchText,
-                    currentText: text,
-                    onClose: { showingFindBar = false },
-                    onFindNext: { findNext() },
-                    onFindPrevious: { findPrevious() }
-                )
+            if viewModel.showingFindBar {
+                FindBar(viewModel: viewModel, currentText: text)
             }
 
             // Main Text Editor
@@ -33,23 +21,14 @@ struct PureSwiftUITextEditor: View {
                     handleDrop(providers: providers)
                 }
                 .onChange(of: text) { oldValue, newValue in
-                    // Undo/Redo tracking (only significant changes)
-                    if oldValue != newValue && abs(oldValue.count - newValue.count) > 1 {
-                        undoStack.append(oldValue)
-                        redoStack.removeAll()
-
-                        // Limit undo stack to 50 entries
-                        if undoStack.count > 50 {
-                            undoStack.removeFirst()
-                        }
-                    }
+                    viewModel.recordChange(oldText: oldValue, newText: newValue)
                 }
         }
         .toolbar {
             ToolbarItemGroup(placement: .automatic) {
                 // Find Button
                 Button {
-                    showingFindBar.toggle()
+                    viewModel.toggleFindBar()
                 } label: {
                     Label("Find", systemImage: "magnifyingglass")
                 }
@@ -60,57 +39,29 @@ struct PureSwiftUITextEditor: View {
 
                 // Undo Button
                 Button {
-                    performUndo()
+                    if let previousText = viewModel.performUndo(currentText: text) {
+                        text = previousText
+                    }
                 } label: {
                     Label("Undo", systemImage: "arrow.uturn.backward")
                 }
                 .keyboardShortcut("z", modifiers: .command)
-                .disabled(undoStack.isEmpty)
+                .disabled(!viewModel.canUndo)
                 .help("Undo last change")
 
                 // Redo Button
                 Button {
-                    performRedo()
+                    if let nextText = viewModel.performRedo(currentText: text) {
+                        text = nextText
+                    }
                 } label: {
                     Label("Redo", systemImage: "arrow.uturn.forward")
                 }
                 .keyboardShortcut("z", modifiers: [.command, .shift])
-                .disabled(redoStack.isEmpty)
+                .disabled(!viewModel.canRedo)
                 .help("Redo last undone change")
             }
         }
-        .onAppear {
-            lastSavedText = text
-        }
-    }
-
-    // MARK: - Undo/Redo
-
-    private func performUndo() {
-        guard let previous = undoStack.popLast() else { return }
-        redoStack.append(text)
-        text = previous
-    }
-
-    private func performRedo() {
-        guard let next = redoStack.popLast() else { return }
-        undoStack.append(text)
-        text = next
-    }
-
-    // MARK: - Find Navigation
-
-    private func findNext() {
-        guard !searchText.isEmpty else { return }
-        // TODO: Implement text search and selection
-        // SwiftUI TextEditor doesn't expose selection API yet
-        print("Find next: \(searchText)")
-    }
-
-    private func findPrevious() {
-        guard !searchText.isEmpty else { return }
-        // TODO: Implement text search and selection
-        print("Find previous: \(searchText)")
     }
 
     // MARK: - Drag & Drop
@@ -121,12 +72,12 @@ struct PureSwiftUITextEditor: View {
                 provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, error in
                     guard let data = item as? Data,
                           let url = URL(dataRepresentation: data, relativeTo: nil),
-                          isMarkdownFile(url: url) else {
+                          viewModel.isMarkdownFile(url: url) else {
                         return
                     }
 
                     // Open in new window via openURL
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         openURL(url)
                     }
                 }
@@ -135,35 +86,25 @@ struct PureSwiftUITextEditor: View {
         }
         return false
     }
-
-    private func isMarkdownFile(url: URL) -> Bool {
-        let ext = url.pathExtension.lowercased()
-        return ["md", "markdown", "rmd", "qmd", "txt"].contains(ext)
-    }
 }
 
 // MARK: - Find Bar
 
 struct FindBar: View {
-    @Binding var searchText: String
+    @ObservedObject var viewModel: TextEditorViewModel
     let currentText: String
-    let onClose: () -> Void
-    let onFindNext: () -> Void
-    let onFindPrevious: () -> Void
-
-    @State private var matchCount: Int = 0
 
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(.secondary)
 
-            TextField("Find", text: $searchText)
+            TextField("Find", text: $viewModel.searchText)
                 .textFieldStyle(.plain)
                 .frame(width: 200)
 
-            if !searchText.isEmpty {
-                Text("\(matchCount) matches")
+            if !viewModel.searchText.isEmpty {
+                Text("\(viewModel.matchCount) matches")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -171,31 +112,31 @@ struct FindBar: View {
             Divider()
                 .frame(height: 16)
 
-            // Previous Button
+            // Previous Button (disabled - SwiftUI limitation)
             Button {
-                onFindPrevious()
+                // SwiftUI TextEditor doesn't support programmatic selection
             } label: {
                 Image(systemName: "chevron.up")
             }
             .buttonStyle(.plain)
-            .disabled(matchCount == 0)
-            .help("Find previous")
+            .disabled(true)
+            .help("Find previous (not available in SwiftUI TextEditor)")
 
-            // Next Button
+            // Next Button (disabled - SwiftUI limitation)
             Button {
-                onFindNext()
+                // SwiftUI TextEditor doesn't support programmatic selection
             } label: {
                 Image(systemName: "chevron.down")
             }
             .buttonStyle(.plain)
-            .disabled(matchCount == 0)
-            .help("Find next")
+            .disabled(true)
+            .help("Find next (not available in SwiftUI TextEditor)")
 
             Spacer()
 
             // Close Button
             Button {
-                onClose()
+                viewModel.closeFindBar()
             } label: {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundStyle(.secondary)
@@ -206,21 +147,11 @@ struct FindBar: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(.regularMaterial)
-        .onChange(of: searchText) { _, newValue in
-            updateMatchCount(newValue)
+        .onChange(of: viewModel.searchText) { _, _ in
+            viewModel.updateMatchCount(in: currentText)
         }
         .onAppear {
-            updateMatchCount(searchText)
+            viewModel.updateMatchCount(in: currentText)
         }
-    }
-
-    private func updateMatchCount(_ query: String) {
-        guard !query.isEmpty else {
-            matchCount = 0
-            return
-        }
-
-        // Count occurrences (case-insensitive)
-        matchCount = currentText.lowercased().components(separatedBy: query.lowercased()).count - 1
     }
 }

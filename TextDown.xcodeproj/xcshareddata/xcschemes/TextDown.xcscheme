@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F49E8C5B2EB77A2200E3161A"
-               BuildableName = "TextDownTests2.xctest"
-               BlueprintName = "TextDownTests2"
+               BuildableName = "TextDownTests.xctest"
+               BlueprintName = "TextDownTests"
                ReferencedContainer = "container:TextDown.xcodeproj">
             </BuildableReference>
          </TestableReference>

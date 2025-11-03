@@ -6,12 +6,14 @@ struct MarkdownFileDocument: FileDocument {
     // MARK: - Readable Content Types
 
     static var readableContentTypes: [UTType] {
-        [
-            .plainText,
-            UTType("net.daringfireball.markdown")!,
-            .rMarkdown,
-            .qmdMarkdown
-        ]
+        var types: [UTType] = [.plainText, .rMarkdown, .qmdMarkdown]
+
+        // Add Markdown UTType if available (system-defined on macOS 12+)
+        if let markdownType = UTType("net.daringfireball.markdown") {
+            types.insert(markdownType, at: 1)
+        }
+
+        return types
     }
 
     // MARK: - Content

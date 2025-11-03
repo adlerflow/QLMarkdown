@@ -63,18 +63,6 @@ struct AboutView: View {
     }
 }
 
-// MARK: - Bundle Extensions
-
-extension Bundle {
-    var appVersion: String {
-        infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-    }
-
-    var buildNumber: String {
-        infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
-    }
-}
-
 // MARK: - Preview
 
 #Preview {

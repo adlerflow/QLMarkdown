@@ -13,6 +13,10 @@ class AppState: ObservableObject {
     @Published var debug: Bool = false
     @Published var about: Bool = false
 
+    /// Force refresh trigger for manual preview updates
+    /// Mutate this UUID to trigger a manual refresh in editors
+    @Published var refreshTrigger: UUID = UUID()
+
     // MARK: - GitHub Flavored Markdown
     @Published var enableAutolink: Bool = true
     @Published var enableTable: Bool = true
@@ -220,6 +224,64 @@ class AppState: ObservableObject {
                 self?.saveSettings()
             }
             .store(in: &cancellables)
+    }
+
+    // MARK: - Reset to Defaults
+
+    /// Resets all settings to factory defaults
+    /// Uses the default values from property initialization
+    func resetToDefaults() {
+        // UI Behavior
+        autoRefresh = true
+        openInlineLink = false
+        debug = false
+        about = false
+
+        // GitHub Flavored Markdown
+        enableAutolink = true
+        enableTable = true
+        enableTagFilter = true
+        enableTaskList = true
+        enableYAML = true
+        enableYAMLAll = false
+
+        // Custom Extensions
+        enableCheckbox = false
+        enableEmoji = true
+        enableEmojiImages = false
+        enableHeads = true
+        enableHighlight = false
+        enableInlineImage = true
+        enableMath = true
+        enableMention = false
+        enableStrikethrough = true
+        enableStrikethroughDoubleTilde = false
+        enableSubscript = false
+        enableSuperscript = false
+
+        // Syntax Highlighting
+        enableSyntaxHighlighting = true
+        syntaxLineNumbers = false
+        syntaxTabWidth = 4
+        syntaxWordWrap = 0
+        syntaxThemeLight = "github"
+        syntaxThemeDark = "github-dark"
+
+        // Parser Options
+        enableFootnotes = true
+        enableHardBreaks = false
+        disableSoftBreaks = false
+        allowUnsafeHTML = false
+        enableSmartQuotes = true
+        validateUTF8 = false
+
+        // Custom CSS
+        customCSS = nil
+        customCSSCode = nil
+        customCSSFetched = false
+        customCSSOverride = false
+
+        // Note: refreshTrigger intentionally not reset
     }
 }
 
