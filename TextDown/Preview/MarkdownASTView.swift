@@ -145,14 +145,14 @@ struct ParagraphView: View {
             } else if let link = child as? Markdown.Link {
                 var linkText = AttributedString(link.plainText)
                 linkText.foregroundColor = Color.blue
-                linkText.underlineStyle = Text.LineStyle.Pattern.single
+                linkText.underlineStyle = .single
                 if let url = link.destination {
                     linkText.link = URL(string: url)
                 }
                 result += linkText
             } else if let strikethrough = child as? Strikethrough {
                 var struck = renderInlineText(strikethrough)
-                struck.strikethroughStyle = Text.LineStyle.Pattern.single
+                struck.strikethroughStyle = .single
                 struck.foregroundColor = Color.secondary
                 result += struck
             }
