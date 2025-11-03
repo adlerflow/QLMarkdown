@@ -1537,5 +1537,180 @@ ls: Extensions: No such file or directory  # ✅ Removed
 
 ---
 
+## ✅ COMPLETED: Tier 3 Folder Reorganization (November 2025)
+
+**Status**: ✅ COMPLETED (Branch: `refactor/folder-reorganization`)
+**Date**: 2025-11-03
+**Commit**: `57388a2`
+
+Comprehensive folder reorganization with logical groupings to improve code discoverability and maintainability. All 90 files moved with preserved git history.
+
+### New Folder Structure
+
+```
+/Users/home/GitHub/QLMarkdown/
+├── TextDown/                           # Main app target
+│   ├── Core/                           # App lifecycle & configuration (NEW)
+│   │   ├── AppDelegate.swift
+│   │   ├── AppConfiguration.swift
+│   │   ├── AppConfiguration+Rendering.swift
+│   │   ├── AppConfiguration+Persistence.swift
+│   │   └── AppConfiguration+Themes.swift
+│   │
+│   ├── Models/                         # Data layer (NEW)
+│   │   └── MarkdownDocument.swift
+│   │
+│   ├── ViewControllers/                # AppKit controllers (NEW)
+│   │   ├── DocumentViewController.swift
+│   │   ├── MarkdownWindowController.swift
+│   │   └── AboutViewController.swift
+│   │
+│   ├── Views/                          # SwiftUI components (NEW)
+│   │   └── Settings/                   # Renamed from Preferences/
+│   │       ├── TextDownSettingsView.swift
+│   │       ├── GeneralSettingsView.swift
+│   │       ├── ExtensionsSettingsView.swift
+│   │       ├── SyntaxSettingsView.swift
+│   │       └── AdvancedSettingsView.swift
+│   │
+│   ├── Utilities/                      # Helpers (NEW)
+│   │   ├── Helpers.swift
+│   │   ├── NSColor.swift
+│   │   └── OSLog.swift
+│   │
+│   ├── Resources/                      # Xcode managed resources (NEW)
+│   │   ├── Assets.xcassets
+│   │   └── Base.lproj/
+│   │       └── Main.storyboard
+│   │
+│   ├── Rendering/                      # Markdown pipeline (KEPT)
+│   │   ├── MarkdownRenderer.swift
+│   │   ├── HeadingIDGenerator.swift
+│   │   ├── YamlHeaderProcessor.swift
+│   │   └── Rewriters/
+│   │       ├── EmojiRewriter.swift
+│   │       ├── HighlightRewriter.swift
+│   │       ├── SubSupRewriter.swift
+│   │       ├── MentionRewriter.swift
+│   │       ├── InlineImageRewriter.swift
+│   │       └── MathRewriter.swift
+│   │
+│   ├── Info.plist                      # ROOT (Xcode standard)
+│   └── TextDown.entitlements           # ROOT
+│
+├── BundleResources/                    # Runtime resources (RENAMED from Resources/)
+│   ├── default.css
+│   └── highlight.js/
+│       ├── lib/
+│       │   └── highlight.min.js
+│       └── styles/
+│           └── *.min.css (12 themes)
+│
+├── docs/                               # Documentation (NEW)
+│   └── migration/
+│       ├── SWIFT_MARKDOWN_MIGRATION_PLAN.md
+│       ├── IMPLEMENTATION_GUIDE.md
+│       └── REDUCTION_LOG.md
+│
+├── TextDownTests2/                     # Test suite
+│   ├── Core/                           # NEW
+│   │   └── SettingsTests.swift
+│   ├── Rendering/                      # NEW (placeholder)
+│   └── Snapshots/                      # NEW (baseline HTML files)
+│
+├── CLAUDE.md                           # Kept at root for discoverability
+├── TODO.md                             # Kept at root for discoverability
+└── TextDown.xcodeproj/
+```
+
+### Impact Metrics
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| **Files at TextDown/ root** | 16 | 2 | -14 (-88%) |
+| **Logical folders** | 2 (Rendering, Preferences) | 7 (Core, Models, ViewControllers, Views, Utilities, Resources, Rendering) | +5 |
+| **Files moved** | - | 90 | All with 100% git similarity |
+| **Build status** | ✅ | ✅ | No regressions |
+| **Test status** | 12/12 passing | 12/12 passing | All tests pass |
+
+### Execution Summary
+
+**Duration**: ~45 minutes
+**Method**: Manual git mv + Edit tool for project.pbxproj
+**Rollback**: git tag `pre-folder-reorg`
+
+**Phase 1: Folder Creation**
+```bash
+mkdir -p TextDown/{Core,Models,ViewControllers,Views/Settings,Utilities,Resources}
+mkdir -p TextDownTests2/{Core,Rendering,Snapshots}
+mkdir -p docs/migration
+```
+
+**Phase 2: File Moves (git mv)**
+- Core/: 5 files (AppDelegate, AppConfiguration+4)
+- Models/: 1 file (MarkdownDocument)
+- ViewControllers/: 3 files (DocumentViewController, MarkdownWindowController, AboutViewController)
+- Views/Settings/: 5 files (all SwiftUI preference views)
+- Utilities/: 3 files (Helpers, NSColor, OSLog)
+- Resources/: Assets.xcassets + Base.lproj
+
+**Phase 3: Folder Renames**
+- `Resources/` → `BundleResources/` (15 files: highlight.js + default.css)
+- `Preferences/` → `Views/Settings/` (5 SwiftUI files)
+
+**Phase 4: Documentation**
+- `SWIFT_MARKDOWN_MIGRATION_PLAN.md` → `docs/migration/`
+- `IMPLEMENTATION_GUIDE.md` → `docs/migration/`
+- `REDUCTION_LOG.md` → `docs/migration/`
+
+**Phase 5: Tests**
+- `SettingsTests.swift` → `TextDownTests2/Core/`
+
+**Phase 6: Project Updates**
+- `project.pbxproj`: Added 6 new PBXGroup definitions (Core, Models, ViewControllers, Views, Utilities, Resources)
+- Updated all file path references
+- Updated folder names (BundleResources, Settings)
+- `CLAUDE.md`: Updated all file path references
+- `TODO.md`: Updated all file path references
+
+### Verification
+
+**Build Verification**:
+```bash
+xcodebuild -scheme TextDown -configuration Release clean build
+** BUILD SUCCEEDED **
+```
+
+**Test Verification**:
+```bash
+xcodebuild test -scheme TextDown -destination 'platform=macOS'
+Test Suite 'All tests' passed
+12 tests passed, 0 failures
+```
+
+**Git History Verification**:
+```bash
+git log --follow --oneline TextDown/Core/AppConfiguration.swift
+# Shows full history from original TextDown/AppConfiguration.swift
+```
+
+### Key Achievements
+
+- 🎯 **88% reduction** in root-level files (16 → 2)
+- 🎯 **7 logical folders** for clear code organization
+- 🎯 **100% git history** preserved (all moves used git mv)
+- 🎯 **Zero build regressions** (clean build + all tests pass)
+- 🎯 **Improved discoverability** (Core/ for config, Models/ for data, etc.)
+- 🎯 **Standard Xcode conventions** (Resources/ for assets, Info.plist at root)
+- 🎯 **Clear separation of concerns** (AppKit vs SwiftUI, utilities vs business logic)
+
+### Benefits
+
+1. **Code Discoverability**: New developers can immediately understand project structure
+2. **Logical Grouping**: Related files grouped together (all AppConfiguration files in Core/)
+3. **Clean Root**: Only essential files at target root (Info.plist, entitlements)
+4. **Test Organization**: Tests mirror app structure (Core/, Rendering/, Snapshots/)
+5. **Documentation Clarity**: Migration docs grouped in docs/migration/
+6. **Resource Disambiguation**: BundleResources/ vs TextDown/Resources/ clear distinction
 
 ---
