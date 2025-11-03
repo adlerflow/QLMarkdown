@@ -91,7 +91,7 @@ final class SettingsTests: XCTestCase {
         settings.editor.autoRefresh = false
         settings.editor.openInlineLink = true
         settings.markdown.enableTable = false
-        settings.markdown.enableEmoji = true
+        settings.markdown.enableStrikethrough = false
         settings.syntaxTheme.tabWidth = 8
         settings.syntaxTheme.lightTheme = "solarized-light"
 
@@ -108,7 +108,7 @@ final class SettingsTests: XCTestCase {
         XCTAssertEqual(decoded.editor.autoRefresh, false)
         XCTAssertEqual(decoded.editor.openInlineLink, true)
         XCTAssertEqual(decoded.markdown.enableTable, false)
-        XCTAssertEqual(decoded.markdown.enableEmoji, true)
+        XCTAssertEqual(decoded.markdown.enableStrikethrough, false)
         XCTAssertEqual(decoded.syntaxTheme.tabWidth, 8)
         XCTAssertEqual(decoded.syntaxTheme.lightTheme, "solarized-light")
     }
@@ -188,7 +188,7 @@ final class SettingsTests: XCTestCase {
         // Save settings first
         var testSettings = AppSettings.default
         testSettings.editor.autoRefresh = false
-        testSettings.markdown.enableEmoji = false
+        testSettings.markdown.enableStrikethrough = false
         try await settingsRepository.save(testSettings)
 
         let loadUseCase = LoadSettingsUseCase(settingsRepository: settingsRepository)
@@ -196,7 +196,7 @@ final class SettingsTests: XCTestCase {
         let loaded = await loadUseCase.execute()
 
         XCTAssertEqual(loaded.editor.autoRefresh, false)
-        XCTAssertEqual(loaded.markdown.enableEmoji, false)
+        XCTAssertEqual(loaded.markdown.enableStrikethrough, false)
     }
 
     func testSaveSettingsUseCaseValidatesBeforeSaving() async throws {
@@ -304,7 +304,7 @@ final class SettingsTests: XCTestCase {
         settingsViewModel.settings.editor.autoRefresh = false
         settingsViewModel.settings.editor.openInlineLink = true
         settingsViewModel.settings.markdown.enableTable = false
-        settingsViewModel.settings.markdown.enableEmoji = false
+        settingsViewModel.settings.markdown.enableStrikethrough = false
         settingsViewModel.settings.syntaxTheme.tabWidth = 8
 
         // 3. Wait for auto-save
@@ -328,7 +328,7 @@ final class SettingsTests: XCTestCase {
         XCTAssertEqual(newViewModel.settings.editor.autoRefresh, false)
         XCTAssertEqual(newViewModel.settings.editor.openInlineLink, true)
         XCTAssertEqual(newViewModel.settings.markdown.enableTable, false)
-        XCTAssertEqual(newViewModel.settings.markdown.enableEmoji, false)
+        XCTAssertEqual(newViewModel.settings.markdown.enableStrikethrough, false)
         XCTAssertEqual(newViewModel.settings.syntaxTheme.tabWidth, 8)
     }
 
@@ -340,15 +340,6 @@ final class SettingsTests: XCTestCase {
         settingsViewModel.settings.markdown.enableTaskList = false
         settingsViewModel.settings.markdown.enableYAML = false
         settingsViewModel.settings.markdown.enableYAMLAll = true
-        settingsViewModel.settings.markdown.enableEmoji = false
-        settingsViewModel.settings.markdown.enableEmojiImages = true
-        settingsViewModel.settings.markdown.enableHeads = false
-        settingsViewModel.settings.markdown.enableHighlight = true
-        settingsViewModel.settings.markdown.enableInlineImage = false
-        settingsViewModel.settings.markdown.enableMath = false
-        settingsViewModel.settings.markdown.enableMention = true
-        settingsViewModel.settings.markdown.enableSubscript = true
-        settingsViewModel.settings.markdown.enableSuperscript = true
         settingsViewModel.settings.markdown.enableStrikethrough = false
         settingsViewModel.settings.markdown.enableStrikethroughDoubleTilde = false
         settingsViewModel.settings.markdown.enableFootnotes = false
@@ -367,8 +358,6 @@ final class SettingsTests: XCTestCase {
         XCTAssertNotNil(loaded)
         XCTAssertEqual(loaded?.markdown.enableAutolink, false)
         XCTAssertEqual(loaded?.markdown.enableTable, false)
-        XCTAssertEqual(loaded?.markdown.enableEmoji, false)
-        XCTAssertEqual(loaded?.markdown.enableMath, false)
         XCTAssertEqual(loaded?.markdown.enableStrikethrough, false)
         XCTAssertEqual(loaded?.markdown.validateUTF8, true)
     }

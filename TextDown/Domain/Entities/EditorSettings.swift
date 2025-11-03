@@ -5,9 +5,6 @@ import Foundation
 struct EditorSettings: Sendable, Codable, Equatable {
     // MARK: - Properties
 
-    /// Automatically refresh preview on content change
-    var autoRefresh: Bool
-
     /// Open inline links in external browser
     var openInlineLink: Bool
 
@@ -17,7 +14,6 @@ struct EditorSettings: Sendable, Codable, Equatable {
     // MARK: - Defaults
 
     static let `default` = EditorSettings(
-        autoRefresh: true,
         openInlineLink: false,
         debug: false
     )

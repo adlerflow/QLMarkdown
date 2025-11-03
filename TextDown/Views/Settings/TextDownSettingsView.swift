@@ -67,14 +67,6 @@ struct TextDownSettingsView: View {
             }
         }
         .frame(width: 650, height: 550)
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Close") {
-                    dismiss()
-                }
-                .keyboardShortcut(.cancelAction)
-            }
-        }
     }
 }
 

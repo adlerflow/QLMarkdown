@@ -20,26 +20,6 @@ struct TextDownCommands: Commands {
             .disabled(true)  // Disabled until implementation
         }
 
-        // MARK: - View Menu
-
-        CommandGroup(after: .toolbar) {
-            if let settingsViewModel = settingsViewModel {
-                Toggle("Preview Auto-Refresh", isOn: Binding(
-                    get: { settingsViewModel.settings.editor.autoRefresh },
-                    set: { settingsViewModel.settings.editor.autoRefresh = $0 }
-                ))
-                .keyboardShortcut("r", modifiers: .command)
-
-                Button("Refresh Preview") {
-                    // Note: Manual refresh trigger removed in Clean Architecture
-                    // Refresh happens automatically via MarkdownEditorViewModel
-                    // This command is kept for future enhancement
-                }
-                .keyboardShortcut("r", modifiers: [.command, .shift])
-                .disabled(true)  // Disabled until refresh mechanism implemented
-            }
-        }
-
         // MARK: - Window Menu
 
         CommandGroup(replacing: .windowArrangement) {

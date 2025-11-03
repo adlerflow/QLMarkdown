@@ -43,11 +43,9 @@ class MarkdownEditorViewModel: ObservableObject {
 
     // MARK: - Rendering
 
-    /// Renders markdown content with debouncing
+    /// Renders markdown content with debouncing (always enabled)
     /// - Parameter content: Raw markdown string
     func debounceRender(content: String) {
-        guard settingsViewModel.settings.editor.autoRefresh else { return }
-
         debounceTask?.cancel()
         debounceTask = Task {
             try? await Task.sleep(for: debounceDelay)

@@ -41,14 +41,6 @@ actor ValidateSettingsUseCase {
             ))
         }
 
-        if markdown.enableEmojiImages && !markdown.enableEmoji {
-            issues.append(ValidationIssue(
-                severity: .error,
-                property: "enableEmojiImages",
-                message: "Emoji images require enableEmoji=true"
-            ))
-        }
-
         if markdown.enableHardBreaks && markdown.disableSoftBreaks {
             issues.append(ValidationIssue(
                 severity: .warning,

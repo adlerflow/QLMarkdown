@@ -44,25 +44,6 @@ struct SyntaxSettingsView: View {
                     .help("Wrap lines at specified column (0 to disable)")
                 }
             }
-
-            Section("Language Detection") {
-                Text("Note: Language detection only applies to code blocks without explicit language tags (e.g., ``` without specifying ```python).")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
-                Text("Language detection disabled in current version")
-                    .foregroundStyle(.secondary)
-            }
-
-            Section("Theme") {
-                Text("Note: Syntax highlighting currently shows plain monospaced text")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-
-                Text("Future enhancement: SwiftHighlighter integration (github-light, github-dark themes)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
         }
         .formStyle(.grouped)
         .frame(minWidth: 500, minHeight: 400)
