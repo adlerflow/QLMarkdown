@@ -1,0 +1,53 @@
+# SwiftLint Configuration for Pure SwiftUI Enforcement
+
+disabled_rules:
+  - line_length
+  - file_length
+  - type_body_length
+  - function_body_length
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+
+excluded:
+  - Pods
+  - build
+  - .build
+
+custom_rules:
+  no_appkit_import:
+    name: "No AppKit Import"
+    regex: 'import (AppKit|Cocoa|WebKit)'
+    message: "AppKit/Cocoa/WebKit imports forbidden - use SwiftUI only"
+    severity: error
+
+  no_nsview_representable:
+    name: "No NSView Representable"
+    regex: '(NSView|NSViewController)Representable'
+    message: "NSViewRepresentable bridges forbidden - pure SwiftUI only"
+    severity: error
+
+  no_ns_document:
+    name: "No NSDocument"
+    regex: '\bNSDocument\b'
+    message: "NSDocument forbidden - use FileDocument or ReferenceFileDocument"
+    severity: error
+
+  no_wkwebview:
+    name: "No WKWebView"
+    regex: '\bWKWebView\b'
+    message: "WKWebView forbidden - use native SwiftUI markdown renderer"
+    severity: error
+
+  no_ns_window:
+    name: "No NSWindow"
+    regex: '\bNSWindow\b'
+    message: "NSWindow forbidden - use SwiftUI Window scenes"
+    severity: error
+
+  no_ns_view_controller:
+    name: "No NSViewController"
+    regex: '\bNSViewController\b'
+    message: "NSViewController forbidden - use SwiftUI View"
+    severity: error

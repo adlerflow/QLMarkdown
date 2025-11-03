@@ -1,0 +1,21 @@
+name: Pure SwiftUI Enforcement
+
+on:
+  push:
+    branches:
+      - feature/pure-swiftui-migration
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-no-appkit:
+    runs-on: macos-13
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run SwiftUI Purity Check
+        run: |
+          chmod +x ./ci/ensure_pure_swiftui.sh
+          ./ci/ensure_pure_swiftui.sh

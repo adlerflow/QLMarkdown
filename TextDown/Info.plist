@@ -22,8 +22,6 @@
 				<string>net.daringfireball.markdown</string>
 				<string>com.unknown.md</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>TextDown.MarkdownDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -36,8 +34,6 @@
 			<array>
 				<string>com.rstudio.rmarkdown</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>TextDown.MarkdownDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
@@ -50,8 +46,6 @@
 			<array>
 				<string>org.quarto.qmarkdown</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>TextDown.MarkdownDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -83,16 +77,12 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Developed by ADLERFLOW 2020 - 2025.</string>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
-	<key>SUEnableInstallerLauncherService</key>
-	<true/>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
