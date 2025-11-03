@@ -8,14 +8,12 @@ struct MarkdownEditorView: View {
 
     @State private var renderedDocument: Document?
     @State private var debounceTask: Task<Void, Never>?
-    @State private var isEditorFocused: Bool = false
 
     var body: some View {
         HSplitView {
             // Links: Pure SwiftUI Text Editor
             PureSwiftUITextEditor(
-                text: $document.content,
-                isFocused: $isEditorFocused
+                text: $document.content
             )
             .frame(minWidth: 300)
             .focusedSceneValue(\.editorText, $document.content)

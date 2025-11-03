@@ -126,7 +126,7 @@ struct ParagraphView: View {
         var result = AttributedString()
 
         for child in markup.children {
-            if let text = child as? Text {
+            if let text = child as? Markdown.Text {
                 result += AttributedString(text.string)
             } else if let strong = child as? Strong {
                 var bold = renderInlineText(strong)
@@ -140,20 +140,20 @@ struct ParagraphView: View {
                 var codeText = AttributedString(code.code)
                 codeText.font = .system(.body, design: .monospaced)
                 codeText.backgroundColor = Color.gray.opacity(0.15)
-                codeText.foregroundColor = .pink
+                codeText.foregroundColor = Color.pink
                 result += codeText
-            } else if let link = child as? Link {
+            } else if let link = child as? Markdown.Link {
                 var linkText = AttributedString(link.plainText)
-                linkText.foregroundColor = .blue
-                linkText.underlineStyle = .single
+                linkText.foregroundColor = Color.blue
+                linkText.underlineStyle = Text.LineStyle.Pattern.single
                 if let url = link.destination {
                     linkText.link = URL(string: url)
                 }
                 result += linkText
             } else if let strikethrough = child as? Strikethrough {
                 var struck = renderInlineText(strikethrough)
-                struck.strikethroughStyle = .single
-                struck.foregroundColor = .secondary
+                struck.strikethroughStyle = Text.LineStyle.Pattern.single
+                struck.foregroundColor = Color.secondary
                 result += struck
             }
         }
@@ -252,7 +252,7 @@ struct OrderedListView: View {
         VStack(alignment: .leading, spacing: 4) {
             ForEach(Array(list.listItems.enumerated()), id: \.offset) { index, item in
                 HStack(alignment: .top, spacing: 8) {
-                    Text("\(list.startIndex + index).")
+                    Text("\(Int(list.startIndex) + index).")
                         .font(.body)
                         .frame(width: 30, alignment: .trailing)
 

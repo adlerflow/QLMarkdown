@@ -4,7 +4,6 @@ import UniformTypeIdentifiers
 /// Pure SwiftUI Text Editor mit Undo/Redo, Find Bar, Drag & Drop
 struct PureSwiftUITextEditor: View {
     @Binding var text: String
-    @Binding var isFocused: Bool
 
     @State private var searchText: String = ""
     @State private var showingFindBar: Bool = false
@@ -30,7 +29,6 @@ struct PureSwiftUITextEditor: View {
             // Main Text Editor
             TextEditor(text: $text)
                 .font(.system(.body, design: .monospaced))
-                .focused($isFocused)
                 .onDrop(of: [.fileURL], isTargeted: nil) { providers in
                     handleDrop(providers: providers)
                 }
