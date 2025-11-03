@@ -120,7 +120,7 @@ final class SettingsTests: XCTestCase {
 
     func testSettingsRepositorySave() async throws {
         var settings = AppSettings.default
-        settings.editor.autoRefresh = false
+        settings.editor.openInlineLink = true
         settings.markdown.enableTable = false
 
         // Save
@@ -134,14 +134,14 @@ final class SettingsTests: XCTestCase {
         let loaded = try await settingsRepository.load()
 
         XCTAssertNotNil(loaded)
-        XCTAssertEqual(loaded?.editor.autoRefresh, false)
+        XCTAssertEqual(loaded?.editor.openInlineLink, true)
         XCTAssertEqual(loaded?.markdown.enableTable, false)
     }
 
     func testSettingsRepositoryResetToDefaults() async throws {
         // Save non-default settings
         var settings = AppSettings.default
-        settings.editor.autoRefresh = false
+        settings.editor.openInlineLink = true
         settings.markdown.enableTable = false
         try await settingsRepository.save(settings)
 
@@ -177,14 +177,14 @@ final class SettingsTests: XCTestCase {
         let settings = await loadUseCase.execute()
 
         // Should return defaults when no file exists
-        XCTAssertEqual(settings.editor.autoRefresh, true)
+        XCTAssertFalse(settings.editor.openInlineLink)
         XCTAssertEqual(settings.markdown.enableTable, true)
     }
 
     func testLoadSettingsUseCaseWithValidFile() async throws {
         // Save settings first
         var testSettings = AppSettings.default
-        testSettings.editor.autoRefresh = false
+        testSettings.editor.openInlineLink = true
         testSettings.markdown.enableStrikethrough = false
         try await settingsRepository.save(testSettings)
 
@@ -192,7 +192,7 @@ final class SettingsTests: XCTestCase {
 
         let loaded = await loadUseCase.execute()
 
-        XCTAssertEqual(loaded.editor.autoRefresh, false)
+        XCTAssertEqual(loaded.editor.openInlineLink, true)
         XCTAssertEqual(loaded.markdown.enableStrikethrough, false)
     }
 
@@ -219,7 +219,7 @@ final class SettingsTests: XCTestCase {
 
         // Save non-default
         var settings = AppSettings.default
-        settings.editor.autoRefresh = false
+        settings.editor.openInlineLink = true
         try await saveUseCase.execute(settings)
 
         // Reset (delegates to repository which deletes file)
@@ -252,7 +252,7 @@ final class SettingsTests: XCTestCase {
         try? await Task.sleep(for: .milliseconds(100))
 
         // Should have default settings (no file exists in temp location)
-        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+        XCTAssertFalse(settingsViewModel.settings.editor.openInlineLink)
         XCTAssertEqual(settingsViewModel.settings.markdown.enableTable, true)
     }
 
@@ -261,7 +261,7 @@ final class SettingsTests: XCTestCase {
         try await Task.sleep(for: .milliseconds(100))
 
         // Modify settings
-        settingsViewModel.settings.editor.autoRefresh = false
+        settingsViewModel.settings.editor.openInlineLink = true
 
         // Wait for debounced auto-save (1 second + buffer)
         try await Task.sleep(for: .milliseconds(1200))
@@ -269,7 +269,7 @@ final class SettingsTests: XCTestCase {
         // Verify saved to disk
         let loaded = try await settingsRepository.load()
         XCTAssertNotNil(loaded)
-        XCTAssertEqual(loaded?.editor.autoRefresh, false, "Should auto-save changes")
+        XCTAssertEqual(loaded?.editor.openInlineLink, true, "Should auto-save changes")
     }
 
     func testSettingsViewModelResetToDefaults() async throws {
@@ -277,7 +277,7 @@ final class SettingsTests: XCTestCase {
         try await Task.sleep(for: .milliseconds(100))
 
         // Modify settings
-        settingsViewModel.settings.editor.autoRefresh = false
+        settingsViewModel.settings.editor.openInlineLink = true
         settingsViewModel.settings.markdown.enableTable = false
 
         // Wait for auto-save
@@ -287,7 +287,7 @@ final class SettingsTests: XCTestCase {
         await settingsViewModel.resetToDefaults()
 
         // Verify reset
-        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+        XCTAssertFalse(settingsViewModel.settings.editor.openInlineLink)
         XCTAssertEqual(settingsViewModel.settings.markdown.enableTable, true)
     }
 
@@ -295,11 +295,11 @@ final class SettingsTests: XCTestCase {
 
     func testFullSettingsPersistenceFlow() async throws {
         // 1. Initial state (defaults)
-        XCTAssertEqual(settingsViewModel.settings.editor.autoRefresh, true)
+        XCTAssertFalse(settingsViewModel.settings.editor.openInlineLink)
 
         // 2. Modify settings
-        settingsViewModel.settings.editor.autoRefresh = false
         settingsViewModel.settings.editor.openInlineLink = true
+        settingsViewModel.settings.editor.debug = true
         settingsViewModel.settings.markdown.enableTable = false
         settingsViewModel.settings.markdown.enableStrikethrough = false
         settingsViewModel.settings.syntaxTheme.tabWidth = 8
@@ -322,8 +322,8 @@ final class SettingsTests: XCTestCase {
         try await Task.sleep(for: .milliseconds(100))
 
         // 6. Verify persisted values loaded
-        XCTAssertEqual(newViewModel.settings.editor.autoRefresh, false)
         XCTAssertEqual(newViewModel.settings.editor.openInlineLink, true)
+        XCTAssertEqual(newViewModel.settings.editor.debug, true)
         XCTAssertEqual(newViewModel.settings.markdown.enableTable, false)
         XCTAssertEqual(newViewModel.settings.markdown.enableStrikethrough, false)
         XCTAssertEqual(newViewModel.settings.syntaxTheme.tabWidth, 8)
