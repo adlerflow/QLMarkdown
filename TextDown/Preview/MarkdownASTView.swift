@@ -205,17 +205,11 @@ struct CodeBlockView: View {
     }
 
     private var highlightedCode: AttributedString {
-        guard appState.renderingSettings.enableSyntaxHighlighting,
-              let language = codeBlock.language else {
-            return AttributedString(codeBlock.code)
-        }
-
-        // Verwende SwiftHighlighter (siehe nächste Datei)
-        return SwiftHighlighter.highlight(
-            code: codeBlock.code,
-            language: language,
-            theme: appState.syntaxTheme
-        )
+        // Pure SwiftUI rendering: Plain monospaced text
+        // TODO: Implement native SwiftUI syntax highlighting
+        var attributed = AttributedString(codeBlock.code)
+        attributed.font = .system(.body, design: .monospaced)
+        return attributed
     }
 }
 
