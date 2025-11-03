@@ -1,7 +1,7 @@
 import SwiftUI
 import Markdown
 
-/// Native SwiftUI Markdown Renderer (ersetzt WKWebView)
+/// Native SwiftUI Markdown Renderer using swift-markdown AST
 struct MarkdownASTView: View {
     let document: Document?
 
@@ -32,7 +32,7 @@ struct MarkdownASTView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .background(Color(nsColor: .textBackgroundColor))
+        .background(Color(.textBackgroundColor))  // SwiftUI semantic color
     }
 }
 
@@ -127,13 +127,13 @@ struct ParagraphView: View {
                 result += bold
             } else if let emphasis = child as? Emphasis {
                 var italic = renderInlineText(emphasis)
-                bold.font = .body.italic()
+                italic.font = .body.italic()
                 result += italic
             } else if let code = child as? InlineCode {
                 var codeText = AttributedString(code.code)
                 codeText.font = .system(.body, design: .monospaced)
                 codeText.backgroundColor = Color.gray.opacity(0.15)
-                codeText.foregroundColor = Color(nsColor: .systemPink)
+                codeText.foregroundColor = .pink
                 result += codeText
             } else if let link = child as? Link {
                 var linkText = AttributedString(link.plainText)
@@ -189,7 +189,7 @@ struct CodeBlockView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .background(Color(nsColor: .controlBackgroundColor))
+        .background(Color(.controlBackgroundColor))  // SwiftUI semantic color
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)

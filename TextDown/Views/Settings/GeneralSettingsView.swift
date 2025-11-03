@@ -26,7 +26,7 @@ struct GeneralSettingsView: View {
 
             Section("Behavior") {
                 Toggle("Open inline links in preview", isOn: $settings.openInlineLink)
-                    .help("Open markdown links within WKWebView instead of external browser")
+                    .help("Open markdown links inline instead of external browser")
 
                 Toggle("Debug mode", isOn: $settings.debug)
                     .help("Enable debug logging in Console.app")

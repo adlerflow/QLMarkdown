@@ -1,7 +1,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Pure SwiftUI FileDocument (ersetzt NSDocument)
+/// Pure SwiftUI FileDocument implementation for markdown files
 struct MarkdownFileDocument: FileDocument {
     // MARK: - Readable Content Types
 
