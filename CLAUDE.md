@@ -42,7 +42,9 @@ Transformation von TextDown (QuickLook Extension) zu einem eigenständigen Markd
 
 **Repository**: `/Users/home/GitHub/QLMarkdown`
 **Branch**: `main`
-**Migration-Branch**: `feature/standalone-editor`
+**Active Migration Branches**:
+- `feature/swift-markdown-migration` (✅ MERGED - swift-markdown migration)
+- `feature/pure-swiftui-migration` (✅ CURRENT - 100% SwiftUI architecture)
 
 ---
 
@@ -177,25 +179,256 @@ See migration documents for complete technical analysis.
 
 ---
 
-## Aktuelle Projektstruktur (Post-Migration)
+## ✅ IMPLEMENTED: Pure SwiftUI Migration (November 2025)
 
-### TextDown.app - Standalone Editor
+**Status**: ✅ COMPLETED (Branch: `feature/pure-swiftui-migration`)
+**Date**: 2025-11-03
+**Commits**: 2e6dd4a, 163a6f5, 14e88fe, 2a68066, 9d1ca6f, bf618ca, 9f562ba, 0133649
+
+The AppKit/NSDocument architecture has been completely replaced with 100% Pure SwiftUI, eliminating all Cocoa dependencies and achieving full SwiftUI compliance with CI enforcement.
+
+### Migration Summary
+
+**Big-Bang Migration**: Single-pass replacement of all AppKit components
+- **Duration**: 1 day (2025-11-03)
+- **Approach**: Delete all AppKit controllers, implement Pure SwiftUI from scratch
+- **Target**: macOS 12.0+ (SwiftUI DocumentGroup, FileDocument)
+- **CI Enforcement**: Bash scripts + SwiftLint rules block any AppKit code
+
+**Critical Constraints**:
+- ❌ ZERO AppKit: No `import AppKit`, `import Cocoa`, `import WebKit`
+- ❌ NO Bridges: No `NSViewRepresentable`, `@NSApplicationDelegateAdaptor`, `NSDocument`
+- ✅ Pure SwiftUI: All views, all state management, all rendering
+- ✅ CI Guards: `ci/ensure_pure_swiftui.sh` enforces purity
+
+### Architecture Changes
+
+**Deleted Components** (AppKit):
+- ❌ `Main.storyboard` (1,003 lines XML)
+- ❌ `AppDelegate.swift` (165 LOC - Sparkle integration)
+- ❌ `DocumentViewController.swift` (605 LOC - NSTextView + WKWebView)
+- ❌ `MarkdownWindowController.swift` (83 LOC)
+- ❌ `AboutViewController.swift` (78 LOC)
+- ❌ `MarkdownDocument.swift` (186 LOC - NSDocument)
+- ❌ `NSColor.swift` (104 LOC - AppKit color utilities)
+
+**New Components** (Pure SwiftUI):
+- ✅ `TextDownApp.swift` (31 LOC) - @main entry point with DocumentGroup
+- ✅ `AppState.swift` (110 LOC) - @Observable app state (replaces AppDelegate)
+- ✅ `MarkdownFileDocument.swift` (76 LOC) - FileDocument protocol
+- ✅ `MarkdownEditorView.swift` (84 LOC) - HSplitView (Editor | Preview)
+- ✅ `PureSwiftUITextEditor.swift` (228 LOC) - Custom text editor with Undo/Find/Drag&Drop
+- ✅ `MarkdownASTView.swift` (287 LOC) - Native SwiftUI markdown renderer (no WKWebView!)
+- ✅ `SwiftHighlighter.swift` (278 LOC) - Pure Swift syntax highlighter
+- ✅ `TextDownCommands.swift` (79 LOC) - SwiftUI menu bar commands
+- ✅ `AboutView.swift` (81 LOC) - Pure SwiftUI about dialog
+- ✅ `Color.swift` (130 LOC) - Pure SwiftUI color utilities (hex parsing + semantic palette)
+
+### Rendering Pipeline Transformation
+
+**Old Pipeline (AppKit):**
+```
+Markdown String
+  → swift-markdown (AST)
+  → MarkdownRenderer (HTML generation)
+  → WKWebView.loadHTMLString() (WebKit rendering)
+  → JavaScript highlight.js (client-side)
+```
+
+**New Pipeline (Pure SwiftUI):**
+```
+Markdown String
+  → swift-markdown (AST)
+  → MarkdownASTView (SwiftUI view tree)
+    → HeadingView, ParagraphView, CodeBlockView, etc.
+    → SwiftHighlighter (Pure Swift tokenizer)
+    → AttributedString (SwiftUI native styling)
+  → Native SwiftUI rendering (no WebView!)
+```
+
+**Key Differences**:
+- ❌ No WKWebView - Direct SwiftUI rendering
+- ❌ No HTML generation - AST → SwiftUI views
+- ❌ No JavaScript - Pure Swift syntax highlighting
+- ✅ Native performance - No web engine overhead
+- ✅ Full SwiftUI integration - TextSelection, accessibility
+
+### Achieved Metrics ✅
+
+| Metric | Before (AppKit) | After (SwiftUI) | Impact |
+|--------|-----------------|-----------------|--------|
+| **Architecture** | Mixed (AppKit + SwiftUI) | 100% Pure SwiftUI | ✅ |
+| **Main Entry** | AppDelegate + Storyboard | TextDownApp (@main) | **-100% AppKit** ✅ |
+| **Document Model** | NSDocument (186 LOC) | FileDocument (76 LOC) | **-59%** ✅ |
+| **Editor View** | NSTextView (AppKit) | TextEditor (SwiftUI) | **-100% AppKit** ✅ |
+| **Preview** | WKWebView (WebKit) | MarkdownASTView (SwiftUI) | **-100% WebKit** ✅ |
+| **Menu Bar** | Main.storyboard (1,003 lines) | TextDownCommands (79 LOC) | **-92%** ✅ |
+| **Color Utilities** | NSColor (104 LOC AppKit) | Color (130 LOC SwiftUI) | **Zero AppKit** ✅ |
+| **CI Status** | N/A | ✅ PASSED | **Enforced** ✅ |
+
+### Implementation Commits
+
+**Phase 1: Core Architecture** (Commit: 2e6dd4a)
+- Created SwiftUI @main entry point
+- Implemented FileDocument protocol
+- Built split-view editor with native rendering
+- Deleted all AppKit controllers and storyboard
+
+**Phase 2: Color Migration** (Commit: 163a6f5)
+- Replaced NSColor with pure SwiftUI Color
+- Created Color(hex:) initializer
+- Added Color.Markdown semantic palette
+- Removed all AppKit imports
+
+**Phase 3: Compilation Fixes** (Commits: 14e88fe, 2a68066, 9d1ca6f, bf618ca, 9f562ba)
+- Fixed UTType.markdown compatibility (macOS 12.0)
+- Fixed DocumentGroup syntax
+- Resolved type ambiguities (SwiftUI.Text vs Markdown.Text)
+- Fixed Swift keyword conflicts (.func, .operator)
+
+**Phase 4: UI Polish** (Commit: 0133649)
+- Fixed duplicate View menu
+- Cleaned up menu bar commands
+
+### Known Limitations (Accepted Trade-offs)
+
+**Temporarily Disabled Features**:
+- ⚠️ Math rendering (no MathJax in pure SwiftUI - would need custom renderer)
+- ⚠️ GFM Tables (placeholder view - needs custom layout)
+- ⚠️ Task lists (placeholder view - needs interactive checkboxes)
+- ⚠️ Sparkle auto-updates (requires AppKit integration)
+
+**Syntax Highlighting**:
+- ✅ Pure Swift tokenizer (5 languages: Swift, Python, JS, HTML, CSS)
+- ✅ 2 themes (github-dark, github-light)
+- ⚠️ Limited vs highlight.js (190+ languages)
+
+**UI Constraints**:
+- ⚠️ TextEditor has limited customization vs NSTextView
+- ⚠️ No line numbers in editor (SwiftUI TextEditor limitation)
+- ⚠️ Find/Replace is custom implementation (no system integration)
+
+### CI Enforcement
+
+**ci/ensure_pure_swiftui.sh**:
+```bash
+Forbidden Patterns: import AppKit, import Cocoa, import WebKit,
+                    NSViewRepresentable, NSDocument, WKWebView,
+                    NSViewController, NSWindowController, etc.
+
+Exit Code: 1 if violations found
+Status: ✅ PASSED (zero violations)
+```
+
+**.swiftlint.yml**:
+```yaml
+custom_rules:
+  no_appkit_import:
+    regex: 'import (AppKit|Cocoa|WebKit)'
+    message: "AppKit forbidden - use SwiftUI only"
+    severity: error
+```
+
+**GitHub Actions**: Workflow runs CI script on every push
+
+### Files Reference
+
+**New SwiftUI Files**:
+- `TextDown/App/TextDownApp.swift` - @main entry
+- `TextDown/App/AppState.swift` - Observable state
+- `TextDown/Document/MarkdownFileDocument.swift` - FileDocument
+- `TextDown/Editor/MarkdownEditorView.swift` - Main editor
+- `TextDown/Editor/PureSwiftUITextEditor.swift` - Text editor component
+- `TextDown/Preview/MarkdownASTView.swift` - Native renderer
+- `TextDown/Preview/SwiftHighlighter.swift` - Syntax highlighter
+- `TextDown/Preview/Color.swift` - Color utilities
+- `TextDown/Commands/TextDownCommands.swift` - Menu bar
+- `TextDown/About/AboutView.swift` - About dialog
+
+**CI Files**:
+- `ci/ensure_pure_swiftui.sh` - Purity enforcement script
+- `.swiftlint.yml` - Linter configuration
+- `.github/workflows/pure-swiftui-check.yml` - CI workflow
+
+---
+
+## Aktuelle Projektstruktur (Post-SwiftUI Migration)
+
+### TextDown.app - Pure SwiftUI Editor
 **Bundle ID**: `org.advison.TextDown`
+**Architecture**: 100% SwiftUI (Zero AppKit)
+**Target**: macOS 12.0+
 **Primary Function**: Markdown Editor with Live Preview
 
-**Kernklassen**:
-- `ViewControllers/DocumentViewController.swift` (~617 LOC) - Split-View Editor
-  - Markdown Input: NSTextView (linke Seite)
-  - Preview: WKWebView (rechte Seite, Live-Update)
-  - Debounced Rendering (0.5s delay)
-  - Direct access to AppConfiguration.shared (@Observable)
-- `Models/MarkdownDocument.swift` (180 LOC) - NSDocument Subclass
-- `ViewControllers/MarkdownWindowController.swift` (82 LOC) - Window Management
-- `Core/AppDelegate.swift` - App Lifecycle, Sparkle Updates
-- `Core/AppConfiguration.swift` (~40 Properties, @Observable) - Single Source of Truth
-- `Core/AppConfiguration+Rendering.swift` - Haupt-Rendering-Engine
-- `Core/AppConfiguration+Persistence.swift` - Standalone Persistenz (JSON in Application Support)
-- `Views/Settings/*.swift` (5 SwiftUI Views) - Settings UI with @Bindable bindings
+**SwiftUI Entry Point**:
+- `App/TextDownApp.swift` (@main) - DocumentGroup-based app
+  - DocumentGroup(newDocument: MarkdownFileDocument())
+  - Settings scene (SwiftUI preferences)
+  - Window("About TextDown") scene
+
+**Core Components**:
+- `App/AppState.swift` (@Observable) - Replaces AppDelegate
+  - Auto-refresh state
+  - Syntax theme selection
+  - Rendering settings
+
+- `Document/MarkdownFileDocument.swift` (FileDocument) - Replaces NSDocument
+  - UTType support: .markdown, .rMarkdown, .qmdMarkdown
+  - UTF-8 encoding with fallback
+  - Auto-save support
+
+- `Editor/MarkdownEditorView.swift` (SwiftUI HSplitView)
+  - Left: PureSwiftUITextEditor (raw markdown)
+  - Right: MarkdownASTView (live preview)
+  - Debounced rendering (0.5s delay)
+  - Receives AppState via @EnvironmentObject
+
+- `Editor/PureSwiftUITextEditor.swift` (SwiftUI TextEditor wrapper)
+  - Custom undo/redo stack (50 entries)
+  - Find bar with match counting
+  - Drag & drop for file URLs
+  - Monospaced font
+
+- `Preview/MarkdownASTView.swift` (Native SwiftUI Renderer)
+  - Direct swift-markdown AST → SwiftUI views
+  - HeadingView, ParagraphView, CodeBlockView, ListViews, BlockQuoteView
+  - No WKWebView - pure SwiftUI rendering
+  - AttributedString for inline styles
+
+- `Preview/SwiftHighlighter.swift` (Pure Swift Tokenizer)
+  - Supports: Swift, Python, JavaScript, HTML, CSS
+  - 2 themes: github-dark, github-light
+  - Returns AttributedString with color styling
+
+- `Preview/Color.swift` (SwiftUI Color Utilities)
+  - Color(hex: "#FF5733") initializer
+  - Color.Markdown semantic palette
+  - Zero AppKit dependencies
+
+- `Commands/TextDownCommands.swift` (Menu Bar)
+  - Export as HTML (File menu)
+  - Preview Auto-Refresh, Refresh Preview (View menu)
+  - About TextDown (Window menu)
+  - TextDown Help (Help menu)
+
+- `About/AboutView.swift` (Pure SwiftUI Dialog)
+  - App icon, version info
+  - Library credits
+  - GitHub link
+
+**Settings UI** (Pure SwiftUI):
+- `Views/Settings/TextDownSettingsView.swift` - Main settings window
+- `Views/Settings/GeneralSettingsView.swift` - Appearance, CSS, behavior
+- `Views/Settings/ExtensionsSettingsView.swift` - GFM + custom extensions
+- `Views/Settings/SyntaxSettingsView.swift` - Highlighting, themes
+- `Views/Settings/AdvancedSettingsView.swift` - Parser options, reset
+
+**Configuration** (Shared State):
+- `Core/AppConfiguration.swift` (~40 Properties, @Observable)
+  - GFM options (tables, strikethrough, autolinks, task lists)
+  - Custom extensions (emoji, math, highlight, inline images, heads)
+  - Syntax highlighting (theme, line numbers, word wrap)
+  - Parser options (footnotes, hard breaks, smart quotes)
 
 **Wichtige Properties in AppConfiguration.swift**:
 ````
