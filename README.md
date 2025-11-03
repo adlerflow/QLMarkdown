@@ -23,19 +23,11 @@ Supported file types: Markdown (`.md`), R Markdown (`.rmd`), Quarto (`.qmd`), MD
   - [Screenshots](#screenshots)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Markdown processing](#markdown-processing)
-  - [Difference with the GitHub Markdown engine](#difference-with-the-github-markdown-engine)
   - [Settings](#settings)
-    - [Themes](#themes)
-    - [Options](#options)
-    - [Extensions](#extensions)
-      - [Emoji](#emoji)
-      - [Inline local images](#inline-local-images)
-      - [Mathematical expressions](#mathematical-expressions)
-      - [Syntax Highlighting](#syntax-highlighting)
-      - [YAML header](#yaml-header)
+    - [Appearance](#appearance)
+    - [Parser Options](#parser-options)
+    - [Markdown Extensions](#markdown-extensions)
   - [Build from source](#build-from-source)
-    - [Dependency](#dependency)
   - [Note about the developer](#note-about-the-developer)
 
 
@@ -125,77 +117,43 @@ Unsupported languages display as plain text without syntax coloring.
 **Note**: TextDown uses swift-markdown parser with Pure SwiftUI rendering. Raw HTML tags in markdown source are ignored (not rendered).
 
 
-### Extensions
+### Markdown Extensions
 
-|Extension|Description|
-|:--|:--|
-|Autolink|Automatically translate URL to link and parse email addresses.|
-|Emoji|Enable the [Emoji extension](#emoji).|
-|GitHub mentions|Translate mentions to link to the GitHub account.|
-|<a name="heads-anchors"></a>Heads anchors|Create anchors for the heads to use as cross internal reference. Each anchor is named with the lowercased caption, stripped of any punctuation marks (except the dash) and spaces replaced with dash (`-`). UTF8 character encoding is supported.|
-|Highlight|Highlight the text contained between the markers `==`.|
-|Inline local images|Enable the [Inline local images extension](#inline-local-images).|
-|Math|Enable the [formatting of math expressions](#mathematical-expressions).|
-|Strikethrough|Strikethrough text inside tildes. You can choose to detect single or double tilde delimiters.|
-|Sub/Superscript|Allow to subscript text inside `~` tag pairs, and superscript text inside `^` tag pairs. Please note that the Strikethrough extension must be disabled or set to recognize double `~`.|
-|Syntax highlighting|Enable the [Syntax highlighting extension](#syntax-highlighting). |
-|Table|Parse table as defined by the GitHub extension to the standard Markdown language.|
-|Tag filter|Strip potentially dangerous HTML tags (`<title>`,   `<textarea>`, `<style>`,  `<xmp>`, `<iframe>`, `<noembed>`, `<noframes>`, `<script>`, `<plaintext>`). It only takes effect if the option to include HTML code is enabled.|
-|Task list|Parse task list as defined by the GitHub extension to the standard Markdown language.|
-|YAML header|Enable the [YAML header extension](#YAML-header).|
+**GitHub Flavored Markdown (Built-in)**:
+- **Tables**: Basic table rendering (placeholder view for complex layouts)
+- **Strikethrough**: `~~strikethrough~~` text
+- **Task Lists**: `- [ ]` and `- [x]` checkboxes (placeholder view, not interactive)
+- **Autolinks**: Automatic URL and email linking
 
-You can also choose whether to open external links in the preview pane or in the default browser.
+**Syntax Highlighting**:
+- Enable/disable syntax highlighting for code blocks
+- Supported languages: Swift, Python, JavaScript, HTML, CSS
+- Uses SwiftHighlighter (Pure Swift tokenizer)
 
+**Known Limitations**:
+- **Math expressions**: Not currently supported (no MathJax in Pure SwiftUI)
+- **Emoji shortcodes**: Not currently supported
+- **Complex tables**: Rendered as placeholder view
+- **Interactive task lists**: Not currently supported (checkboxes are read-only)
 
-#### Emoji
-
-You can enable the Emoji extension to handle the shortcodes defined by [GitHub](https://api.github.com/emojis). You can render the emoji with an emoticon glyph or using the image provided by GitHub (internet connection required). 
-
-Multibyte emoji are supported, so `:it:` equivalent to the code `\u1f1ee\u1f1f9` must be rendered as the Italian flag :it:. 
-
-Some emoji do not have an equivalent glyph on the standard font and will be replaced always with the relative image.
-
-A list of GitHub emoji shortcodes is available [here](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#people--body).
 
  
-#### Inline local images
-
-You can enable the Inline image extension to embed local images directly into the rendered HTML by converting them to Base64 data URLs.
-
-Supported image references:
-- Relative paths: `./image.jpg`, `image.jpg`, `assets/image.jpg`
-- Absolute paths with `file://` schema: `file:///Users/username/Documents/image.jpg`
-
-For `file://` URLs, you must provide the full absolute path. For images in the same folder as the Markdown file, use relative paths (the `./` prefix is optional).
-
-The extension processes both Markdown image syntax (`![alt](path)`) and HTML `<img>` tags (when raw HTML is enabled).
-
-
-#### Mathematical expressions
-
-This extension allow to format the mathematical expressions using the LaTeX syntax like [GitHub](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
-Math rendering capability uses [MathJax](https://www.mathjax.org/) display engine.
-
-Inline math expressions are delimited with a dollar symbol `$`. Block expressions are delimited with a double dollar symbols `$$`.
-
-Alternatively, you can use the ` ```math ` code block syntax to display a math expression as a block.
-
-The [MathJax](https://www.mathjax.org/) library is loaded from cdn.jsdelivr.net. The library is loaded if the markdown code contains ` ```math ` code blocks or one or more dollar sign.
-
-
-
-### YAML header
-
-You can enable the extension to handle a `yaml` header at the beginning of a file. You can choose to enable the extensions to all `.md` files or only for `.rmd` and `.qmd` files.
-
-The header is recognized only if the file start with `---`. The yaml block must be closed with `---` or with `...`.
-
-When the `table` extension is enabled, the header is rendered as a table, otherwise as a block of code. Nested tables are supported. 
 
 
 ## Build from source
 
-When you clone this repository, remember to fetch also the submodule with `git submodule update --init`.
+**Requirements**:
+- Xcode 16.0+ (for SwiftUI features)
+- macOS 26.0+ deployment target
+
+**Steps**:
+```bash
+git clone https://github.com/adlerflow/TextDown.git
+cd TextDown
+open TextDown.xcodeproj
+```
+
+Build with ⌘B. The project uses Swift Package Manager for dependencies (swift-markdown 0.7.3) which will be automatically fetched by Xcode.
 
 
 ## Note about the developer
