@@ -84,10 +84,6 @@ final class SettingsTests: XCTestCase {
 
         // Application Behavior (6)
         settings.openInlineLink = true
-        settings.renderAsCode = true
-        settings.useLegacyPreview = true
-        settings.qlWindowWidth = 1024
-        settings.qlWindowHeight = 768
         settings.about = true
         settings.debug = true
 
@@ -148,10 +144,6 @@ final class SettingsTests: XCTestCase {
 
         // Application Behavior
         XCTAssertEqual(decoded.openInlineLink, settings.openInlineLink, "openInlineLink mismatch")
-        XCTAssertEqual(decoded.renderAsCode, settings.renderAsCode, "renderAsCode mismatch")
-        XCTAssertEqual(decoded.useLegacyPreview, settings.useLegacyPreview, "useLegacyPreview mismatch")
-        XCTAssertEqual(decoded.qlWindowWidth, settings.qlWindowWidth, "qlWindowWidth mismatch")
-        XCTAssertEqual(decoded.qlWindowHeight, settings.qlWindowHeight, "qlWindowHeight mismatch")
         XCTAssertEqual(decoded.about, settings.about, "about mismatch")
         XCTAssertEqual(decoded.debug, settings.debug, "debug mismatch")
     }
@@ -206,9 +198,6 @@ final class SettingsTests: XCTestCase {
 
         // Application Behavior
         XCTAssertFalse(factory.openInlineLink, "openInlineLink default should be false")
-        XCTAssertFalse(factory.renderAsCode, "renderAsCode default should be false")
-        XCTAssertNil(factory.qlWindowWidth, "qlWindowWidth default should be nil")
-        XCTAssertNil(factory.qlWindowHeight, "qlWindowHeight default should be nil")
         XCTAssertFalse(factory.debug, "debug default should be false")
         XCTAssertFalse(factory.about, "about default should be false")
     }
@@ -220,8 +209,6 @@ final class SettingsTests: XCTestCase {
         settings.tableExtension = false
         settings.emojiExtension = false
         settings.syntaxThemeLightOption = "solarized-light"
-        settings.qlWindowWidth = 800
-        settings.qlWindowHeight = 600
 
         // Write settings to file
         let encoder = JSONEncoder()
@@ -241,8 +228,6 @@ final class SettingsTests: XCTestCase {
         XCTAssertEqual(loaded.tableExtension, settings.tableExtension)
         XCTAssertEqual(loaded.emojiExtension, settings.emojiExtension)
         XCTAssertEqual(loaded.syntaxThemeLightOption, settings.syntaxThemeLightOption)
-        XCTAssertEqual(loaded.qlWindowWidth, settings.qlWindowWidth)
-        XCTAssertEqual(loaded.qlWindowHeight, settings.qlWindowHeight)
     }
 
     // MARK: - Property Validation Tests
@@ -265,31 +250,6 @@ final class SettingsTests: XCTestCase {
         XCTAssertEqual(settings.syntaxThemeLightOption, "nonexistent-theme")
     }
 
-    func testWindowSizeValidation() {
-        // Valid sizes
-        settings.qlWindowWidth = 800
-        settings.qlWindowHeight = 600
-        XCTAssertEqual(settings.qlWindowSize, CGSize(width: 800, height: 600))
-
-        // Zero/negative values (should result in zero size)
-        settings.qlWindowWidth = 0
-        settings.qlWindowHeight = 0
-        XCTAssertEqual(settings.qlWindowSize, CGSize(width: 0, height: 0))
-
-        settings.qlWindowWidth = -100
-        settings.qlWindowHeight = -100
-        XCTAssertEqual(settings.qlWindowSize, CGSize(width: 0, height: 0))
-
-        // Nil values (should result in zero size)
-        settings.qlWindowWidth = nil
-        settings.qlWindowHeight = nil
-        XCTAssertEqual(settings.qlWindowSize, CGSize(width: 0, height: 0))
-
-        // Mixed nil and valid
-        settings.qlWindowWidth = 800
-        settings.qlWindowHeight = nil
-        XCTAssertEqual(settings.qlWindowSize, CGSize(width: 0, height: 0))
-    }
 
     func testSyntaxTabsOption() {
         // Valid tab widths

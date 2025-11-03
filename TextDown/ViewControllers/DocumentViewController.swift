@@ -418,34 +418,6 @@ document.addEventListener('scroll', function(e) {
         doRefresh(self)
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-        guard firstView else {
-            return
-        }
-        firstView = true;
-        
-        guard !UserDefaults.standard.bool(forKey: "textdown-suppress-editor-warning") else {
-            return
-        }
-        
-        let alert = NSAlert()
-        
-        alert.alertStyle = .warning
-        alert.showsSuppressionButton = true
-        alert.messageText = "TextDown Preferences"
-        alert.informativeText = "This application is not intended to be a Markdown editor, but the interface for customising the Quick Look preview."
-        alert.suppressionButton?.title = "Do not show this warning again"
-        
-        alert.addButton(withTitle: "OK").keyEquivalent = "\r"
-        alert.runModal()
-        
-        if let suppressionButton = alert.suppressionButton, suppressionButton.state == .on {
-            UserDefaults.standard.set(true, forKey: "textdown-suppress-editor-warning")
-        }
-    }
-    
     
     @IBAction func doAutoRefresh(_ sender: NSMenuItem) {
         autoRefresh = !autoRefresh

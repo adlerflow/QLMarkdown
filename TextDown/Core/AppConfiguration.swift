@@ -66,14 +66,7 @@ class AppConfiguration: Codable {
         case customCSSCodeFetched
         case customCSSOverride
         case openInlineLink
-        
-        case renderAsCode
-        
-        case useLegacyPreview
-        
-        case qlWindowWidth
-        case qlWindowHeight
-        
+                                
         case about
         case debug
     }
@@ -133,8 +126,6 @@ class AppConfiguration: Codable {
     var customCSSOverride: Bool = false
 
     var openInlineLink: Bool = false
-
-    var renderAsCode: Bool = false
     
     var renderStats: Int {
         get {
@@ -145,22 +136,7 @@ class AppConfiguration: Codable {
             UserDefaults.standard.synchronize();
         }
     }
-    
-    var useLegacyPreview: Bool = false
-    
-    /// Quick Look window width.
-    var qlWindowWidth: Int? = nil
-    /// Quick Look window height.
-    var qlWindowHeight: Int? = nil
-    /// Quick Look window size.
-    var qlWindowSize: CGSize {
-        if let w = qlWindowWidth, w > 0, let h = qlWindowHeight, h > 0 {
-            return CGSize(width: CGFloat(w), height: CGFloat(h))
-        } else {
-            return CGSize(width: 0, height: 0)
-        }
-    }
-    
+            
     var debug: Bool = false
     var about: Bool = false
     
@@ -248,14 +224,7 @@ class AppConfiguration: Codable {
         self.customCSSCode = try container.decode(String?.self, forKey: .customCSSCode)
         self.customCSSOverride = try container.decode(Bool.self, forKey: .customCSSOverride)
         self.openInlineLink = try container.decode(Bool.self, forKey: .openInlineLink)
-    
-        self.renderAsCode = try container.decode(Bool.self, forKey: .renderAsCode)
-    
-        self.useLegacyPreview = try container.decode(Bool.self, forKey: .useLegacyPreview)
-    
-        self.qlWindowWidth = try container.decode(Int?.self, forKey: .qlWindowWidth)
-        self.qlWindowHeight = try container.decode(Int?.self, forKey: .qlWindowHeight)
-    
+                
         self.debug = try container.decode(Bool.self, forKey: .debug)
         self.about = try container.decode(Bool.self, forKey: .about)
     }
@@ -312,11 +281,7 @@ class AppConfiguration: Codable {
         try container.encode(self.customCSSFetched, forKey: .customCSSCodeFetched)
         try container.encode(self.customCSSOverride, forKey: .customCSSOverride)
         try container.encode(self.openInlineLink, forKey: .openInlineLink)
-        try container.encode(self.renderAsCode, forKey: .renderAsCode)
         
-        try container.encode(self.useLegacyPreview, forKey: .useLegacyPreview)
-        try container.encode(self.qlWindowWidth, forKey: .qlWindowWidth)
-        try container.encode(self.qlWindowHeight, forKey: .qlWindowHeight)
         try container.encode(self.about, forKey: .about)
         try container.encode(self.debug, forKey: .debug)
     }
@@ -392,14 +357,8 @@ class AppConfiguration: Codable {
 
         self.about = s.about
         self.debug = s.debug
-        
-        self.renderAsCode = s.renderAsCode
-        
-        self.qlWindowWidth = s.qlWindowWidth
-        self.qlWindowHeight = s.qlWindowHeight
-        
-        self.useLegacyPreview = false
-    }
+                
+            }
     
     func update(from defaultsDomain: [String: Any]) {
         if let ext = defaultsDomain["table"] as? Bool {
@@ -530,24 +489,7 @@ class AppConfiguration: Codable {
         if let opt = defaultsDomain["inline-link"] as? Bool {
             openInlineLink = opt
         }
-        if let opt = defaultsDomain["render-as-code"] as? Bool {
-            renderAsCode = opt
-        }
-        if let opt = defaultsDomain["ql-window-width"] as? Int, opt > 0 {
-            qlWindowWidth = opt
-        } else {
-            qlWindowWidth = nil
-        }
-        if let opt = defaultsDomain["ql-window-height"] as? Int, opt > 0 {
-            qlWindowHeight = opt
-        } else {
-            qlWindowHeight = nil
-        }
         
-        if let opt = defaultsDomain["legacy-preview"] as? Bool {
-            useLegacyPreview = opt
-        }
-
         sanitizeEmojiOption()
     }
     

@@ -32,11 +32,6 @@ struct AdvancedSettingsView: View {
                     .help("Enforce strict UTF-8 validation (may reject some files)")
             }
 
-            Section("Rendering") {
-                Toggle("Render as code", isOn: $settings.renderAsCode)
-                    .help("Escape HTML and render markdown as plain code block")
-            }
-
             Section("Reset") {
                 Button("Reset All Settings to Factory Defaults") {
                     resetToDefaults()
@@ -100,9 +95,6 @@ struct AdvancedSettingsView: View {
 
         // Application Behavior
         settings.openInlineLink = defaults.openInlineLink
-        settings.renderAsCode = defaults.renderAsCode
-        settings.qlWindowWidth = defaults.qlWindowWidth
-        settings.qlWindowHeight = defaults.qlWindowHeight
         settings.about = defaults.about
         settings.debug = defaults.debug
     }

@@ -128,9 +128,6 @@ struct TextDownSettingsView: View {
 
         // Application Behavior
         shared.openInlineLink = draftSettings.openInlineLink
-        shared.renderAsCode = draftSettings.renderAsCode
-        shared.qlWindowWidth = draftSettings.qlWindowWidth
-        shared.qlWindowHeight = draftSettings.qlWindowHeight
         shared.about = draftSettings.about
         shared.debug = draftSettings.debug
 

@@ -32,22 +32,6 @@ struct GeneralSettingsView: View {
                     .help("Enable debug logging in Console.app")
             }
 
-            Section("QuickLook Window Size") {
-                HStack {
-                    Text("Width:")
-                        .frame(width: 60, alignment: .trailing)
-                    TextField("Width", value: $settings.qlWindowWidth, format: .number)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(maxWidth: 100)
-
-                    Text("Height:")
-                        .frame(width: 60, alignment: .trailing)
-                    TextField("Height", value: $settings.qlWindowHeight, format: .number)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(maxWidth: 100)
-                }
-                .help("Set QuickLook preview window dimensions (leave empty for default)")
-            }
         }
         .formStyle(.grouped)
         .frame(minWidth: 500, minHeight: 400)

@@ -114,6 +114,8 @@ struct MarkdownRenderer {
 
     /// Post-process HTML: Add heading IDs, inject CSS/JS, prepend YAML header
     private func postProcessHTML(_ htmlBody: String, yamlHeader: String, appearance: Appearance) throws -> String {
+        os_log("postProcessHTML: input htmlBody length: %d", log: OSLog.rendering, type: .debug, htmlBody.count)
+
         // Parse HTML fragment
         let doc = try SwiftSoup.parseBodyFragment(htmlBody)
         guard let body = doc.body() else {
@@ -125,8 +127,14 @@ struct MarkdownRenderer {
             try addHeadingIDs(to: body)
         }
 
+        let processedBody = try body.html()
+        os_log("postProcessHTML: body.html() length: %d", log: OSLog.rendering, type: .debug, processedBody.count)
+
         // Build complete HTML document with CSS/JS
-        return try buildCompleteHTML(body: try body.html(), yamlHeader: yamlHeader, appearance: appearance)
+        let finalHTML = try buildCompleteHTML(body: processedBody, yamlHeader: yamlHeader, appearance: appearance)
+        os_log("postProcessHTML: final HTML length: %d", log: OSLog.rendering, type: .debug, finalHTML.count)
+
+        return finalHTML
     }
 
     /// Add unique ID attributes to all headings
@@ -173,7 +181,7 @@ struct MarkdownRenderer {
         }
 
         // Add MathJax if math content present
-        if settings.mathExtension && body.contains("\\\\(") || body.contains("\\\\[") {
+        if settings.mathExtension && (body.contains("\\\\(") || body.contains("\\\\[")) {
             html += """
             <script>
             MathJax = {
@@ -192,7 +200,7 @@ struct MarkdownRenderer {
 
         html += "</head>\n<body>\n"
 
-        // Add debug info table if enabled
+        // Add debug info table if enabled (outside article for full width)
         if settings.debug {
             html += """
             <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0; background: #f5f5f5;">
@@ -210,6 +218,9 @@ struct MarkdownRenderer {
             """
         }
 
+        // Open article wrapper for max-width styling (902px from default.css)
+        html += "<article class='markdown-body'>\n"
+
         // Add YAML header if extracted (R Markdown .rmd/.qmd files)
         if !yamlHeader.isEmpty {
             html += yamlHeader + "\n"
@@ -217,6 +228,9 @@ struct MarkdownRenderer {
 
         // Add body content
         html += body
+
+        // Close article wrapper
+        html += "</article>\n"
 
         // Add about footer if enabled
         if settings.about {
@@ -231,9 +245,7 @@ struct MarkdownRenderer {
             """
         }
 
-        html += "\n</body>\n"
-
-        // Add highlight.js JavaScript
+        // Add highlight.js JavaScript BEFORE </body> to avoid blocking
         if settings.syntaxHighlightExtension {
             if let jsPath = settings.resourceBundle.path(forResource: "highlight.min", ofType: "js", inDirectory: "highlight.js/lib"),
                let js = try? String(contentsOfFile: jsPath, encoding: .utf8) {
@@ -250,7 +262,17 @@ struct MarkdownRenderer {
             }
         }
 
+        html += "\n</body>\n"
         html += "</html>"
+
+        os_log("buildCompleteHTML: final html length: %d", log: OSLog.rendering, type: .debug, html.count)
+
+        // DEBUG: Save HTML to temp file for inspection
+        #if DEBUG
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("textdown-debug.html")
+        try? html.write(to: tempURL, atomically: true, encoding: .utf8)
+        os_log("DEBUG: Saved HTML to %{public}@", log: OSLog.rendering, type: .info, tempURL.path)
+        #endif
 
         return html
     }
