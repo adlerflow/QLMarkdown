@@ -12,7 +12,7 @@ actor MarkdownParserRepositoryImpl: MarkdownParserRepository {
 
     func parse(_ markdown: String, settings: MarkdownSettings) async throws -> Document {
         // Parse using swift-markdown
-        var document = Document(parsing: markdown)
+        let document = Document(parsing: markdown)
 
         // Apply GitHub Flavored Markdown options
         // Note: swift-markdown has built-in GFM support, configuration happens at parse time
@@ -22,14 +22,10 @@ actor MarkdownParserRepositoryImpl: MarkdownParserRepository {
     }
 
     func validate(_ markdown: String) async -> Bool {
-        // swift-markdown is lenient and doesn't fail on invalid syntax
-        // We consider markdown valid if it can be parsed without crashing
-        do {
-            _ = Document(parsing: markdown)
-            return true
-        } catch {
-            return false
-        }
+        // swift-markdown is lenient and doesn't throw errors
+        // Document(parsing:) always succeeds, so all markdown is valid
+        _ = Document(parsing: markdown)
+        return true
     }
 
     func estimateComplexity(_ markdown: String) async -> Int {
