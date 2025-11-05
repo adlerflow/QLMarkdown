@@ -28,12 +28,10 @@ struct MarkdownEditorView: View {
     var body: some View {
         HSplitView {
             // Left: Pure SwiftUI Text Editor
-            PureSwiftUITextEditor(
-                text: $document.content
-            )
-            .frame(minWidth: 300)
-            .focusedSceneValue(\.editorText, $document.content)
-            .focusedSceneObject(settingsViewModel)
+            PureSwiftUITextEditor(text: $document.content)
+                .frame(minWidth: 300)
+                .focusedSceneValue(\.editorText, $document.content)
+                .focusedSceneObject(settingsViewModel)
 
             // Right: Native SwiftUI Markdown Renderer
             MarkdownASTView(document: viewModel.renderedDocument)

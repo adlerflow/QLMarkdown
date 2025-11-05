@@ -1,43 +1,35 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Pure SwiftUI Text Editor with Undo/Redo, Find Bar, Drag & Drop
+/// Pure SwiftUI Text Editor with Undo/Redo, Native Find, Drag & Drop
 struct PureSwiftUITextEditor: View {
     @Binding var text: String
     @StateObject private var viewModel = TextEditorViewModel()
     @Environment(\.openURL) var openURL
+    @State private var isFindNavigatorPresented = false
 
     var body: some View {
-        VStack(spacing: 0) {
-            // Find Bar (conditional)
-            if viewModel.showingFindBar {
-                FindBar(viewModel: viewModel, currentText: text)
+        // Main Text Editor
+        TextEditor(text: $text)
+            .font(.system(.body, design: .monospaced))
+            .findNavigator(isPresented: $isFindNavigatorPresented)
+            .onDrop(of: [.fileURL], isTargeted: nil) { providers in
+                handleDrop(providers: providers)
             }
-
-            // Main Text Editor
-            TextEditor(text: $text)
-                .font(.system(.body, design: .monospaced))
-                .onDrop(of: [.fileURL], isTargeted: nil) { providers in
-                    handleDrop(providers: providers)
-                }
-                .onChange(of: text) { oldValue, newValue in
-                    viewModel.recordChange(oldText: oldValue, newText: newValue)
-                }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .automatic) {
-                // Find Button
-                Button {
-                    viewModel.toggleFindBar()
-                } label: {
+            .onChange(of: text) { oldValue, newValue in
+                viewModel.recordChange(oldText: oldValue, newText: newValue)
+            }
+        .toolbar(id: "editor") {
+            // MARK: - Editor Tools
+            ToolbarItem(id: "find", placement: .automatic) {
+                Toggle(isOn: $isFindNavigatorPresented) {
                     Label("Find", systemImage: "magnifyingglass")
                 }
                 .keyboardShortcut("f", modifiers: .command)
-                .help("Find in document")
+                .help("Find and replace (⌘F)")
+            }
 
-                Divider()
-
-                // Undo Button
+            ToolbarItem(id: "undo", placement: .automatic) {
                 Button {
                     if let previousText = viewModel.performUndo(currentText: text) {
                         text = previousText
@@ -48,8 +40,9 @@ struct PureSwiftUITextEditor: View {
                 .keyboardShortcut("z", modifiers: .command)
                 .disabled(!viewModel.canUndo)
                 .help("Undo last change")
+            }
 
-                // Redo Button
+            ToolbarItem(id: "redo", placement: .automatic) {
                 Button {
                     if let nextText = viewModel.performRedo(currentText: text) {
                         text = nextText
@@ -85,50 +78,5 @@ struct PureSwiftUITextEditor: View {
             }
         }
         return false
-    }
-}
-
-// MARK: - Find Bar
-
-struct FindBar: View {
-    @ObservedObject var viewModel: TextEditorViewModel
-    let currentText: String
-
-    var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "magnifyingglass")
-                .foregroundStyle(.secondary)
-
-            TextField("Find", text: $viewModel.searchText)
-                .textFieldStyle(.plain)
-                .frame(width: 200)
-
-            if !viewModel.searchText.isEmpty {
-                Text("\(viewModel.matchCount) matches")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
-            Spacer()
-
-            // Close Button
-            Button {
-                viewModel.closeFindBar()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundStyle(.secondary)
-            }
-            .buttonStyle(.plain)
-            .help("Close find bar")
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(.regularMaterial)
-        .onChange(of: viewModel.searchText) { _, _ in
-            viewModel.updateMatchCount(in: currentText)
-        }
-        .onAppear {
-            viewModel.updateMatchCount(in: currentText)
-        }
     }
 }

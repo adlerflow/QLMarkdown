@@ -81,7 +81,6 @@
 		83598E6D2581880A004664D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83598E6E2581880A004664D3 /* TextDown.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextDown.entitlements; sourceTree = "<group>"; };
 		83C8C1802D272CA200FBB33F /* TextDownXPCHelper.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = TextDownXPCHelper.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
-		83CF71E02C60ADA60066A195 /* icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = icon.afdesign; sourceTree = "<group>"; };
 		83D4B1C3258675D0000745DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		83E7FEED258FBE54003ECF9B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		83F8822C2598A5C0008C5071 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -180,7 +179,6 @@
 				83D4B1C3258675D0000745DB /* README.md */,
 				83E7FEED258FBE54003ECF9B /* TODO.md */,
 				832D256125CC8894005F41AC /* .gitignore */,
-				83CF71E12C60ADA60066A195 /* assets */,
 				83598E6325818808004664D3 /* TextDown */,
 				F49E8C5D2EB77A2200E3161A /* TextDownTests */,
 				83598F0525825B8D004664D3 /* Frameworks */,
@@ -226,14 +224,6 @@
 				831A8C40258ABADA00E36182 /* Quartz.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		83CF71E12C60ADA60066A195 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				83CF71E02C60ADA60066A195 /* icon.afdesign */,
-			);
-			path = assets;
 			sourceTree = "<group>";
 		};
 		F4CB237E2EB78FAB0027B041 /* Settings */ = {
@@ -474,7 +464,6 @@
 			knownRegions = (
 				en,
 				Base,
-				it,
 			);
 			mainGroup = 83598E5825818808004664D3;
 			packageReferences = (

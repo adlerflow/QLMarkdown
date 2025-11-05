@@ -12,17 +12,6 @@ import UniformTypeIdentifiers
 /// ViewModel for text editor functionality
 @MainActor
 class TextEditorViewModel: ObservableObject {
-    // MARK: - Published Properties
-
-    /// Current search query
-    @Published var searchText: String = ""
-
-    /// Whether find bar is visible
-    @Published var showingFindBar: Bool = false
-
-    /// Number of search matches found
-    @Published var matchCount: Int = 0
-
     // MARK: - Undo/Redo Stack
 
     private var undoStack: [String] = []
@@ -69,43 +58,6 @@ class TextEditorViewModel: ObservableObject {
         guard let next = redoStack.popLast() else { return nil }
         undoStack.append(currentText)
         return next
-    }
-
-    // MARK: - Search Functionality
-
-    /// Updates match count for current search query
-    /// - Parameter text: Text to search in
-    func updateMatchCount(in text: String) {
-        guard !searchText.isEmpty else {
-            matchCount = 0
-            return
-        }
-
-        // Count occurrences efficiently using ranges(of:)
-        let lowercasedText = text.lowercased()
-        let lowercasedQuery = searchText.lowercased()
-
-        var count = 0
-        var searchRange = lowercasedText.startIndex..<lowercasedText.endIndex
-
-        while let range = lowercasedText.range(of: lowercasedQuery, range: searchRange) {
-            count += 1
-            searchRange = range.upperBound..<lowercasedText.endIndex
-        }
-
-        matchCount = count
-    }
-
-    /// Toggle find bar visibility
-    func toggleFindBar() {
-        showingFindBar.toggle()
-    }
-
-    /// Close find bar
-    func closeFindBar() {
-        showingFindBar = false
-        searchText = ""
-        matchCount = 0
     }
 
     // MARK: - File Validation
