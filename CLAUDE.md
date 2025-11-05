@@ -565,14 +565,41 @@ swiftlint
 
 ---
 
+## Recent Updates (November 2025)
+
+### Latest Changes (2025-11-05)
+
+**Editor Improvements:**
+- ✅ Migrated to native `.findNavigator()` with full system integration
+  - Replaced custom FindBar implementation
+  - Native find history and keyboard shortcuts
+  - Simplified toolbar with `toolbar(id:)` API
+
+**Asset Updates:**
+- ✅ New AppIcon set (iOS-Dark design)
+  - High-resolution icons (16x16 to 1024x1024)
+  - Removed obsolete icon files
+
+**Bug Fixes:**
+- ✅ Fixed AccentColor configuration issue preventing app launch
+  - Removed invalid `selectedTextBackgroundColor` reference
+  - Restored standard accent color configuration
+
+**Repository Cleanup:**
+- ✅ Merged `feature/pure-swiftui-migration` → `main`
+- ✅ Removed obsolete branches (5 feature branches deleted)
+- ✅ Removed unnecessary remotes (`upstream`, `github-desktop-180VRisLife`)
+- ✅ Clean repository with single `main` branch
+
+---
+
 ## Known Limitations
 
 1. **Syntax Highlighting**: Limited to 5 languages (vs highlight.js 190+)
 2. **Math Rendering**: Not supported (would require custom renderer or MathJax)
 3. **GFM Tables**: Placeholder only (needs custom SwiftUI layout)
 4. **Task Lists**: Placeholder only (needs interactive checkboxes)
-5. **Find Navigation**: No previous/next (SwiftUI TextEditor limitation)
-6. **Line Numbers**: Not available (SwiftUI TextEditor limitation)
+5. **Line Numbers**: Not available (SwiftUI TextEditor limitation)
 
 ---
 
